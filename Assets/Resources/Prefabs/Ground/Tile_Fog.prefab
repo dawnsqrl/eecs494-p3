@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5614927498503236307}
   - component: {fileID: 1744209628034625496}
   - component: {fileID: 7127928394300331581}
+  - component: {fileID: 25116024869779872}
   m_Layer: 0
   m_Name: Tile_Fog
   m_TagString: Untagged
@@ -129,6 +130,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &25116024869779872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3077996363594014921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0606434461124eab9496cedd416e734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3821725113398230978
 GameObject:
   m_ObjectHideFlags: 0

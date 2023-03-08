@@ -7,37 +7,39 @@ using UnityEngine;
 public class GridGenerator : MonoBehaviour {
     [SerializeField] private int _width, _height;
  
-    [SerializeField] private Tile _tilePrefab;
- 
+    [SerializeField] private GameObject _GridPrefab;
     // [SerializeField] private Transform _cam;
  
-    private Dictionary<Vector2, Tile> _tiles;
+    // private Dictionary<Vector2, Tile> _tiles;
  
     void Start() {
         GenerateGrid();
     }
  
     void GenerateGrid() {
-        _tiles = new Dictionary<Vector2, Tile>();
+        // _tiles = new Dictionary<Vector2, Tile>();
         for (int x = 0; x < _width; x++) {
             for (int y = 0; y < _height; y++) {
-                var spawnedTile = PrefabUtility.InstantiatePrefab(_tilePrefab) as Tile;
-                spawnedTile.transform.position = new Vector3(x, y);
-                spawnedTile.transform.rotation = Quaternion.identity;
-                spawnedTile.name = $"Tile {x} {y}";
+                var spawnedGrid = PrefabUtility.InstantiatePrefab(_GridPrefab) as GameObject;
+                spawnedGrid.transform.position = new Vector3(x, y);
+                spawnedGrid.transform.rotation = Quaternion.identity;
+                spawnedGrid.name = $"Tile {x} {y}";
  
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
-                spawnedTile.Init(isOffset);
-
-                _tiles[new Vector2(x, y)] = spawnedTile;
+                foreach (Transform child in spawnedGrid.transform)
+                {
+                    child.gameObject.GetComponent<Tile>().Init(isOffset);
+                }
+                
+                // _tiles[new Vector2(x, y)] = spawnedTile;
             }
         }
  
         // _cam.transform.position = new Vector3((float)_width/2 -0.5f, (float)_height / 2 - 0.5f,-10);
     }
  
-    public Tile GetTileAtPosition(Vector2 pos) {
-        if (_tiles.TryGetValue(pos, out var tile)) return tile;
-        return null;
-    }
+    // public Tile GetTileAtPosition(Vector2 pos) {
+    //     if (_tiles.TryGetValue(pos, out var tile)) return tile;
+    //     return null;
+    // }
 }
