@@ -12,6 +12,11 @@ public class Tile : MonoBehaviour {
     {
         _selfCoordinate = new Vector2(x, y);
     }
+    
+    public Vector2 GetSelfCoordinate(int x, int y)
+    {
+        return _selfCoordinate;
+    }
  
     public void Init(bool isOffset) {
         _renderer.color = isOffset ? _offsetColor : _baseColor;
