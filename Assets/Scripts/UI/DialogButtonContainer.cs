@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class DialogButtonContainer : MonoBehaviour
 {
-    [SerializeField] private float buttonHeight = 50;
+    [SerializeField] private float buttonHeight = 80;
     [SerializeField] private float buttonWidth = 200;
-    [SerializeField] private float buttonSpacing = 20;
+    [SerializeField] private float buttonSpacing = 40;
 
     private GameObject buttonTemplate;
     private GameObject buttonContainer;

@@ -33,7 +33,7 @@ public class InputInterface : MonoBehaviour
         if (playerActions.GenerateDialog.WasPressedThisFrame())
         {
             EventBus.Publish(new DisplayDialogEvent(
-                "Chirp", "Sonething happened!",
+                "Chirp", "Something happened!",
                 new Dictionary<string, UnityAction>()
                 {
                     { "What?", () => print("Clicked what") },
