@@ -1,3 +1,3 @@
-﻿public class ExampleEvent
+﻿public class TogglePauseEvent
 {
 }
