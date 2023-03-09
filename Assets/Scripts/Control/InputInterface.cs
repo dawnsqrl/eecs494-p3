@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InputInterface : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class InputInterface : MonoBehaviour
         controls = new Controls();
         playerActions = controls.Player;
     }
-    
+
     private void OnEnable()
     {
         controls.Enable();
@@ -20,12 +22,24 @@ public class InputInterface : MonoBehaviour
     {
         controls.Disable();
     }
-    
+
     private void Update()
     {
         if (playerActions.TogglePause.WasPressedThisFrame())
         {
             EventBus.Publish(new TogglePauseEvent());
+        }
+
+        if (playerActions.GenerateDialog.WasPressedThisFrame())
+        {
+            EventBus.Publish(new DisplayDialogEvent(
+                "Chirp", "Sonething happened!",
+                new Dictionary<string, UnityAction>()
+                {
+                    { "What?", () => print("Clicked what") },
+                    { "How?", () => print("Clicked how") }
+                }
+            ));
         }
     }
 }

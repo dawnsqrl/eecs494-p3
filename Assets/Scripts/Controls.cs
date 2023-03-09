@@ -35,6 +35,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GenerateDialog"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2b54896-8696-4b30-9547-a10d50185809"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -46,6 +55,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""TogglePause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""435775e4-1c7e-4230-921d-bc5ed400441f"",
+                    ""path"": ""<Keyboard>/backslash"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateDialog"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -352,6 +372,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_TogglePause = m_Player.FindAction("TogglePause", throwIfNotFound: true);
+        m_Player_GenerateDialog = m_Player.FindAction("GenerateDialog", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -422,11 +443,13 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_TogglePause;
+    private readonly InputAction m_Player_GenerateDialog;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @TogglePause => m_Wrapper.m_Player_TogglePause;
+        public InputAction @GenerateDialog => m_Wrapper.m_Player_GenerateDialog;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -439,6 +462,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @TogglePause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTogglePause;
                 @TogglePause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTogglePause;
                 @TogglePause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTogglePause;
+                @GenerateDialog.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateDialog;
+                @GenerateDialog.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateDialog;
+                @GenerateDialog.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateDialog;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -446,6 +472,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @TogglePause.started += instance.OnTogglePause;
                 @TogglePause.performed += instance.OnTogglePause;
                 @TogglePause.canceled += instance.OnTogglePause;
+                @GenerateDialog.started += instance.OnGenerateDialog;
+                @GenerateDialog.performed += instance.OnGenerateDialog;
+                @GenerateDialog.canceled += instance.OnGenerateDialog;
             }
         }
     }
@@ -551,6 +580,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnTogglePause(InputAction.CallbackContext context);
+        void OnGenerateDialog(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
