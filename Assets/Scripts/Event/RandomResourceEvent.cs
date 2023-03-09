@@ -17,8 +17,6 @@ public class RandomResourceEvent : MonoBehaviour
 
     private void Update()
     {
-        print($"{Mathf.Round(nextEventTime - Time.time)}");
-
         if (Time.time > nextEventTime)
         {
             if (doGenerate)
