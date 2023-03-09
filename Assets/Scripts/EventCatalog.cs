@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class TogglePauseEvent
@@ -21,4 +22,14 @@ public class DisplayDialogEvent
 
 public class DismissDialogEvent
 {
+}
+
+public class AssignGameControl
+{
+    public readonly GameControl gameControl;
+
+    public AssignGameControl(GameControl _gameControl)
+    {
+        gameControl = _gameControl;
+    }
 }
