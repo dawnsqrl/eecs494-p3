@@ -24,11 +24,11 @@ public class DismissDialogEvent
 {
 }
 
-public class AssignGameControl
+public class AssignGameControlEvent
 {
     public readonly GameControl gameControl;
 
-    public AssignGameControl(GameControl _gameControl)
+    public AssignGameControlEvent(GameControl _gameControl)
     {
         gameControl = _gameControl;
     }

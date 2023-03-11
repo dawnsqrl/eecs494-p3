@@ -12,7 +12,7 @@ public class CountDownDisplay : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        EventBus.Subscribe<AssignGameControl>(e => gameControl = e.gameControl);
+        EventBus.Subscribe<AssignGameControlEvent>(e => gameControl = e.gameControl);
     }
 
     void Start()

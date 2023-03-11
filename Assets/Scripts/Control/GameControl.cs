@@ -17,7 +17,7 @@ public class GameControl : MonoBehaviour
 
     private void Awake()
     {
-        EventBus.Publish(new AssignGameControl(this));
+        EventBus.Publish(new AssignGameControlEvent(this));
     }
 
     void Start()
