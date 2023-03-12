@@ -20,9 +20,6 @@ public class GrowthDemo : MonoBehaviour
 
     private void Start()
     {
-        init_tile = Position2Tile(init_x, init_y);
-        RemoveFogFromTile(init_tile);
-        Position2GroundManager(init_x, init_y).SetGrowthed();
 
         StartCoroutine(AutoGrowth(timeGap));
     }
@@ -43,11 +40,18 @@ public class GrowthDemo : MonoBehaviour
 
     IEnumerator AutoGrowth(int timeGap)
     {
+        yield return new WaitForSeconds(5.0f);
         int base_rate = 16 * growth_speed;
         float new_avg_dis = 0.0f;
         float dis_to_aim = 0.0f;
 
         float count;
+
+        print("startDemo");
+
+        init_tile = Position2Tile(init_x, init_y);
+        RemoveFogFromTile(init_tile);
+        Position2GroundManager(init_x, init_y).SetGrowthed();
 
         while (true)
         {
@@ -78,7 +82,7 @@ public class GrowthDemo : MonoBehaviour
                         growth_possibility = 10;
                     }
 
-                    growth_possibility = growth_possibility * ResourceController.GetComponent<Resource>().get_growth_amount() * 1.0f / 1000.0f;
+                    //growth_possibility = growth_possibility * ResourceController.GetComponent<Resource>().get_growth_amount() * 1.0f / 1000.0f;
 
                     //if (growth_possibility != 0)
                     //{
