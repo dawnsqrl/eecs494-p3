@@ -45,7 +45,7 @@ public class Resource : MonoBehaviour
     {
         while (true)
         {
-            print(resource);
+            //print(resource);
             yield return new WaitForSeconds(gap_time);
         }
         
