@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Tile : MonoBehaviour
 {
@@ -6,6 +7,17 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
     private Vector2 _selfCoordinate;
+    private bool isHoverActive;
+
+    private void Awake()
+    {
+        EventBus.Subscribe<ModifyPauseEvent>(e => isHoverActive = !e.status);
+    }
+
+    private void Start()
+    {
+        isHoverActive = true;
+    }
 
     public void SetSelfCoordinate(int x, int y)
     {
@@ -25,7 +37,7 @@ public class Tile : MonoBehaviour
 
     void OnMouseEnter()
     {
-        if (!PauseControl.isPaused)
+        if (isHoverActive && !EventSystem.current.IsPointerOverGameObject())
         {
             _highlight.SetActive(true);
         }

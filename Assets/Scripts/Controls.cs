@@ -44,6 +44,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""IncreaseSimulationSpeed"",
+                    ""type"": ""Button"",
+                    ""id"": ""486353e0-d1a9-4759-95f8-99a1482d208d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DecreaseSimulationSpeed"",
+                    ""type"": ""Button"",
+                    ""id"": ""ff29aa2c-517a-4f9e-b4a9-453fad42108d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -66,6 +84,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""GenerateDialog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68323d46-95e8-4130-b6b7-bd4f326f6796"",
+                    ""path"": ""<Keyboard>/equals"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IncreaseSimulationSpeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f58b305-f863-4cbb-932f-ef9366a13801"",
+                    ""path"": ""<Keyboard>/minus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DecreaseSimulationSpeed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -373,6 +413,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_TriggerPause = m_Player.FindAction("TriggerPause", throwIfNotFound: true);
         m_Player_GenerateDialog = m_Player.FindAction("GenerateDialog", throwIfNotFound: true);
+        m_Player_IncreaseSimulationSpeed = m_Player.FindAction("IncreaseSimulationSpeed", throwIfNotFound: true);
+        m_Player_DecreaseSimulationSpeed = m_Player.FindAction("DecreaseSimulationSpeed", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -444,12 +486,16 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_TriggerPause;
     private readonly InputAction m_Player_GenerateDialog;
+    private readonly InputAction m_Player_IncreaseSimulationSpeed;
+    private readonly InputAction m_Player_DecreaseSimulationSpeed;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @TriggerPause => m_Wrapper.m_Player_TriggerPause;
         public InputAction @GenerateDialog => m_Wrapper.m_Player_GenerateDialog;
+        public InputAction @IncreaseSimulationSpeed => m_Wrapper.m_Player_IncreaseSimulationSpeed;
+        public InputAction @DecreaseSimulationSpeed => m_Wrapper.m_Player_DecreaseSimulationSpeed;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -465,6 +511,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @GenerateDialog.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateDialog;
                 @GenerateDialog.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateDialog;
                 @GenerateDialog.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateDialog;
+                @IncreaseSimulationSpeed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnIncreaseSimulationSpeed;
+                @IncreaseSimulationSpeed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnIncreaseSimulationSpeed;
+                @IncreaseSimulationSpeed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnIncreaseSimulationSpeed;
+                @DecreaseSimulationSpeed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDecreaseSimulationSpeed;
+                @DecreaseSimulationSpeed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDecreaseSimulationSpeed;
+                @DecreaseSimulationSpeed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDecreaseSimulationSpeed;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -475,6 +527,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @GenerateDialog.started += instance.OnGenerateDialog;
                 @GenerateDialog.performed += instance.OnGenerateDialog;
                 @GenerateDialog.canceled += instance.OnGenerateDialog;
+                @IncreaseSimulationSpeed.started += instance.OnIncreaseSimulationSpeed;
+                @IncreaseSimulationSpeed.performed += instance.OnIncreaseSimulationSpeed;
+                @IncreaseSimulationSpeed.canceled += instance.OnIncreaseSimulationSpeed;
+                @DecreaseSimulationSpeed.started += instance.OnDecreaseSimulationSpeed;
+                @DecreaseSimulationSpeed.performed += instance.OnDecreaseSimulationSpeed;
+                @DecreaseSimulationSpeed.canceled += instance.OnDecreaseSimulationSpeed;
             }
         }
     }
@@ -581,6 +639,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     {
         void OnTriggerPause(InputAction.CallbackContext context);
         void OnGenerateDialog(InputAction.CallbackContext context);
+        void OnIncreaseSimulationSpeed(InputAction.CallbackContext context);
+        void OnDecreaseSimulationSpeed(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -4,26 +4,30 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class GameControl : MonoBehaviour
+public class GameProgressControl : MonoBehaviour
 {
-    public static bool isGameStarted = false;
-
     [SerializeField] private int timeDuration = 60;
 
+    public static bool isGameStarted = false;
+
     public float timeRemaining;
+
+    private bool isTimerActive;
     private bool isEndDialogShown;
     private Vector3[] originalPos;
 
     private void Awake()
     {
+        EventBus.Subscribe<ModifyPauseEvent>(e => isTimerActive = !e.status);
         EventBus.Publish(new AssignGameControlEvent(this));
     }
 
     private void Start()
     {
-        isEndDialogShown = false;
         // Setup countdown clock
         timeRemaining = timeDuration;
+        isTimerActive = true;
+        isEndDialogShown = false;
         StartCoroutine(StartInitialCountDown());
     }
 
@@ -37,7 +41,7 @@ public class GameControl : MonoBehaviour
         // check if time is up
         if (timeRemaining > 0)
         {
-            if (!PauseControl.isPaused)
+            if (isTimerActive)
             {
                 timeRemaining -= Time.deltaTime;
             }

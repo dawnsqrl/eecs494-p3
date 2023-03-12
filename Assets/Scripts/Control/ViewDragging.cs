@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +17,7 @@ public class ViewDragging : MonoBehaviour
 
     [SerializeField] [Range(0f, 1f)] private float edgeTolerance = 0.05f;
     private Vector3 horizontalVelocity;
+    private bool isDraggingEnabled;
 
     private void Awake()
     {
@@ -26,17 +26,18 @@ public class ViewDragging : MonoBehaviour
             e =>
                 transform.position = new Vector3(e.initPos.x, e.initPos.y, transform.position.z)
         );
+        EventBus.Subscribe<ModifyPauseEvent>(e => isDraggingEnabled = !e.status);
+        cameraTransform = GetComponent<Transform>();
     }
 
     private void Start()
     {
-        cameraTransform = GetComponent<Transform>();
-        
+        isDraggingEnabled = true;
     }
 
     private void Update()
     {
-        if (!PauseControl.isPaused)
+        if (isDraggingEnabled)
         {
             CheckMouseAtScreenEdge();
             UpdateCameraPosition();

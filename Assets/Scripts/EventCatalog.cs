@@ -6,6 +6,26 @@ public class TriggerPauseEvent
 {
 }
 
+public class ModifyPauseEvent
+{
+    public readonly bool status;
+
+    public ModifyPauseEvent(bool _status)
+    {
+        status = _status;
+    }
+}
+
+public class ScrollSimulationSpeedEvent
+{
+    public readonly bool direction;
+
+    public ScrollSimulationSpeedEvent(bool _direction)
+    {
+        direction = _direction;
+    }
+}
+
 public class DisplayDialogEvent
 {
     public readonly string title;
@@ -26,11 +46,11 @@ public class DismissDialogEvent
 
 public class AssignGameControlEvent
 {
-    public readonly GameControl gameControl;
+    public readonly GameProgressControl gameProgressControl;
 
-    public AssignGameControlEvent(GameControl _gameControl)
+    public AssignGameControlEvent(GameProgressControl _gameProgressControl)
     {
-        gameControl = _gameControl;
+        gameProgressControl = _gameProgressControl;
     }
 }
 

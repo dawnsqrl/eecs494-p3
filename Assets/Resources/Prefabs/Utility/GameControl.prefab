@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7777046095864349128}
   - component: {fileID: 7777046095864349175}
+  - component: {fileID: 7325258897764028933}
   m_Layer: 0
   m_Name: GameControl
   m_TagString: Untagged
@@ -46,3 +47,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeDuration: 60
   timeRemaining: 0
+--- !u!114 &7325258897764028933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7777046095864349174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb40f8be76e479449bd4739093d777b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

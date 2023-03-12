@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291ba837e802d6448837ef4d5361f078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  init_x: 50
-  init_y: 50
+  init_x: 15
+  init_y: 15
   growth_speed: 4
   timeGap: 1
   GridManagerGameobject: {fileID: 0}
   ResourceController: {fileID: 0}
-  mapSize_x: 100
-  mapSize_y: 100
+  mapSize_x: 30
+  mapSize_y: 30
