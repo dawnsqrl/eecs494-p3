@@ -11,12 +11,19 @@ public class GrowthDemo : MonoBehaviour
     [SerializeField] private GameObject GridManagerGameobject, ResourceController;
 
     [SerializeField] private int mapSize_x, mapSize_y;
+    [SerializeField] private float range_factor = 0.8f;
 
     private bool aim_is_set = false, aim_is_reach = false;
     private Vector2 growthAim;
 
     private float avg_aim_dis = 0.0f;
     private List<Vector2> growthed = new List<Vector2>();
+    private bool isSimulationPaused = false;
+
+    private void Awake()
+    {
+        EventBus.Subscribe<ModifyPauseEvent>(e => isSimulationPaused = e.status);
+    }
 
     private void Start()
     {
@@ -58,7 +65,7 @@ public class GrowthDemo : MonoBehaviour
 
         while (true)
         {
-            yield return new WaitForSeconds(timeGap);
+            yield return new WaitForSeconds(timeGap / SimulationSpeedControl.GetSimulationSpeed());
             yield return null;
 
             count = 0.0f;
@@ -66,7 +73,20 @@ public class GrowthDemo : MonoBehaviour
             {
                 for (int y = 0; y < mapSize_y; y++)
                 {
+                    while (isSimulationPaused || GameProgressControl.isGameEnded)
+                        yield return null;
+
+                    if (!Position2Growthed(growthAim))
+                        aim_is_reach = false;
+                    else
+                        aim_is_reach = true;
+
                     int adj_factor = count_growthed_adjacent(x, y);
+                    //if (adj_factor == 1)
+                    //    adj_factor = 4;
+                    //if (adj_factor != 1 && adj_factor != 0)
+                    //    adj_factor = 1;
+
                     float growth_possibility = Mathf.Log(adj_factor + 1, 5) * base_rate; // log base 5, 4 -> 1;
                     if (aim_is_set && adj_factor != 0)
                     {
@@ -75,7 +95,7 @@ public class GrowthDemo : MonoBehaviour
                         count += 1.0f;
                     }
 
-                    if (aim_is_set && dis_to_aim < avg_aim_dis && !aim_is_reach && adj_factor != 0)
+                    if (aim_is_set && dis_to_aim < avg_aim_dis * range_factor && !aim_is_reach && adj_factor != 0)
                     {
                         growth_possibility += 30;//25 / avg_aim_dis * (avg_aim_dis - dis_to_aim) + 10;
                     }
@@ -86,7 +106,6 @@ public class GrowthDemo : MonoBehaviour
                     }
 
                     //growth_possibility = growth_possibility * ResourceController.GetComponent<Resource>().get_growth_amount() * 1.0f / 1000.0f;
-
                     //if (growth_possibility != 0)
                     //{
                     //    print("****************");
@@ -114,6 +133,8 @@ public class GrowthDemo : MonoBehaviour
 
             foreach (Vector2 item in growthed)
             {
+                if (item == growthAim)
+                    aim_is_reach = true;
                 Position2GroundManager(item).SetGrowthed();
             }
 

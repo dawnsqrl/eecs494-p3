@@ -664,6 +664,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9015777209491499946, guid: c4a91e7fd58bb4104b9fc0feb3d137e7, type: 3}
+      propertyPath: range_factor
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015777209491499946, guid: c4a91e7fd58bb4104b9fc0feb3d137e7, type: 3}
       propertyPath: ResourceController
       value: 
       objectReference: {fileID: 196331213}

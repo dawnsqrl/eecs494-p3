@@ -9,6 +9,7 @@ public class GameProgressControl : MonoBehaviour
     [SerializeField] private int timeDuration = 60;
 
     public static bool isGameStarted = false;
+    public static bool isGameEnded = false;
 
     public float timeRemaining;
 
@@ -48,6 +49,7 @@ public class GameProgressControl : MonoBehaviour
         }
         else if (!isEndDialogShown)
         {
+            isGameEnded = true;
             // end game
             isGameStarted = false;
             isEndDialogShown = true;
