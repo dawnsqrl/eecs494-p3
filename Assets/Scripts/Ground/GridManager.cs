@@ -20,7 +20,7 @@ public class GridManager : MonoBehaviour
             int.TryParse(digits[1], out x);
             int.TryParse(digits[2], out y);
             _tiles.Add(new Vector2(x, y), item.gameObject);
-            item.gameObject.GetComponent<Tile>().SetSelfCoordinate(x, y);
+            item.transform.Find("Tile_ground").gameObject.GetComponent<Tile>().SetSelfCoordinate(x, y);
         }
     }
     
