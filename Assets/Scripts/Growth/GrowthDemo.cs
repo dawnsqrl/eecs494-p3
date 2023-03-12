@@ -16,7 +16,8 @@ public class GrowthDemo : MonoBehaviour
     private Vector2 growthAim;
 
     private float avg_aim_dis = 0.0f;
-    
+    private List<Vector2> growthed = new List<Vector2>();
+
     private void Start()
     {
         StartCoroutine(AutoGrowth(timeGap));
@@ -91,7 +92,8 @@ public class GrowthDemo : MonoBehaviour
                     if (UnityEngine.Random.Range(0, 101) < growth_possibility)
                     {
                         RemoveFogFromTile(x, y, 1);
-                        Position2GroundManager(x, y).SetGrowthed();
+                        growthed.Add(new Vector2(x, y));
+                        //Position2GroundManager(x, y).SetGrowthed();
 
                         ResourceController.GetComponent<Resource>().change_growth_amount(ResourceController.GetComponent<Resource>().get_growth_amount() - 0.5f);
                         ResourceController.GetComponent<Resource>().change_resource(ResourceController.GetComponent<Resource>().get_resource() - 1.0f);
@@ -100,6 +102,11 @@ public class GrowthDemo : MonoBehaviour
             }
             avg_aim_dis = new_avg_dis / count;
             new_avg_dis = 0.0f;
+
+            foreach (Vector2 item in growthed)
+            {
+                Position2GroundManager(item).SetGrowthed();
+            }
 
         }
         
@@ -144,19 +151,19 @@ public class GrowthDemo : MonoBehaviour
         {
             if (FogTilePositionSanityCheck(x+i, y))
             {
-                Tile2GroundManager(Position2Tile(x+i, y)).RemoveFog();
+                Position2GroundManager(x+i, y).RemoveFog();
             }
             if (FogTilePositionSanityCheck(x-i, y))
             {
-                Tile2GroundManager(Position2Tile(x-i, y)).RemoveFog();
+                Position2GroundManager(x - i, y).RemoveFog();
             }
             if (FogTilePositionSanityCheck(x, y+i))
             {
-                Tile2GroundManager(Position2Tile(x, y+i)).RemoveFog();
+                Position2GroundManager(x, y+i).RemoveFog();
             }
             if (FogTilePositionSanityCheck(x, y-i))
             {
-                Tile2GroundManager(Position2Tile(x, y-i)).RemoveFog();
+                Position2GroundManager(x, y -i).RemoveFog();
             }
         }
     }
