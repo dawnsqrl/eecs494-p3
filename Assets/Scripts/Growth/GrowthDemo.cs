@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GrowthDemo : MonoBehaviour
 {
-    [SerializeField] private int init_x = 0, init_y = 0;
+    [SerializeField] private int init_x, init_y;
     [SerializeField] private int growth_speed = 1; // 0 -> 0, 5 -> 80
     [SerializeField] private int timeGap = 3;
     [SerializeField] private GameObject GridManagerGameobject, ResourceController;
@@ -17,17 +17,11 @@ public class GrowthDemo : MonoBehaviour
     private GameObject init_tile;
 
     private float avg_aim_dis = 0.0f;
-
+    
     private void Start()
     {
-
         StartCoroutine(AutoGrowth(timeGap));
         EventBus.Publish(new AssignInitGrowthPositionEvent(new Vector2(init_x, init_y)));
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void setAim(Vector2 aimCoord)

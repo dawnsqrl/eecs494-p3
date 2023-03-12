@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ public class ViewDragging : MonoBehaviour
     private Transform cameraTransform;
 
     private Vector3 targetPosition;
+    private Vector3 initPosition;
     [SerializeField] private float maxSpeed = 5f;
     private float speed;
 
@@ -17,11 +19,19 @@ public class ViewDragging : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float edgeTolerance = 0.05f;
     private Vector3 horizontalVelocity;
 
+    private void Awake()
+    {
+        // set camera init position
+        EventBus.Subscribe<AssignInitGrowthPositionEvent>(
+            e =>
+                transform.position = new Vector3(e.initPos.x, e.initPos.y, transform.position.z)
+        );
+    }
+
     private void Start()
     {
         cameraTransform = GetComponent<Transform>();
         
-        // set camera init position
     }
 
     private void Update()
