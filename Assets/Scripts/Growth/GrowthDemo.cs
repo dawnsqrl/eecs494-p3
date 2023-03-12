@@ -14,7 +14,6 @@ public class GrowthDemo : MonoBehaviour
 
     private bool aim_is_set = false, aim_is_reach = false;
     private Vector2 growthAim;
-    private GameObject init_tile;
 
     private float avg_aim_dis = 0.0f;
     
@@ -43,9 +42,8 @@ public class GrowthDemo : MonoBehaviour
         float count;
 
         print("startDemo");
-
-        init_tile = Position2Tile(init_x, init_y);
-        RemoveFogFromTile(init_tile);
+        
+        RemoveFogFromTile(init_x, init_y, 1);
         Position2GroundManager(init_x, init_y).SetGrowthed();
 
         while (true)
@@ -92,7 +90,7 @@ public class GrowthDemo : MonoBehaviour
                     // Random.Range(int minInclusive, int maxExclusive);
                     if (UnityEngine.Random.Range(0, 101) < growth_possibility)
                     {
-                        RemoveFogFromTile(Position2Tile(x, y));
+                        RemoveFogFromTile(x, y, 1);
                         Position2GroundManager(x, y).SetGrowthed();
 
                         ResourceController.GetComponent<Resource>().change_growth_amount(ResourceController.GetComponent<Resource>().get_growth_amount() - 0.5f);
@@ -137,6 +135,45 @@ public class GrowthDemo : MonoBehaviour
     public void RemoveFogFromTile(GameObject tile)
     {
         Tile2GroundManager(tile).RemoveFog();
+    }
+    
+    public void RemoveFogFromTile(int x, int y, int radius)
+    {
+        RemoveFogFromTile(Position2Tile(x, y));
+        for (int i = 1; i < radius + 1; i++)
+        {
+            if (FogTilePositionSanityCheck(x+i, y))
+            {
+                Tile2GroundManager(Position2Tile(x+i, y)).RemoveFog();
+            }
+            if (FogTilePositionSanityCheck(x-i, y))
+            {
+                Tile2GroundManager(Position2Tile(x-i, y)).RemoveFog();
+            }
+            if (FogTilePositionSanityCheck(x, y+i))
+            {
+                Tile2GroundManager(Position2Tile(x, y+i)).RemoveFog();
+            }
+            if (FogTilePositionSanityCheck(x, y-i))
+            {
+                Tile2GroundManager(Position2Tile(x, y-i)).RemoveFog();
+            }
+        }
+    }
+
+    private bool FogTilePositionSanityCheck(int x, int y)
+    {
+        if (!(x < mapSize_x && x >= 0 && y < mapSize_y && y >= 0))
+        {
+            return false;
+        }
+
+        if (!Position2Tile(x, y))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public GameObject Position2Tile(int x, int y)

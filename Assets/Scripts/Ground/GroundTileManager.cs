@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Vector2 = System.Numerics.Vector2;
 
@@ -53,6 +54,16 @@ public class GroundTileManager : MonoBehaviour
     {
         if (!blank_tile)
             growthed = true;
+        
+        // Initiate a prefab representing player's Hyphae.
+        var playerHyphae =
+            PrefabUtility.InstantiatePrefab(
+                    Resources.Load<GameObject>("Prefabs/Ground/Hyphae/Tile_Player")
+                    ) as GameObject;
+        playerHyphae.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
+        playerHyphae.transform.rotation = Quaternion.identity;
+        playerHyphae.name = $"Player Tile {playerHyphae.transform.position}";
+        playerHyphae.GetComponent<Tile>().Init(UnityEngine.Random.Range(0, 2) == 1);
     }
 
     public bool CheckGrowthed()
