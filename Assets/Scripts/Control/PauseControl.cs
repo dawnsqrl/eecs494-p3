@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PauseControl : MonoBehaviour
 {
@@ -6,7 +8,7 @@ public class PauseControl : MonoBehaviour
 
     private void Awake()
     {
-        EventBus.Subscribe<TogglePauseEvent>(_OnTogglePause);
+        EventBus.Subscribe<TriggerPauseEvent>(_OnTriggerPause);
     }
 
     private void Start()
@@ -14,9 +16,18 @@ public class PauseControl : MonoBehaviour
         isPaused = false;
     }
 
-    private void _OnTogglePause(TogglePauseEvent _)
+    private void _OnTriggerPause(TriggerPauseEvent _)
     {
-        isPaused = !isPaused;
-        Time.timeScale = isPaused ? 0 : 1;
+        if (!isPaused && GameControl.isGameStarted)
+        {
+            isPaused = true;
+            EventBus.Publish(new DisplayDialogEvent(
+                "Paused!", "Paused.",
+                new Dictionary<string, UnityAction>()
+                {
+                    { "Resume", () => isPaused = false }
+                }
+            ));
+        }
     }
 }

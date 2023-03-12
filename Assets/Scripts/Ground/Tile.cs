@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
- 
-public class Tile : MonoBehaviour {
+
+public class Tile : MonoBehaviour
+{
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
@@ -12,25 +11,28 @@ public class Tile : MonoBehaviour {
     {
         _selfCoordinate = new Vector2(x, y);
     }
-    
+
     public Vector2 GetSelfCoordinate(int x, int y)
     {
         return _selfCoordinate;
     }
- 
-    public void Init(bool isOffset) {
+
+    public void Init(bool isOffset)
+    {
         _renderer.color = isOffset ? _offsetColor : _baseColor;
         _highlight.SetActive(false);
     }
- 
-    void OnMouseEnter() {
-        _highlight.SetActive(true);
+
+    void OnMouseEnter()
+    {
+        if (!PauseControl.isPaused)
+        {
+            _highlight.SetActive(true);
+        }
     }
- 
+
     void OnMouseExit()
     {
         _highlight.SetActive(false);
     }
-    
-    
 }

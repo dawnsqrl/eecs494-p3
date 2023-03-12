@@ -28,7 +28,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             ""id"": ""1ac296f0-3699-4609-a461-6b2b95c57fde"",
             ""actions"": [
                 {
-                    ""name"": ""TogglePause"",
+                    ""name"": ""TriggerPause"",
                     ""type"": ""Button"",
                     ""id"": ""773b9d6f-9119-4440-9a79-0646710cda53"",
                     ""expectedControlType"": ""Button"",
@@ -54,7 +54,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""TogglePause"",
+                    ""action"": ""TriggerPause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -371,7 +371,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_TogglePause = m_Player.FindAction("TogglePause", throwIfNotFound: true);
+        m_Player_TriggerPause = m_Player.FindAction("TriggerPause", throwIfNotFound: true);
         m_Player_GenerateDialog = m_Player.FindAction("GenerateDialog", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -442,13 +442,13 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_TogglePause;
+    private readonly InputAction m_Player_TriggerPause;
     private readonly InputAction m_Player_GenerateDialog;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @TogglePause => m_Wrapper.m_Player_TogglePause;
+        public InputAction @TriggerPause => m_Wrapper.m_Player_TriggerPause;
         public InputAction @GenerateDialog => m_Wrapper.m_Player_GenerateDialog;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -459,9 +459,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @TogglePause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTogglePause;
-                @TogglePause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTogglePause;
-                @TogglePause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTogglePause;
+                @TriggerPause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriggerPause;
+                @TriggerPause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriggerPause;
+                @TriggerPause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriggerPause;
                 @GenerateDialog.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateDialog;
                 @GenerateDialog.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateDialog;
                 @GenerateDialog.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateDialog;
@@ -469,9 +469,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @TogglePause.started += instance.OnTogglePause;
-                @TogglePause.performed += instance.OnTogglePause;
-                @TogglePause.canceled += instance.OnTogglePause;
+                @TriggerPause.started += instance.OnTriggerPause;
+                @TriggerPause.performed += instance.OnTriggerPause;
+                @TriggerPause.canceled += instance.OnTriggerPause;
                 @GenerateDialog.started += instance.OnGenerateDialog;
                 @GenerateDialog.performed += instance.OnGenerateDialog;
                 @GenerateDialog.canceled += instance.OnGenerateDialog;
@@ -579,7 +579,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnTogglePause(InputAction.CallbackContext context);
+        void OnTriggerPause(InputAction.CallbackContext context);
         void OnGenerateDialog(InputAction.CallbackContext context);
     }
     public interface IUIActions

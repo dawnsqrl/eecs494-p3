@@ -25,9 +25,9 @@ public class InputInterface : MonoBehaviour
 
     private void Update()
     {
-        if (playerActions.TogglePause.WasPressedThisFrame())
+        if (playerActions.TriggerPause.WasPressedThisFrame())
         {
-            EventBus.Publish(new TogglePauseEvent());
+            EventBus.Publish(new TriggerPauseEvent());
         }
 
         if (playerActions.GenerateDialog.WasPressedThisFrame())

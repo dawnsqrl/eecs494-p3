@@ -6,7 +6,7 @@
             "id": "1ac296f0-3699-4609-a461-6b2b95c57fde",
             "actions": [
                 {
-                    "name": "TogglePause",
+                    "name": "TriggerPause",
                     "type": "Button",
                     "id": "773b9d6f-9119-4440-9a79-0646710cda53",
                     "expectedControlType": "Button",
@@ -32,7 +32,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TogglePause",
+                    "action": "TriggerPause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

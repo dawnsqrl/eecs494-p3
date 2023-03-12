@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TogglePauseEvent
+public class TriggerPauseEvent
 {
 }
 

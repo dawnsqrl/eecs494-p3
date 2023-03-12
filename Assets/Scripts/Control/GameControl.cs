@@ -1,57 +1,66 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 public class GameControl : MonoBehaviour
 {
+    public static bool isGameStarted = false;
+
     [SerializeField] private int timeDuration = 60;
+
     public float timeRemaining;
-    private bool gameEnded;
+    private bool isEndDialogShown;
     private Vector3[] originalPos;
-    private bool gameStarted = false;
 
     private void Awake()
     {
         EventBus.Publish(new AssignGameControlEvent(this));
     }
 
-    void Start()
+    private void Start()
     {
-        gameEnded = false;
+        isEndDialogShown = false;
         // Setup countdown clock
         timeRemaining = timeDuration;
-        Time.timeScale = 1;
-        StartCoroutine(StartCountDown());
-
+        StartCoroutine(StartInitialCountDown());
     }
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        if (!gameStarted)
+        if (!isGameStarted)
         {
             return;
         }
+
         // check if time is up
         if (timeRemaining > 0)
         {
-            timeRemaining -= Time.deltaTime;
+            if (!PauseControl.isPaused)
+            {
+                timeRemaining -= Time.deltaTime;
+            }
         }
-        else
+        else if (!isEndDialogShown)
         {
             // end game
-            Time.timeScale = 0;
-            gameEnded = true;
+            isGameStarted = false;
+            isEndDialogShown = true;
+            EventBus.Publish(new DisplayDialogEvent(
+                "Time out!", "Game ended.",
+                new Dictionary<string, UnityAction>()
+                {
+                    { "Restart", () => SceneManager.LoadScene(SceneManager.GetActiveScene().name) }
+                }
+            ));
         }
     }
 
-    IEnumerator StartCountDown()
+    private IEnumerator StartInitialCountDown()
     {
-        gameStarted = true;
+        // used for get-ready countdown before actual game starts
+        isGameStarted = true;
         yield return null;
     }
 }
