@@ -22,6 +22,7 @@ public class GrowthDemo : MonoBehaviour
     {
 
         StartCoroutine(AutoGrowth(timeGap));
+        EventBus.Publish(new AssignInitGrowthPositionEvent(new Vector2(init_x, init_y)));
     }
 
     private void Update()

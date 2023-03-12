@@ -20,6 +20,8 @@ public class ViewDragging : MonoBehaviour
     private void Start()
     {
         cameraTransform = GetComponent<Transform>();
+        
+        // set camera init position
     }
 
     private void Update()

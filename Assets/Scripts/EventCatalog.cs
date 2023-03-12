@@ -33,3 +33,13 @@ public class AssignGameControlEvent
         gameControl = _gameControl;
     }
 }
+
+public class AssignInitGrowthPositionEvent
+{
+    public readonly Vector2 initPos;
+
+    public AssignInitGrowthPositionEvent(Vector2 _initPos)
+    {
+        initPos = _initPos;
+    }
+}
