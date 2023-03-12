@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PauseControl : MonoBehaviour
 {
-    private bool isPaused;
+    public static bool isPaused;
 
     private void Awake()
     {

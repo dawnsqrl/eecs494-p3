@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 
 public class ViewDragging : MonoBehaviour
 {
@@ -12,31 +8,27 @@ public class ViewDragging : MonoBehaviour
     private Transform cameraTransform;
 
     private Vector3 targetPosition;
-    [SerializeField]
-    private float maxSpeed = 5f;
+    [SerializeField] private float maxSpeed = 5f;
     private float speed;
 
-    [SerializeField]
-    private float acceleration = 10f;
-    [SerializeField]
-    private float damping = 15f;
+    [SerializeField] private float acceleration = 10f;
+    [SerializeField] private float damping = 15f;
 
-
-    [SerializeField]
-    [Range(0f, 1f)]
-    private float edgeTolerance = 0.05f;
+    [SerializeField] [Range(0f, 1f)] private float edgeTolerance = 0.05f;
     private Vector3 horizontalVelocity;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         cameraTransform = GetComponent<Transform>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        CheckMouseAtScreenEdge();
-        UpdateCameraPosition();
+        if (!PauseControl.isPaused)
+        {
+            CheckMouseAtScreenEdge();
+            UpdateCameraPosition();
+        }
     }
 
     //gets the horizontal forward vector of the camera
@@ -82,7 +74,7 @@ public class ViewDragging : MonoBehaviour
         {
             //create a ramp up or acceleration
             speed = Mathf.Lerp(speed, maxSpeed, Time.deltaTime * acceleration);
-            transform.position += targetPosition * speed * Time.deltaTime;
+            transform.position += targetPosition * (speed * Time.deltaTime);
         }
         else
         {
