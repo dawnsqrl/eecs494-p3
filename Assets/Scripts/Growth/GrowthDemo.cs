@@ -24,13 +24,22 @@ public class GrowthDemo : MonoBehaviour
         EventBus.Publish(new AssignInitGrowthPositionEvent(new Vector2(init_x, init_y)));
     }
 
-    public void setAim(Vector2 aimCoord)
+    public void setAim(int x, int y)
     {
-        if (!aim_is_set)
+        if (x <= mapSize_x && y <= mapSize_y && x >= 0 && y >= 0)
         {
-            growthAim = aimCoord;
             aim_is_set = true;
+            growthAim = new Vector2(x, y);
         }
+        else
+        {
+            aim_is_set = false;
+        }
+        //if (!aim_is_set)
+        //{
+        //    growthAim = aimCoord;
+        //    aim_is_set = true;
+        //}
     }
 
     IEnumerator AutoGrowth(int timeGap)

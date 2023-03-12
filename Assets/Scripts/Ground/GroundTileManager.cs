@@ -26,8 +26,8 @@ public class GroundTileManager : MonoBehaviour
 
     private void OnMouseDown()
     {
-        GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>().setAim(GetComponent<Tile>().GetSelfCoordinate(0, 0));
-        print("aim");
+        //GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>().setAim(GetComponent<Tile>().GetSelfCoordinate(0, 0));
+        //print("aim");
     }
 
     private void set_blank()
