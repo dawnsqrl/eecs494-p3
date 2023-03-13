@@ -20,11 +20,11 @@ public class GameProgressControl : MonoBehaviour
     private void Awake()
     {
         EventBus.Subscribe<ModifyPauseEvent>(e => isTimerActive = !e.status);
-        EventBus.Publish(new AssignGameControlEvent(this));
     }
 
     private void Start()
     {
+        EventBus.Publish(new AssignGameControlEvent(this));
         // Setup countdown clock
         timeRemaining = timeDuration;
         isTimerActive = true;

@@ -9,10 +9,6 @@ public class CountDownDisplay : MonoBehaviour
     private void Awake()
     {
         EventBus.Subscribe<AssignGameControlEvent>(e => gameProgressControl = e.gameProgressControl);
-    }
-
-    public void Start()
-    {
         countDownText = GetComponent<TextMeshProUGUI>();
     }
 
