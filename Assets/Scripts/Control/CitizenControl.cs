@@ -11,12 +11,8 @@ public class CitizenControl : MonoBehaviour
 
     private void _SpawnCitizen(SpawnCitizenEvent e)
     {
-        var citizen =
-            PrefabUtility.InstantiatePrefab(
-                Resources.Load<GameObject>("Prefabs/Objects/Citizen")
-            ) as GameObject;
-        citizen.transform.position = UtilsClass.GetMouseWorldPosition();
-        citizen.transform.rotation = Quaternion.identity;
+        // var citizen = Resources.Load<GameObject>("Prefabs/Objects/Citizen");
+        GameObject citizen = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Citizen"), UtilsClass.GetMouseWorldPosition(), Quaternion.identity);
         citizen.GetComponent<UnitRTS>().MoveTo(citizen.transform.position);
     }
 }

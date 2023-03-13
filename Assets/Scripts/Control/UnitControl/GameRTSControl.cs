@@ -34,7 +34,7 @@ public class GameRTSControl : MonoBehaviour
             selectedAreaTransform.localScale = upperRight - lowerLeft;
         }
 
-        if (Input.GetMouseButtonUp(0) || EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonUp(0))
         {
             selectedAreaTransform.gameObject.SetActive(false);
 

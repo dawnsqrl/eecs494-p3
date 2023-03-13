@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 310, y: 30}
-  m_SizeDelta: {x: 600, y: 40}
+  m_AnchoredPosition: {x: 410, y: 40}
+  m_SizeDelta: {x: 800, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7399244136376961074
 CanvasRenderer:
@@ -69,20 +69,23 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Drag the hamster to lead area growth
 
-    [C] to spawn citizen at mouse
-    position
+    Click the mushroom, then a grey
+    tile to add a growth source
 
-    [LClick] to drag and select citizens
+    [C] to spawn citizen at mouse position
 
-    [RClick] to set destination
-    of citizens
+    [LClick]
+    to drag and select citizens
 
-    [+/-] to increase / decrease game speed
+    [RClick] to set destination of citizens
+
+    [+/-]
+    to increase / decrease game speed
 
     [ESC] to pause
 
-    [0]
-    to toggle this list'
+    [0] to toggle this
+    list'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -109,8 +112,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

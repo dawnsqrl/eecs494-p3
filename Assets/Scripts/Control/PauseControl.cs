@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PauseControl : MonoBehaviour
 {
@@ -25,7 +26,8 @@ public class PauseControl : MonoBehaviour
                 "Paused!", "Paused.",
                 new Dictionary<string, UnityAction>()
                 {
-                    { "Resume", () => SetPausedStatus(false) }
+                    { "Resume", () => SetPausedStatus(false) },
+                    { "Restart", () => SceneManager.LoadScene(SceneManager.GetActiveScene().name) }
                 }
             ));
         }

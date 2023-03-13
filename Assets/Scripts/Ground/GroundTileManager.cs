@@ -54,12 +54,7 @@ public class GroundTileManager : MonoBehaviour
         if (!blank_tile)
         {
             // Initiate a prefab representing player's Hyphae.
-            var playerHyphae =
-                PrefabUtility.InstantiatePrefab(
-                        Resources.Load<GameObject>("Prefabs/Ground/Hyphae/Tile_Player")
-                        ) as GameObject;
-            playerHyphae.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1);
-            playerHyphae.transform.rotation = Quaternion.identity;
+            GameObject playerHyphae = Instantiate(Resources.Load<GameObject>("Prefabs/Ground/Hyphae/Tile_Player"), new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);
             playerHyphae.name = $"Player Tile {playerHyphae.transform.position}";
             playerHyphae.GetComponent<Tile>().Init(UnityEngine.Random.Range(0, 2) == 1);
         }
