@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
 using CodeMonkey.Utils;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.Events;
 using UnityEditor;
+using UnityEngine;
 
 public class CitizenControl : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
-        EventBus.Subscribe<SpawnCitizenEvent>(SpawnCitizen);
+        EventBus.Subscribe<SpawnCitizenEvent>(_SpawnCitizen);
     }
 
-    private void SpawnCitizen(SpawnCitizenEvent e)
+    private void _SpawnCitizen(SpawnCitizenEvent e)
     {
         var citizen =
             PrefabUtility.InstantiatePrefab(

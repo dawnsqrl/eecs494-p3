@@ -56,5 +56,10 @@ public class InputInterface : MonoBehaviour
         {
             EventBus.Publish(new ToggleDemoEvent());
         }
+
+        if (playerActions.SpawnCitizen.WasPressedThisFrame())
+        {
+            EventBus.Publish(new SpawnCitizenEvent());
+        }
     }
 }
