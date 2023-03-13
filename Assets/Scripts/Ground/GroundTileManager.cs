@@ -50,14 +50,18 @@ public class GroundTileManager : MonoBehaviour
 
     public void SetGrowthed()
     {
-        growthed = true;
-        if (!blank_tile)
+        if (!growthed)
         {
-            // Initiate a prefab representing player's Hyphae.
-            GameObject playerHyphae = Instantiate(Resources.Load<GameObject>("Prefabs/Ground/Hyphae/Tile_Player"), new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);
-            playerHyphae.name = $"Player Tile {playerHyphae.transform.position}";
-            playerHyphae.GetComponent<Tile>().Init(UnityEngine.Random.Range(0, 2) == 1);
+            if (!blank_tile)
+            {
+                // Initiate a prefab representing player's Hyphae.
+                GameObject playerHyphae = Instantiate(Resources.Load<GameObject>("Prefabs/Ground/Hyphae/Tile_Player"), new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);
+                playerHyphae.name = $"Player Tile {playerHyphae.transform.position}";
+                playerHyphae.GetComponent<Tile>().Init(UnityEngine.Random.Range(0, 2) == 1);
+            }
         }
+
+        growthed = true;
     }
 
     public bool CheckGrowthed()
