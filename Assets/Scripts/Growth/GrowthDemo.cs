@@ -20,6 +20,8 @@ public class GrowthDemo : MonoBehaviour
     private List<Vector2> growthed = new List<Vector2>();
     private bool isSimulationPaused = false;
 
+    private bool first_loop = true;
+
     private void Awake()
     {
         EventBus.Subscribe<ModifyPauseEvent>(e => isSimulationPaused = e.status);
@@ -51,7 +53,7 @@ public class GrowthDemo : MonoBehaviour
 
     IEnumerator AutoGrowth(int timeGap)
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(3.0f);
         int base_rate = 16 * growth_speed;
         float new_avg_dis = 0.0f;
         float dis_to_aim = 0.0f;
@@ -105,6 +107,9 @@ public class GrowthDemo : MonoBehaviour
                         growth_possibility = 10;
                     }
 
+                    if (first_loop && adj_factor != 0)
+                        growth_possibility = 80;
+
                     //growth_possibility = growth_possibility * ResourceController.GetComponent<Resource>().get_growth_amount() * 1.0f / 1000.0f;
                     //if (growth_possibility != 0)
                     //{
@@ -138,6 +143,8 @@ public class GrowthDemo : MonoBehaviour
                 Position2GroundManager(item).SetGrowthed();
             }
 
+            if (first_loop)
+                first_loop = false;
         }
         
     }
@@ -246,6 +253,16 @@ public class GrowthDemo : MonoBehaviour
     public GroundTileManager Tile2GroundManager(GameObject tile)
     {
         return tile.transform.Find("Tile_ground").gameObject.GetComponent<GroundTileManager>();
+    }
+
+    public bool FakeGrowthed(Vector2 pos)
+    {
+        foreach (Vector2 item in growthed)
+        {
+            if (item == pos)
+                return true;
+        }
+        return false;
     }
 
 }

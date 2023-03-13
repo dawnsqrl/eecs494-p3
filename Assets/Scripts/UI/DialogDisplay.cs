@@ -40,12 +40,7 @@ public class DialogDisplay : MonoBehaviour
 
     private void Start()
     {
-        Rect rect = rectTransform.rect;
-        initialHeight = (
-            Screen.height + new Vector2(rect.width, rect.height).magnitude
-            * Mathf.Cos(Mathf.Atan(rect.width / rect.height) - initialTilt * Mathf.Deg2Rad)
-        ) / 2;
-        rectTransform.anchoredPosition = new Vector2(0, initialHeight);
+        SetInitialHeight();
         rectTransform.rotation = Quaternion.Euler(0, 0, initialTilt);
         isDialogLerping = false;
         isDialogVisible = false;
@@ -56,9 +51,13 @@ public class DialogDisplay : MonoBehaviour
     {
         if (!isDialogLerping)
         {
-            if (!isDialogVisible && dialogQueue.Count > 0)
+            if (!isDialogVisible)
             {
-                StartCoroutine(DisplayDialog(dialogQueue.Dequeue()));
+                SetInitialHeight();
+                if (dialogQueue.Count > 0)
+                {
+                    StartCoroutine(DisplayDialog(dialogQueue.Dequeue()));
+                }
             }
             else if (isDialogVisible && doDismissDialog)
             {
@@ -69,6 +68,16 @@ public class DialogDisplay : MonoBehaviour
                 doDismissDialog = false;
             }
         }
+    }
+
+    private void SetInitialHeight()
+    {
+        Rect rect = rectTransform.rect;
+        initialHeight = (
+            Screen.height + new Vector2(rect.width, rect.height).magnitude
+            * Mathf.Cos(Mathf.Atan(rect.width / rect.height) - initialTilt * Mathf.Deg2Rad)
+        ) / 2;
+        rectTransform.anchoredPosition = new Vector2(0, initialHeight);
     }
 
     private IEnumerator DisplayDialog(DisplayDialogEvent e)
