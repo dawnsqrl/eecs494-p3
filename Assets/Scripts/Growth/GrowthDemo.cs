@@ -171,7 +171,7 @@ public class GrowthDemo : MonoBehaviour
 
     public void RemoveFogFromTile(GameObject tile)
     {
-        Tile2GroundManager(tile).RemoveFog();
+        Tile2GroundManager(tile).SetFogVisible(false);
     }
     
     public void RemoveFogFromTile(int x, int y, int radius)
@@ -181,19 +181,19 @@ public class GrowthDemo : MonoBehaviour
         {
             if (FogTilePositionSanityCheck(x+i, y))
             {
-                Position2GroundManager(x+i, y).RemoveFog();
+                Position2GroundManager(x+i, y).SetFogVisible(false);
             }
             if (FogTilePositionSanityCheck(x-i, y))
             {
-                Position2GroundManager(x - i, y).RemoveFog();
+                Position2GroundManager(x - i, y).SetFogVisible(false);
             }
             if (FogTilePositionSanityCheck(x, y+i))
             {
-                Position2GroundManager(x, y+i).RemoveFog();
+                Position2GroundManager(x, y+i).SetFogVisible(false);
             }
             if (FogTilePositionSanityCheck(x, y-i))
             {
-                Position2GroundManager(x, y -i).RemoveFog();
+                Position2GroundManager(x, y -i).SetFogVisible(false);
             }
         }
     }
@@ -209,7 +209,6 @@ public class GrowthDemo : MonoBehaviour
         {
             return false;
         }
-
         return true;
     }
 

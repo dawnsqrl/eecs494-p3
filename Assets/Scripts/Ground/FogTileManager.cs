@@ -22,4 +22,9 @@ public class FogTileManager : MonoBehaviour
     //         gameObject.SetActive(false);
     //     }
     // }
+
+    public void SetVisible(bool visible)
+    {
+        gameObject.SetActive(visible);
+    }
 }

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using Vector2 = System.Numerics.Vector2;
 
 public class GroundTileManager : MonoBehaviour
 {
@@ -21,7 +20,6 @@ public class GroundTileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void OnMouseDown()
@@ -38,14 +36,14 @@ public class GroundTileManager : MonoBehaviour
         }
     }
 
-    public void RemoveFog()
+    public void SetFogVisible(bool visible)
     {
         if (!blank_tile)
         {
             GameObject fog = transform.parent.gameObject.transform.Find("Tile_fog").gameObject;
             if (fog != null)
             {
-                fog.SetActive(false);
+                fog.SetActive(visible);
             }
         }     
     }
