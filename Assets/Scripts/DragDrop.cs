@@ -24,7 +24,6 @@ public class DragDrop : MonoBehaviour
         // Debug.Log(_mouseState);
         if (Input.GetMouseButtonDown(0))
         {
-
             RaycastHit hitInfo;
             target = GetClickedObject(out hitInfo);
             if (target != null)
@@ -60,8 +59,10 @@ public class DragDrop : MonoBehaviour
         if (Physics.Raycast(ray.origin, ray.direction * 10, out hit))
         {
             target = hit.collider.gameObject;
+            if (target.name != "Flag")
+                target = null;
         }
-
+        
         return target;
     }
 }
