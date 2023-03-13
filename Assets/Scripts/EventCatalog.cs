@@ -44,6 +44,10 @@ public class DismissDialogEvent
 {
 }
 
+public class ToggleDemoEvent
+{
+}
+
 public class AssignGameControlEvent
 {
     public readonly GameProgressControl gameProgressControl;
