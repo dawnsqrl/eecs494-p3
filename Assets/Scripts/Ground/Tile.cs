@@ -6,13 +6,9 @@ public class Tile : MonoBehaviour
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
+
     private Vector2 _selfCoordinate;
     private bool isHoverActive;
-
-    private void Awake()
-    {
-        EventBus.Subscribe<ModifyPauseEvent>(e => isHoverActive = !e.status);
-    }
 
     private void Start()
     {
@@ -29,13 +25,18 @@ public class Tile : MonoBehaviour
         return _selfCoordinate;
     }
 
+    public void SetHoverState(bool status)
+    {
+        isHoverActive = status;
+    }
+
     public void Init(bool isOffset)
     {
         _renderer.color = isOffset ? _offsetColor : _baseColor;
         _highlight.SetActive(false);
     }
 
-    void OnMouseEnter()
+    private void OnMouseEnter()
     {
         if (isHoverActive && !EventSystem.current.IsPointerOverGameObject())
         {
@@ -43,7 +44,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    void OnMouseExit()
+    private void OnMouseExit()
     {
         _highlight.SetActive(false);
     }

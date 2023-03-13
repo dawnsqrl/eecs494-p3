@@ -1,0 +1,5 @@
+[1]	Modular Character System in Unity (Move, Attack, AI, Pathfinding). https://www.youtube.com/watch?v=mJRc9kLxFSk.
+	Video tutorial by Code Monkey
+
+[2] Code Monkey Utilities package. https://unitycodemonkey.com/utils.php.
+	Unity package by Code Monkey

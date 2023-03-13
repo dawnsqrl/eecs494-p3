@@ -1,0 +1,1 @@
+In this game, the player must sustain and expand mushroom biomes that grow according to cellular automata rules, like in Conway's Game of Life. However, the growth probabilities are not entirely deterministic, and the player must factor this into their strategy to defeat the opponent biome (not yet implemented).

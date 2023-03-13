@@ -1,16 +1,26 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
-
 
 // This script is for GridMap parents. 
 public class GridManager : MonoBehaviour
 {
     private Dictionary<Vector2, GameObject> _tiles;
-    
-    void Start()
+
+    private void Awake()
+    {
+        EventBus.Subscribe<ModifyPauseEvent>(_OnModifyPause);
+    }
+
+    private void _OnModifyPause(ModifyPauseEvent e)
+    {
+        foreach (Tile tile in GetComponentsInChildren<Tile>())
+        {
+            tile.SetHoverState(!e.status);
+        }
+    }
+
+    private void Start()
     {
         _tiles = new Dictionary<Vector2, GameObject>();
         foreach (Transform item in transform)
@@ -23,8 +33,9 @@ public class GridManager : MonoBehaviour
             item.transform.Find("Tile_ground").gameObject.GetComponent<Tile>().SetSelfCoordinate(x, y);
         }
     }
-    
-    public GameObject GetTileAtPosition(Vector2 pos) {
+
+    public GameObject GetTileAtPosition(Vector2 pos)
+    {
         if (_tiles.TryGetValue(pos, out var tile)) return tile;
         return null;
     }
