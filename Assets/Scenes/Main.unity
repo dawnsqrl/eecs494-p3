@@ -216,10 +216,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3850596779152265539, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
-      propertyPath: orthographic size
-      value: 16.514753
-      objectReference: {fileID: 0}
     - target: {fileID: 3850596779152265541, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
       propertyPath: m_Name
       value: MainCamera
@@ -1509,27 +1505,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0b2c1123a1141ec8505d943e0e36d3, type: 3}
---- !u!1 &1769862681 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3850596779152265541, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
-  m_PrefabInstance: {fileID: 10444118}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1769862686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769862681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EventMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_MaxRayIntersections: 0
 --- !u!1001 &1813855508
 PrefabInstance:
   m_ObjectHideFlags: 0
