@@ -44,7 +44,7 @@ public class GameProgressControl : MonoBehaviour
         {
             if (isTimerActive)
             {
-                timeRemaining -= Time.deltaTime;
+                timeRemaining -= Time.deltaTime * SimulationSpeedControl.GetSimulationSpeed();
             }
         }
         else if (!isEndDialogShown)

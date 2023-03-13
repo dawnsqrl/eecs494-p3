@@ -62,6 +62,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleDemo"",
+                    ""type"": ""Button"",
+                    ""id"": ""2fd5d247-6fc7-4729-9d2b-26aaa49f9896"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -106,6 +115,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""DecreaseSimulationSpeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36b44c4e-549e-4daa-8ca7-b4ba634f775f"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleDemo"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -415,6 +435,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_GenerateDialog = m_Player.FindAction("GenerateDialog", throwIfNotFound: true);
         m_Player_IncreaseSimulationSpeed = m_Player.FindAction("IncreaseSimulationSpeed", throwIfNotFound: true);
         m_Player_DecreaseSimulationSpeed = m_Player.FindAction("DecreaseSimulationSpeed", throwIfNotFound: true);
+        m_Player_ToggleDemo = m_Player.FindAction("ToggleDemo", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -488,6 +509,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_GenerateDialog;
     private readonly InputAction m_Player_IncreaseSimulationSpeed;
     private readonly InputAction m_Player_DecreaseSimulationSpeed;
+    private readonly InputAction m_Player_ToggleDemo;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -496,6 +518,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @GenerateDialog => m_Wrapper.m_Player_GenerateDialog;
         public InputAction @IncreaseSimulationSpeed => m_Wrapper.m_Player_IncreaseSimulationSpeed;
         public InputAction @DecreaseSimulationSpeed => m_Wrapper.m_Player_DecreaseSimulationSpeed;
+        public InputAction @ToggleDemo => m_Wrapper.m_Player_ToggleDemo;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -517,6 +540,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DecreaseSimulationSpeed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDecreaseSimulationSpeed;
                 @DecreaseSimulationSpeed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDecreaseSimulationSpeed;
                 @DecreaseSimulationSpeed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDecreaseSimulationSpeed;
+                @ToggleDemo.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleDemo;
+                @ToggleDemo.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleDemo;
+                @ToggleDemo.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleDemo;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -533,6 +559,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DecreaseSimulationSpeed.started += instance.OnDecreaseSimulationSpeed;
                 @DecreaseSimulationSpeed.performed += instance.OnDecreaseSimulationSpeed;
                 @DecreaseSimulationSpeed.canceled += instance.OnDecreaseSimulationSpeed;
+                @ToggleDemo.started += instance.OnToggleDemo;
+                @ToggleDemo.performed += instance.OnToggleDemo;
+                @ToggleDemo.canceled += instance.OnToggleDemo;
             }
         }
     }
@@ -641,6 +670,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnGenerateDialog(InputAction.CallbackContext context);
         void OnIncreaseSimulationSpeed(InputAction.CallbackContext context);
         void OnDecreaseSimulationSpeed(InputAction.CallbackContext context);
+        void OnToggleDemo(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
