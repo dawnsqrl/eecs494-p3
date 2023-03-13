@@ -23,7 +23,7 @@ public class FoodControl : MonoBehaviour
         {
             if (!color_changed)
             {
-                changeColor();
+                color_changed = true;
                 text.SetActive(true);
             }
         }
@@ -32,7 +32,7 @@ public class FoodControl : MonoBehaviour
 
     public void changeColor()
     {
-        color_changed = true;
+        
         GetComponent<SpriteRenderer>().color = new Color(0.0f, 1.0f, 0.0f, 1);
     }
 
@@ -51,7 +51,11 @@ public class FoodControl : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.name == "cherry" && color_changed)
+                {
+                    changeColor();
                     text.SetActive(false);
+                }
+                    
             }
         }
     }

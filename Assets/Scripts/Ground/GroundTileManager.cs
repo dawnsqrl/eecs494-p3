@@ -10,7 +10,7 @@ public class GroundTileManager : MonoBehaviour
     [SerializeField] private bool growthed = false;
 
     private bool blank_tile = false;
-    private int blank_rate = 3;
+    private int blank_rate = 0;
     //private int blank_regrowth_rate = 10;
     // Start is called before the first frame update
     void Start()
