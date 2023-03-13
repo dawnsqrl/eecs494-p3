@@ -67,3 +67,8 @@ public class AssignInitGrowthPositionEvent
         initPos = _initPos;
     }
 }
+
+public class SpawnCitizenEvent
+{
+    
+}
