@@ -92,4 +92,9 @@ public class UnitRTS : MonoBehaviour
             prevClearedFogList.Clear();
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
+    }
 }
