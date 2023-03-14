@@ -62,7 +62,7 @@ public class GrowthDemo : MonoBehaviour
 
         print("startDemo");
         
-        RemoveFogFromTile(init_x, init_y, 1);
+        // RemoveFogFromTile(init_x, init_y, 1);
         Position2GroundManager(init_x, init_y).SetGrowthed();
 
         while (true)
@@ -124,7 +124,7 @@ public class GrowthDemo : MonoBehaviour
                     // Random.Range(int minInclusive, int maxExclusive);
                     if (UnityEngine.Random.Range(0, 101) < growth_possibility)
                     {
-                        RemoveFogFromTile(x, y, 1);
+                        // RemoveFogFromTile(x, y, 1);
                         growthed.Add(new Vector2(x, y));
                         //Position2GroundManager(x, y).SetGrowthed();
 
@@ -178,7 +178,7 @@ public class GrowthDemo : MonoBehaviour
 
     public void RemoveFogFromTile(GameObject tile)
     {
-        Tile2GroundManager(tile).SetFogVisible(false);
+        Tile2GroundManager(tile).SetFogVisible(false, "builder");
     }
     
     public void RemoveFogFromTile(int x, int y, int radius)
@@ -188,19 +188,19 @@ public class GrowthDemo : MonoBehaviour
         {
             if (FogTilePositionSanityCheck(x+i, y))
             {
-                Position2GroundManager(x+i, y).SetFogVisible(false);
+                Position2GroundManager(x+i, y).SetFogVisible(false, "builder");
             }
             if (FogTilePositionSanityCheck(x-i, y))
             {
-                Position2GroundManager(x - i, y).SetFogVisible(false);
+                Position2GroundManager(x - i, y).SetFogVisible(false, "builder");
             }
             if (FogTilePositionSanityCheck(x, y+i))
             {
-                Position2GroundManager(x, y+i).SetFogVisible(false);
+                Position2GroundManager(x, y+i).SetFogVisible(false, "builder");
             }
             if (FogTilePositionSanityCheck(x, y-i))
             {
-                Position2GroundManager(x, y -i).SetFogVisible(false);
+                Position2GroundManager(x, y -i).SetFogVisible(false, "builder");
             }
         }
     }

@@ -36,11 +36,11 @@ public class GroundTileManager : MonoBehaviour
         }
     }
 
-    public void SetFogVisible(bool visible)
+    public void SetFogVisible(bool visible, string fog_type)
     {
         if (!blank_tile)
         {
-            GameObject fog = transform.parent.gameObject.transform.Find("Tile_fog").gameObject;
+            GameObject fog = transform.parent.gameObject.transform.Find("Tile_fog_" + fog_type).gameObject;
             if (fog != null)
             {
                 fog.SetActive(visible);
@@ -55,7 +55,7 @@ public class GroundTileManager : MonoBehaviour
             if (!blank_tile)
             {
                 // Initiate a prefab representing player's Hyphae.
-                GameObject playerHyphae = Instantiate(Resources.Load<GameObject>("Prefabs/Ground/Hyphae/Tile_Player"), new Vector3(transform.position.x, transform.position.y, transform.position.z - 1), Quaternion.identity);
+                GameObject playerHyphae = Instantiate(Resources.Load<GameObject>("Prefabs/Ground/Hyphae/Tile_Player"), new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.5f), Quaternion.identity);
                 playerHyphae.name = $"Player Tile {playerHyphae.transform.position}";
                 playerHyphae.GetComponent<Tile>().Init(UnityEngine.Random.Range(0, 2) == 1);
             }

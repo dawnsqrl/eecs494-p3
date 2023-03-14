@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Mushroom
+  - Moving Camera
   layers:
   - Default
   - TransparentFX
@@ -13,9 +16,9 @@ TagManager:
   - UI
   - Ground
   - Citizen
-  - Fog
+  - Fog_builder
   - GroundParent
-  - 
+  - Fog_enemy
   - 
   - 
   - 

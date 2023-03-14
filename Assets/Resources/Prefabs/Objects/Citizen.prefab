@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3232443855882663148}
   - component: {fileID: 3232443855882663147}
+  - component: {fileID: 3706477598866476687}
   - component: {fileID: 3232443855882663186}
   - component: {fileID: 3232443855882663149}
   - component: {fileID: 3232443855882663184}
   - component: {fileID: 3232443855882663151}
-  - component: {fileID: 3706477598866476687}
+  - component: {fileID: 8009365512551624903}
   m_Layer: 7
   m_Name: Citizen
   m_TagString: Untagged
@@ -92,6 +93,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &3706477598866476687
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3232443855882663146}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 2}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2}
+  m_EdgeRadius: 0
 --- !u!50 &3232443855882663186
 Rigidbody2D:
   serializedVersion: 4
@@ -150,32 +177,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
---- !u!61 &3706477598866476687
-BoxCollider2D:
+--- !u!114 &8009365512551624903
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3232443855882663146}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
-    newSize: {x: 1, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4e77f8f4184d9eb4724ce89757c9e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBuilder: 1
 --- !u!1 &3232443857419143407
 GameObject:
   m_ObjectHideFlags: 0
