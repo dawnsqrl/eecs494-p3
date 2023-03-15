@@ -80,6 +80,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveMouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""6c571f44-10cf-4971-bf50-168da926de86"",
+                    ""expectedControlType"": ""Delta"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -146,6 +155,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SpawnCitizen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85ce7f58-90be-4458-be86-d29173a33b97"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -457,6 +477,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_DecreaseSimulationSpeed = m_Player.FindAction("DecreaseSimulationSpeed", throwIfNotFound: true);
         m_Player_ToggleDemo = m_Player.FindAction("ToggleDemo", throwIfNotFound: true);
         m_Player_SpawnCitizen = m_Player.FindAction("SpawnCitizen", throwIfNotFound: true);
+        m_Player_MoveMouse = m_Player.FindAction("MoveMouse", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -532,6 +553,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DecreaseSimulationSpeed;
     private readonly InputAction m_Player_ToggleDemo;
     private readonly InputAction m_Player_SpawnCitizen;
+    private readonly InputAction m_Player_MoveMouse;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -542,6 +564,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @DecreaseSimulationSpeed => m_Wrapper.m_Player_DecreaseSimulationSpeed;
         public InputAction @ToggleDemo => m_Wrapper.m_Player_ToggleDemo;
         public InputAction @SpawnCitizen => m_Wrapper.m_Player_SpawnCitizen;
+        public InputAction @MoveMouse => m_Wrapper.m_Player_MoveMouse;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -569,6 +592,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @SpawnCitizen.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnCitizen;
                 @SpawnCitizen.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnCitizen;
                 @SpawnCitizen.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnCitizen;
+                @MoveMouse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveMouse;
+                @MoveMouse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveMouse;
+                @MoveMouse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveMouse;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -591,6 +617,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @SpawnCitizen.started += instance.OnSpawnCitizen;
                 @SpawnCitizen.performed += instance.OnSpawnCitizen;
                 @SpawnCitizen.canceled += instance.OnSpawnCitizen;
+                @MoveMouse.started += instance.OnMoveMouse;
+                @MoveMouse.performed += instance.OnMoveMouse;
+                @MoveMouse.canceled += instance.OnMoveMouse;
             }
         }
     }
@@ -701,6 +730,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnDecreaseSimulationSpeed(InputAction.CallbackContext context);
         void OnToggleDemo(InputAction.CallbackContext context);
         void OnSpawnCitizen(InputAction.CallbackContext context);
+        void OnMoveMouse(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -1,57 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MushroomControl : MonoBehaviour
 {
-    [SerializeField]
-    bool isChosen;
-    Camera _camera;
+    [SerializeField] bool isChosen = false;
 
-    // Start is called before the first frame update
+    private Camera _camera;
+    private bool isDialogBlocking;
+
     private void Awake()
     {
-        isChosen = false;
+        EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
         _camera = Camera.main;
     }
-    void Start()
+
+    private void Start()
     {
-        
+        isDialogBlocking = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame && !isDialogBlocking)
         {
             if (isChosen)
             {
                 print("choosen state");
-                Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                 print(Worldpos);
-                if (Worldpos.x >= 0 && Worldpos.y >= 0 && Worldpos.x <= 30 && Worldpos.y <= 30)
+                if (Worldpos is { x: >= 0 and <= 30, y: >= 0 and <= 30 })
                 {
                     Vector2 pos = new Vector2(Mathf.FloorToInt(Worldpos.x + 0.5f), Mathf.FloorToInt(Worldpos.y + 0.5f));
                     GrowthDemo growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
                     if (!growthDemo.Position2Growthed(pos) && !growthDemo.FakeGrowthed(pos))
                     {
-                        Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"), new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
+                        Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"),
+                            new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
                         growthDemo.Position2GroundManager(pos).SetGrowthed();
                     }
                 }
+
                 isChosen = false;
             }
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            Ray ray = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                if (hit.collider!=null && hit.collider.tag == "Mushroom")
+                if (hit.collider is not null && hit.collider.CompareTag("Mushroom"))
                 {
                     isChosen = !isChosen;
                     print(isChosen);
                 }
-
             }
         }
     }

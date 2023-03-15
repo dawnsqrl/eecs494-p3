@@ -1,25 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class FoodControl : MonoBehaviour
 {
     [SerializeField] private GameObject text;
-    private Vector2 pos;
 
     private Camera _camera;
-    private bool color_changed = false;
+    private Vector2 pos;
+    private bool color_changed;
+    private bool isDialogBlocking;
+
+    private void Awake()
+    {
+        EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
+        _camera = Camera.main;
+    }
+
     private void Start()
     {
-        _camera = Camera.main;
         pos = new Vector2(Mathf.CeilToInt(transform.position.x), Mathf.CeilToInt(transform.position.y));
+        color_changed = false;
+        isDialogBlocking = false;
     }
 
     private void Update()
     {
-        if (GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>().Position2Growthed(pos) || GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>().FakeGrowthed(pos))
+        if (GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>().Position2Growthed(pos) ||
+            GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>().FakeGrowthed(pos))
         {
             if (!color_changed)
             {
@@ -27,13 +34,13 @@ public class FoodControl : MonoBehaviour
                 text.SetActive(true);
             }
         }
+
         DetectObjectWithRaycast();
     }
 
     public void changeColor()
     {
-        
-        GetComponent<SpriteRenderer>().color = new Color(0.0f, 1.0f, 0.0f, 1);
+        GetComponent<SpriteRenderer>().color = Color.green;
     }
 
     public Vector2 getPos()
@@ -43,22 +50,18 @@ public class FoodControl : MonoBehaviour
 
     public void DetectObjectWithRaycast()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame && !isDialogBlocking)
         {
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            Ray ray = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (hit.collider.name == "cherry" && color_changed)
                 {
                     changeColor();
                     text.SetActive(false);
                 }
-                    
             }
         }
     }
-
-
 }

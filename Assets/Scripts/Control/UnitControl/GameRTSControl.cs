@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using CodeMonkey.Utils;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameRTSControl : MonoBehaviour
 {
@@ -8,11 +9,11 @@ public class GameRTSControl : MonoBehaviour
     private Vector3 startPosition;
     private List<UnitRTS> selectedUnitRTSList;
     private bool isBoxSelecting;
-    private bool isBoxSelectionActive;
+    private bool isDialogBlocking;
 
     private void Awake()
     {
-        EventBus.Subscribe<DialogBlockingEvent>(e => isBoxSelectionActive = !e.status);
+        EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
         selectedUnitRTSList = new List<UnitRTS>();
         selectedAreaTransform.gameObject.SetActive(false);
     }
@@ -20,19 +21,19 @@ public class GameRTSControl : MonoBehaviour
     private void Start()
     {
         isBoxSelecting = false;
-        isBoxSelectionActive = true;
+        isDialogBlocking = false;
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && isBoxSelectionActive)
+        if (Mouse.current.leftButton.wasPressedThisFrame && !isDialogBlocking)
         {
             isBoxSelecting = true;
             startPosition = UtilsClass.GetMouseWorldPosition();
             selectedAreaTransform.gameObject.SetActive(true);
         }
 
-        if (Input.GetMouseButton(0) && isBoxSelecting && isBoxSelectionActive)
+        if (Mouse.current.leftButton.isPressed && isBoxSelecting && !isDialogBlocking)
         {
             Vector3 currentMousePosition = UtilsClass.GetMouseWorldPosition();
             Vector3 lowerLeft = new Vector3(Mathf.Min(startPosition.x, currentMousePosition.x),
@@ -43,11 +44,14 @@ public class GameRTSControl : MonoBehaviour
             selectedAreaTransform.localScale = upperRight - lowerLeft;
         }
 
-        if (Input.GetMouseButtonUp(0) || (isBoxSelecting && !isBoxSelectionActive))
+        if (isBoxSelecting && (Mouse.current.leftButton.wasReleasedThisFrame || isDialogBlocking))
         {
             isBoxSelecting = false;
             selectedAreaTransform.gameObject.SetActive(false);
+        }
 
+        if (Mouse.current.leftButton.wasReleasedThisFrame && !isDialogBlocking)
+        {
             Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, UtilsClass.GetMouseWorldPosition());
             foreach (var unitRTS in selectedUnitRTSList)
             {
@@ -66,7 +70,7 @@ public class GameRTSControl : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(1))
+        if (Mouse.current.rightButton.wasReleasedThisFrame && !isDialogBlocking)
         {
             Vector3 movetoPosition = UtilsClass.GetMouseWorldPosition();
             // List<Vector3> targetPositionList = GetPositionListAround(movetoPosition, 1f, 5);

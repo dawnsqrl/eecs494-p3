@@ -1,17 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using CodeMonkey.Utils;
-using UnityEngine.Diagnostics;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovementMouse : MonoBehaviour
 {
+    private bool isDialogBlocking;
+
+    private void Awake()
+    {
+        EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
+    }
+
+    private void Start()
+    {
+        isDialogBlocking = false;
+    }
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Mouse.current.rightButton.wasPressedThisFrame && !isDialogBlocking)
         {
             GetComponent<MovePositionDirect>().SetMovePosition(UtilsClass.GetMouseWorldPosition());
         }

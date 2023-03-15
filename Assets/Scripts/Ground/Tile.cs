@@ -8,11 +8,16 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject _highlight;
 
     private Vector2 _selfCoordinate;
-    private bool isHoverActive;
+    private bool isDialogBlocking;
+
+    private void Awake()
+    {
+        EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
+    }
 
     private void Start()
     {
-        isHoverActive = true;
+        isDialogBlocking = false;
     }
 
     public void SetSelfCoordinate(int x, int y)
@@ -25,11 +30,6 @@ public class Tile : MonoBehaviour
         return _selfCoordinate;
     }
 
-    public void SetHoverState(bool status)
-    {
-        isHoverActive = status;
-    }
-
     public void Init(bool isOffset)
     {
         _renderer.color = isOffset ? _offsetColor : _baseColor;
@@ -38,7 +38,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (isHoverActive && !EventSystem.current.IsPointerOverGameObject())
+        if (!(isDialogBlocking || EventSystem.current.IsPointerOverGameObject()))
         {
             _highlight.SetActive(true);
         }

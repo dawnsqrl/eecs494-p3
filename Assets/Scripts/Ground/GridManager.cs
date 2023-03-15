@@ -7,18 +7,18 @@ public class GridManager : MonoBehaviour
 {
     private Dictionary<Vector2, GameObject> _tiles;
 
-    private void Awake()
-    {
-        EventBus.Subscribe<ModifyPauseEvent>(_OnModifyPause);
-    }
-
-    private void _OnModifyPause(ModifyPauseEvent e)
-    {
-        foreach (Tile tile in GetComponentsInChildren<Tile>())
-        {
-            tile.SetHoverState(!e.status);
-        }
-    }
+    // private void Awake()
+    // {
+    //     EventBus.Subscribe<ModifyPauseEvent>(_OnModifyPause);
+    // }
+    //
+    // private void _OnModifyPause(ModifyPauseEvent e)
+    // {
+    //     foreach (Tile tile in GetComponentsInChildren<Tile>())
+    //     {
+    //         tile.SetHoverState(!e.status);
+    //     }
+    // }
 
     private void Start()
     {
