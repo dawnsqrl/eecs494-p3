@@ -26,9 +26,8 @@ public class GridManager : MonoBehaviour
         foreach (Transform item in transform)
         {
             string[] digits = Regex.Split(item.gameObject.name, @"\D+");
-            int x = 0, y = 0;
-            int.TryParse(digits[1], out x);
-            int.TryParse(digits[2], out y);
+            int.TryParse(digits[1], out int x);
+            int.TryParse(digits[2], out int y);
             _tiles.Add(new Vector2(x, y), item.gameObject);
             item.transform.Find("Tile_ground").gameObject.GetComponent<Tile>().SetSelfCoordinate(x, y);
         }
