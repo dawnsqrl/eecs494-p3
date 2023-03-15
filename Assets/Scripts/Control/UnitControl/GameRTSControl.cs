@@ -1,29 +1,38 @@
 using System.Collections.Generic;
 using CodeMonkey.Utils;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class GameRTSControl : MonoBehaviour
 {
     [SerializeField] private Transform selectedAreaTransform;
     private Vector3 startPosition;
     private List<UnitRTS> selectedUnitRTSList;
+    private bool isBoxSelecting;
+    private bool isBoxSelectionActive;
 
     private void Awake()
     {
+        EventBus.Subscribe<DialogBlockingEvent>(e => isBoxSelectionActive = !e.status);
         selectedUnitRTSList = new List<UnitRTS>();
         selectedAreaTransform.gameObject.SetActive(false);
     }
 
+    private void Start()
+    {
+        isBoxSelecting = false;
+        isBoxSelectionActive = true;
+    }
+
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isBoxSelectionActive)
         {
+            isBoxSelecting = true;
             startPosition = UtilsClass.GetMouseWorldPosition();
             selectedAreaTransform.gameObject.SetActive(true);
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && isBoxSelecting && isBoxSelectionActive)
         {
             Vector3 currentMousePosition = UtilsClass.GetMouseWorldPosition();
             Vector3 lowerLeft = new Vector3(Mathf.Min(startPosition.x, currentMousePosition.x),
@@ -34,8 +43,9 @@ public class GameRTSControl : MonoBehaviour
             selectedAreaTransform.localScale = upperRight - lowerLeft;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) || (isBoxSelecting && !isBoxSelectionActive))
         {
+            isBoxSelecting = false;
             selectedAreaTransform.gameObject.SetActive(false);
 
             Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, UtilsClass.GetMouseWorldPosition());

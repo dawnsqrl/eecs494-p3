@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7342246784959175113}
   - component: {fileID: 7342246784959175114}
   m_Layer: 0
-  m_Name: MovingCam
+  m_Name: MovingCamera
   m_TagString: Moving Camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,8 +57,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.01
+  far clip plane: 100
   field of view: 60
   orthographic: 1
   orthographic size: 7

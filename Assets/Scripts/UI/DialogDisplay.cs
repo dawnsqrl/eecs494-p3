@@ -18,6 +18,7 @@ public class DialogDisplay : MonoBehaviour
     private DialogButtonContainer dialogButtonContainer;
     private bool isDialogLerping;
     private bool isDialogVisible;
+    private bool isDialogBlocking;
     private bool doDismissDialog;
 
     private void Awake()
@@ -44,11 +45,18 @@ public class DialogDisplay : MonoBehaviour
         rectTransform.rotation = Quaternion.Euler(0, 0, initialTilt);
         isDialogLerping = false;
         isDialogVisible = false;
+        isDialogBlocking = false;
         doDismissDialog = false;
     }
 
     private void Update()
     {
+        if (isDialogBlocking != isDialogLerping || isDialogVisible)
+        {
+            isDialogBlocking = isDialogLerping || isDialogVisible;
+            EventBus.Publish(new DialogBlockingEvent(isDialogBlocking));
+        }
+
         if (!isDialogLerping)
         {
             if (!isDialogVisible)

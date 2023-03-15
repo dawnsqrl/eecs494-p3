@@ -44,6 +44,16 @@ public class DismissDialogEvent
 {
 }
 
+public class DialogBlockingEvent
+{
+    public readonly bool status;
+
+    public DialogBlockingEvent(bool _status)
+    {
+        status = _status;
+    }
+}
+
 public class ToggleDemoEvent
 {
 }
