@@ -38,12 +38,4 @@ public class BannerDisplay : MonoBehaviour
             anchoredPosition.x, anchoredPosition.y + e.offset
         );
     }
-
-    private void Start()
-    {
-    }
-
-    private void Update()
-    {
-    }
 }
