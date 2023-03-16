@@ -41,9 +41,16 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _Opacity: 0.4
-    - _Radius: 0.02
+    - _Opacity: 0.5
+    - _Radius: 0.04
+    - _RangeMultiplier: 2
+    - _Range_Multiplier: 2
+    - _SampleDensity: 16
     - _Sample_Density: 16
+    - _StandardDeviation: 0.02
+    - _Standard_Deviation: 0.02
+    - _UseGaussian: 1
+    - _Use_Gaussian: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

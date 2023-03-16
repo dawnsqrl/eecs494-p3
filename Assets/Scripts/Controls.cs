@@ -80,6 +80,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GeneratePopup"",
+                    ""type"": ""Button"",
+                    ""id"": ""04e53f8a-b4eb-4396-a276-58b202527225"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GenerateBanner"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c79aaa1-cc34-4f74-a334-eddebd456fea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -146,6 +164,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SpawnCitizen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75e4c9a0-06e3-443f-b7c5-3fc5ec3878a2"",
+                    ""path"": ""<Keyboard>/slash"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GeneratePopup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00215f9f-061d-49fb-a6b1-faf59a7e88d8"",
+                    ""path"": ""<Keyboard>/period"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GenerateBanner"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -457,6 +497,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_DecreaseSimulationSpeed = m_Player.FindAction("DecreaseSimulationSpeed", throwIfNotFound: true);
         m_Player_ToggleDemo = m_Player.FindAction("ToggleDemo", throwIfNotFound: true);
         m_Player_SpawnCitizen = m_Player.FindAction("SpawnCitizen", throwIfNotFound: true);
+        m_Player_GeneratePopup = m_Player.FindAction("GeneratePopup", throwIfNotFound: true);
+        m_Player_GenerateBanner = m_Player.FindAction("GenerateBanner", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -532,6 +574,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_DecreaseSimulationSpeed;
     private readonly InputAction m_Player_ToggleDemo;
     private readonly InputAction m_Player_SpawnCitizen;
+    private readonly InputAction m_Player_GeneratePopup;
+    private readonly InputAction m_Player_GenerateBanner;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -542,6 +586,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @DecreaseSimulationSpeed => m_Wrapper.m_Player_DecreaseSimulationSpeed;
         public InputAction @ToggleDemo => m_Wrapper.m_Player_ToggleDemo;
         public InputAction @SpawnCitizen => m_Wrapper.m_Player_SpawnCitizen;
+        public InputAction @GeneratePopup => m_Wrapper.m_Player_GeneratePopup;
+        public InputAction @GenerateBanner => m_Wrapper.m_Player_GenerateBanner;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -569,6 +615,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @SpawnCitizen.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnCitizen;
                 @SpawnCitizen.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnCitizen;
                 @SpawnCitizen.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnCitizen;
+                @GeneratePopup.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGeneratePopup;
+                @GeneratePopup.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGeneratePopup;
+                @GeneratePopup.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGeneratePopup;
+                @GenerateBanner.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateBanner;
+                @GenerateBanner.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateBanner;
+                @GenerateBanner.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateBanner;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -591,6 +643,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @SpawnCitizen.started += instance.OnSpawnCitizen;
                 @SpawnCitizen.performed += instance.OnSpawnCitizen;
                 @SpawnCitizen.canceled += instance.OnSpawnCitizen;
+                @GeneratePopup.started += instance.OnGeneratePopup;
+                @GeneratePopup.performed += instance.OnGeneratePopup;
+                @GeneratePopup.canceled += instance.OnGeneratePopup;
+                @GenerateBanner.started += instance.OnGenerateBanner;
+                @GenerateBanner.performed += instance.OnGenerateBanner;
+                @GenerateBanner.canceled += instance.OnGenerateBanner;
             }
         }
     }
@@ -701,6 +759,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnDecreaseSimulationSpeed(InputAction.CallbackContext context);
         void OnToggleDemo(InputAction.CallbackContext context);
         void OnSpawnCitizen(InputAction.CallbackContext context);
+        void OnGeneratePopup(InputAction.CallbackContext context);
+        void OnGenerateBanner(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

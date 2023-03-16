@@ -10,14 +10,14 @@ public class Tile : MonoBehaviour
     private Vector2 _selfCoordinate;
     private bool isDialogBlocking;
 
-    private void Awake()
-    {
-        EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
-    }
-
     private void Start()
     {
         isDialogBlocking = false;
+    }
+
+    public void SetDialogBlockingState(bool status)
+    {
+        isDialogBlocking = status;
     }
 
     public void SetSelfCoordinate(int x, int y)

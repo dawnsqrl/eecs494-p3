@@ -3,12 +3,11 @@ using UnityEngine.InputSystem;
 
 public class FoodControl : MonoBehaviour
 {
-    [SerializeField] private GameObject text;
-
     private Camera _camera;
     private Vector2 pos;
     private bool color_changed;
     private bool isDialogBlocking;
+    private GameObject banner;
 
     private void Awake()
     {
@@ -31,7 +30,9 @@ public class FoodControl : MonoBehaviour
             if (!color_changed)
             {
                 color_changed = true;
-                text.SetActive(true);
+                EventBus.Publish(new DisplayBannerEvent(
+                    transform, -4, Color.red + Color.yellow / 2, StringPool.infestPromptBanner
+                ));
             }
         }
 
@@ -59,7 +60,7 @@ public class FoodControl : MonoBehaviour
                 if (hit.collider.name == "cherry" && color_changed)
                 {
                     changeColor();
-                    text.SetActive(false);
+                    Destroy(GetComponentInChildren<BannerCanvas>().gameObject);
                 }
             }
         }

@@ -54,6 +54,41 @@ public class DialogBlockingEvent
     }
 }
 
+public class DisplayPopupEvent
+{
+    public readonly bool isWorldPosition;
+    public readonly Vector2 position;
+    public readonly float offset;
+    public readonly Color color;
+    public readonly Dictionary<string, UnityAction> buttons;
+
+    public DisplayPopupEvent(bool _isWorldPosition, Vector2 _position, float _offset,
+        Color _color, Dictionary<string, UnityAction> _buttons)
+    {
+        isWorldPosition = _isWorldPosition;
+        position = _position;
+        offset = _offset;
+        color = _color;
+        buttons = _buttons;
+    }
+}
+
+public class DisplayBannerEvent
+{
+    public readonly Transform parent;
+    public readonly float offset;
+    public readonly Color color;
+    public readonly string text;
+
+    public DisplayBannerEvent(Transform _parent, float _offset, Color _color, string _text)
+    {
+        parent = _parent;
+        offset = _offset;
+        color = _color;
+        text = _text;
+    }
+}
+
 public class ToggleDemoEvent
 {
 }
