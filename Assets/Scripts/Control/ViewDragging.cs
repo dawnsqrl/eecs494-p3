@@ -19,6 +19,7 @@ public class ViewDragging : MonoBehaviour
     private Vector3 horizontalVelocity;
     private bool isDraggingEnabled;
 
+    Vector3 startDrag;
     private void Awake()
     {
         // set camera init position
@@ -35,12 +36,35 @@ public class ViewDragging : MonoBehaviour
         isDraggingEnabled = true;
     }
 
+
     private void Update()
     {
         if (isDraggingEnabled)
         {
+            DragCamera();
+            
+            //UpdateCameraPosition();
             CheckMouseAtScreenEdge();
             UpdateCameraPosition();
+
+        }
+    }
+
+
+    private void DragCamera()
+    {
+        if (!Mouse.current.leftButton.isPressed)
+            return;
+
+        Plane plane = new Plane(new Vector3(0,0,1), Vector3.zero);
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        if (plane.Raycast(ray, out float distance))
+        {
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+                startDrag = ray.GetPoint(distance);
+            else
+                targetPosition += startDrag - ray.GetPoint(distance);
         }
     }
 
