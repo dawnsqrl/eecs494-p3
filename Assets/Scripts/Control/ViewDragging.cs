@@ -53,7 +53,7 @@ public class ViewDragging : MonoBehaviour
 
     private void DragCamera()
     {
-        if (!Mouse.current.leftButton.isPressed)
+        if (!Mouse.current.middleButton.isPressed)
             return;
 
         Plane plane = new Plane(new Vector3(0,0,1), Vector3.zero);
@@ -61,7 +61,7 @@ public class ViewDragging : MonoBehaviour
 
         if (plane.Raycast(ray, out float distance))
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+            if (Mouse.current.middleButton.wasPressedThisFrame)
                 startDrag = ray.GetPoint(distance);
             else
                 targetPosition += startDrag - ray.GetPoint(distance);
