@@ -116,3 +116,13 @@ public class AssignInitGrowthPositionEvent
 public class SpawnCitizenEvent
 {
 }
+
+public class ModifyVitalityEvent
+{
+    public readonly int vitality;
+
+    public ModifyVitalityEvent(int _vitality)
+    {
+        vitality = _vitality;
+    }
+}

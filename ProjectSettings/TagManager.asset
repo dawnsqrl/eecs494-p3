@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Mushroom
   - Moving Camera
+  - Building_Icon
   layers:
   - Default
   - TransparentFX

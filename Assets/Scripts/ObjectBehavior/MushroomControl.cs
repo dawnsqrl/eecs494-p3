@@ -25,9 +25,7 @@ public class MushroomControl : MonoBehaviour
         {
             if (isChosen)
             {
-                print("choosen state");
                 Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-                print(Worldpos);
                 if (Worldpos is { x: >= 0 and <= 30, y: >= 0 and <= 30 })
                 {
                     Vector2 pos = new Vector2(Mathf.FloorToInt(Worldpos.x + 0.5f), Mathf.FloorToInt(Worldpos.y + 0.5f));
