@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,30 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class GameProgressControl : MonoBehaviour
 {
-    [SerializeField] private int timeDuration = 60;
+    // [SerializeField] private int timeDuration = 60;
 
-    public static bool isGameStarted = false;
-    public static bool isGameEnded = false;
+    public static bool isGameStarted;
+    public static bool isGameEnded;
 
-    public float timeRemaining;
+    // public float timeRemaining;
 
-    private bool isTimerActive;
+    // private bool isTimerActive;
     private bool isEndDialogShown;
     private Vector3[] originalPos;
 
     private void Awake()
     {
-        EventBus.Subscribe<ModifyPauseEvent>(e => isTimerActive = !e.status);
+        // EventBus.Subscribe<ModifyPauseEvent>(e => isTimerActive = !e.status);
     }
 
     private void Start()
     {
         EventBus.Publish(new AssignGameControlEvent(this));
+        isGameStarted = true;
+        isGameEnded = false;
         // Setup countdown clock
-        timeRemaining = timeDuration;
-        isTimerActive = true;
+        // timeRemaining = timeDuration;
+        // isTimerActive = true;
         isEndDialogShown = false;
-        StartCoroutine(StartInitialCountDown());
+        // StartCoroutine(StartInitialCountDown());
     }
 
     private void Update()
@@ -40,17 +41,17 @@ public class GameProgressControl : MonoBehaviour
         }
 
         // check if time is up
-        if (timeRemaining > 0)
+        // if (timeRemaining > 0)
+        // {
+        //     if (isTimerActive)
+        //     {
+        //         timeRemaining -= Time.deltaTime * SimulationSpeedControl.GetSimulationSpeed();
+        //     }
+        // }
+
+        // TODO: set isGameEnded
+        if (isGameEnded && !isEndDialogShown)
         {
-            if (isTimerActive)
-            {
-                timeRemaining -= Time.deltaTime * SimulationSpeedControl.GetSimulationSpeed();
-            }
-        }
-        else if (!isEndDialogShown)
-        {
-            isGameEnded = true;
-            // end game
             isGameStarted = false;
             isEndDialogShown = true;
             EventBus.Publish(new DisplayDialogEvent(
@@ -63,10 +64,10 @@ public class GameProgressControl : MonoBehaviour
         }
     }
 
-    private IEnumerator StartInitialCountDown()
-    {
-        // used for get-ready countdown before actual game starts
-        isGameStarted = true;
-        yield return null;
-    }
+    // private IEnumerator StartInitialCountDown()
+    // {
+    //     // used for get-ready countdown before actual game starts
+    //     isGameStarted = true;
+    //     yield return null;
+    // }
 }

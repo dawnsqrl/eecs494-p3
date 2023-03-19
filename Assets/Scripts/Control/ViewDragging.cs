@@ -21,6 +21,7 @@ public class ViewDragging : MonoBehaviour
     private Camera builderCam;
 
     Vector3 startDrag;
+
     private void Awake()
     {
         // set camera init position
@@ -28,7 +29,7 @@ public class ViewDragging : MonoBehaviour
             e =>
                 transform.position = new Vector3(e.initPos.x, e.initPos.y, transform.position.z)
         );
-        EventBus.Subscribe<ModifyPauseEvent>(e => isDraggingEnabled = !e.status);
+        EventBus.Subscribe<DialogBlockingEvent>(e => isDraggingEnabled = !e.status);
         cameraTransform = GetComponent<Transform>();
     }
 
@@ -44,11 +45,10 @@ public class ViewDragging : MonoBehaviour
         if (isDraggingEnabled)
         {
             DragCamera();
-            
+
             //UpdateCameraPosition();
             CheckMouseAtScreenEdge();
             UpdateCameraPosition();
-
         }
     }
 
@@ -58,7 +58,7 @@ public class ViewDragging : MonoBehaviour
         if (!Mouse.current.middleButton.isPressed)
             return;
 
-        Plane plane = new Plane(new Vector3(0,0,1), Vector3.zero);
+        Plane plane = new Plane(new Vector3(0, 0, 1), Vector3.zero);
         Ray ray = builderCam.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if (plane.Raycast(ray, out float distance))
