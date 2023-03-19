@@ -13,14 +13,15 @@ public class GrowthDemo : MonoBehaviour
     [SerializeField] private int mapSize_x, mapSize_y;
     [SerializeField] private float range_factor = 0.8f;
 
-    private bool aim_is_set = false, aim_is_reach = false;
-    private Vector2 growthAim;
+    //private bool aim_is_set = false, aim_is_reach = false;
+    //private Vector2 growthAim;
 
-    private float avg_aim_dis = 0.0f;
+    //private float avg_aim_dis = 0.0f;
     private List<Vector2> growthed = new List<Vector2>();
     private bool isSimulationPaused = false;
 
     private bool first_loop = true;
+    private List<Vector2> edge_list = new List<Vector2>();
 
     private void Awake()
     {
@@ -31,32 +32,33 @@ public class GrowthDemo : MonoBehaviour
     {
         StartCoroutine(AutoGrowth(timeGap));
         EventBus.Publish(new AssignInitGrowthPositionEvent(new Vector2(init_x, init_y)));
+        edge_list.Add(new Vector2(init_x, init_y));
     }
 
-    public void setAim(int x, int y)
-    {
-        if (x <= mapSize_x && y <= mapSize_y && x >= 0 && y >= 0)
-        {
-            aim_is_set = true;
-            growthAim = new Vector2(x, y);
-        }
-        else
-        {
-            aim_is_set = false;
-        }
+    //public void setAim(int x, int y)
+    //{
+    //    if (x <= mapSize_x && y <= mapSize_y && x >= 0 && y >= 0)
+    //    {
+    //        aim_is_set = true;
+    //        growthAim = new Vector2(x, y);
+    //    }
+    //    else
+    //    {
+    //        aim_is_set = false;
+    //    }
         //if (!aim_is_set)
         //{
         //    growthAim = aimCoord;
         //    aim_is_set = true;
         //}
-    }
+    //}
 
     IEnumerator AutoGrowth(int timeGap)
     {
         yield return new WaitForSeconds(3.0f);
         int base_rate = 16 * growth_speed;
-        float new_avg_dis = 0.0f;
-        float dis_to_aim = 0.0f;
+        //float new_avg_dis = 0.0f;
+        //float dis_to_aim = 0.0f;
 
         float count;
 
@@ -65,83 +67,81 @@ public class GrowthDemo : MonoBehaviour
         // RemoveFogFromTile(init_x, init_y, 1);
         Position2GroundManager(init_x, init_y).SetGrowthed();
 
-        while (true)
+        while (edge_list.Count < 80)
         {
             yield return new WaitForSeconds(timeGap / SimulationSpeedControl.GetSimulationSpeed());
             yield return null;
 
             count = 0.0f;
-            for (int x = 0; x < mapSize_x; x++)
+            print(edge_list.Count);
+            foreach (Vector2 pos in edge_list)
             {
-                for (int y = 0; y < mapSize_y; y++)
+                while (isSimulationPaused || GameProgressControl.isGameEnded)
+                    yield return null;
+
+                //if (!Position2Growthed(growthAim))
+                //    aim_is_reach = false;
+                //else
+                //    aim_is_reach = true;
+
+                Vector2[] temp = { new Vector2(pos.x + 1, pos.y), new Vector2(pos.x, pos.y + 1), new Vector2(pos.x - 1, pos.y), new Vector2(pos.x, pos.y - 1) };
+                foreach (Vector2 adj_pos in temp)
                 {
-                    while (isSimulationPaused || GameProgressControl.isGameEnded)
-                        yield return null;
+                    if (Mathf.FloorToInt(adj_pos.x) < 0 || Mathf.FloorToInt(adj_pos.x) >= mapSize_x || Mathf.FloorToInt(adj_pos.y) < 0 || Mathf.FloorToInt(adj_pos.y) >= mapSize_y)
+                        continue;
+                    if (Position2Growthed(adj_pos))
+                        continue;
+                    if (growthed.Contains(adj_pos))
+                        continue;
 
-                    if (!Position2Growthed(growthAim))
-                        aim_is_reach = false;
-                    else
-                        aim_is_reach = true;
-
-                    int adj_factor = count_growthed_adjacent(x, y);
-                    //if (adj_factor == 1)
-                    //    adj_factor = 4;
-                    //if (adj_factor != 1 && adj_factor != 0)
-                    //    adj_factor = 1;
-
+                    int adj_factor = count_growthed_adjacent(Mathf.FloorToInt(adj_pos.x), Mathf.FloorToInt(adj_pos.y));
                     float growth_possibility = Mathf.Log(adj_factor + 1, 5) * base_rate; // log base 5, 4 -> 1;
-                    if (aim_is_set && adj_factor != 0)
-                    {
-                        dis_to_aim = GetDistance(Position2Tile(x, y), Position2Tile(growthAim));
-                        new_avg_dis += dis_to_aim;
-                        count += 1.0f;
-                    }
-
-                    if (aim_is_set && dis_to_aim < avg_aim_dis * range_factor && !aim_is_reach && adj_factor != 0)
-                    {
-                        growth_possibility += 30;//25 / avg_aim_dis * (avg_aim_dis - dis_to_aim) + 10;
-                    }
-                    if (aim_is_set && dis_to_aim > avg_aim_dis && !aim_is_reach && adj_factor != 0)
-                    {
-                        //growth_possibility -= 40;
-                        growth_possibility = 10;
-                    }
-
-                    if (first_loop && adj_factor != 0)
-                        growth_possibility = 80;
-
-                    //growth_possibility = growth_possibility * ResourceController.GetComponent<Resource>().get_growth_amount() * 1.0f / 1000.0f;
-                    //if (growth_possibility != 0)
+                    //if (aim_is_set && adj_factor != 4)
                     //{
-                    //    print("****************");
-                    //    print(growth_possibility);
-                    //    print(Mathf.Log(adj_factor + 1, 5));
-                    //    print(base_rate);
-                    //    print("****************");
+                    //    dis_to_aim = GetDistance(Position2Tile(adj_pos), Position2Tile(growthAim));
+                    //    new_avg_dis += dis_to_aim;
+                    //    count += 1.0f;
+                    //}
+                    //if (aim_is_set && dis_to_aim < avg_aim_dis * range_factor && !aim_is_reach && adj_factor != 4)
+                    //{
+                    //    growth_possibility += 30;//25 / avg_aim_dis * (avg_aim_dis - dis_to_aim) + 10;
+                    //}
+                    //if (aim_is_set && dis_to_aim > avg_aim_dis && !aim_is_reach && adj_factor != 4)
+                    //{
+                    //    //growth_possibility -= 40;
+                    //    growth_possibility = 10;
                     //}
 
+                    if (first_loop)
+                        growth_possibility = 80;
 
                     // Random.Range(int minInclusive, int maxExclusive);
                     if (UnityEngine.Random.Range(0, 101) < growth_possibility)
                     {
                         // RemoveFogFromTile(x, y, 1);
-                        growthed.Add(new Vector2(x, y));
-                        //Position2GroundManager(x, y).SetGrowthed();
-
-                        ResourceController.GetComponent<Resource>().change_growth_amount(ResourceController.GetComponent<Resource>().get_growth_amount() - 0.5f);
-                        ResourceController.GetComponent<Resource>().change_resource(ResourceController.GetComponent<Resource>().get_resource() - 1.0f);
+                        growthed.Add(adj_pos);
+                        Position2GroundManager(adj_pos).SetGrowthed();
+                        //ResourceController.GetComponent<Resource>().change_growth_amount(ResourceController.GetComponent<Resource>().get_growth_amount() - 0.5f);
+                        //ResourceController.GetComponent<Resource>().change_resource(ResourceController.GetComponent<Resource>().get_resource() - 1.0f);
                     }
-                }
+                }     
+                
             }
-            avg_aim_dis = new_avg_dis / count;
-            new_avg_dis = 0.0f;
+
+            //avg_aim_dis = new_avg_dis / count;
+            //new_avg_dis = 0.0f;
 
             foreach (Vector2 item in growthed)
             {
-                if (item == growthAim)
-                    aim_is_reach = true;
-                Position2GroundManager(item).SetGrowthed();
+                //if (item == growthAim)
+                //    aim_is_reach = true;
+            //    Position2GroundManager(item).SetGrowthed();
+                edge_list.Add(item);
             }
+
+            growthed.Clear();
+
+            edge_list.RemoveAll(item => count_growthed_adjacent(Mathf.FloorToInt(item.x), Mathf.FloorToInt(item.y)) == 4);
 
             if (first_loop)
                 first_loop = false;
@@ -151,8 +151,8 @@ public class GrowthDemo : MonoBehaviour
 
     public int count_growthed_adjacent(int x, int y)
     {
-        if (Position2Growthed(x, y))
-            return 0;
+        //if (Position2Growthed(x, y))
+        //    return 0;
 
         int res = 0;
         if (x + 1 < mapSize_x)
@@ -248,11 +248,11 @@ public class GrowthDemo : MonoBehaviour
 
     public Vector2 Tile2Position(GameObject tile)
     {
-        return tile.transform.Find("Tile_ground").gameObject.GetComponent<Tile>().GetSelfCoordinate(0, 0);
+        return GridManagerGameobject.GetComponent<GridManager>().GetTileGroundAtPosition(tile).GetComponent<Tile>().GetSelfCoordinate(0, 0);
     }
     public GroundTileManager Tile2GroundManager(GameObject tile)
     {
-        return tile.transform.Find("Tile_ground").gameObject.GetComponent<GroundTileManager>();
+        return GridManagerGameobject.GetComponent<GridManager>().GetTileGroundAtPosition(tile).gameObject.GetComponent<GroundTileManager>();
     }
 
     public bool FakeGrowthed(Vector2 pos)

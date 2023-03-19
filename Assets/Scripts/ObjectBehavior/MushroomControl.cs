@@ -30,6 +30,7 @@ public class MushroomControl : MonoBehaviour
                 {
                     Vector2 pos = new Vector2(Mathf.FloorToInt(Worldpos.x + 0.5f), Mathf.FloorToInt(Worldpos.y + 0.5f));
                     GrowthDemo growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
+                    print(pos);
                     if (!growthDemo.Position2Growthed(pos) && !growthDemo.FakeGrowthed(pos))
                     {
                         Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"),

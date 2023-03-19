@@ -45,8 +45,8 @@ public class DragDrop : MonoBehaviour
         if (_mouseState && (Mouse.current.leftButton.wasReleasedThisFrame || isDialogBlocking))
         {
             _mouseState = false;
-            GrowthController.GetComponent<GrowthDemo>().setAim(Mathf.FloorToInt(transform.position.x),
-                Mathf.FloorToInt(transform.position.y));
+            //GrowthController.GetComponent<GrowthDemo>().setAim(Mathf.FloorToInt(transform.position.x),
+                //Mathf.FloorToInt(transform.position.y));
         }
 
         if (_mouseState)
