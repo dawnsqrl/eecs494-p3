@@ -244,26 +244,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5347742314661802366, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
-      propertyPath: m_TargetDisplay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5347742314661802366, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
-      propertyPath: orthographic size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5347742314661802366, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5347742314661802366, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5347742314661802366, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
 --- !u!4 &4898678668236388896 stripped
