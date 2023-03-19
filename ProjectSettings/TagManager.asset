@@ -7,7 +7,8 @@ TagManager:
   - Enemy
   - Mushroom
   - Moving Camera
-  - Building_Icon
+  - Builder
+  - BaseCar
   layers:
   - Default
   - TransparentFX

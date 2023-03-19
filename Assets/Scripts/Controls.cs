@@ -98,6 +98,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpawnEnemy"",
+                    ""type"": ""Button"",
+                    ""id"": ""df08b137-5498-49c5-87ad-3f4756a364c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -186,6 +195,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""GenerateBanner"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5033b828-a5d0-45ea-92b5-4cd26640d95e"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpawnEnemy"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -499,6 +519,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_SpawnCitizen = m_Player.FindAction("SpawnCitizen", throwIfNotFound: true);
         m_Player_GeneratePopup = m_Player.FindAction("GeneratePopup", throwIfNotFound: true);
         m_Player_GenerateBanner = m_Player.FindAction("GenerateBanner", throwIfNotFound: true);
+        m_Player_SpawnEnemy = m_Player.FindAction("SpawnEnemy", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -576,6 +597,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SpawnCitizen;
     private readonly InputAction m_Player_GeneratePopup;
     private readonly InputAction m_Player_GenerateBanner;
+    private readonly InputAction m_Player_SpawnEnemy;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -588,6 +610,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @SpawnCitizen => m_Wrapper.m_Player_SpawnCitizen;
         public InputAction @GeneratePopup => m_Wrapper.m_Player_GeneratePopup;
         public InputAction @GenerateBanner => m_Wrapper.m_Player_GenerateBanner;
+        public InputAction @SpawnEnemy => m_Wrapper.m_Player_SpawnEnemy;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -621,6 +644,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @GenerateBanner.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateBanner;
                 @GenerateBanner.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateBanner;
                 @GenerateBanner.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateBanner;
+                @SpawnEnemy.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnEnemy;
+                @SpawnEnemy.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnEnemy;
+                @SpawnEnemy.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnEnemy;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -649,6 +675,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @GenerateBanner.started += instance.OnGenerateBanner;
                 @GenerateBanner.performed += instance.OnGenerateBanner;
                 @GenerateBanner.canceled += instance.OnGenerateBanner;
+                @SpawnEnemy.started += instance.OnSpawnEnemy;
+                @SpawnEnemy.performed += instance.OnSpawnEnemy;
+                @SpawnEnemy.canceled += instance.OnSpawnEnemy;
             }
         }
     }
@@ -761,6 +790,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnSpawnCitizen(InputAction.CallbackContext context);
         void OnGeneratePopup(InputAction.CallbackContext context);
         void OnGenerateBanner(InputAction.CallbackContext context);
+        void OnSpawnEnemy(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

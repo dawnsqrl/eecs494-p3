@@ -15,6 +15,7 @@ public class ClearSurroundingFog : MonoBehaviour
     private List<GameObject> clearedFogList;
     private List<GameObject> prevClearedFogList;
     [SerializeField] private bool isBuilder;
+    [SerializeField] private int range = 1;
     private string clearFogType;
     private void Start()
     {
@@ -38,9 +39,9 @@ public class ClearSurroundingFog : MonoBehaviour
             int.TryParse(digits[1], out x);
             int.TryParse(digits[2], out y);
 
-            for (int i = x-1; i < x+2; i++)
+            for (int i = x-range; i < x+1+range; i++)
             {
-                for (int j = y-1; j < y+2; j++)
+                for (int j = y-range; j < y+1+range; j++)
                 {
                     GameObject groundGrid = GameObject.Find($"Tile {i} {j}");
                     if (groundGrid)

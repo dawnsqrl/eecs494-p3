@@ -117,6 +117,10 @@ public class SpawnCitizenEvent
 {
 }
 
+public class SpawnEnemyEvent
+{
+}
+
 public class ModifyVitalityEvent
 {
     public readonly int vitality;

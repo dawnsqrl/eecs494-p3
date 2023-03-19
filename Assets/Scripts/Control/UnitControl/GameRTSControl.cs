@@ -55,7 +55,10 @@ public class GameRTSControl : MonoBehaviour
             Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, UtilsClass.GetMouseWorldPosition());
             foreach (var unitRTS in selectedUnitRTSList)
             {
-                unitRTS.SetSelectedActive(false);
+                if (unitRTS.gameObject.CompareTag("Builder"))
+                {
+                    unitRTS.SetSelectedActive(false);
+                }
             }
 
             selectedUnitRTSList.Clear();
@@ -76,6 +79,7 @@ public class GameRTSControl : MonoBehaviour
             // List<Vector3> targetPositionList = GetPositionListAround(movetoPosition, 1f, 5);
             List<Vector3> targetPositionList =
                 GetPositionListAround(movetoPosition, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
+            targetPositionList.Insert(0, movetoPosition);
             int targetPositionListIndex = 0;
             foreach (UnitRTS unitRTS in selectedUnitRTSList)
             {

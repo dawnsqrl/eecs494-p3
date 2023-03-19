@@ -83,5 +83,10 @@ public class InputInterface : MonoBehaviour
         {
             EventBus.Publish(new SpawnCitizenEvent());
         }
+        
+        if (playerActions.SpawnEnemy.WasPressedThisFrame())
+        {
+            EventBus.Publish(new SpawnEnemyEvent());
+        }
     }
 }
