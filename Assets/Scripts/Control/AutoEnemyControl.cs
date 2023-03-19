@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class AutoEnemyControl : MonoBehaviour
 {
+    private int maxEnemyUnit = 5;
     private List<GameObject> autoEnemies;
     // Start is called before the first frame update
     void Start()
@@ -58,12 +59,18 @@ public class AutoEnemyControl : MonoBehaviour
         }
         return positionList;
     }
-    
+    public void RemoveFromList(GameObject o)
+    {
+        autoEnemies.Remove(o);
+    }
     private void _SpawnEnemy(SpawnEnemyEvent e)
     {
-        GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/AutomatedEnemy"), transform.position, Quaternion.identity);
-        enemy.GetComponent<UnitRTS>().MoveTo(transform.position);
-        autoEnemies.Add(enemy);
+        if (autoEnemies.Count < maxEnemyUnit)
+        {
+            GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/AutomatedEnemy"), transform.position, Quaternion.identity);
+            enemy.GetComponent<UnitRTS>().MoveTo(transform.position);
+            autoEnemies.Add(enemy);
+        }
     }
-    
+
 }

@@ -6,6 +6,9 @@ public class CitizenTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        // transform.parent.GetComponent<SpriteRenderer>().color = Color.red;
+        if (other.CompareTag("Enemy"))
+        {
+            Destroy(transform.parent.gameObject);
+        }
     }
 }

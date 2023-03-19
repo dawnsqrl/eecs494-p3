@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBuilder: 1
+  range: 1
 --- !u!1 &3232443857419143407
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +203,7 @@ GameObject:
   - component: {fileID: 3232443857419143441}
   m_Layer: 0
   m_Name: Selected
-  m_TagString: Untagged
+  m_TagString: Builder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,7 +287,7 @@ GameObject:
   - component: {fileID: 3232443857669116684}
   m_Layer: 0
   m_Name: Shadow
-  m_TagString: Untagged
+  m_TagString: Builder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -368,6 +369,10 @@ PrefabInstance:
     - target: {fileID: 1216541264821508152, guid: be689d28b8c974984904a3d5c1897d32, type: 3}
       propertyPath: m_Name
       value: 3DCitizenTriggerManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216541264821508152, guid: be689d28b8c974984904a3d5c1897d32, type: 3}
+      propertyPath: m_TagString
+      value: Builder
       objectReference: {fileID: 0}
     - target: {fileID: 4050701277784475158, guid: be689d28b8c974984904a3d5c1897d32, type: 3}
       propertyPath: m_RootOrder
