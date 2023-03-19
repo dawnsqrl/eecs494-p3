@@ -18,6 +18,7 @@ public class ViewDragging : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] private float edgeTolerance = 0.05f;
     private Vector3 horizontalVelocity;
     private bool isDraggingEnabled;
+    private Camera builderCam;
 
     Vector3 startDrag;
     private void Awake()
@@ -34,6 +35,7 @@ public class ViewDragging : MonoBehaviour
     private void Start()
     {
         isDraggingEnabled = true;
+        builderCam = GetComponent<Camera>();
     }
 
 
@@ -53,15 +55,15 @@ public class ViewDragging : MonoBehaviour
 
     private void DragCamera()
     {
-        if (!Mouse.current.leftButton.isPressed)
+        if (!Mouse.current.middleButton.isPressed)
             return;
 
         Plane plane = new Plane(new Vector3(0,0,1), Vector3.zero);
-        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Ray ray = builderCam.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if (plane.Raycast(ray, out float distance))
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+            if (Mouse.current.middleButton.wasPressedThisFrame)
                 startDrag = ray.GetPoint(distance);
             else
                 targetPosition += startDrag - ray.GetPoint(distance);
