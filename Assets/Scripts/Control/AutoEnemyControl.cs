@@ -19,6 +19,14 @@ public class AutoEnemyControl : MonoBehaviour
     void Update()
     {
         Vector3 movetoPosition = gameObject.transform.position;
+        foreach (GameObject citizen in CitizenControl.citizenList)
+        {
+            if ((citizen.transform.position - transform.position).magnitude < 10)
+            {
+                movetoPosition = citizen.transform.position;
+                break;
+            }
+        }
         // List<Vector3> targetPositionList = GetPositionListAround(movetoPosition, 1f, 5);
         List<Vector3> targetPositionList =
             GetPositionListAround(movetoPosition, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
