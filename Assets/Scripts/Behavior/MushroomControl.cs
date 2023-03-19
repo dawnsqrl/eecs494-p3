@@ -57,6 +57,7 @@ public class MushroomControl : MonoBehaviour
 
     private void OnDestroy()
     {
+        CitizenControl.citizenList.Remove(gameObject);
         Destroy(GameObject.Find("GrowthDemoController"));
     }
 }

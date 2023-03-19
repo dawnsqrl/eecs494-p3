@@ -10,6 +10,7 @@ public class CitizenControl : MonoBehaviour
     {
         EventBus.Subscribe<SpawnCitizenEvent>(_SpawnCitizen);
         citizenList = new List<GameObject>();
+        citizenList.Add(GameObject.FindWithTag("Mushroom"));
     }
 
     private void _SpawnCitizen(SpawnCitizenEvent e)

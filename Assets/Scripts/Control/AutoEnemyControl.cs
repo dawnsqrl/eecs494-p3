@@ -27,6 +27,7 @@ public class AutoEnemyControl : MonoBehaviour
                 break;
             }
         }
+
         // List<Vector3> targetPositionList = GetPositionListAround(movetoPosition, 1f, 5);
         List<Vector3> targetPositionList =
             GetPositionListAround(movetoPosition, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
