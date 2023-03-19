@@ -1,3 +1,5 @@
+using System;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -51,5 +53,10 @@ public class MushroomControl : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(GameObject.Find("GrowthDemoController"));
     }
 }
