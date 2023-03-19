@@ -7,7 +7,7 @@ using static UnityEditor.PlayerSettings;
 public class BasecarController : MonoBehaviour
 {
     [SerializeField] bool isChosen = false;
-    float speed = 2f;
+    [SerializeField] private float speed = 4f;
     bool isDialogBlocking;
 
     private void Awake()
