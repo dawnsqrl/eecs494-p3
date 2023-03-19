@@ -1,17 +1,18 @@
+using System;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class MushroomControl : MonoBehaviour
 {
+    [SerializeField] private Camera targetCamera;
     [SerializeField] bool isChosen = false;
 
-    private Camera _camera;
     private bool isDialogBlocking;
 
     private void Awake()
     {
         EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
-        _camera = Camera.main;
     }
 
     private void Start()
@@ -25,7 +26,7 @@ public class MushroomControl : MonoBehaviour
         {
             if (isChosen)
             {
-                Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                Vector3 Worldpos = targetCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
                 if (Worldpos is { x: >= 0 and <= 30, y: >= 0 and <= 30 })
                 {
                     Vector2 pos = new Vector2(Mathf.FloorToInt(Worldpos.x + 0.5f), Mathf.FloorToInt(Worldpos.y + 0.5f));
@@ -42,7 +43,7 @@ public class MushroomControl : MonoBehaviour
                 isChosen = false;
             }
 
-            Ray ray = _camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            Ray ray = targetCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
@@ -53,5 +54,11 @@ public class MushroomControl : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        CitizenControl.citizenList.Remove(gameObject);
+        Destroy(GameObject.Find("GrowthDemoController"));
     }
 }

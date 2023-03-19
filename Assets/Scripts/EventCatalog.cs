@@ -16,6 +16,14 @@ public class ModifyPauseEvent
     }
 }
 
+public class GameStartEvent
+{
+}
+
+public class GameEndEvent
+{
+}
+
 public class ScrollSimulationSpeedEvent
 {
     public readonly bool direction;
@@ -30,12 +38,15 @@ public class DisplayDialogEvent
 {
     public readonly string title;
     public readonly string content;
+    public readonly Vector2 size;
     public readonly Dictionary<string, UnityAction> buttons;
 
-    public DisplayDialogEvent(string _title, string _content, Dictionary<string, UnityAction> _buttons)
+    public DisplayDialogEvent(string _title, string _content, Vector2 _size,
+        Dictionary<string, UnityAction> _buttons)
     {
         title = _title;
         content = _content;
+        size = _size;
         buttons = _buttons;
     }
 }

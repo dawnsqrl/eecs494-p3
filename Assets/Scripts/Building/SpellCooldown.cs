@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class SpellCooldown : MonoBehaviour
 {
     [SerializeField] private Image imageCooldown;
+
     [SerializeField] private TMP_Text textCooldown;
     //[SerializeField] private Image imageEdge;
 
@@ -16,25 +15,24 @@ public class SpellCooldown : MonoBehaviour
     private float cooldownTimer = 0.0f;
 
     private bool start = true;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         textCooldown.gameObject.SetActive(false);
         //imageEdge.gameObject.SetActive(false);
         imageCooldown.fillAmount = 0.0f;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(start)
+        if (start)
         {
             imageCooldown.gameObject.SetActive(true);
             UseSpell();
             start = false;
         }
 
-        if(isCoolDown)
+        if (isCoolDown)
         {
             ApplyCooldown();
         }
@@ -42,8 +40,8 @@ public class SpellCooldown : MonoBehaviour
 
     void ApplyCooldown()
     {
-        cooldownTimer -= Time.deltaTime;
-        if(cooldownTimer < 0.0f)
+        cooldownTimer -= SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime;
+        if (cooldownTimer < 0.0f)
         {
             isCoolDown = false;
             textCooldown.gameObject.SetActive(false);
@@ -58,12 +56,11 @@ public class SpellCooldown : MonoBehaviour
 
             //imageEdge.transform.localEulerAngles = new Vector3(0, 0, 360.0f * (cooldownTimer / cooldownTime));
         }
-
     }
 
     public bool UseSpell()
     {
-        if(isCoolDown)
+        if (isCoolDown)
         {
             return false;
         }
@@ -76,7 +73,7 @@ public class SpellCooldown : MonoBehaviour
             imageCooldown.fillAmount = 1.0f;
 
             //imageEdge.gameObject.SetActive(true);
-            return true; 
+            return true;
         }
     }
 

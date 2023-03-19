@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,7 +62,7 @@ public class GrowthDemo : MonoBehaviour
         float count;
 
         print("startDemo");
-        
+
         // RemoveFogFromTile(init_x, init_y, 1);
         Position2GroundManager(init_x, init_y).SetGrowthed();
 
@@ -146,7 +145,6 @@ public class GrowthDemo : MonoBehaviour
             if (first_loop)
                 first_loop = false;
         }
-        
     }
 
     public int count_growthed_adjacent(int x, int y)
@@ -171,7 +169,7 @@ public class GrowthDemo : MonoBehaviour
     {
         float dis = Vector2.Distance(Tile2Position(tile), Tile2Position(aim));
         //if (dis <= 1)
-            //aim_is_reach = true;
+        //aim_is_reach = true;
 
         return dis;
     }
@@ -180,27 +178,30 @@ public class GrowthDemo : MonoBehaviour
     {
         Tile2GroundManager(tile).SetFogVisible(false, "builder");
     }
-    
+
     public void RemoveFogFromTile(int x, int y, int radius)
     {
         RemoveFogFromTile(Position2Tile(x, y));
         for (int i = 1; i < radius + 1; i++)
         {
-            if (FogTilePositionSanityCheck(x+i, y))
+            if (FogTilePositionSanityCheck(x + i, y))
             {
-                Position2GroundManager(x+i, y).SetFogVisible(false, "builder");
+                Position2GroundManager(x + i, y).SetFogVisible(false, "builder");
             }
-            if (FogTilePositionSanityCheck(x-i, y))
+
+            if (FogTilePositionSanityCheck(x - i, y))
             {
                 Position2GroundManager(x - i, y).SetFogVisible(false, "builder");
             }
-            if (FogTilePositionSanityCheck(x, y+i))
+
+            if (FogTilePositionSanityCheck(x, y + i))
             {
-                Position2GroundManager(x, y+i).SetFogVisible(false, "builder");
+                Position2GroundManager(x, y + i).SetFogVisible(false, "builder");
             }
-            if (FogTilePositionSanityCheck(x, y-i))
+
+            if (FogTilePositionSanityCheck(x, y - i))
             {
-                Position2GroundManager(x, y -i).SetFogVisible(false, "builder");
+                Position2GroundManager(x, y - i).SetFogVisible(false, "builder");
             }
         }
     }
@@ -216,6 +217,7 @@ public class GrowthDemo : MonoBehaviour
         {
             return false;
         }
+
         return true;
     }
 
@@ -223,6 +225,7 @@ public class GrowthDemo : MonoBehaviour
     {
         return GridManagerGameobject.GetComponent<GridManager>().GetTileAtPosition(new Vector2(x, y));
     }
+
     public GameObject Position2Tile(Vector2 vec)
     {
         return GridManagerGameobject.GetComponent<GridManager>().GetTileAtPosition(vec);
@@ -232,6 +235,7 @@ public class GrowthDemo : MonoBehaviour
     {
         return Tile2GroundManager(Position2Tile(x, y)).CheckGrowthed();
     }
+
     public bool Position2Growthed(Vector2 vec)
     {
         return Tile2GroundManager(Position2Tile(vec)).CheckGrowthed();
@@ -241,6 +245,7 @@ public class GrowthDemo : MonoBehaviour
     {
         return Tile2GroundManager(Position2Tile(x, y));
     }
+
     public GroundTileManager Position2GroundManager(Vector2 vec)
     {
         return Tile2GroundManager(Position2Tile(vec));
@@ -250,6 +255,7 @@ public class GrowthDemo : MonoBehaviour
     {
         return GridManagerGameobject.GetComponent<GridManager>().GetTileGroundAtPosition(tile).GetComponent<Tile>().GetSelfCoordinate(0, 0);
     }
+
     public GroundTileManager Tile2GroundManager(GameObject tile)
     {
         return GridManagerGameobject.GetComponent<GridManager>().GetTileGroundAtPosition(tile).gameObject.GetComponent<GroundTileManager>();
@@ -262,7 +268,7 @@ public class GrowthDemo : MonoBehaviour
             if (item == pos)
                 return true;
         }
+
         return false;
     }
-
 }

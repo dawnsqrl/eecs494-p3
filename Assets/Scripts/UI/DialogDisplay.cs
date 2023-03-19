@@ -61,10 +61,12 @@ public class DialogDisplay : MonoBehaviour
         {
             if (!isDialogVisible)
             {
-                SetInitialHeight();
                 if (dialogQueue.Count > 0)
                 {
-                    StartCoroutine(DisplayDialog(dialogQueue.Dequeue()));
+                    DisplayDialogEvent e = dialogQueue.Dequeue();
+                    SetSize(e);
+                    SetInitialHeight();
+                    StartCoroutine(DisplayDialog(e));
                 }
             }
             else if (isDialogVisible && doDismissDialog)
@@ -76,6 +78,11 @@ public class DialogDisplay : MonoBehaviour
                 doDismissDialog = false;
             }
         }
+    }
+
+    private void SetSize(DisplayDialogEvent e)
+    {
+        rectTransform.sizeDelta = e.size == Vector2.zero ? new Vector2(800, 500) : e.size;
     }
 
     private void SetInitialHeight()

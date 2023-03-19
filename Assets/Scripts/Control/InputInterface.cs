@@ -34,7 +34,7 @@ public class InputInterface : MonoBehaviour
         if (playerActions.GenerateDialog.WasPressedThisFrame())
         {
             EventBus.Publish(new DisplayDialogEvent(
-                "Chirp", "Something happened!",
+                "Chirp", "Something happened!", Vector2.zero,
                 new Dictionary<string, UnityAction>()
                 {
                     { "What?", () => print("Clicked what") },
@@ -83,7 +83,7 @@ public class InputInterface : MonoBehaviour
         {
             EventBus.Publish(new SpawnCitizenEvent());
         }
-        
+
         if (playerActions.SpawnEnemy.WasPressedThisFrame())
         {
             EventBus.Publish(new SpawnEnemyEvent());

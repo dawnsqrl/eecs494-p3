@@ -24,6 +24,7 @@ public class RandomResourceEvent : MonoBehaviour
                 EventBus.Publish(new DisplayDialogEvent(
                     StringPool.defaultDialogTitle,
                     StringPool.defaultDialogContent,
+                    Vector2.zero,
                     new Dictionary<string, UnityAction>()
                     {
                         { "Random!", null }
