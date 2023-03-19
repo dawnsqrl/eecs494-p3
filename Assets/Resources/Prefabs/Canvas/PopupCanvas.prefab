@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2436142948631421631}
   - component: {fileID: 2436142948631421630}
   - component: {fileID: 1791195194821991650}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: PopupCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 60
   m_TargetDisplay: 0
 --- !u!114 &2436142948631421631
 MonoBehaviour:

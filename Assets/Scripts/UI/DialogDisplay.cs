@@ -51,7 +51,7 @@ public class DialogDisplay : MonoBehaviour
 
     private void Update()
     {
-        if (isDialogBlocking != isDialogLerping || isDialogVisible)
+        if (isDialogBlocking != (isDialogLerping || isDialogVisible))
         {
             isDialogBlocking = isDialogLerping || isDialogVisible;
             EventBus.Publish(new DialogBlockingEvent(isDialogBlocking));

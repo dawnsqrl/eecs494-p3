@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3206853243591604190}
   - component: {fileID: 7143087792451667053}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 7357948789244360939}
   - component: {fileID: 7357948789244360940}
   - component: {fileID: 7357948789244360938}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 7357948790168443792}
   - component: {fileID: 7357948790168443793}
   - component: {fileID: 1560606240543562248}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 7357948790315145433}
   - component: {fileID: 7357948790315145434}
   - component: {fileID: 1330274689548497057}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 7357948790503257928}
   - component: {fileID: 7357948790503257929}
   - component: {fileID: 7357948790503257930}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: DialogCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

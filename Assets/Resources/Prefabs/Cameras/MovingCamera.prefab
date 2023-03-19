@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5347742314661802367}
   - component: {fileID: 5347742314661802364}
   m_Layer: 0
-  m_Name: MovingCam
+  m_Name: MovingCamera
   m_TagString: Moving Camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5347742314661802362}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.475}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 12.5, y: 12.5, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fontSize: 3
+  fontPadding: 2
   lerpDuration: 0.05
 --- !u!1 &6462662401727251280
 GameObject:
@@ -152,7 +153,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 60
+  m_SortingOrder: 50
   m_TargetDisplay: 0
 --- !u!114 &6462662401727251286
 MonoBehaviour:
@@ -176,7 +177,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &6462662401727251281
 MonoBehaviour:
   m_ObjectHideFlags: 0
