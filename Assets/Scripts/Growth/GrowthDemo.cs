@@ -75,7 +75,7 @@ public class GrowthDemo : MonoBehaviour
             print(edge_list.Count);
             foreach (Vector2 pos in edge_list)
             {
-                while (isSimulationPaused || GameProgressControl.isGameEnded)
+                while (isSimulationPaused) // || GameProgressControl.isGameEnded)
                     yield return null;
 
                 //if (!Position2Growthed(growthAim))

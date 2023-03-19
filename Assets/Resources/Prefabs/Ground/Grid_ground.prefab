@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 5662125843386868735}
   - component: {fileID: 3768449682825730586}
   - component: {fileID: 140582571779205002}
+  - component: {fileID: 7288910852321654457}
   m_Layer: 6
   m_Name: Tile_ground
   m_TagString: Untagged
@@ -740,3 +741,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthed: 0
+--- !u!114 &7288910852321654457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8939778836825173230}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4e77f8f4184d9eb4724ce89757c9e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBuilder: 1
+  range: 1

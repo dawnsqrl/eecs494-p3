@@ -18,12 +18,14 @@ public class AutoEnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool onAssult = false;
         Vector3 movetoPosition = gameObject.transform.position;
         foreach (GameObject citizen in CitizenControl.citizenList)
         {
-            if ((citizen.transform.position - transform.position).magnitude < 10)
+            if ((citizen.transform.position - transform.position).magnitude < 5)
             {
                 movetoPosition = citizen.transform.position;
+                onAssult = true;
                 break;
             }
         }
@@ -35,6 +37,7 @@ public class AutoEnemyControl : MonoBehaviour
         int targetPositionListIndex = 0;
         foreach (GameObject enemy in autoEnemies)
         {
+            enemy.GetComponent<ClearSurroundingFog>().enabled = onAssult;
             UnitRTS unitRTS = enemy.GetComponent<UnitRTS>();
             unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
             targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;

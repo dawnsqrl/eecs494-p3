@@ -48,4 +48,20 @@ public class Tile : MonoBehaviour
     {
         _highlight.SetActive(false);
     }
+
+    public void SetBaseColor(Color _color)
+    {
+        _baseColor = _color;
+    }
+    
+    public void SetOffsetColor(Color _color)
+    {
+        _offsetColor = _color;
+    }
+
+    public void SetColor(bool isOffset)
+    {
+        _renderer.color = isOffset ? _offsetColor : _baseColor;
+    }
+
 }
