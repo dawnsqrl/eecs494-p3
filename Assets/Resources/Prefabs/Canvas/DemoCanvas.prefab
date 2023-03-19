@@ -72,20 +72,25 @@ MonoBehaviour:
     Click the mushroom, then a grey
     tile to add a growth source
 
-    [C] to spawn citizen at mouse position
+    [C] to spawn citizen at mouse position (builder
+    only)
 
-    [LClick]
-    to drag and select citizens
+    [K] to spawn enemy at mouse position (enemy only)
 
-    [RClick] to set destination of citizens
+    [MDrag] to
+    drag map view
 
-    [+/-]
-    to increase / decrease game speed
+    [LDrag] to select citizens
+
+    [RClick] to set destination
+    of citizens
+
+    [+/-] to increase / decrease game speed
 
     [ESC] to pause
 
-    [0] to toggle this
-    list'
+    [0]
+    to toggle this list'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -1,0 +1,8 @@
+[1] Player feels that existing map navigation is overly inefficient
+	Implemented map dragging control (with middle mouse button).
+
+[2] Player thinks that a single-player RTS game is uninteresting, even if the opponent is an AI
+	Remodeled the game into an asymmetric two-player RTS game, where the only game-end criteria is either side being destroyed.
+
+[3] Player wants a minimap for better orientation
+	Implemented minimap for both displays (builder and enemy).

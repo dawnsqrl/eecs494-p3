@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class vatalityBarController : MonoBehaviour
+public class VitalityBarController : MonoBehaviour
 {
     public Slider slider;
     public Gradient gradient;
     public Image fill;
-    // Start is called before the first frame update
-    void Awake()
+
+    private void Awake()
     {
         EventBus.Subscribe<ModifyVitalityEvent>(SetVitality);
     }
