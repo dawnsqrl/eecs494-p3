@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class MoveTransformVelocity : MonoBehaviour, IMoveVelocity
@@ -13,6 +12,8 @@ public class MoveTransformVelocity : MonoBehaviour, IMoveVelocity
 
     private void Update()
     {
-        transform.position += velocityVector * moveSpeed * Time.deltaTime;
+        transform.position += velocityVector * (
+            moveSpeed * SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime
+        );
     }
 }
