@@ -14,6 +14,8 @@ public class SpellCooldown : MonoBehaviour
     private bool isCoolDown = false;
     private float cooldownTime = 10.0f;
     private float cooldownTimer = 0.0f;
+
+    private bool start = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +27,10 @@ public class SpellCooldown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(start)
         {
             UseSpell();
+            start = false;
         }
 
         if(isCoolDown)
@@ -74,5 +77,10 @@ public class SpellCooldown : MonoBehaviour
             //imageEdge.gameObject.SetActive(true);
             return true; 
         }
+    }
+
+    public void reStart()
+    {
+        start = true;
     }
 }

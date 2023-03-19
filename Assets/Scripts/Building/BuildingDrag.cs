@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     Transform parentAfterDrag;
+    [SerializeField] private GameObject holder;
     public void OnBeginDrag(PointerEventData eventData)
     {
         parentAfterDrag = transform.parent;
@@ -33,6 +34,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             //}
         }
 
+        holder.GetComponent<SpellCooldown>().reStart();
         transform.SetParent(parentAfterDrag);
         transform.localScale = new Vector2(1, 1);
     }
