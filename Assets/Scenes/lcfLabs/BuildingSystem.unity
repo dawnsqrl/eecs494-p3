@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 39265268}
   - component: {fileID: 39265267}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: BuildingCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,6 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 1344844614}
+  gameMapPrefab: {fileID: 4743352643833115571, guid: 879b7ddbed21c6d4fb4b2ebdb26a63e3, type: 3}
 --- !u!1001 &415692195
 PrefabInstance:
   m_ObjectHideFlags: 0

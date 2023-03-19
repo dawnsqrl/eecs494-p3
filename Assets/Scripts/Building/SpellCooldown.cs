@@ -12,7 +12,7 @@ public class SpellCooldown : MonoBehaviour
 
     //variable for looking after the cooldown
     private bool isCoolDown = false;
-    private float cooldownTime = 10.0f;
+    [SerializeField] private float cooldownTime = 5.0f;
     private float cooldownTimer = 0.0f;
 
     private bool start = true;
@@ -29,6 +29,7 @@ public class SpellCooldown : MonoBehaviour
     {
         if(start)
         {
+            imageCooldown.gameObject.SetActive(true);
             UseSpell();
             start = false;
         }
@@ -82,5 +83,6 @@ public class SpellCooldown : MonoBehaviour
     public void reStart()
     {
         start = true;
+        isCoolDown = false;
     }
 }

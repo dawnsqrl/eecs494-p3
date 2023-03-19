@@ -6,6 +6,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 {
     Transform parentAfterDrag;
     [SerializeField] private GameObject holder;
+    [SerializeField] private GameObject gameMapPrefab;
     public void OnBeginDrag(PointerEventData eventData)
     {
         parentAfterDrag = transform.parent;
@@ -28,8 +29,9 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             GrowthDemo growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
             //if (!growthDemo.Position2Growthed(pos) && !growthDemo.FakeGrowthed(pos))
             //{
-            Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"),
-                new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
+            //Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"),
+            //    new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
+            Instantiate(gameMapPrefab, new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
             growthDemo.Position2GroundManager(pos).SetGrowthed();
             //}
         }
