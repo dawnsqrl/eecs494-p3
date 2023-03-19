@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5698291531932608116}
   - component: {fileID: 464632805901792628}
+  - component: {fileID: 7166689666919232521}
   m_Layer: 0
   m_Name: BaseCarCollider
   m_TagString: Untagged
@@ -45,6 +46,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 22.29, y: 20.7, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7166689666919232521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516242957097626159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134423d73171d43c6bd7de912cbf02a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  enemyTag: Builder
 --- !u!1 &8492907579301605845
 GameObject:
   m_ObjectHideFlags: 0
