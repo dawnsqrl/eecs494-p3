@@ -107,6 +107,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveBaseCar"",
+                    ""type"": ""Value"",
+                    ""id"": ""b653ab16-d7e2-473c-bec5-22bd32feba64"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -208,6 +217,116 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""SpawnEnemy"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""67e6a5e8-6452-49dc-87b1-c5987e2cca4a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveBaseCar"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""06524afe-ac47-4564-bfc0-e292080f9bbf"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveBaseCar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""856801ba-c0a2-419b-8de3-1f2719faf768"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveBaseCar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""fb2b3877-4b17-49b7-a112-89d62baf8f4c"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveBaseCar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""5829541b-0e56-48b1-9645-a5a0b495bd13"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveBaseCar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""ArrowKey"",
+                    ""id"": ""5c0ef9ad-b70d-4798-bf89-ef4351d85c66"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveBaseCar"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""a6c41da2-14bb-4aba-b638-b03f9765b0ea"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveBaseCar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""985c2335-add7-4cf1-9d1d-55b7ed76a809"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveBaseCar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""12c752b7-87de-4a13-972b-923791048b76"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveBaseCar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""ac18adbc-8813-4879-b94b-5795bfebda5b"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveBaseCar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -520,6 +639,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_GeneratePopup = m_Player.FindAction("GeneratePopup", throwIfNotFound: true);
         m_Player_GenerateBanner = m_Player.FindAction("GenerateBanner", throwIfNotFound: true);
         m_Player_SpawnEnemy = m_Player.FindAction("SpawnEnemy", throwIfNotFound: true);
+        m_Player_MoveBaseCar = m_Player.FindAction("MoveBaseCar", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -598,6 +718,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_GeneratePopup;
     private readonly InputAction m_Player_GenerateBanner;
     private readonly InputAction m_Player_SpawnEnemy;
+    private readonly InputAction m_Player_MoveBaseCar;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -611,6 +732,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @GeneratePopup => m_Wrapper.m_Player_GeneratePopup;
         public InputAction @GenerateBanner => m_Wrapper.m_Player_GenerateBanner;
         public InputAction @SpawnEnemy => m_Wrapper.m_Player_SpawnEnemy;
+        public InputAction @MoveBaseCar => m_Wrapper.m_Player_MoveBaseCar;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -647,6 +769,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @SpawnEnemy.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnEnemy;
                 @SpawnEnemy.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnEnemy;
                 @SpawnEnemy.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnEnemy;
+                @MoveBaseCar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveBaseCar;
+                @MoveBaseCar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveBaseCar;
+                @MoveBaseCar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveBaseCar;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -678,6 +803,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @SpawnEnemy.started += instance.OnSpawnEnemy;
                 @SpawnEnemy.performed += instance.OnSpawnEnemy;
                 @SpawnEnemy.canceled += instance.OnSpawnEnemy;
+                @MoveBaseCar.started += instance.OnMoveBaseCar;
+                @MoveBaseCar.performed += instance.OnMoveBaseCar;
+                @MoveBaseCar.canceled += instance.OnMoveBaseCar;
             }
         }
     }
@@ -791,6 +919,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnGeneratePopup(InputAction.CallbackContext context);
         void OnGenerateBanner(InputAction.CallbackContext context);
         void OnSpawnEnemy(InputAction.CallbackContext context);
+        void OnMoveBaseCar(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
