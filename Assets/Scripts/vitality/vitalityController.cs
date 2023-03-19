@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class vitalityController : MonoBehaviour
+public class VitalityController : MonoBehaviour
 {
     [SerializeField] private int init_vitality = 500, max_vitality = 1000;
 
     private int vitality;
-    // Start is called before the first frame update
-    void Awake()
+
+    private void Awake()
     {
         EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
     }
@@ -19,8 +17,7 @@ public class vitalityController : MonoBehaviour
         EventBus.Publish(new ModifyVitalityEvent(init_vitality));
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         var keyboard = Keyboard.current;
         if (keyboard.spaceKey.wasPressedThisFrame)
