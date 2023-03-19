@@ -7,55 +7,57 @@ public class GameProgressControl : MonoBehaviour
 {
     // [SerializeField] private int timeDuration = 60;
 
-    public static bool isGameStarted;
-    public static bool isGameEnded;
+    public static bool isGameActive;
 
-    // public float timeRemaining;
+    public float timeElapsed;
 
-    // private bool isTimerActive;
+    private bool isTimerActive;
+    private bool isGameStarted;
+    private bool isGameEnded;
     private bool isEndDialogShown;
     private Vector3[] originalPos;
 
     private void Awake()
     {
-        // EventBus.Subscribe<ModifyPauseEvent>(e => isTimerActive = !e.status);
+        EventBus.Subscribe<ModifyPauseEvent>(e => isTimerActive = !e.status);
+        EventBus.Subscribe<GameStartEvent>(_ => isGameStarted = true);
+        EventBus.Subscribe<GameEndEvent>(_ => isGameEnded = true);
     }
 
     private void Start()
     {
         EventBus.Publish(new AssignGameControlEvent(this));
-        isGameStarted = true;
-        isGameEnded = false;
+        isGameActive = false;
         // Setup countdown clock
-        // timeRemaining = timeDuration;
-        // isTimerActive = true;
+        timeElapsed = 0;
+        isTimerActive = true;
+        isGameStarted = false;
+        isGameEnded = false;
         isEndDialogShown = false;
         // StartCoroutine(StartInitialCountDown());
     }
 
     private void Update()
     {
-        if (!isGameStarted)
+        isGameActive = isGameStarted && !isGameEnded;
+        if (!isGameActive)
         {
             return;
         }
 
-        // check if time is up
-        // if (timeRemaining > 0)
-        // {
-        //     if (isTimerActive)
-        //     {
-        //         timeRemaining -= Time.deltaTime * SimulationSpeedControl.GetSimulationSpeed();
-        //     }
-        // }
+        if (isTimerActive)
+        {
+            timeElapsed += Time.deltaTime * SimulationSpeedControl.GetSimulationSpeed();
+        }
 
         // TODO: set isGameEnded
         if (isGameEnded && !isEndDialogShown)
         {
-            isGameStarted = false;
             isEndDialogShown = true;
+            int minutes = Mathf.FloorToInt(timeElapsed / 60);
+            int seconds = Mathf.FloorToInt(timeElapsed % 60);
             EventBus.Publish(new DisplayDialogEvent(
-                "Time out!", "Game ended.",
+                "Game ended!", $"You played for {minutes}:{seconds:D2}.", Vector2.zero,
                 new Dictionary<string, UnityAction>()
                 {
                     { "Restart", () => SceneManager.LoadScene(SceneManager.GetActiveScene().name) }

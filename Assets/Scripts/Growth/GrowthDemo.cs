@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,7 +60,7 @@ public class GrowthDemo : MonoBehaviour
         float count;
 
         print("startDemo");
-        
+
         // RemoveFogFromTile(init_x, init_y, 1);
         Position2GroundManager(init_x, init_y).SetGrowthed();
 
@@ -75,7 +74,7 @@ public class GrowthDemo : MonoBehaviour
             {
                 for (int y = 0; y < mapSize_y; y++)
                 {
-                    while (isSimulationPaused || GameProgressControl.isGameEnded)
+                    while (isSimulationPaused || !GameProgressControl.isGameActive)
                         yield return null;
 
                     if (!Position2Growthed(growthAim))
@@ -99,8 +98,9 @@ public class GrowthDemo : MonoBehaviour
 
                     if (aim_is_set && dis_to_aim < avg_aim_dis * range_factor && !aim_is_reach && adj_factor != 0)
                     {
-                        growth_possibility += 30;//25 / avg_aim_dis * (avg_aim_dis - dis_to_aim) + 10;
+                        growth_possibility += 30; //25 / avg_aim_dis * (avg_aim_dis - dis_to_aim) + 10;
                     }
+
                     if (aim_is_set && dis_to_aim > avg_aim_dis && !aim_is_reach && adj_factor != 0)
                     {
                         //growth_possibility -= 40;
@@ -128,11 +128,15 @@ public class GrowthDemo : MonoBehaviour
                         growthed.Add(new Vector2(x, y));
                         //Position2GroundManager(x, y).SetGrowthed();
 
-                        ResourceController.GetComponent<Resource>().change_growth_amount(ResourceController.GetComponent<Resource>().get_growth_amount() - 0.5f);
-                        ResourceController.GetComponent<Resource>().change_resource(ResourceController.GetComponent<Resource>().get_resource() - 1.0f);
+                        ResourceController.GetComponent<Resource>()
+                            .change_growth_amount(
+                                ResourceController.GetComponent<Resource>().get_growth_amount() - 0.5f);
+                        ResourceController.GetComponent<Resource>()
+                            .change_resource(ResourceController.GetComponent<Resource>().get_resource() - 1.0f);
                     }
                 }
             }
+
             avg_aim_dis = new_avg_dis / count;
             new_avg_dis = 0.0f;
 
@@ -146,7 +150,6 @@ public class GrowthDemo : MonoBehaviour
             if (first_loop)
                 first_loop = false;
         }
-        
     }
 
     public int count_growthed_adjacent(int x, int y)
@@ -171,7 +174,7 @@ public class GrowthDemo : MonoBehaviour
     {
         float dis = Vector2.Distance(Tile2Position(tile), Tile2Position(aim));
         //if (dis <= 1)
-            //aim_is_reach = true;
+        //aim_is_reach = true;
 
         return dis;
     }
@@ -180,27 +183,30 @@ public class GrowthDemo : MonoBehaviour
     {
         Tile2GroundManager(tile).SetFogVisible(false, "builder");
     }
-    
+
     public void RemoveFogFromTile(int x, int y, int radius)
     {
         RemoveFogFromTile(Position2Tile(x, y));
         for (int i = 1; i < radius + 1; i++)
         {
-            if (FogTilePositionSanityCheck(x+i, y))
+            if (FogTilePositionSanityCheck(x + i, y))
             {
-                Position2GroundManager(x+i, y).SetFogVisible(false, "builder");
+                Position2GroundManager(x + i, y).SetFogVisible(false, "builder");
             }
-            if (FogTilePositionSanityCheck(x-i, y))
+
+            if (FogTilePositionSanityCheck(x - i, y))
             {
                 Position2GroundManager(x - i, y).SetFogVisible(false, "builder");
             }
-            if (FogTilePositionSanityCheck(x, y+i))
+
+            if (FogTilePositionSanityCheck(x, y + i))
             {
-                Position2GroundManager(x, y+i).SetFogVisible(false, "builder");
+                Position2GroundManager(x, y + i).SetFogVisible(false, "builder");
             }
-            if (FogTilePositionSanityCheck(x, y-i))
+
+            if (FogTilePositionSanityCheck(x, y - i))
             {
-                Position2GroundManager(x, y -i).SetFogVisible(false, "builder");
+                Position2GroundManager(x, y - i).SetFogVisible(false, "builder");
             }
         }
     }
@@ -216,6 +222,7 @@ public class GrowthDemo : MonoBehaviour
         {
             return false;
         }
+
         return true;
     }
 
@@ -223,6 +230,7 @@ public class GrowthDemo : MonoBehaviour
     {
         return GridManagerGameobject.GetComponent<GridManager>().GetTileAtPosition(new Vector2(x, y));
     }
+
     public GameObject Position2Tile(Vector2 vec)
     {
         return GridManagerGameobject.GetComponent<GridManager>().GetTileAtPosition(vec);
@@ -232,6 +240,7 @@ public class GrowthDemo : MonoBehaviour
     {
         return Tile2GroundManager(Position2Tile(x, y)).CheckGrowthed();
     }
+
     public bool Position2Growthed(Vector2 vec)
     {
         return Tile2GroundManager(Position2Tile(vec)).CheckGrowthed();
@@ -241,6 +250,7 @@ public class GrowthDemo : MonoBehaviour
     {
         return Tile2GroundManager(Position2Tile(x, y));
     }
+
     public GroundTileManager Position2GroundManager(Vector2 vec)
     {
         return Tile2GroundManager(Position2Tile(vec));
@@ -250,6 +260,7 @@ public class GrowthDemo : MonoBehaviour
     {
         return tile.transform.Find("Tile_ground").gameObject.GetComponent<Tile>().GetSelfCoordinate(0, 0);
     }
+
     public GroundTileManager Tile2GroundManager(GameObject tile)
     {
         return tile.transform.Find("Tile_ground").gameObject.GetComponent<GroundTileManager>();
@@ -262,7 +273,7 @@ public class GrowthDemo : MonoBehaviour
             if (item == pos)
                 return true;
         }
+
         return false;
     }
-
 }
