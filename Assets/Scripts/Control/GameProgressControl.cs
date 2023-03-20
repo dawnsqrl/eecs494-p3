@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -39,10 +40,13 @@ public class GameProgressControl : MonoBehaviour
             EventBus.Publish(new DisplayDialogEvent(
                 "Game ended!",
                 $"{winnerTag} wins!\nYou played for {minutes}:{seconds:D2}.",
-                Vector2.zero,
-                new Dictionary<string, UnityAction>()
+                new Dictionary<string, Tuple<UnityAction, bool>>()
                 {
-                    { "Restart", () => SceneManager.LoadScene(SceneManager.GetActiveScene().name) }
+                    {
+                        "Restart", new Tuple<UnityAction, bool>(
+                            () => SceneManager.LoadScene(SceneManager.GetActiveScene().name), true
+                        )
+                    }
                 }
             ));
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -44,16 +45,48 @@ public class DisplayDialogEvent
 {
     public readonly string title;
     public readonly string content;
+    public readonly Dictionary<string, Tuple<UnityAction, bool>> buttons;
     public readonly Vector2 size;
-    public readonly Dictionary<string, UnityAction> buttons;
 
-    public DisplayDialogEvent(string _title, string _content, Vector2 _size,
-        Dictionary<string, UnityAction> _buttons)
+    public DisplayDialogEvent(string _title, string _content,
+        Dictionary<string, Tuple<UnityAction, bool>> _buttons, Vector2? _size = null)
     {
         title = _title;
         content = _content;
-        size = _size;
         buttons = _buttons;
+        size = _size ?? Vector2.zero;
+    }
+
+    public DisplayDialogEvent(UpdateDialogEvent e)
+    {
+        title = e.title;
+        content = e.content;
+        buttons = e.buttons;
+        size = e.size;
+    }
+
+    public static implicit operator DisplayDialogEvent(UpdateDialogEvent e)
+    {
+        return new DisplayDialogEvent(
+            e.title, e.content, e.buttons, e.size
+        );
+    }
+}
+
+public class UpdateDialogEvent
+{
+    public readonly string title;
+    public readonly string content;
+    public readonly Dictionary<string, Tuple<UnityAction, bool>> buttons;
+    public readonly Vector2 size;
+
+    public UpdateDialogEvent(string _title, string _content,
+        Dictionary<string, Tuple<UnityAction, bool>> _buttons, Vector2? _size = null)
+    {
+        title = _title;
+        content = _content;
+        buttons = _buttons;
+        size = _size ?? Vector2.zero;
     }
 }
 

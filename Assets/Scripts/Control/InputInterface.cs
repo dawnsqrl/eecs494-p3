@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -34,11 +35,11 @@ public class InputInterface : MonoBehaviour
         if (playerActions.GenerateDialog.WasPressedThisFrame())
         {
             EventBus.Publish(new DisplayDialogEvent(
-                "Chirp", "Something happened!", Vector2.zero,
-                new Dictionary<string, UnityAction>()
+                "Chirp", "Something happened!",
+                new Dictionary<string, Tuple<UnityAction, bool>>()
                 {
-                    { "What?", () => print("Clicked what") },
-                    { "How?", () => print("Clicked how") }
+                    { "What?", new Tuple<UnityAction, bool>(() => print("Clicked what"), true) },
+                    { "How?", new Tuple<UnityAction, bool>(() => print("Clicked how"), true) }
                 }
             ));
         }

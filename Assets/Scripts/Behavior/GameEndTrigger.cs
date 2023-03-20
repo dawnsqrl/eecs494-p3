@@ -4,7 +4,7 @@ public class GameEndTrigger : MonoBehaviour
 {
     [SerializeField] private bool isBuilder;
 
-    private void OnDestroy()
+    public void TriggerDeath()
     {
         EventBus.Publish(new GameEndEvent(!isBuilder));
     }

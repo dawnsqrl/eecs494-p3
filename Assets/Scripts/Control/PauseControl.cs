@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -26,11 +27,15 @@ public class PauseControl : MonoBehaviour
         {
             SetPauseState(true);
             EventBus.Publish(new DisplayDialogEvent(
-                "Game paused!", "Take a rest.", Vector2.zero,
-                new Dictionary<string, UnityAction>()
+                "Game paused!", "Take a rest.",
+                new Dictionary<string, Tuple<UnityAction, bool>>()
                 {
-                    { "Resume", () => SetPauseState(false) },
-                    { "Restart", () => SceneManager.LoadScene(SceneManager.GetActiveScene().name) }
+                    { "Resume", new Tuple<UnityAction, bool>(() => SetPauseState(false), true) },
+                    {
+                        "Restart", new Tuple<UnityAction, bool>(
+                            () => SceneManager.LoadScene(SceneManager.GetActiveScene().name), true
+                        )
+                    }
                 }
             ));
         }

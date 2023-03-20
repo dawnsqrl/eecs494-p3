@@ -24,6 +24,13 @@ public class DialogDisplay : MonoBehaviour
     private void Awake()
     {
         EventBus.Subscribe<DisplayDialogEvent>(e => dialogQueue.Enqueue(e));
+        EventBus.Subscribe<UpdateDialogEvent>(e =>
+        {
+            if (isDialogVisible)
+            {
+                SetContent(e);
+            }
+        });
         EventBus.Subscribe<DismissDialogEvent>(_ =>
         {
             if (!isDialogLerping)
@@ -57,32 +64,37 @@ public class DialogDisplay : MonoBehaviour
             EventBus.Publish(new DialogBlockingEvent(isDialogBlocking));
         }
 
-        if (!isDialogLerping)
+        if (isDialogLerping)
         {
-            if (!isDialogVisible)
+            return;
+        }
+
+        if (!isDialogVisible)
+        {
+            if (dialogQueue.Count > 0)
             {
-                if (dialogQueue.Count > 0)
-                {
-                    DisplayDialogEvent e = dialogQueue.Dequeue();
-                    SetSize(e);
-                    SetInitialHeight();
-                    StartCoroutine(DisplayDialog(e));
-                }
+                DisplayDialogEvent e = dialogQueue.Dequeue();
+                SetContent(e);
+                SetInitialHeight();
+                StartCoroutine(DisplayDialog());
             }
-            else if (isDialogVisible && doDismissDialog)
-            {
-                StartCoroutine(DismissDialog());
-            }
-            else if (doDismissDialog)
-            {
-                doDismissDialog = false;
-            }
+        }
+        else if (isDialogVisible && doDismissDialog)
+        {
+            StartCoroutine(DismissDialog());
+        }
+        else if (doDismissDialog)
+        {
+            doDismissDialog = false;
         }
     }
 
-    private void SetSize(DisplayDialogEvent e)
+    private void SetContent(DisplayDialogEvent e)
     {
         rectTransform.sizeDelta = e.size == Vector2.zero ? new Vector2(800, 500) : e.size;
+        dialogTitle.SetTitle(e.title);
+        dialogContent.SetContent(e.content);
+        dialogButtonContainer.SetButton(e.buttons);
     }
 
     private void SetInitialHeight()
@@ -95,12 +107,9 @@ public class DialogDisplay : MonoBehaviour
         rectTransform.anchoredPosition = new Vector2(0, initialHeight);
     }
 
-    private IEnumerator DisplayDialog(DisplayDialogEvent e)
+    private IEnumerator DisplayDialog()
     {
         isDialogLerping = true;
-        dialogTitle.SetTitle(e.title);
-        dialogContent.SetContent(e.content);
-        dialogButtonContainer.SetButton(e.buttons);
         float progress = 0;
         while (progress < 1)
         {

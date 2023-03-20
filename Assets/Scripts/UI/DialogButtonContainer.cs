@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class DialogButtonContainer : MonoBehaviour
 
     private GameObject buttonTemplate;
     private GameObject buttonContainer;
+    private bool doDismiss;
 
     private void Awake()
     {
@@ -21,9 +23,10 @@ public class DialogButtonContainer : MonoBehaviour
     private void Start()
     {
         buttonContainer = null;
+        doDismiss = true;
     }
 
-    public void SetButton(Dictionary<string, UnityAction> buttons)
+    public void SetButton(Dictionary<string, Tuple<UnityAction, bool>> buttons)
     {
         if (buttonContainer is not null)
         {
@@ -39,7 +42,7 @@ public class DialogButtonContainer : MonoBehaviour
         {
             float offset = (count - 1) * (buttonWidth + buttonSpacing) / 2;
             int index = 1;
-            foreach (KeyValuePair<string, UnityAction> button in buttons)
+            foreach (KeyValuePair<string, Tuple<UnityAction, bool>> button in buttons)
             {
                 GameObject thisButton = Instantiate(buttonTemplate, buttonContainer.transform);
                 thisButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(
@@ -47,10 +50,17 @@ public class DialogButtonContainer : MonoBehaviour
                 );
                 thisButton.GetComponentInChildren<TextMeshProUGUI>().text = button.Key;
                 Button.ButtonClickedEvent buttonClickedEvent = thisButton.GetComponent<Button>().onClick;
-                buttonClickedEvent.AddListener(_DefaultAction);
                 if (button.Value is not null)
                 {
-                    buttonClickedEvent.AddListener(button.Value);
+                    if (button.Value.Item1 is not null)
+                    {
+                        buttonClickedEvent.AddListener(button.Value.Item1);
+                    }
+
+                    if (button.Value.Item2)
+                    {
+                        buttonClickedEvent.AddListener(_DismissAction);
+                    }
                 }
 
                 index++;
@@ -60,11 +70,11 @@ public class DialogButtonContainer : MonoBehaviour
         {
             GameObject thisButton = Instantiate(buttonTemplate, buttonContainer.transform);
             thisButton.GetComponentInChildren<TextMeshProUGUI>().text = StringPool.defaultDialogButtonText;
-            thisButton.GetComponent<Button>().onClick.AddListener(_DefaultAction);
+            thisButton.GetComponent<Button>().onClick.AddListener(_DismissAction);
         }
     }
 
-    private void _DefaultAction()
+    private void _DismissAction()
     {
         EventBus.Publish(new DismissDialogEvent());
     }

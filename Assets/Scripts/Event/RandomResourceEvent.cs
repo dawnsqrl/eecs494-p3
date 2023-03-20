@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class RandomResourceEvent : MonoBehaviour
 {
@@ -24,8 +26,7 @@ public class RandomResourceEvent : MonoBehaviour
                 EventBus.Publish(new DisplayDialogEvent(
                     StringPool.defaultDialogTitle,
                     StringPool.defaultDialogContent,
-                    Vector2.zero,
-                    new Dictionary<string, UnityAction>()
+                    new Dictionary<string, Tuple<UnityAction, bool>>()
                     {
                         { "Random!", null }
                     }
