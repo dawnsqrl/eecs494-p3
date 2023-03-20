@@ -46,8 +46,8 @@ public class ViewDragging : MonoBehaviour
         {
             DragCamera();
 
-            //UpdateCameraPosition();
-            CheckMouseAtScreenEdge();
+            // UpdateCameraPosition();
+            // CheckMouseAtScreenEdge();
             UpdateCameraPosition();
         }
     }
