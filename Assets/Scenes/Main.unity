@@ -2481,8 +2481,16 @@ PrefabInstance:
       value: -907
       objectReference: {fileID: 0}
     - target: {fileID: 8304448893799133828, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: buildingType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304448893799133828, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: cooldownTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304448893894515269, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: buildingType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8304448893898818667, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2588,6 +2596,14 @@ PrefabInstance:
     - target: {fileID: 9168317154175586896, guid: 3d87b17e436fef544a9b0aa4a5f8ff78, type: 3}
       propertyPath: m_Name
       value: VitalityController
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168317154175586897, guid: 3d87b17e436fef544a9b0aa4a5f8ff78, type: 3}
+      propertyPath: init_vitality
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168317154175586897, guid: 3d87b17e436fef544a9b0aa4a5f8ff78, type: 3}
+      propertyPath: init_vitality_increase
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9168317154175586898, guid: 3d87b17e436fef544a9b0aa4a5f8ff78, type: 3}
       propertyPath: m_RootOrder

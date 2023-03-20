@@ -9,10 +9,16 @@ public class SoliderBuilding : MonoBehaviour
     private int maxSolider = 3;
     private List<GameObject> autoSoliders;
     private float last_res = 0.0f;
+
+    private GameObject vitalityController;
     private void Start()
     {
         autoSoliders = new List<GameObject>();
         StartCoroutine(GenerateSolider());
+
+        vitalityController = GameObject.Find("VitalityController");
+        vitalityController.GetComponent<VitalityController>().decreaseVitality(200);
+        vitalityController.GetComponent<VitalityController>().decreaseVitalityGrowth(5);
     }
 
     IEnumerator GenerateSolider()

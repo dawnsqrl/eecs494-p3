@@ -27,7 +27,7 @@ public class MushroomControl : MonoBehaviour
             if (isChosen)
             {
                 Vector3 Worldpos = targetCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-                if (Worldpos is { x: >= 0 and <= 30, y: >= 0 and <= 30 })
+                if (Worldpos is { x: >= 0 and <= 50, y: >= 0 and <= 50 })
                 {
                     Vector2 pos = new Vector2(Mathf.FloorToInt(Worldpos.x + 0.5f), Mathf.FloorToInt(Worldpos.y + 0.5f));
                     GrowthDemo growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
@@ -37,6 +37,7 @@ public class MushroomControl : MonoBehaviour
                         Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"),
                             new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
                         growthDemo.Position2GroundManager(pos).SetGrowthed();
+                        growthDemo.AddToEdge(pos);
                     }
                 }
 

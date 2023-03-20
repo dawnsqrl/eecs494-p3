@@ -8,7 +8,7 @@ public class BuildingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        buildings = new Dictionary<Vector2, GameObject>();
     }
 
     // Update is called once per frame

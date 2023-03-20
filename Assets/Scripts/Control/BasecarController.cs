@@ -41,19 +41,19 @@ public class BasecarController : MonoBehaviour
         );
 
         // growth
-        if (Mouse.current.leftButton.wasPressedThisFrame && !isDialogBlocking)
-        {
-            GrowthDemo growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
-            Vector2 position = transform.position;
-            position = new Vector2(
-                Mathf.FloorToInt(position.x + 0.5f), Mathf.FloorToInt(position.y + 0.5f)
-            );
-            if (!growthDemo.Position2Growthed(position) && !growthDemo.FakeGrowthed(position))
-            {
-                Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"),
-                    new Vector3(position.x, position.y, -2.0f), Quaternion.identity);
-                growthDemo.Position2GroundManager(position).SetGrowthed();
-            }
-        }
+        //if (Mouse.current.leftButton.wasPressedThisFrame && !isDialogBlocking)
+        //{
+        //    GrowthDemo growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
+        //    Vector2 position = transform.position;
+        //    position = new Vector2(
+        //        Mathf.FloorToInt(position.x + 0.5f), Mathf.FloorToInt(position.y + 0.5f)
+        //    );
+        //    if (!growthDemo.Position2Growthed(position) && !growthDemo.FakeGrowthed(position))
+        //    {
+        //        Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"),
+        //            new Vector3(position.x, position.y, -2.0f), Quaternion.identity);
+        //        growthDemo.Position2GroundManager(position).SetGrowthed();
+        //    }
+        //}
     }
 }

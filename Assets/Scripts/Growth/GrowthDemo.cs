@@ -23,9 +23,12 @@ public class GrowthDemo : MonoBehaviour
     private bool first_loop = true;
     private List<Vector2> edge_list = new List<Vector2>();
 
+    private int vitality;
+
     private void Awake()
     {
         EventBus.Subscribe<ModifyPauseEvent>(e => isSimulationPaused = e.status);
+        EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
     }
 
     private void Start()
@@ -114,6 +117,12 @@ public class GrowthDemo : MonoBehaviour
 
                     if (first_loop)
                         growth_possibility = 80;
+
+                    if (vitality < 300)
+                        growth_possibility = 0;
+
+                    if (vitality < 500)
+                        growth_possibility = growth_possibility / 2;
 
                     // Random.Range(int minInclusive, int maxExclusive);
                     //Random.seed = System.DateTime.Now.Millisecond;
@@ -272,5 +281,10 @@ public class GrowthDemo : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void AddToEdge(Vector2 pos)
+    {
+        edge_list.Add(pos);
     }
 }
