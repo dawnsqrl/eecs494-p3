@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GrowthDemo : MonoBehaviour
 {
     [SerializeField] private int init_x, init_y;
     [SerializeField] private int growth_speed = 1; // 0 -> 0, 5 -> 80
     [SerializeField] private int timeGap = 3;
-    [SerializeField] private GameObject GridManagerGameobject, ResourceController;
-
+    [SerializeField] private GridManager _gridManager;
+    [SerializeField] private GameObject ResourceController;
     [SerializeField] private int mapSize_x, mapSize_y;
     [SerializeField] private float range_factor = 0.8f;
 
@@ -224,12 +225,12 @@ public class GrowthDemo : MonoBehaviour
 
     public GameObject Position2Tile(int x, int y)
     {
-        return GridManagerGameobject.GetComponent<GridManager>().GetTileAtPosition(new Vector2(x, y));
+        return _gridManager.GetTileAtPosition(new Vector2(x, y));
     }
 
     public GameObject Position2Tile(Vector2 vec)
     {
-        return GridManagerGameobject.GetComponent<GridManager>().GetTileAtPosition(vec);
+        return _gridManager.GetTileAtPosition(vec);
     }
 
     public bool Position2Growthed(int x, int y)
@@ -254,12 +255,12 @@ public class GrowthDemo : MonoBehaviour
 
     public Vector2 Tile2Position(GameObject tile)
     {
-        return GridManagerGameobject.GetComponent<GridManager>().GetTileGroundAtPosition(tile).GetComponent<Tile>().GetSelfCoordinate(0, 0);
+        return _gridManager.GetTileGroundAtPosition(tile).GetComponent<Tile>().GetSelfCoordinate(0, 0);
     }
 
     public GroundTileManager Tile2GroundManager(GameObject tile)
     {
-        return GridManagerGameobject.GetComponent<GridManager>().GetTileGroundAtPosition(tile).gameObject.GetComponent<GroundTileManager>();
+        return _gridManager.GetTileGroundAtPosition(tile).gameObject.GetComponent<GroundTileManager>();
     }
 
     public bool FakeGrowthed(Vector2 pos)

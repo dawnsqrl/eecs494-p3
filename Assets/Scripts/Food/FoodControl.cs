@@ -8,6 +8,9 @@ public class FoodControl : MonoBehaviour
     private bool color_changed;
     private bool isDialogBlocking;
     private GameObject banner;
+    private GrowthDemo _growthDemo;
+    private SpriteRenderer _spriteRenderer;
+    private BannerCanvas _bannerCanvas;
 
     private void Awake()
     {
@@ -20,12 +23,15 @@ public class FoodControl : MonoBehaviour
         pos = new Vector2(Mathf.CeilToInt(transform.position.x), Mathf.CeilToInt(transform.position.y));
         color_changed = false;
         isDialogBlocking = false;
+        _growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _bannerCanvas = GetComponentInChildren<BannerCanvas>();
     }
 
     private void Update()
     {
-        if (GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>().Position2Growthed(pos) ||
-            GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>().FakeGrowthed(pos))
+        if (_growthDemo.Position2Growthed(pos) ||
+            _growthDemo.FakeGrowthed(pos))
         {
             if (!color_changed)
             {
@@ -41,7 +47,7 @@ public class FoodControl : MonoBehaviour
 
     public void changeColor()
     {
-        GetComponent<SpriteRenderer>().color = Color.green;
+        _spriteRenderer.color = Color.green;
     }
 
     public Vector2 getPos()
@@ -60,7 +66,7 @@ public class FoodControl : MonoBehaviour
                 if (hit.collider.name == "cherry" && color_changed)
                 {
                     changeColor();
-                    Destroy(GetComponentInChildren<BannerCanvas>().gameObject);
+                    Destroy(_bannerCanvas.gameObject);
                 }
             }
         }
