@@ -116,6 +116,7 @@ public class GrowthDemo : MonoBehaviour
                         growth_possibility = 80;
 
                     // Random.Range(int minInclusive, int maxExclusive);
+                    //Random.seed = System.DateTime.Now.Millisecond;
                     if (UnityEngine.Random.Range(0, 101) < growth_possibility)
                     {
                         // RemoveFogFromTile(x, y, 1);

@@ -2474,6 +2474,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 31
       objectReference: {fileID: 0}
+    - target: {fileID: 8304448894352287994, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: RTScontroller
+      value: 
+      objectReference: {fileID: 1595960672}
     - target: {fileID: 8304448894352287995, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2502,6 +2506,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 31
       objectReference: {fileID: 0}
+    - target: {fileID: 8304448894548295314, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: RTScontroller
+      value: 
+      objectReference: {fileID: 1595960672}
     - target: {fileID: 8304448894548295315, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
