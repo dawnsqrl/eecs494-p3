@@ -11,9 +11,13 @@ public class BuildingController : MonoBehaviour
         buildings = new Dictionary<Vector2, GameObject>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool check_avai(Vector2 pos)
     {
-        
+        return !buildings.ContainsKey(pos);
+    }
+
+    public void register_building(Vector2 pos, GameObject building)
+    {
+        buildings.Add(pos, building);
     }
 }

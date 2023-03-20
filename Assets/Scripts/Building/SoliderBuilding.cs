@@ -17,6 +17,7 @@ public class SoliderBuilding : MonoBehaviour
         StartCoroutine(GenerateSolider());
 
         vitalityController = GameObject.Find("VitalityController");
+ 
         vitalityController.GetComponent<VitalityController>().decreaseVitality(200);
         vitalityController.GetComponent<VitalityController>().decreaseVitalityGrowth(5);
     }

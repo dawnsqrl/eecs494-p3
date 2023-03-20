@@ -9,11 +9,15 @@ public class MushroomControl : MonoBehaviour
     [SerializeField] bool isChosen = false;
 
     private bool isDialogBlocking;
+    private int vitality;
+    private GameObject vitalityController;
 
     private void Awake()
     {
         EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
+        EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
     }
+ 
 
     private void Start()
     {
@@ -27,11 +31,14 @@ public class MushroomControl : MonoBehaviour
             if (isChosen)
             {
                 Vector3 Worldpos = targetCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-                if (Worldpos is { x: >= 0 and <= 50, y: >= 0 and <= 50 })
+                if (Worldpos is { x: >= 0 and <= 50, y: >= 0 and <= 50 }  && vitality > 200)
                 {
+                    vitalityController = GameObject.Find("VitalityController");
+                    vitalityController.GetComponent<VitalityController>().decreaseVitality(150);
+
                     Vector2 pos = new Vector2(Mathf.FloorToInt(Worldpos.x + 0.5f), Mathf.FloorToInt(Worldpos.y + 0.5f));
                     GrowthDemo growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
-                    print(pos);
+                    //print(pos);
                     if (!growthDemo.Position2Growthed(pos) && !growthDemo.FakeGrowthed(pos))
                     {
                         Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"),

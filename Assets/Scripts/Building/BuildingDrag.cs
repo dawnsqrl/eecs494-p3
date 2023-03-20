@@ -9,6 +9,13 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private GameObject gameMapPrefab;
     [SerializeField] private GameObject RTScontroller;
 
+    private GameObject buildingController;
+
+    private void Start()
+    {
+        buildingController = GameObject.Find("BuildingCanvas");
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         RTScontroller.SetActive(false);
@@ -27,16 +34,19 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void OnEndDrag(PointerEventData eventData)
     {
         Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        if (Worldpos is { x: >= 0 and <= 30, y: >= 0 and <= 30 })
+        if (Worldpos is { x: >= 0 and <= 50, y: >= 0 and <= 50 } && buildingController.GetComponent<BuildingController>().check_avai(Worldpos))
         {
+            
             Vector2 pos = new Vector2(Mathf.FloorToInt(Worldpos.x + 0.5f), Mathf.FloorToInt(Worldpos.y + 0.5f));
             GrowthDemo growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
             //if (!growthDemo.Position2Growthed(pos) && !growthDemo.FakeGrowthed(pos))
             //{
             //Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"),
             //    new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
-            Instantiate(gameMapPrefab, new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
+            GameObject new_building = Instantiate(gameMapPrefab, new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
             growthDemo.Position2GroundManager(pos).SetGrowthed();
+
+            buildingController.GetComponent<BuildingController>().register_building(pos, new_building);
             //}
         }
 

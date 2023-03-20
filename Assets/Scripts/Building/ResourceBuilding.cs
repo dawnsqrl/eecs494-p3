@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourceBuilding : MonoBehaviour
 {
-    [SerializeField] private GameObject vitality;
+    private GameObject vitality;
     // Start is called before the first frame update
     void Start()
     {
