@@ -34,7 +34,7 @@ public class GameProgressControl : MonoBehaviour
         if (!isEndDialogShown)
         {
             isEndDialogShown = true;
-            string winnerTag = e.status ? "Builder" : "Enemy";
+            string winnerTag = e.status ? "Mushroom" : "Snail";
             int minutes = Mathf.FloorToInt(timeElapsed / 60);
             int seconds = Mathf.FloorToInt(timeElapsed % 60);
             EventBus.Publish(new DisplayDialogEvent(
