@@ -9,6 +9,7 @@ TagManager:
   - Moving Camera
   - Builder
   - BaseCar
+  - GroundTiles
   layers:
   - Default
   - TransparentFX

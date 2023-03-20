@@ -10,11 +10,16 @@ public class GroundTileManager : MonoBehaviour
 
     private bool blank_tile = false;
     private int blank_rate = 2;
+
+    private GameObject fog_builder;
+    private GameObject fog_enemy;
     //private int blank_regrowth_rate = 10;
     // Start is called before the first frame update
     void Start()
     {
         set_blank();
+        fog_builder = transform.parent.gameObject.transform.Find("Tile_fog_builder").gameObject;
+        fog_enemy = transform.parent.gameObject.transform.Find("Tile_fog_enemy").gameObject;
     }
 
     // Update is called once per frame
@@ -40,8 +45,8 @@ public class GroundTileManager : MonoBehaviour
     {
         if (!blank_tile)
         {
-            GameObject fog = transform.parent.gameObject.transform.Find("Tile_fog_" + fog_type).gameObject;
-            if (fog != null)
+            GameObject fog = fog_type == "builder" ? fog_builder : fog_enemy;
+            if (fog)
             {
                 fog.SetActive(visible);
             }
