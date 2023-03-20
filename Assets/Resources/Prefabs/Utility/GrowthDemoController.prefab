@@ -47,9 +47,9 @@ MonoBehaviour:
   init_x: 15
   init_y: 15
   growth_speed: 4
-  timeGap: 1
-  GridManagerGameobject: {fileID: 0}
+  timeGap: 2
+  _gridManager: {fileID: 0}
   ResourceController: {fileID: 0}
-  mapSize_x: 30
-  mapSize_y: 30
+  mapSize_x: 50
+  mapSize_y: 50
   range_factor: 0.8
