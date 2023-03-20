@@ -7,8 +7,11 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     Transform parentAfterDrag;
     [SerializeField] private GameObject holder;
     [SerializeField] private GameObject gameMapPrefab;
+    [SerializeField] private GameObject RTScontroller;
+
     public void OnBeginDrag(PointerEventData eventData)
     {
+        RTScontroller.SetActive(false);
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
@@ -17,6 +20,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = Mouse.current.position.ReadValue();
+        //transform.position = new Vector3(15.0f, 15.0f, -2.0f);
         transform.localScale = new Vector2(0.3f, 0.3f);
     }
 
@@ -39,5 +43,6 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         holder.GetComponent<SpellCooldown>().reStart();
         transform.SetParent(parentAfterDrag);
         transform.localScale = new Vector2(1, 1);
+        RTScontroller.SetActive(true);
     }
 }
