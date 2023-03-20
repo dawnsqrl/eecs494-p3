@@ -52,6 +52,18 @@ public class GroundTileManager : MonoBehaviour
             }
         }     
     }
+    
+    public void SetFogVisible_LongTerm(bool visible)
+    {
+        if (!blank_tile)
+        {
+            if (fog_builder)
+            {
+                fog_builder.SetActive(visible);
+                transform.parent.GetComponent<TileManager>().builderFogLongTermDisabled = true;
+            }
+        }     
+    }
 
     public void SetGrowthed()
     {
@@ -75,5 +87,9 @@ public class GroundTileManager : MonoBehaviour
     public bool CheckGrowthed()
     {
         return growthed;
+    }
+    public bool BuilderFogLongTermDisabled()
+    {
+        return transform.parent.GetComponent<TileManager>().builderFogLongTermDisabled;
     }
 }

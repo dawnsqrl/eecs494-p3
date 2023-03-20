@@ -6,6 +6,7 @@ public class TileManager : MonoBehaviour
 {
     private GameObject fog_builder;
     private GameObject fog_enemy;
+    public bool builderFogLongTermDisabled;
     //private int blank_regrowth_rate = 10;
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,20 @@ public class TileManager : MonoBehaviour
         if (fog)
         {
             fog.SetActive(visible);
+        }
+    }
+
+    public bool BuilderFogLongTermDisabled()
+    {
+        return builderFogLongTermDisabled;
+    }
+    
+    public void SetFogVisible_LongTerm(bool visible)
+    {
+        if (fog_enemy)
+        {
+            fog_builder.SetActive(visible);
+            builderFogLongTermDisabled = true;
         }
     }
 }
