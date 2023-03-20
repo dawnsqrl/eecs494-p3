@@ -58,8 +58,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134423d73171d43c6bd7de912cbf02a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   health: 3
   enemyTag: Builder
+  healthBar: {fileID: 0}
 --- !u!1 &8492907579301605845
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,6 +75,7 @@ GameObject:
   - component: {fileID: 8492907579301605844}
   - component: {fileID: 7990243903230715103}
   - component: {fileID: 5082076586482587295}
+  - component: {fileID: 9194102917017396560}
   m_Layer: 0
   m_Name: BaseCar
   m_TagString: BaseCar
@@ -189,6 +192,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8119e6d3cc5b4188be019975330ca31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9194102917017396560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492907579301605845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40bf84a9026147f4eac48abd4e800a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBuilder: 0
 --- !u!1001 &706331794466573149
 PrefabInstance:
   m_ObjectHideFlags: 0

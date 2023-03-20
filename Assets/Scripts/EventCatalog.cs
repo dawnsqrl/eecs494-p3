@@ -22,6 +22,12 @@ public class GameStartEvent
 
 public class GameEndEvent
 {
+    public readonly bool status; // builder = true, enemy = false
+
+    public GameEndEvent(bool _status)
+    {
+        status = _status;
+    }
 }
 
 public class ScrollSimulationSpeedEvent

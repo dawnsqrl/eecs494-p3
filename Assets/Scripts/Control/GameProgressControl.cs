@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameProgressControl : MonoBehaviour
 {
-    // [SerializeField] private int timeDuration = 60;
-
     public static bool isGameActive;
 
     public float timeElapsed;
@@ -21,7 +19,33 @@ public class GameProgressControl : MonoBehaviour
     {
         EventBus.Subscribe<ModifyPauseEvent>(e => isTimerActive = !e.status);
         EventBus.Subscribe<GameStartEvent>(_ => isGameStarted = true);
-        EventBus.Subscribe<GameEndEvent>(_ => isGameEnded = true);
+        EventBus.Subscribe<GameEndEvent>(_OnGameEnd);
+    }
+
+    private void _OnGameEnd(GameEndEvent e)
+    {
+        if (isGameEnded)
+        {
+            return;
+        }
+
+        isGameEnded = true;
+        if (!isEndDialogShown)
+        {
+            isEndDialogShown = true;
+            string winnerTag = e.status ? "Builder" : "Enemy";
+            int minutes = Mathf.FloorToInt(timeElapsed / 60);
+            int seconds = Mathf.FloorToInt(timeElapsed % 60);
+            EventBus.Publish(new DisplayDialogEvent(
+                "Game ended!",
+                $"{winnerTag} wins!\nYou played for {minutes}:{seconds:D2}.",
+                Vector2.zero,
+                new Dictionary<string, UnityAction>()
+                {
+                    { "Restart", () => SceneManager.LoadScene(SceneManager.GetActiveScene().name) }
+                }
+            ));
+        }
     }
 
     private void Start()
@@ -48,21 +72,6 @@ public class GameProgressControl : MonoBehaviour
         if (isTimerActive)
         {
             timeElapsed += Time.deltaTime * SimulationSpeedControl.GetSimulationSpeed();
-        }
-
-        // TODO: set isGameEnded
-        if (isGameEnded && !isEndDialogShown)
-        {
-            isEndDialogShown = true;
-            int minutes = Mathf.FloorToInt(timeElapsed / 60);
-            int seconds = Mathf.FloorToInt(timeElapsed % 60);
-            EventBus.Publish(new DisplayDialogEvent(
-                "Game ended!", $"You played for {minutes}:{seconds:D2}.", Vector2.zero,
-                new Dictionary<string, UnityAction>()
-                {
-                    { "Restart", () => SceneManager.LoadScene(SceneManager.GetActiveScene().name) }
-                }
-            ));
         }
     }
 
