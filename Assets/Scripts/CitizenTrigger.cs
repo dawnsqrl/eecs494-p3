@@ -9,6 +9,8 @@ public class CitizenTrigger : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             CitizenControl.citizenList.Remove(transform.parent.gameObject);
+            if(transform.parent.gameObject.GetComponent<CitizenBuildingControl>().get_status())
+                transform.parent.gameObject.GetComponent<CitizenBuildingControl>().remove_from_list();
             Destroy(transform.parent.gameObject);
         }
     }

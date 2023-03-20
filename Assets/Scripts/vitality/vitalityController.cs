@@ -5,7 +5,7 @@ using UnityEngine;
 public class VitalityController : MonoBehaviour
 {
     [SerializeField] private int init_vitality = 500, max_vitality = 1000;
-    [SerializeField] private int init_vitality_increase = 50, gap_time = 3;
+    [SerializeField] private int init_vitality_increase = 50, gap_time = 4;
 
     private int vitality;
     private int vitality_increase;
@@ -48,6 +48,16 @@ public class VitalityController : MonoBehaviour
     public void changeVitalityIncrease(int new_vitality_increase)
     {
         vitality_increase = new_vitality_increase;
+    }
+
+    public void increaseVitalityGrowth(int amount)
+    {
+        vitality_increase += amount;
+    }
+
+    public void decreaseVitalityGrowth(int amount)
+    {
+        vitality_increase -= amount;
     }
 
     public void increaseVitality(int amount)
