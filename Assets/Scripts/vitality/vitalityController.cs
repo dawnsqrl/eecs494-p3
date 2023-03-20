@@ -33,6 +33,8 @@ public class VitalityController : MonoBehaviour
     {
         while (true)
         {
+            while (!GameProgressControl.isGameActive)
+                yield return true;
             yield return new WaitForSeconds(gap_time);
             increaseVitality(vitality_increase);
         }

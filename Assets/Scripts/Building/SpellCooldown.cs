@@ -14,6 +14,8 @@ public class SpellCooldown : MonoBehaviour
     [SerializeField] private float cooldownTime = 5.0f;
     private float cooldownTimer = 0.0f;
 
+    private float temp_cool_down_time;
+
     private bool start = true;
 
     private void Start()
@@ -21,21 +23,28 @@ public class SpellCooldown : MonoBehaviour
         textCooldown.gameObject.SetActive(false);
         //imageEdge.gameObject.SetActive(false);
         imageCooldown.fillAmount = 0.0f;
+
+        temp_cool_down_time = cooldownTime;
     }
 
     private void Update()
     {
-        if (start)
+        if(GameProgressControl.isGameActive)
         {
-            imageCooldown.gameObject.SetActive(true);
-            UseSpell();
-            start = false;
-        }
+            if (start)
+            {
+                cooldownTime = temp_cool_down_time;
+                imageCooldown.gameObject.SetActive(true);
+                UseSpell();
+                start = false;
+            }
 
-        if (isCoolDown)
-        {
-            ApplyCooldown();
+            if (isCoolDown)
+            {
+                ApplyCooldown();
+            }
         }
+        
     }
 
     void ApplyCooldown()
@@ -81,5 +90,10 @@ public class SpellCooldown : MonoBehaviour
     {
         start = true;
         isCoolDown = false;
+    }
+
+    public void setCoolDownTime(float new_time)
+    {
+        temp_cool_down_time = new_time;
     }
 }

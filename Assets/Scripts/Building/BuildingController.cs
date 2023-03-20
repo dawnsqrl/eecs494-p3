@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BuildingController : MonoBehaviour
 {
+    private Dictionary<Vector2, GameObject> buildings;
     // Start is called before the first frame update
     void Start()
     {
