@@ -1485,6 +1485,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7777046095864349128, guid: 8c3b21446ac6b4760ae6f38171c76353, type: 3}
   m_PrefabInstance: {fileID: 1422145253}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1470659569 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7326779155732055438, guid: c9785882f934945fb930b82953db0fb0, type: 3}
+  m_PrefabInstance: {fileID: 1883339488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1547531456 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7326779155732055432, guid: c9785882f934945fb930b82953db0fb0, type: 3}
@@ -1497,9 +1502,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5047309384154358513, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6335837167040075763, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6335837167040075763, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1684,7 +1693,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5001930708775682582, guid: 5bcdd846d0563476cac7b594e6a468fc, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5001930708775682582, guid: 5bcdd846d0563476cac7b594e6a468fc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2218,7 +2227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8492907579301605842, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8492907579301605842, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2463,6 +2472,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8304448893799133828, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: cooldownTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8304448894352287995, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2535,6 +2548,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8304448894595588511, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: RTScontroller
+      value: 
+      objectReference: {fileID: 1470659569}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
 --- !u!1001 &9168317154744518616
