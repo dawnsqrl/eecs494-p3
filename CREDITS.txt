@@ -4,6 +4,8 @@
 [2] Code Monkey Utilities package. https://unitycodemonkey.com/utils.php.
 	Unity package by Code Monkey
 
-https://pngtree.com/freepng/blue-cartoon-bacterial-cell_4733697.html
-https://pngtree.com/freepng/watercolor-fairy-tale-mushroom-house_6517760.html
-https://pngtree.com/freepng/mushroom-house-in-fairy-tales_8363491.html
+[3] Bacteria sprite. https://pngtree.com/freepng/blue-cartoon-bacterial-cell_4733697.html.
+
+[4] Mushroom sprite. https://pngtree.com/freepng/watercolor-fairy-tale-mushroom-house_6517760.html.
+
+[5] Mushroom sprite. https://pngtree.com/freepng/mushroom-house-in-fairy-tales_8363491.html
