@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using CodeMonkey.Utils;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -55,10 +57,12 @@ public class GameRTSControl : MonoBehaviour
             Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, UtilsClass.GetMouseWorldPosition());
             foreach (var unitRTS in selectedUnitRTSList)
             {
-                if (unitRTS.gameObject.CompareTag("Builder"))
+
+                if (!unitRTS.IsDestroyed() && unitRTS.gameObject.CompareTag("Builder"))
                 {
                     unitRTS.SetSelectedActive(false);
                 }
+
             }
 
             selectedUnitRTSList.Clear();
@@ -76,10 +80,8 @@ public class GameRTSControl : MonoBehaviour
         if (Mouse.current.rightButton.wasReleasedThisFrame && !isDialogBlocking)
         {
             Vector3 movetoPosition = UtilsClass.GetMouseWorldPosition();
-            // List<Vector3> targetPositionList = GetPositionListAround(movetoPosition, 1f, 5);
             List<Vector3> targetPositionList =
                 GetPositionListAround(movetoPosition, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
-            targetPositionList.Insert(0, movetoPosition);
             int targetPositionListIndex = 0;
             foreach (UnitRTS unitRTS in selectedUnitRTSList)
             {

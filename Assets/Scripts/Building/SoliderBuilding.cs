@@ -33,6 +33,7 @@ public class SoliderBuilding : MonoBehaviour
                 solider.GetComponent<UnitRTS>().MoveTo(transform.position + generateRandomVector());
                 solider.GetComponent<CitizenBuildingControl>().change_status(gameObject);
                 autoSoliders.Add(solider);
+                CitizenControl.citizenList.Add(solider);
             }
 
             yield return new WaitForSeconds(1.0f);
