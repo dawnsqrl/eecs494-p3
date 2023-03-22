@@ -16,13 +16,13 @@ public class HitHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag(enemyTag))
         {
-            if (health > 1)
+            if (health > 0)
             {
                 health -= 1;
                 healthBar.GetComponent<SpriteRenderer>().size =
                     new Vector2((float)health / (float)maxHealth * 10, healthBar.GetComponent<SpriteRenderer>().size.y);
             }
-            else
+            if (health == 0)
             {
                 // Destroy(transform.parent.gameObject);
                 Transform parent = transform.parent;
