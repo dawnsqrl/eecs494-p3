@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CodeMonkey.Utils;
 using UnityEditor;
 using UnityEngine;
@@ -7,9 +8,10 @@ using UnityEngine;
 public class WildBeastControl : MonoBehaviour
 {
     public static List<GameObject> beastList;
-    private void Awake()
+    private void Start()
     {
         beastList = new List<GameObject>();
+        beastList = GameObject.FindGameObjectsWithTag("Beast").ToList();
     }
 
     // private void _SpawnCitizen(SpawnCitizenEvent e)

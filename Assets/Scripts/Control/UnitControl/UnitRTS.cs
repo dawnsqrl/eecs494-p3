@@ -20,8 +20,6 @@ public class UnitRTS : MonoBehaviour
     {
         selectedGameObject = transform.Find("Selected").gameObject;
         movePosition = GetComponent<IMovePosition>();
-        // clearedFogList = new List<GameObject>();
-        // prevClearedFogList = new List<GameObject>();
         SetSelectedActive(false);
     }
 

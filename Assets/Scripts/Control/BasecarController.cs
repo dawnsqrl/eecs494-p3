@@ -9,12 +9,15 @@ public class BasecarController : MonoBehaviour
     private Controls controls;
     private Controls.PlayerActions playerActions;
     private bool isDialogBlocking;
+    public Vector3 direction;
+    public Vector3 forwardDirection;
 
     private void Awake()
     {
         EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
         controls = new Controls();
         playerActions = controls.Player;
+        forwardDirection = Vector3.zero;
     }
 
     private void Start()
@@ -35,10 +38,15 @@ public class BasecarController : MonoBehaviour
     private void Update()
     {
         // Move the player in the direction of the input
-        Vector3 direction = playerActions.MoveBaseCar.ReadValue<Vector2>();
+        direction = playerActions.MoveBaseCar.ReadValue<Vector2>();
         transform.position += direction.normalized * (
             speed * SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime
         );
+
+        if (direction != Vector3.zero)
+        {
+            forwardDirection = direction;
+        }
 
         // growth
         //if (Mouse.current.leftButton.wasPressedThisFrame && !isDialogBlocking)

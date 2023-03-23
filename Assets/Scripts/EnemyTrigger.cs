@@ -13,9 +13,9 @@ public class EnemyTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Builder"))
+        if (other.CompareTag("Builder") || other.CompareTag("Beast"))
         {
-            baseCar.GetComponent<AutoEnemyControl>().RemoveFromList(transform.parent.gameObject);
+            // baseCar.GetComponent<AutoEnemyControl>().RemoveFromList(transform.parent.gameObject);
             Destroy(transform.parent.gameObject);
         }
     }

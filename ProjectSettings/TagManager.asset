@@ -10,6 +10,7 @@ TagManager:
   - Builder
   - BaseCar
   - GroundTiles
+  - Beast
   layers:
   - Default
   - TransparentFX

@@ -59,7 +59,7 @@ public class GroundTileManager : MonoBehaviour
         gameObject.GetComponent<ClearSurroundingFog>().enabled = true;
         gameObject.GetComponent<Tile>().SetBaseColor(new Color32(0x10, 0xAB, 0x00, 0xFF));
         gameObject.GetComponent<Tile>().SetOffsetColor(new Color32(0x5C, 0xCA, 0x59, 0xFF));
-        gameObject.GetComponent<Tile>().SetColor(UnityEngine.Random.Range(0, 2) == 1);
+        gameObject.GetComponent<Tile>().SetColor(true);
         growthed = true;
     }
 
