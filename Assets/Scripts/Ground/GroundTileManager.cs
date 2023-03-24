@@ -18,8 +18,8 @@ public class GroundTileManager : MonoBehaviour
     void Start()
     {
         set_blank();
-        fog_builder = transform.parent.gameObject.transform.Find("Tile_fog_builder").gameObject;
-        fog_enemy = transform.parent.gameObject.transform.Find("Tile_fog_enemy").gameObject;
+        // fog_builder = transform.parent.gameObject.transform.Find("Tile_fog_builder").gameObject;
+        // fog_enemy = transform.parent.gameObject.transform.Find("Tile_fog_enemy").gameObject;
     }
     
     private void set_blank()
@@ -57,8 +57,8 @@ public class GroundTileManager : MonoBehaviour
     public void SetGrowthed()
     {
         gameObject.GetComponent<ClearSurroundingFog>().enabled = true;
-        gameObject.GetComponent<Tile>().SetBaseColor(new Color32(0x10, 0xAB, 0x00, 0xFF));
-        gameObject.GetComponent<Tile>().SetOffsetColor(new Color32(0x5C, 0xCA, 0x59, 0xFF));
+        // gameObject.GetComponent<Tile>().SetBaseColor(new Color32(0xAB, 0xAB, 0x00, 0xFF));
+        gameObject.GetComponent<Tile>().SetOffsetColor(new Color32(0xAB, 0x1A, 0x59, 0xFF));
         gameObject.GetComponent<Tile>().SetColor(true);
         growthed = true;
     }

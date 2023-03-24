@@ -13,6 +13,7 @@ public class Tile : MonoBehaviour
     private void Start()
     {
         isDialogBlocking = false;
+        Init(true);
     }
 
     public void SetDialogBlockingState(bool status)

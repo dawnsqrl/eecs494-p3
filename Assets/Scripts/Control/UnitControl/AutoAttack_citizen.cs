@@ -59,7 +59,7 @@ public class AutoAttack_citizen : MonoBehaviour
         {
             return;
         }
-        GetComponent<ClearSurroundingFog>().enabled = onAssult;
+        // GetComponent<ClearSurroundingFog>().enabled = onAssult;
         UnitRTS unitRTS = GetComponent<UnitRTS>();
         unitRTS.MoveTo(movetoPosition);
     }

@@ -33,6 +33,8 @@ public class GrowthDemo : MonoBehaviour
 
     private void Start()
     {
+        init_x = (int) GameObject.Find("Mushroom").transform.position.x;
+        init_y = (int) GameObject.Find("Mushroom").transform.position.y;
         StartCoroutine(AutoGrowth(timeGap));
         EventBus.Publish(new AssignInitGrowthPositionEvent(new Vector2(init_x, init_y)));
         edge_list.Add(new Vector2(init_x, init_y));

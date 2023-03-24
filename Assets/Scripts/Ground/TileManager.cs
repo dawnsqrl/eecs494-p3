@@ -11,8 +11,8 @@ public class TileManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fog_builder = transform.Find("Tile_fog_builder").gameObject;
-        fog_enemy = transform.Find("Tile_fog_enemy").gameObject;
+        // fog_builder = transform.Find("Tile_fog_builder").gameObject;
+        // fog_enemy = transform.Find("Tile_fog_enemy").gameObject;
     }
 
     public void SetFogVisible(bool visible, string fog_type)

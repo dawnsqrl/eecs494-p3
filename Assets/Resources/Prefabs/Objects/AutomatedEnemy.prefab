@@ -90,7 +90,6 @@ GameObject:
   - component: {fileID: 3232443855882663149}
   - component: {fileID: 3232443855882663184}
   - component: {fileID: 3232443855882663151}
-  - component: {fileID: 8009365512551624903}
   - component: {fileID: -7160386518454503500}
   m_Layer: 7
   m_Name: AutomatedEnemy
@@ -253,20 +252,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
---- !u!114 &8009365512551624903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3232443855882663146}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e4e77f8f4184d9eb4724ce89757c9e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBuilder: 0
-  range: 1
 --- !u!114 &-7160386518454503500
 MonoBehaviour:
   m_ObjectHideFlags: 0
