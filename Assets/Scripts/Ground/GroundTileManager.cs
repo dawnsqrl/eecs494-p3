@@ -63,7 +63,7 @@ public class GroundTileManager : MonoBehaviour
         // gameObject.GetComponent<Tile>().SetColor(true);
         GameObject hyphae = transform.parent.gameObject.transform.Find("Hyphae").gameObject;
         hyphae.SetActive(true);
-        hyphae.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-90, 90));
+        hyphae.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-10, 10));
         foreach (Transform small_hyphae in hyphae.transform)
         {
             small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");

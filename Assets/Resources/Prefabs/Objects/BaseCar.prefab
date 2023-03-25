@@ -199,6 +199,7 @@ MonoBehaviour:
   health: 3
   enemyTag: Builder
   healthBar: {fileID: 1134652527490715516}
+  _spriteRenderer: {fileID: 5260701631150855687}
 --- !u!1 &8492907579301605845
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +307,9 @@ MonoBehaviour:
   speed: 4
   direction: {x: 0, y: 0, z: 0}
   forwardDirection: {x: 0, y: 0, z: 0}
+  on_wall: 0
+  _animator: {fileID: 4047923559195802300}
+  _snailHealth: {fileID: 7166689666919232521}
 --- !u!114 &5082076586482587295
 MonoBehaviour:
   m_ObjectHideFlags: 0
