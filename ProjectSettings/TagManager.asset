@@ -11,6 +11,7 @@ TagManager:
   - BaseCar
   - GroundTiles
   - Beast
+  - Wall
   layers:
   - Default
   - TransparentFX

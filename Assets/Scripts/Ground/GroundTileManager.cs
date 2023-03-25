@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Random = System.Random;
 
 public class GroundTileManager : MonoBehaviour
 {
@@ -56,10 +57,17 @@ public class GroundTileManager : MonoBehaviour
 
     public void SetGrowthed()
     {
-        gameObject.GetComponent<ClearSurroundingFog>().enabled = true;
+        // gameObject.GetComponent<ClearSurroundingFog>().enabled = true;
         // gameObject.GetComponent<Tile>().SetBaseColor(new Color32(0xAB, 0xAB, 0x00, 0xFF));
-        gameObject.GetComponent<Tile>().SetOffsetColor(new Color32(0xAB, 0x1A, 0x59, 0xFF));
-        gameObject.GetComponent<Tile>().SetColor(true);
+        // gameObject.GetComponent<Tile>().SetOffsetColor(new Color32(0xAB, 0x1A, 0x59, 0xFF));
+        // gameObject.GetComponent<Tile>().SetColor(true);
+        GameObject hyphae = transform.parent.gameObject.transform.Find("Hyphae").gameObject;
+        hyphae.SetActive(true);
+        hyphae.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-90, 90));
+        foreach (Transform small_hyphae in hyphae.transform)
+        {
+            small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");
+        }
         growthed = true;
     }
 
