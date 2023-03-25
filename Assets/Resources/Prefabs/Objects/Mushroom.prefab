@@ -163,6 +163,7 @@ MonoBehaviour:
   health: 5
   enemyTag: Enemy
   healthBar: {fileID: 5620440745084885744}
+  _spriteRenderer: {fileID: 2901319194757307674}
 --- !u!1 &7702931926530142126
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ public class BasecarController : MonoBehaviour
     public Vector3 forwardDirection;
     public bool on_wall;
     private Rigidbody _rigidbody;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private HitHealth _snailHealth;
     private void Awake()
     {
         EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
@@ -40,13 +42,18 @@ public class BasecarController : MonoBehaviour
 
     private void Update()
     {
-
+        if (_snailHealth.health <= 0)
+        {
+            _animator.SetBool("is_dead", true);
+            return;
+        }
         // Move the player in the direction of the input
         direction = playerActions.MoveBaseCar.ReadValue<Vector2>();
         if (on_wall && direction == forwardDirection)
         {
             return;
         }
+        _animator.SetFloat("dir_x", direction.x);
         transform.position += direction.normalized * (
             speed * SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime
         );
