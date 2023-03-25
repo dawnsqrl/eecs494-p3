@@ -6,19 +6,27 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 {
     Transform parentAfterDrag;
     [SerializeField] private GameObject holder;
-    [SerializeField] private GameObject gameMapPrefab;
-    [SerializeField] private GameObject RTScontroller;
+    [SerializeField] private GameObject gameMapPrefab, gamePrefab;
+    [SerializeField] private GameObject RTScontroller, SelectedArea;
 
-    private GameObject buildingController;
+    private GameObject buildingController, temp_building;
+    private bool startTutorial = false;
+
+    private void Awake()
+    {
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
+    }
 
     private void Start()
     {
         buildingController = GameObject.Find("BuildingCanvas");
+        temp_building = Instantiate(gameMapPrefab, new Vector3(100.0f, 100.0f, -2.0f), Quaternion.identity);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         RTScontroller.SetActive(false);
+        SelectedArea.SetActive(false);
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
@@ -26,15 +34,16 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = Mouse.current.position.ReadValue();
-        //transform.position = new Vector3(15.0f, 15.0f, -2.0f);
-        transform.localScale = new Vector2(0.3f, 0.3f);
+        Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        temp_building.transform.localScale = new Vector2(0.3f, 0.3f);
+        temp_building.transform.position = new Vector3(Worldpos.x, Worldpos.y, -2.0f);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        temp_building.transform.position = new Vector3(100.0f, 100.0f, -2.0f);
         Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        if (Worldpos is { x: >= 0 and <= 50, y: >= 0 and <= 50 } && buildingController.GetComponent<BuildingController>().check_avai(Worldpos))
+        if (( Worldpos is { x: >= 0 and <= 50, y: >= 0 and <= 50 } || startTutorial ) && buildingController.GetComponent<BuildingController>().check_avai(Worldpos))
         {
             
             Vector2 pos = new Vector2(Mathf.FloorToInt(Worldpos.x + 0.5f), Mathf.FloorToInt(Worldpos.y + 0.5f));
@@ -43,11 +52,13 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             //{
             //Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"),
             //    new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
-            GameObject new_building = Instantiate(gameMapPrefab, new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
-            growthDemo.Position2GroundManager(pos).SetGrowthed();
+            GameObject new_building = Instantiate(gamePrefab, new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
+            //growthDemo.Position2GroundManager(pos).SetGrowthed();
 
             buildingController.GetComponent<BuildingController>().register_building(pos, new_building);
             //}
+
+            EventBus.Publish(new BuildingEndDragEvent());
         }
 
         holder.GetComponent<SpellCooldown>().reStart();

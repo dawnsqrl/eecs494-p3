@@ -440,7 +440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31, y: -206}
+  m_AnchoredPosition: {x: -907, y: -206}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8304448893799133830
@@ -560,7 +560,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageCooldown: {fileID: 8304448893657786841}
   textCooldown: {fileID: 8304448895196572817}
-  cooldownTime: 10
+  buildingType: 1
+  cooldownTime: 1
 --- !u!1 &8304448893894515271
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,6 +679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageCooldown: {fileID: 8304448894726667017}
   textCooldown: {fileID: 8304448893495862661}
+  buildingType: 2
   cooldownTime: 6
 --- !u!1 &8304448893898818660
 GameObject:
@@ -714,7 +716,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31, y: -412}
+  m_AnchoredPosition: {x: -907, y: -412}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8304448894352287988
@@ -807,8 +809,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 8304448895128010748}
-  gameMapPrefab: {fileID: 3255566222332663551, guid: b6880531fade2c7478d5a1b74a4f1090, type: 3}
+  gameMapPrefab: {fileID: 3255566222332663551, guid: 23b6147c5f6b72b499c404117b0de6b4, type: 3}
+  gamePrefab: {fileID: 3255566222332663551, guid: b6880531fade2c7478d5a1b74a4f1090, type: 3}
   RTScontroller: {fileID: 0}
+  SelectedArea: {fileID: 0}
 --- !u!1 &8304448894426768990
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +848,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31, y: 0}
+  m_AnchoredPosition: {x: -907, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8304448894548295276
@@ -937,8 +941,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 8304448893894515271}
-  gameMapPrefab: {fileID: 6513006511888720774, guid: 23bb2a88f6986b0439597d6e879b25e2, type: 3}
+  gameMapPrefab: {fileID: 6513006511888720774, guid: 79c5d321e7ecf504c98f1f77e1bbd7bc, type: 3}
+  gamePrefab: {fileID: 6513006511888720774, guid: 23bb2a88f6986b0439597d6e879b25e2, type: 3}
   RTScontroller: {fileID: 0}
+  SelectedArea: {fileID: 0}
 --- !u!1 &8304448894595588505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,8 +1035,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holder: {fileID: 8304448893799133830}
-  gameMapPrefab: {fileID: 4743352643833115571, guid: 879b7ddbed21c6d4fb4b2ebdb26a63e3, type: 3}
+  gameMapPrefab: {fileID: 4743352643833115571, guid: ccf5401a53d067842a41eb8d8864c505, type: 3}
+  gamePrefab: {fileID: 4743352643833115571, guid: 879b7ddbed21c6d4fb4b2ebdb26a63e3, type: 3}
   RTScontroller: {fileID: 0}
+  SelectedArea: {fileID: 0}
 --- !u!1 &8304448894611282129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,6 +1368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageCooldown: {fileID: 8304448893363921193}
   textCooldown: {fileID: 8304448894611282135}
+  buildingType: 0
   cooldownTime: 3
 --- !u!1 &8304448895196572819
 GameObject:

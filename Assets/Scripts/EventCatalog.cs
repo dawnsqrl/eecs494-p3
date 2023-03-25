@@ -180,3 +180,11 @@ public class ModifyVitalityEvent
         vitality = _vitality;
     }
 }
+
+public class StartBuilderTutorialEvent
+{
+}
+
+public class BuildingEndDragEvent
+{
+}

@@ -26,6 +26,11 @@ public class StartupSequence : MonoBehaviour
                     "Tutorial", new Tuple<UnityAction, bool>(
                         () => EventBus.Publish(new DisplayDialogEvent(gameDescriptionDialog)), true
                     )
+                },
+                {
+                    "New Tutorial", new Tuple<UnityAction, bool>(
+                        () => EventBus.Publish(new StartBuilderTutorialEvent()), true
+                    )
                 }
             }
         );
