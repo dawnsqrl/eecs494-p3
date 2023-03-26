@@ -5,7 +5,7 @@ using UnityEngine;
 // This script is for GridMap parents. 
 public class GridManager : MonoBehaviour
 {
-    private Dictionary<Vector2, GameObject> _tiles;
+    public static Dictionary<Vector2, GameObject> _tiles;
     private Dictionary<GameObject, GameObject> _tiles_ground;
 
     private void Awake()

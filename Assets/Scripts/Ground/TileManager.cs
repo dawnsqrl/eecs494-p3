@@ -7,8 +7,12 @@ public class TileManager : MonoBehaviour
     private GameObject fog_builder;
     private GameObject fog_enemy;
     public bool builderFogLongTermDisabled;
+
+
     //private int blank_regrowth_rate = 10;
     // Start is called before the first frame update
+
+
     void Start()
     {
         // fog_builder = transform.Find("Tile_fog_builder").gameObject;
