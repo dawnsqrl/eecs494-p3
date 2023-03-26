@@ -12,6 +12,7 @@ TagManager:
   - GroundTiles
   - Beast
   - Wall
+  - Mushroom_for_tutorial
   layers:
   - Default
   - TransparentFX

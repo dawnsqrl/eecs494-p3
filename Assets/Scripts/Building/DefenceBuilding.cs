@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DefenceBuilding : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private VitalityController vitality;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        vitality = GameObject.Find("VitalityController").GetComponent<VitalityController>();
+        vitality.decreaseVitality(300);
     }
 }

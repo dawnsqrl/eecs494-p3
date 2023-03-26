@@ -13,7 +13,8 @@ public class Tile : MonoBehaviour
     private void Start()
     {
         isDialogBlocking = false;
-        Init(true);
+        // Init(true);
+        _highlight.SetActive(false);
     }
 
     public void SetDialogBlockingState(bool status)
@@ -60,9 +61,9 @@ public class Tile : MonoBehaviour
         _offsetColor = _color;
     }
 
-    public void SetColor(bool isOffset)
+    public void SetColor(Color _color)
     {
-        _renderer.color = isOffset ? _offsetColor : _baseColor;
+        _renderer.color = _color;
     }
 
 }

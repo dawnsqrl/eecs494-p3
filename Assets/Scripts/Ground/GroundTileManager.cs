@@ -7,7 +7,7 @@ using Random = System.Random;
 
 public class GroundTileManager : MonoBehaviour
 {
-    [SerializeField] private bool growthed = false;
+    [SerializeField] public bool growthed = false;
 
     private bool blank_tile = false;
     private int blank_rate = 2;

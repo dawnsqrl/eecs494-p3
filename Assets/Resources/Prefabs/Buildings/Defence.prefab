@@ -10,7 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2285958350946090231}
   - component: {fileID: 7694564767073642411}
+<<<<<<< HEAD
   - component: {fileID: -4869749201501374290}
+=======
+  - component: {fileID: 5388264984316473798}
+>>>>>>> 14e6a2210e6742b0a8fca9b612130827105f803c
   m_Layer: 0
   m_Name: Defence
   m_TagString: Untagged
@@ -85,7 +89,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+<<<<<<< HEAD
 --- !u!114 &-4869749201501374290
+=======
+--- !u!114 &5388264984316473798
+>>>>>>> 14e6a2210e6742b0a8fca9b612130827105f803c
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,6 +102,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3255566222332663551}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 65352af4ee3a3724d8d56b8e4a892362, type: 3}
+=======
+  m_Script: {fileID: 11500000, guid: cfa819d73ce977248a041058636e189b, type: 3}
+>>>>>>> 14e6a2210e6742b0a8fca9b612130827105f803c
   m_Name: 
   m_EditorClassIdentifier: 
