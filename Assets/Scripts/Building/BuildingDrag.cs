@@ -41,9 +41,9 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
-        Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        //temp_building.transform.localScale = new Vector2(0.3f, 0.3f);
-        temp_building.transform.position = new Vector3(Worldpos.x, Worldpos.y, -2.0f);
+        //     Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        //     // temp_building.transform.localScale = new Vector2(0.3f, 0.3f);
+        //     // temp_building.transform.position = new Vector3(Worldpos.x, Worldpos.y, -2.0f);
     }
 
     public void OnEndDrag(PointerEventData eventData)

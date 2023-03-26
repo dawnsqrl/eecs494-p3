@@ -19,9 +19,9 @@ public class VitalityTextControl : MonoBehaviour
     IEnumerator TextChangeAnimation(ModifyVitalityEvent e)
     {
         yield return null;
-        number.text = Mathf.FloorToInt(e.vitality / 10).ToString() + "<size=28>%";
-        number.fontSize = 38;
+        number.text = Mathf.FloorToInt(e.vitality / 10).ToString() + "<size=50>%";
+        number.fontSize = 80;
         yield return new WaitForSeconds(0.3f);
-        number.fontSize = 28;
+        number.fontSize = 60;
     }
 }

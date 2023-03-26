@@ -12,11 +12,11 @@ public class AutoEnemyControl : MonoBehaviour
     public static List<GameObject> autoEnemies;
     private BasecarController _basecarController;
 
-    public TextMeshProUGUI maxUnitDisplay;
+    //public TextMeshProUGUI maxUnitDisplay;
     // Start is called before the first frame update
     void Start()
     {
-        maxUnitDisplay.text =  "Max unit: " + maxEnemyUnit.ToString();
+        //maxUnitDisplay.text =  "Max unit: " + maxEnemyUnit.ToString();
         autoEnemies = new List<GameObject>();
         EventBus.Subscribe<SpawnEnemyEvent>(_SpawnEnemy);
         _basecarController = gameObject.GetComponent<BasecarController>();

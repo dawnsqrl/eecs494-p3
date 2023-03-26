@@ -8,7 +8,7 @@ using System.Collections;
 public class BuilderTutorialController : MonoBehaviour
 {
     [SerializeField] private Camera BuilderCamera;
-    [SerializeField] private GameObject VitalityBar, Building1, Building2, Building3, textPrompt;
+    [SerializeField] private GameObject VitalityBar, Building1, Building2, Building3;//, textPrompt;
     private bool startTutorial = false, dragBuilding = false;
     [SerializeField] private GridManager _gridManager;
     [SerializeField] private SpellCooldown cool1, cool2, cool3;
@@ -31,8 +31,9 @@ public class BuilderTutorialController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        message = textPrompt.GetComponent<TMPro.TextMeshProUGUI>();
-        message.text = "Start Tutorial";
+        //message = textPrompt.GetComponent<TMPro.TextMeshProUGUI>();
+        //EventBus.Publish(new DisplayHintEvent("Start Tutorial."));
+        //message.text = "Start Tutorial";
         init_x = (int)GameObject.Find("TMushroom").transform.position.x - 50;
         init_y = (int)GameObject.Find("TMushroom").transform.position.y - 50;
     }
@@ -64,7 +65,8 @@ public class BuilderTutorialController : MonoBehaviour
             Building2.SetActive(false);
             Building3.SetActive(false);
             // Mushroom
-            message.text = "Your goal is to protect your main mushroom.[click]";
+            EventBus.Publish(new UpdateHintEvent("Your goal is to protect your main mushroom.[click]"));
+            //message.text = "Your goal is to protect your main mushroom.[click]";
         }
 
         if (mushroomStep && clicked)
@@ -73,7 +75,8 @@ public class BuilderTutorialController : MonoBehaviour
             mushroomStep = false;
             myceliumStep = true;
 
-            message.text = "You have automatically expanding mycelium.[click]";
+            EventBus.Publish(new UpdateHintEvent("You have automatically expanding mycelium.[click]"));
+            //message.text = "You have automatically expanding mycelium.[click]";
             for (int i = init_x - 5; i < init_x + 5; i++)
             {
                 for (int j = init_y - 5; j < init_y + 5; j++)
@@ -89,7 +92,8 @@ public class BuilderTutorialController : MonoBehaviour
             resourceStep = true;
             myceliumStep = false;
 
-            message.text = "This is vitality bar. vitality influence the speed of construction and expansion.[click]";
+            EventBus.Publish(new UpdateHintEvent("This is vitality bar. vitality influence the speed of construction and expansion.[click]"));
+            //message.text = "This is vitality bar. vitality influence the speed of construction and expansion.[click]";
             VitalityBar.SetActive(true);
         }
 
@@ -99,7 +103,8 @@ public class BuilderTutorialController : MonoBehaviour
             resourceStep = false;
             building1Step = true;
 
-            message.text = "Drag and drop builing into your mycelium. This building can increase the growth rate of vitality.";
+            EventBus.Publish(new UpdateHintEvent("Drag and drop builing into your mycelium. This building can increase the growth rate of vitality."));
+            //message.text = "Drag and drop builing into your mycelium. This building can increase the growth rate of vitality.";
             Building1.SetActive(true);
             cool1.enabled = false;
             fog1.SetActive(false);
@@ -109,8 +114,8 @@ public class BuilderTutorialController : MonoBehaviour
         {
             building1Step = false;
             otherBuildingStep = true;
-
-            message.text = "Construction of buildings reduces vitality. [1] Increase the growth rate of vitality. [2] Produce small mushroom citizens. [3] ......";
+            EventBus.Publish(new UpdateHintEvent("Construction of buildings reduces vitality. [1] Increase the growth rate of vitality. [2] Produce small mushroom citizens. [3] ......"));
+            //message.text = "Construction of buildings reduces vitality. [1] Increase the growth rate of vitality. [2] Produce small mushroom citizens. [3] ......";
 
             StartCoroutine(vitality_change());
             StartCoroutine(timer());
@@ -126,7 +131,8 @@ public class BuilderTutorialController : MonoBehaviour
 
         if(citizenStep && otherBuildingStep)
         {
-            message.text = "Left click and drag to select citizen. Right click to move them.";
+            EventBus.Publish(new UpdateHintEvent("Left click and drag to select citizen. Right click to move them."));
+            //message.text = "Left click and drag to select citizen. Right click to move them.";
             if (temp_first)
             {
                 temp_first = false;
@@ -138,7 +144,8 @@ public class BuilderTutorialController : MonoBehaviour
 
         if (movedCitizen)
         {
-            message.text = "The snail is coming, control your citizens to attack it!";
+            EventBus.Publish(new UpdateHintEvent("The snail is coming, control your citizens to attack it!"));
+            //message.text = "The snail is coming, control your citizens to attack it!";
             if (!temp_first)
             {
                 temp_first = true;
