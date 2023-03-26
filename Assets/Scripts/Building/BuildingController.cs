@@ -19,5 +19,8 @@ public class BuildingController : MonoBehaviour
     public void register_building(Vector2 pos, GameObject building)
     {
         buildings.Add(pos, building);
+        buildings.Add(new Vector2(pos.x + 1, pos.y), building);
+        buildings.Add(new Vector2(pos.x + 1, pos.y - 1), building);
+        buildings.Add(new Vector2(pos.x, pos.y - 1), building);
     }
 }
