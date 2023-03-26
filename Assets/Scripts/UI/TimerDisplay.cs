@@ -12,8 +12,18 @@ public class TimerDisplay : MonoBehaviour
         countDownText = GetComponent<TextMeshProUGUI>();
     }
 
+    private void Start()
+    {
+        countDownText.enabled = false;
+    }
+
     public void Update()
     {
+        if (!countDownText.enabled && GameProgressControl.isGameActive)
+        {
+            countDownText.enabled = true;
+        }
+
         float timeElapsed = gameProgressControl.timeElapsed;
         int minutes = Mathf.FloorToInt(timeElapsed / 60);
         int seconds = Mathf.FloorToInt(timeElapsed % 60);

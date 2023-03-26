@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputInterface : MonoBehaviour
 {
@@ -84,6 +85,21 @@ public class InputInterface : MonoBehaviour
         if (playerActions.SpawnEnemy.WasPressedThisFrame())
         {
             EventBus.Publish(new SpawnEnemyEvent());
+        }
+
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        {
+            EventBus.Publish(new DisplayHintEvent("This is useless!"));
+        }
+
+        if (Keyboard.current.digit2Key.wasPressedThisFrame)
+        {
+            EventBus.Publish(new UpdateHintEvent("What?"));
+        }
+
+        if (Keyboard.current.digit3Key.wasPressedThisFrame)
+        {
+            EventBus.Publish(new DismissHintEvent());
         }
     }
 }
