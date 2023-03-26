@@ -20,7 +20,8 @@ public class PlayerMovementMouse : MonoBehaviour
     {
         if (Mouse.current.rightButton.wasPressedThisFrame && !isDialogBlocking)
         {
-            GetComponent<MovePositionDirect>().SetMovePosition(UtilsClass.GetMouseWorldPosition());
+            // GetComponent<MovePositionDirect>().SetMovePosition(UtilsClass.GetMouseWorldPosition());
+            GetComponent<UnitRTS>().MoveTo(UtilsClass.GetMouseWorldPosition());
         }
     }
 }

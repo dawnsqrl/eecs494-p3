@@ -14,12 +14,24 @@ public class UnitRTS : MonoBehaviour
 {
     private GameObject selectedGameObject;
     private IMovePosition movePosition;
+    private IMoveVelocity moveVelocity;
+
+    private MovePositionDirect _movePositionDirect;
+
+    private Rigidbody _rigidbody;
+
+    private Vector3 targetPosition;
+
+    private bool startMove = false;
     // private List<GameObject> clearedFogList;
     // private List<GameObject> prevClearedFogList;
-    private void Awake()
+    private void Start()
     {
         selectedGameObject = transform.Find("Selected").gameObject;
         movePosition = GetComponent<IMovePosition>();
+        moveVelocity = GetComponent<IMoveVelocity>();
+        _movePositionDirect = GetComponent<MovePositionDirect>();
+        _rigidbody = GetComponent<Rigidbody>();
         SetSelectedActive(false);
     }
 
@@ -28,66 +40,29 @@ public class UnitRTS : MonoBehaviour
         selectedGameObject.SetActive(visible);
     }
 
-    public void MoveTo(Vector3 targetPosition)
+    public void MoveTo(Vector3 _targetPosition)
     {
-        movePosition.SetMovePosition(targetPosition);
+        // movePosition.SetMovePosition(_targetPosition);
+        // // moveVelocity.SetVelocity(
+        // //     (targetPosition - transform.position).normalized * (5 * SimulationSpeedControl.GetSimulationSpeed())
+        // // );
+        // _movePositionDirect.SetMovePosition(_targetPosition);
+        targetPosition = _targetPosition;
+        startMove = true;
     }
     
     private void Update()
     {
-        // Ray2D ray = new Ray2D(transform.position, Vector2.positiveInfinity);
-        // RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 20f, LayerMask.GetMask("Ground"));
-        // if (hit)
-        // {
-        //     prevClearedFogList = new List<GameObject>(clearedFogList);
-        //     clearedFogList.Clear();
-        //     hit.transform.parent.gameObject.transform.Find("Tile_fog_builder").gameObject.GetComponent<FogTileManager>().SetVisible(false);
-        //     clearedFogList.Add(hit.transform.parent.gameObject);
-        //     string[] digits = Regex.Split(clearedFogList[0].gameObject.name, @"\D+");
-        //     int x = 0, y = 0;
-        //     int.TryParse(digits[1], out x);
-        //     int.TryParse(digits[2], out y);
-        //     for (int i = 1; i < 2; i++)
-        //     {
-        //         GameObject groundGrid = GameObject.Find($"Tile {x+i} {y}");
-        //         if (groundGrid)
-        //         {
-        //             GameObject fog = groundGrid.transform.Find("Tile_fog_builder").gameObject;
-        //             fog.GetComponent<FogTileManager>().SetVisible(false);
-        //             clearedFogList.Add(groundGrid);
-        //         }
-        //         groundGrid = GameObject.Find($"Tile {x-i} {y}");
-        //         if (groundGrid)
-        //         {
-        //             GameObject fog = groundGrid.transform.Find("Tile_fog_builder").gameObject;
-        //             fog.GetComponent<FogTileManager>().SetVisible(false);
-        //             clearedFogList.Add(groundGrid);
-        //         }
-        //         groundGrid = GameObject.Find($"Tile {x} {y+i}");
-        //         if (groundGrid)
-        //         {
-        //             GameObject fog = groundGrid.transform.Find("Tile_fog_builder").gameObject;
-        //             fog.GetComponent<FogTileManager>().SetVisible(false);
-        //             clearedFogList.Add(groundGrid);
-        //         }
-        //         groundGrid = GameObject.Find($"Tile {x} {y-i}");
-        //         if (groundGrid)
-        //         {
-        //             GameObject fog = groundGrid.transform.Find("Tile_fog_builder").gameObject;
-        //             fog.GetComponent<FogTileManager>().SetVisible(false);
-        //             clearedFogList.Add(groundGrid);
-        //         }
-        //     }
-        //     
-        //     
-        //     // the overlay part of the two lists remains cleared
-        //     List<GameObject> RestoreFogList = prevClearedFogList.Except(clearedFogList).ToList();
-        //     int a = 0;
-        //     foreach (var s in RestoreFogList)
-        //     {
-        //         s.transform.Find("Tile_fog_builder").gameObject.GetComponent<FogTileManager>().SetVisible(true);
-        //     }
-        //     prevClearedFogList.Clear();
-        // }
+        if (!startMove || (targetPosition - transform.position).magnitude < 0.3f)
+        {
+            _rigidbody.velocity = Vector3.zero;
+            return;
+        }
+        
+        if (GameProgressControl.isGameActive)
+        {
+            Vector3 direction = (targetPosition - transform.position).normalized;
+            _rigidbody.velocity = direction.normalized * (4 * SimulationSpeedControl.GetSimulationSpeed());
+        }
     }
 }

@@ -16,12 +16,12 @@ public class MovePositionDirect : MonoBehaviour, IMovePosition
 
     private void Update()
     {
-        Vector3 moveDir = (movePosition - transform.position).normalized;
-        if (Vector3.Distance(movePosition, transform.position) < 0.5f)
-        {
-            moveDir = Vector3.zero;
-        }
-
-        GetComponent<IMoveVelocity>().SetVelocity(moveDir);
+        // Vector3 moveDir = (movePosition - transform.position).normalized;
+        // if (Vector3.Distance(movePosition, transform.position) < 0.5f)
+        // {
+        //     moveDir = Vector3.zero;
+        // }
+        //
+        // GetComponent<IMoveVelocity>().SetVelocity(moveDir);
     }
 }

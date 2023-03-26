@@ -13,7 +13,6 @@ public class BasecarController : MonoBehaviour
     private bool isDialogBlocking;
     public Vector3 direction;
     public Vector3 forwardDirection;
-    public bool on_wall;
     private Rigidbody _rigidbody;
 
     private void Awake()
@@ -27,7 +26,6 @@ public class BasecarController : MonoBehaviour
     private void Start()
     {
         isDialogBlocking = false;
-        on_wall = false;
         _rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -53,19 +51,30 @@ public class BasecarController : MonoBehaviour
         {
             // Move the player in the direction of the input
             direction = playerActions.MoveBaseCar.ReadValue<Vector2>();
-            if (on_wall && (direction.x * forwardDirection.x > 0 || direction.y * forwardDirection.y > 0))
-            {
-                return;
-            }
+            // if (on_wall && (direction.x * forwardDirection.x > 0 || direction.y * forwardDirection.y > 0))
+            // {
+            //     return;
+            // }
             _animator.SetFloat("dir_x", direction.x);
-            transform.position += direction.normalized * (
-                speed * SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime
-            );
-            
-            // _rigidbody.AddForce(direction.y * 5 * transform.forward);
-            // _rigidbody.AddForce(direction.x * 5 * transform.right);
 
-            if (!on_wall && direction != Vector3.zero)
+            if (direction.magnitude > 0)
+            {
+                _rigidbody.velocity = direction.normalized * (
+                    speed * SimulationSpeedControl.GetSimulationSpeed()
+                );
+                print(_rigidbody.velocity);
+            }
+            else
+            {
+                _rigidbody.velocity = Vector3.zero;
+            }
+            
+            
+            // transform.position += direction.normalized * (
+            //     speed * SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime
+            // );
+
+            if (direction != Vector3.zero)
             {
                 forwardDirection = direction;
             }
