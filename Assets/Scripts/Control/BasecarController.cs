@@ -46,7 +46,7 @@ public class BasecarController : MonoBehaviour
             _animator.SetBool("is_dead", true);
             return;
         }
-        
+
         if (GameProgressControl.isGameActive && !isDialogBlocking)
         {
             // Move the player in the direction of the input
@@ -68,8 +68,8 @@ public class BasecarController : MonoBehaviour
             {
                 _rigidbody.velocity = Vector3.zero;
             }
-            
-            
+
+
             // transform.position += direction.normalized * (
             //     speed * SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime
             // );
@@ -78,6 +78,10 @@ public class BasecarController : MonoBehaviour
             {
                 forwardDirection = direction;
             }
+        }
+        else
+        {
+            _rigidbody.velocity = Vector3.zero;
         }
 
         // growth
