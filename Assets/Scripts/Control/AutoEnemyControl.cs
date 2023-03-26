@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class AutoEnemyControl : MonoBehaviour
 {
-    [SerializeField] private int maxEnemyUnit = 5;
+    // [SerializeField] private int maxEnemyUnit = 5;
     public static List<GameObject> autoEnemies;
     private BasecarController _basecarController;
 
@@ -16,9 +16,9 @@ public class AutoEnemyControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxUnitDisplay.text =  "Max unit: " + maxEnemyUnit.ToString();
+        // maxUnitDisplay.text =  "Max unit: " + maxEnemyUnit.ToString();
         autoEnemies = new List<GameObject>();
-        EventBus.Subscribe<SpawnEnemyEvent>(_SpawnEnemy);
+        // EventBus.Subscribe<SpawnEnemyEvent>(_SpawnEnemy);
         _basecarController = gameObject.GetComponent<BasecarController>();
     }
 
@@ -26,15 +26,15 @@ public class AutoEnemyControl : MonoBehaviour
     {
         autoEnemies.Remove(o);
     }
-    private void _SpawnEnemy(SpawnEnemyEvent e)
-    {
-        if (autoEnemies.Count < maxEnemyUnit)
-        {
-            GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/AutomatedEnemy"), transform.position, Quaternion.identity);
-            enemy.GetComponent<UnitRTS>().MoveTo(transform.position);
-            autoEnemies.Add(enemy);
-        }
-    }
+    // private void _SpawnEnemy(SpawnEnemyEvent e)
+    // {
+    //     if (autoEnemies.Count < maxEnemyUnit)
+    //     {
+    //         GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/AutomatedEnemy"), transform.position, Quaternion.identity);
+    //         enemy.GetComponent<UnitRTS>().MoveTo(transform.position);
+    //         autoEnemies.Add(enemy);
+    //     }
+    // }
 
     private void Update()
     {

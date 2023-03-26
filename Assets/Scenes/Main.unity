@@ -3197,6 +3197,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PopupCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2436142948631421631, guid: 0525126529ef65f44a1c24542f116e52, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0525126529ef65f44a1c24542f116e52, type: 3}
 --- !u!224 &931126919 stripped

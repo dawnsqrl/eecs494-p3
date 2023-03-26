@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 116d9ccd1dd344a18ad030a4932b3239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eye: {fileID: 0}
 --- !u!1 &8492907579301605845
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8119e6d3cc5b4188be019975330ca31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemyUnit: 5
   maxUnitDisplay: {fileID: 0}
 --- !u!114 &9194102917017396560
 MonoBehaviour:

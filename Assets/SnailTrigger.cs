@@ -6,7 +6,6 @@ using UnityEngine;
 public class SnailTrigger : MonoBehaviour
 {
     private BasecarController _controller;
-
     private void Start()
     {
         _controller = transform.parent.GetComponent<BasecarController>();
@@ -22,6 +21,9 @@ public class SnailTrigger : MonoBehaviour
     
     private void OnTriggerExit(Collider other)
     {
-        _controller.on_wall = false;
+        if (other.CompareTag("Wall"))
+        {
+            _controller.on_wall = false;
+        }
     }
 }
