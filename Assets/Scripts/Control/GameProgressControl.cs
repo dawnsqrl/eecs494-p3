@@ -10,7 +10,7 @@ public class GameProgressControl : MonoBehaviour
 
     public float timeElapsed;
 
-    private bool isTimerActive;
+    private bool isGamePaused;
     private bool isGameStarted;
     private bool isGameEnded;
     private bool isEndDialogShown;
@@ -18,7 +18,7 @@ public class GameProgressControl : MonoBehaviour
 
     private void Awake()
     {
-        EventBus.Subscribe<ModifyPauseEvent>(e => isTimerActive = !e.status);
+        EventBus.Subscribe<ModifyPauseEvent>(e => isGamePaused = e.status);
         EventBus.Subscribe<GameStartEvent>(_ => isGameStarted = true);
         EventBus.Subscribe<GameEndEvent>(_OnGameEnd);
     }
@@ -58,7 +58,7 @@ public class GameProgressControl : MonoBehaviour
         isGameActive = false;
         // Setup countdown clock
         timeElapsed = 0;
-        isTimerActive = true;
+        isGamePaused = false;
         isGameStarted = false;
         isGameEnded = false;
         isEndDialogShown = false;
@@ -67,13 +67,13 @@ public class GameProgressControl : MonoBehaviour
 
     private void Update()
     {
-        isGameActive = isGameStarted && !isGameEnded;
+        isGameActive = isGameStarted && !(isGamePaused || isGameEnded);
         if (!isGameActive)
         {
             return;
         }
 
-        if (isTimerActive)
+        if (!isGamePaused)
         {
             timeElapsed += Time.deltaTime * SimulationSpeedControl.GetSimulationSpeed();
         }

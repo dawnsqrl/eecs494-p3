@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2285958350946090231}
   - component: {fileID: 7694564767073642411}
+  - component: {fileID: 5388264984316473798}
   m_Layer: 0
   m_Name: Defence
   m_TagString: Untagged
@@ -84,3 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5388264984316473798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3255566222332663551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa819d73ce977248a041058636e189b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

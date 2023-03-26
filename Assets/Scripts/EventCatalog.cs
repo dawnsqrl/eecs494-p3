@@ -139,6 +139,32 @@ public class DisplayBannerEvent
     }
 }
 
+public class DisplayHintEvent
+{
+    public readonly string text;
+    public readonly float height; // one line = 100, two lines = 160
+
+    public DisplayHintEvent(string _text, float _height = 100)
+    {
+        text = _text;
+        height = _height;
+    }
+}
+
+public class UpdateHintEvent
+{
+    public readonly string text;
+
+    public UpdateHintEvent(string _text)
+    {
+        text = _text;
+    }
+}
+
+public class DismissHintEvent
+{
+}
+
 public class ToggleDemoEvent
 {
 }

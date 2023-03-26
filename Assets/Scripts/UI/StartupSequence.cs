@@ -14,7 +14,8 @@ public class StartupSequence : MonoBehaviour
     private void Awake()
     {
         startDialog = new DisplayDialogEvent(
-            "Welcome to Mycelium Demo!", "Make your choice.",
+            "BIOLOGY 452\nField Ecology of Snail-Fungus Interaction",
+            "What would you like to try?",
             new Dictionary<string, Tuple<UnityAction, bool>>()
             {
                 {
@@ -28,7 +29,7 @@ public class StartupSequence : MonoBehaviour
                 //     )
                 // },
                 {
-                    "Tutorial", new Tuple<UnityAction, bool>(
+                    "Introduction", new Tuple<UnityAction, bool>(
                         () => EventBus.Publish(new StartBuilderTutorialEvent()), true
                     )
                 }

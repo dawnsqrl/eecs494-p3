@@ -8,19 +8,22 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private GameObject gamePrefab;
     [SerializeField] private Texture2D buildingTexture;
     [SerializeField] private GameObject RTScontroller, SelectedArea;
+    [SerializeField] private bool isGrowthSource;
 
     private Transform parentAfterDrag;
     private GameObject buildingController;
+    private GrowthDemo growthDemo;
     private bool startTutorial = false;
 
     private void Awake()
     {
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
+        buildingController = GameObject.Find("BuildingCanvas");
+        growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
     }
 
     private void Start()
     {
-        buildingController = GameObject.Find("BuildingCanvas");
         // buildingTexture.Reinitialize(100, 100);
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         // temp_building = Instantiate(gameMapPrefab, new Vector3(100.0f, 100.0f, -2.0f), Quaternion.identity);
@@ -38,9 +41,9 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
-        Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        // temp_building.transform.localScale = new Vector2(0.3f, 0.3f);
-        // temp_building.transform.position = new Vector3(Worldpos.x, Worldpos.y, -2.0f);
+        //     Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        //     // temp_building.transform.localScale = new Vector2(0.3f, 0.3f);
+        //     // temp_building.transform.position = new Vector3(Worldpos.x, Worldpos.y, -2.0f);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -61,6 +64,11 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             //growthDemo.Position2GroundManager(pos).SetGrowthed();
 
             buildingController.GetComponent<BuildingController>().register_building(pos, new_building);
+            if (isGrowthSource)
+            {
+                growthDemo.Position2GroundManager(pos).SetGrowthed();
+                growthDemo.AddToEdge(pos);
+            }
             //}
 
             EventBus.Publish(new BuildingEndDragEvent());

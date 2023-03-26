@@ -7,13 +7,14 @@ public class SpellCooldown : MonoBehaviour
     [SerializeField] private Image imageCooldown;
 
     [SerializeField] private TMP_Text textCooldown;
-    [SerializeField] private int buildingType; //1 -> resource, 2 -> citizen, 3 -> defence
+
+    [SerializeField] private int buildingType;
     //[SerializeField] private Image imageEdge;
 
     //variable for looking after the cooldown
     private bool isCoolDown = false;
-    [SerializeField] private float cooldownTime = 5.0f;
-    private float cooldownTimer = 0.0f;
+    [SerializeField] private float cooldownTime = 5;
+    private float cooldownTimer = 0;
 
     private float temp_cool_down_time;
 
@@ -29,24 +30,35 @@ public class SpellCooldown : MonoBehaviour
     {
         textCooldown.gameObject.SetActive(false);
         //imageEdge.gameObject.SetActive(false);
-        imageCooldown.fillAmount = 0.0f;
+        imageCooldown.fillAmount = 0;
 
         temp_cool_down_time = cooldownTime;
-        
     }
 
     private void Update()
     {
-        if(GameProgressControl.isGameActive)
+        if (GameProgressControl.isGameActive)
         {
             if (start)
             {
-                if (buildingType == 1)
-                    temp_cool_down_time = 4.0f / 500.0f * (float)vitality + 18.0f / 5.0f; // 300 -> 6, 800 -> 10
-                else if (buildingType == 2)
-                    temp_cool_down_time = -15.0f / 900.0f * (float)vitality + 65.0f / 3.0f; // 100 -> 20, 1000 -> 5
-                else
-                    temp_cool_down_time = 99.0f;
+                switch (buildingType)
+                {
+                    case 0: // spread; 200 -> 25, 1000 -> 15
+                        temp_cool_down_time = -10f / 800 * vitality + 55f / 2;
+                        break;
+                    case 1: // resource; 300 -> 6, 800 -> 10
+                        temp_cool_down_time = 4f / 500 * vitality + 18f / 5;
+                        break;
+                    case 2: // citizen; 100 -> 20, 1000 -> 5
+                        temp_cool_down_time = -15f / 900 * vitality + 65f / 3;
+                        break;
+                    case 3: // defence
+                        temp_cool_down_time = 60;
+                        break;
+                    default:
+                        temp_cool_down_time = 1;
+                        break;
+                }
 
                 cooldownTime = temp_cool_down_time;
                 imageCooldown.gameObject.SetActive(true);
@@ -59,7 +71,6 @@ public class SpellCooldown : MonoBehaviour
                 ApplyCooldown();
             }
         }
-        
     }
 
     void ApplyCooldown()
@@ -67,7 +78,7 @@ public class SpellCooldown : MonoBehaviour
         if ((buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200))
             return;
         cooldownTimer -= SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime;
-        if (cooldownTimer < 0.0f)
+        if (cooldownTimer < 0)
         {
             if ((buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200))
                 return;
@@ -75,7 +86,7 @@ public class SpellCooldown : MonoBehaviour
             isCoolDown = false;
             textCooldown.gameObject.SetActive(false);
             //imageEdge.gameObject.SetActive(false);
-            imageCooldown.fillAmount = 0.0f;
+            imageCooldown.fillAmount = 0;
             imageCooldown.gameObject.SetActive(false);
         }
         else
@@ -85,7 +96,7 @@ public class SpellCooldown : MonoBehaviour
             textCooldown.text = Mathf.RoundToInt(cooldownTimer).ToString();
             imageCooldown.fillAmount = cooldownTimer / cooldownTime;
 
-            //imageEdge.transform.localEulerAngles = new Vector3(0, 0, 360.0f * (cooldownTimer / cooldownTime));
+            //imageEdge.transform.localEulerAngles = new Vector3(0, 0, 360 * (cooldownTimer / cooldownTime));
         }
     }
 
@@ -101,7 +112,7 @@ public class SpellCooldown : MonoBehaviour
             textCooldown.gameObject.SetActive(true);
             cooldownTimer = cooldownTime;
             textCooldown.text = Mathf.RoundToInt(cooldownTimer).ToString();
-            imageCooldown.fillAmount = 1.0f;
+            imageCooldown.fillAmount = 1;
 
             //imageEdge.gameObject.SetActive(true);
             return true;

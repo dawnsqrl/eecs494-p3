@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class VitalityController : MonoBehaviour
@@ -21,15 +20,10 @@ public class VitalityController : MonoBehaviour
     {
         EventBus.Publish(new ModifyVitalityEvent(init_vitality));
         vitality_increase = init_vitality_increase;
-        StartCoroutine(vitality_change());
+        StartCoroutine(VitalityChange());
     }
 
-    private void Update()
-    {
-        
-    }
-
-    IEnumerator vitality_change()
+    private IEnumerator VitalityChange()
     {
         while (true)
         {
@@ -62,11 +56,15 @@ public class VitalityController : MonoBehaviour
 
     public void increaseVitality(int amount)
     {
-        EventBus.Publish(new ModifyVitalityEvent(vitality + amount));
+        EventBus.Publish(new ModifyVitalityEvent(
+            Mathf.Clamp(vitality + amount, 0, max_vitality)
+        ));
     }
 
     public void decreaseVitality(int amount)
     {
-        EventBus.Publish(new ModifyVitalityEvent(vitality - amount));
+        EventBus.Publish(new ModifyVitalityEvent(
+            Mathf.Clamp(vitality - amount, 0, max_vitality)
+        ));
     }
 }
