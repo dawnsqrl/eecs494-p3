@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BasecarController : MonoBehaviour
 {
@@ -47,21 +48,20 @@ public class BasecarController : MonoBehaviour
             _animator.SetBool("is_dead", true);
             return;
         }
-
+        
         if (GameProgressControl.isGameActive && !isDialogBlocking)
         {
             // Move the player in the direction of the input
             direction = playerActions.MoveBaseCar.ReadValue<Vector2>();
-            if (on_wall && direction == forwardDirection)
+            if (on_wall && (direction.x * forwardDirection.x > 0 || direction.y * forwardDirection.y > 0))
             {
                 return;
             }
-
             _animator.SetFloat("dir_x", direction.x);
             transform.position += direction.normalized * (
                 speed * SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime
             );
-
+            
             // _rigidbody.AddForce(direction.y * 5 * transform.forward);
             // _rigidbody.AddForce(direction.x * 5 * transform.right);
 

@@ -9,11 +9,18 @@ public class GrassTrigger : MonoBehaviour
     private Transform _audioListenerTransform;
     private AudioClip _grassSuound;
     // Start is called before the first frame update
+    [SerializeField] private SpriteRenderer _spriteRenderer_mask;
+    [SerializeField] private SpriteRenderer _spriteRenderer_trans;
     void Start()
     {
         _animator = transform.Find("Height").GetComponent<Animator>();
         _grassSuound = Resources.Load<AudioClip>("Sound/grass");
         _audioListenerTransform = GameObject.Find("AudioListener").transform;
+        int id = UnityEngine.Random.Range(1, 4);
+        Sprite grass_sprite = Resources.Load<Sprite>("Sprites/Theme/GrassHide/GrassHide" + id.ToString());
+        _spriteRenderer_mask.sprite = grass_sprite;
+        _spriteRenderer_trans.sprite = grass_sprite;
+
     }
 
     private void OnTriggerEnter(Collider other)
