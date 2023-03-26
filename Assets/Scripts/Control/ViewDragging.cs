@@ -22,6 +22,14 @@ public class ViewDragging : MonoBehaviour
 
     Vector3 startDrag;
 
+    [SerializeField]
+    private float zoomMin = 0.5f;
+    [SerializeField]
+    private float zoomMax = 10.0f;
+
+    // Speed of zooming
+    private float zoomSpeed = 1.0f;
+
     private void Awake()
     {
         // set camera init position
@@ -39,13 +47,30 @@ public class ViewDragging : MonoBehaviour
         builderCam = GetComponent<Camera>();
     }
 
+    private void Zoom() {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        // If the scroll value is not zero, adjust the camera size
+        if (scroll != 0.0f)
+        {
+            // Get the current camera size
+            float size = GetComponent<Camera>().orthographicSize;
+
+            // Adjust the zoom based on the scroll value and speed
+            float zoomDelta = scroll * zoomSpeed;
+            size = Mathf.Clamp(size - zoomDelta, zoomMin, zoomMax);
+
+            // Set the camera size to the new value
+            GetComponent<Camera>().orthographicSize = size;
+        }
+    }
 
     private void Update()
     {
         if (isDraggingEnabled)
         {
             DragCamera();
-
+            Zoom();
             // UpdateCameraPosition();
             // CheckMouseAtScreenEdge();
             UpdateCameraPosition();

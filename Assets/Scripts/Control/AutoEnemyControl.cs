@@ -12,7 +12,7 @@ public class AutoEnemyControl : MonoBehaviour
     public static List<GameObject> autoEnemies;
     private BasecarController _basecarController;
 
-    public TextMeshProUGUI maxUnitDisplay;
+    //public TextMeshProUGUI maxUnitDisplay;
     // Start is called before the first frame update
     void Start()
     {
