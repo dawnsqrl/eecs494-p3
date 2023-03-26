@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 5698291531932608116}
   - component: {fileID: 464632805901792628}
   - component: {fileID: 7166689666919232521}
+  - component: {fileID: 716249461}
   m_Layer: 0
   m_Name: BaseCarCollider
   m_TagString: BaseCar
@@ -200,6 +201,18 @@ MonoBehaviour:
   enemyTag: Builder
   healthBar: {fileID: 1134652527490715516}
   _spriteRenderer: {fileID: 5260701631150855687}
+--- !u!114 &716249461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516242957097626159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116d9ccd1dd344a18ad030a4932b3239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8492907579301605845
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +226,7 @@ GameObject:
   - component: {fileID: 8492907579301605844}
   - component: {fileID: 5082076586482587295}
   - component: {fileID: 9194102917017396560}
+  - component: {fileID: 495595451}
   m_Layer: 0
   m_Name: BaseCar
   m_TagString: BaseCar
@@ -305,11 +319,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isChosen: 0
   speed: 4
+  _animator: {fileID: 4047923559195802300}
+  _snailHealth: {fileID: 7166689666919232521}
   direction: {x: 0, y: 0, z: 0}
   forwardDirection: {x: 0, y: 0, z: 0}
   on_wall: 0
-  _animator: {fileID: 4047923559195802300}
-  _snailHealth: {fileID: 7166689666919232521}
 --- !u!114 &5082076586482587295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +351,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBuilder: 0
+--- !u!54 &495595451
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492907579301605845}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0
 --- !u!1001 &706331794466573149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -391,6 +421,10 @@ PrefabInstance:
     - target: {fileID: 5347742314661802365, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347742314661802366, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
+      propertyPath: orthographic size
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}

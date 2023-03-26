@@ -9336,7 +9336,7 @@ GameObject:
   - component: {fileID: 5960747119644205753}
   - component: {fileID: 5462428839243233193}
   m_Layer: 0
-  m_Name: 3DCitizenTriggerManager
+  m_Name: 3DMushroomTriggerManager
   m_TagString: Builder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9582,20 +9582,6 @@ Transform:
   m_Father: {fileID: 1683583151}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7143367620476751839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8292571836690906597}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adc350d1c3d4b427eacb889b2f91d2a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCamera: {fileID: 819354647}
-  isChosen: 0
 --- !u!4 &7642869704656369130
 Transform:
   m_ObjectHideFlags: 0
@@ -9638,15 +9624,27 @@ GameObject:
   m_Component:
   - component: {fileID: 6335837167366293550}
   - component: {fileID: 6240987117697665707}
-  - component: {fileID: 7143367620476751839}
   - component: {fileID: 2882440404093814539}
+  - component: {fileID: 8292571836690906598}
   m_Layer: 0
   m_Name: Mushroom_fake
-  m_TagString: Mushroom
+  m_TagString: Mushroom_for_tutorial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8292571836690906598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8292571836690906597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d465b58fdd3486f878201645346e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8304448894578436627
 PrefabInstance:
   m_ObjectHideFlags: 0
