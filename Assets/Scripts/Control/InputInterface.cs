@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 public class InputInterface : MonoBehaviour
 {
@@ -32,30 +28,30 @@ public class InputInterface : MonoBehaviour
             EventBus.Publish(new TriggerPauseEvent());
         }
 
-        if (playerActions.GenerateDialog.WasPressedThisFrame())
-        {
-            EventBus.Publish(new DisplayDialogEvent(
-                "Chirp", "Something happened!",
-                new Dictionary<string, Tuple<UnityAction, bool>>()
-                {
-                    { "What?", new Tuple<UnityAction, bool>(() => print("Clicked what"), true) },
-                    { "How?", new Tuple<UnityAction, bool>(() => print("Clicked how"), true) }
-                }
-            ));
-        }
+        // if (playerActions.GenerateDialog.WasPressedThisFrame())
+        // {
+        //     EventBus.Publish(new DisplayDialogEvent(
+        //         "Chirp", "Something happened!",
+        //         new Dictionary<string, Tuple<UnityAction, bool>>()
+        //         {
+        //             { "What?", new Tuple<UnityAction, bool>(() => print("Clicked what"), true) },
+        //             { "How?", new Tuple<UnityAction, bool>(() => print("Clicked how"), true) }
+        //         }
+        //     ));
+        // }
 
-        if (playerActions.GeneratePopup.WasPressedThisFrame())
-        {
-            EventBus.Publish(new DisplayPopupEvent(
-                false, Mouse.current.position.ReadValue(), 1,
-                Color.cyan, new Dictionary<string, UnityAction>()
-                {
-                    { "Sprites/pngegg", () => print("Clicked 1") },
-                    { "", () => print("Clicked 2") },
-                    { "Sprites/null", () => print("Clicked 3") }
-                }
-            ));
-        }
+        // if (playerActions.GeneratePopup.WasPressedThisFrame())
+        // {
+        //     EventBus.Publish(new DisplayPopupEvent(
+        //         false, Mouse.current.position.ReadValue(), 1,
+        //         Color.cyan, new Dictionary<string, UnityAction>()
+        //         {
+        //             { "Sprites/pngegg", () => print("Clicked 1") },
+        //             { "", () => print("Clicked 2") },
+        //             { "Sprites/null", () => print("Clicked 3") }
+        //         }
+        //     ));
+        // }
 
         // if (playerActions.GenerateBanner.WasPressedThisFrame())
         // {
