@@ -65,15 +65,15 @@ public class InputInterface : MonoBehaviour
         //     ));
         // }
 
-        if (playerActions.IncreaseSimulationSpeed.WasPressedThisFrame())
-        {
-            EventBus.Publish(new ScrollSimulationSpeedEvent(true));
-        }
+        // if (playerActions.IncreaseSimulationSpeed.WasPressedThisFrame())
+        // {
+        //     EventBus.Publish(new ScrollSimulationSpeedEvent(true));
+        // }
 
-        if (playerActions.DecreaseSimulationSpeed.WasPressedThisFrame())
-        {
-            EventBus.Publish(new ScrollSimulationSpeedEvent(false));
-        }
+        // if (playerActions.DecreaseSimulationSpeed.WasPressedThisFrame())
+        // {
+        //     EventBus.Publish(new ScrollSimulationSpeedEvent(false));
+        // }
 
         if (playerActions.ToggleDemo.WasPressedThisFrame())
         {

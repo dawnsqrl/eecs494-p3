@@ -1,10 +1,11 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class BasecarController : MonoBehaviour
 {
     [SerializeField] private bool isChosen = false;
     [SerializeField] private float speed = 4f;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private HitHealth _snailHealth;
 
     private Controls controls;
     private Controls.PlayerActions playerActions;
@@ -13,8 +14,7 @@ public class BasecarController : MonoBehaviour
     public Vector3 forwardDirection;
     public bool on_wall;
     private Rigidbody _rigidbody;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private HitHealth _snailHealth;
+
     private void Awake()
     {
         EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
@@ -47,23 +47,28 @@ public class BasecarController : MonoBehaviour
             _animator.SetBool("is_dead", true);
             return;
         }
-        // Move the player in the direction of the input
-        direction = playerActions.MoveBaseCar.ReadValue<Vector2>();
-        if (on_wall && direction == forwardDirection)
-        {
-            return;
-        }
-        _animator.SetFloat("dir_x", direction.x);
-        transform.position += direction.normalized * (
-            speed * SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime
-        );
-        
-        // _rigidbody.AddForce(direction.y * 5 * transform.forward);
-        // _rigidbody.AddForce(direction.x * 5 * transform.right);
 
-        if (!on_wall && direction != Vector3.zero)
+        if (GameProgressControl.isGameActive && !isDialogBlocking)
         {
-            forwardDirection = direction;
+            // Move the player in the direction of the input
+            direction = playerActions.MoveBaseCar.ReadValue<Vector2>();
+            if (on_wall && direction == forwardDirection)
+            {
+                return;
+            }
+
+            _animator.SetFloat("dir_x", direction.x);
+            transform.position += direction.normalized * (
+                speed * SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime
+            );
+
+            // _rigidbody.AddForce(direction.y * 5 * transform.forward);
+            // _rigidbody.AddForce(direction.x * 5 * transform.right);
+
+            if (!on_wall && direction != Vector3.zero)
+            {
+                forwardDirection = direction;
+            }
         }
 
         // growth
