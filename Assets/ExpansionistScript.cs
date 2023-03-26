@@ -16,7 +16,15 @@ public class ExpansionistScript : MonoBehaviour
     void Update()
     {
         GameObject tile = GridManager._tiles[GetSnailPos(transform.position.x, transform.position.y)];
-        tile.GetComponentInChildren<Tile>().SetSnailMucus();
+        if (tile)
+        {
+            GroundTileManager _groundTileManager = tile.GetComponentInChildren<GroundTileManager>();
+            if (!_groundTileManager.mucused)
+            {
+                _groundTileManager.SetMucus();
+            }
+        }
+        
     }
 
     Vector2 GetSnailPos(float x, float y) {

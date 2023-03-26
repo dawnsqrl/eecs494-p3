@@ -8,6 +8,7 @@ using Random = System.Random;
 public class GroundTileManager : MonoBehaviour
 {
     [SerializeField] public bool growthed = false;
+    [SerializeField] public bool mucused = false;
 
     private bool blank_tile = false;
     private int blank_rate = 2;
@@ -69,6 +70,18 @@ public class GroundTileManager : MonoBehaviour
             small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");
         }
         growthed = true;
+    }
+    
+    public void SetMucus()
+    {
+        GameObject mucus = transform.parent.gameObject.transform.Find("Mucus").gameObject;
+        mucus.SetActive(true);
+        mucus.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-10, 10));
+        foreach (Transform small_hyphae in mucus.transform)
+        {
+            small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");
+        }
+        mucused = true;
     }
 
     public bool CheckGrowthed()
