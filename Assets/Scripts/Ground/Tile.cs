@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class Tile : MonoBehaviour
 {
-    [SerializeField] private Color _baseColor, _offsetColor;
+    [SerializeField] private Color _baseColor, _offsetColor, _snailMucus;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
 
@@ -64,6 +64,9 @@ public class Tile : MonoBehaviour
     public void SetColor(Color _color)
     {
         _renderer.color = _color;
+    }
+    public void SetSnailMucus() {
+        _renderer.color = _snailMucus;
     }
 
 }

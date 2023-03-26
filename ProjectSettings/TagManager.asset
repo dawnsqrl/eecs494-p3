@@ -13,6 +13,7 @@ TagManager:
   - Beast
   - Wall
   - Mushroom_for_tutorial
+  - GrassHide
   layers:
   - Default
   - TransparentFX

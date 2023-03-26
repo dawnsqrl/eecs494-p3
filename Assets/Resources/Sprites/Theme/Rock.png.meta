@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f85574cd7dbfa4b1dbafc3047cd69355
+guid: f00a6161a949647c6ae64ea01571669b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grass_0
+      name: Rock_0
       rect:
         serializedVersion: 2
-        x: 47
-        y: 966
-        width: 751
-        height: 603
+        x: 53
+        y: 1716
+        width: 759
+        height: 505
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a926d544f4d7c462b91a0d8830cbefaf
-      internalID: -75463815
+      spriteID: 6bf50f8a3456744d98253a779c60114b
+      internalID: -1963246119
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_1
+      name: Rock_1
       rect:
         serializedVersion: 2
-        x: 1016
-        y: 1020
-        width: 687
-        height: 377
+        x: 957
+        y: 326
+        width: 1961
+        height: 1785
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a490966b19d534758807cbda4a39280d
-      internalID: 429123607
+      spriteID: d39fa41e16d5c4153812231f9f460d60
+      internalID: -1863516122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grass_2
+      name: Rock_2
       rect:
         serializedVersion: 2
-        x: 167
-        y: 236
-        width: 526
-        height: 438
+        x: 3040
+        y: 1653
+        width: 701
+        height: 662
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,50 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ac7a286569b44c6e98e825773c35977
-      internalID: 1790846686
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: grass_3
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 246
-        width: 558
-        height: 347
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98e91cbc7fe7446b2a4013474e1968b2
-      internalID: -1326085572
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: grass_4
-      rect:
-        serializedVersion: 2
-        x: 1643
-        y: 252
-        width: 430
-        height: 311
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 02fa07cf97cdd4eb494d8cbd7ea90630
-      internalID: -1569796934
+      spriteID: b628cd816eff64435a923dafcf6266d6
+      internalID: 247609068
       vertices: []
       indices: 
       edges: []
@@ -232,11 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      grass_0: -75463815
-      grass_3: -1326085572
-      grass_2: 1790846686
-      grass_4: -1569796934
-      grass_1: 429123607
+      Rock_2: 247609068
+      Rock_0: -1963246119
+      Rock_1: -1863516122
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

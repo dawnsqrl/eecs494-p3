@@ -42,18 +42,18 @@ public class AutoAttack_citizen : MonoBehaviour
             }
         }
         
-        if ( WildBeastControl.beastList.Count > 0)
-        {
-            foreach (GameObject opponent in  WildBeastControl.beastList)
-            {
-                if ((opponent.transform.position - transform.position).magnitude < range)
-                {
-                    movetoPosition = opponent.transform.position;
-                    onAssult = true;
-                    break;
-                }
-            }
-        }
+        // if ( WildBeastControl.beastList.Count > 0)
+        // {
+        //     foreach (GameObject opponent in  WildBeastControl.beastList)
+        //     {
+        //         if ((opponent.transform.position - transform.position).magnitude < range)
+        //         {
+        //             movetoPosition = opponent.transform.position;
+        //             onAssult = true;
+        //             break;
+        //         }
+        //     }
+        // }
 
         if (!onAssult)
         {
