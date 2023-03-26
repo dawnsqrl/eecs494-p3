@@ -1,8 +1,38 @@
-[1] Player feels that existing map navigation is overly inefficient
-	Implemented map dragging control (with middle mouse button).
+[1] Mushroom and snail involve an unbalanced level of decision-making during gameplay (snail has too little special abilities)
+-	Added slime trail for snail, which could prevent mycelium expansion and kill mobile mushroom units that come in contact with it.
+-	Snail now travels faster on existing slime trail.
+-	Snail is now able to consume mycelium, both as an offensive strategy and as a way to obtain more energy to accelerate its movement.
 
-[2] Player thinks that a single-player RTS game is uninteresting, even if the opponent is an AI
-	Remodeled the game into an asymmetric two-player RTS game, where the only game-end criteria is either side being destroyed.
+[2] Building buttons are inconsistent with most other UI elements in art style and not visually responsive
+-	Simplified texture and unified surface material for building buttons.
+-	Added attribute tags that appear when hovering mouse over buttons.
+-	Mouse cursor texture is now replaced with the corresponding texture when dragging a building onto the map.
 
-[3] Player wants a minimap for better orientation
-	Implemented minimap for both displays (builder and enemy).
+[3] Tutorial is purely textual and uninformative for new players
+-	Removed all textual description about the game and control schemes.
+-	Designed new in-game interactive tutorial sequences for both mushroom and snail that introduce features in a step-by-step fashion.
+
+[4] Appearances of map elements and players are primitive, strange and inconsistent
+-	Recreated a large number of sprites in a consistent hand-drawn cartoon style.
+-	Added animation for character movement, taking damage, mycelium growth and grass patch entry / exit.
+
+[5] Theming of the game is unclear and does not make any sense based on actual gameplay
+-	Titled the game "BIOLOGY 452: Field Ecology of Snail-Fungus Interaction".
+-	Consolidated theme context for through game title and sprite design: the competition of mushroom and snail is controlled and observed by a course student, which can be known from notebook pages that appear in-game.
+
+[6] Many incomplete features do not directly contribute to gameplay, sometimes even complicating it
+-	Removed fog.
+-	Each "soldier factory" is now associated with only one mobile unit to simplify navigation and balance (reduce) mushroom strengths.
+-	Removed spawning of mobile snail units.
+
+[7] Map environment is barren and uninteresting
+-	Added grass patches that can be hiding spots for the snail.
+-	Added rocky boundary to prevent wandering off the map.
+-	Added transparent grid outline to ground tiles to assist with building placement.
+-	Added neutrally aggressive creatures that spawn naturally on the map.
+
+[8] Game ends too quickly and cheat-like strategies exist
+-	Removed unlimited spawning of mobile mushroom units. They can now only be spawned with "soldier factory" building.
+-	Cooldown time of mushroom buildings is now dynamically normalized based on current vitality value.
+-	Adjusted health of mushroom and snail.
+-	Adjusted snail's movement speed.

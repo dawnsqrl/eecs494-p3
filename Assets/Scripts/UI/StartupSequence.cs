@@ -29,7 +29,7 @@ public class StartupSequence : MonoBehaviour
                 //     )
                 // },
                 {
-                    "Introduction", new Tuple<UnityAction, bool>(
+                    "Guide", new Tuple<UnityAction, bool>(
                         () => EventBus.Publish(new StartBuilderTutorialEvent()), true
                     )
                 }
