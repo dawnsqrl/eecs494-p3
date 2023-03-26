@@ -13,10 +13,12 @@ public class BuilderTutorialController : MonoBehaviour
     [SerializeField] private GridManager _gridManager;
     [SerializeField] private SpellCooldown cool1, cool2, cool3;
     [SerializeField] private GameObject fog1, fog2, fog3;
+    [SerializeField] private GameObject citizenPrefab, snailPrefab;
 
     TMPro.TextMeshProUGUI message;
     bool first_enter = true, clicked = false, mushroomStep = false, myceliumStep = false;
     bool resourceStep = false, building1Step = false, otherBuildingStep = false, citizenStep = false;
+    bool movedCitizen = false, temp_first = true;
     int init_x, init_y;
     private int vitality;
 
@@ -41,6 +43,12 @@ public class BuilderTutorialController : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame && startTutorial)
         {
             clicked = true;
+        }
+
+        if (Mouse.current.rightButton.wasPressedThisFrame && citizenStep)
+        {
+            movedCitizen = true;
+            citizenStep = false;
         }
 
         if (startTutorial && first_enter)
@@ -119,6 +127,23 @@ public class BuilderTutorialController : MonoBehaviour
         if(citizenStep && otherBuildingStep)
         {
             message.text = "Left click and drag to select citizen. Right click to move them.";
+            if (temp_first)
+            {
+                temp_first = false;
+                Instantiate(citizenPrefab, new Vector3(init_x - 2.0f + 50.0f, init_y - 2.0f + 50.0f, -2.0f), Quaternion.identity);
+                Instantiate(citizenPrefab, new Vector3(init_x - 2.0f + 50.0f, init_y - 1.0f + 50.0f, -2.0f), Quaternion.identity);
+            }
+            
+        }
+
+        if (movedCitizen)
+        {
+            message.text = "The snail is coming, control your citizens to attack it!";
+            if (!temp_first)
+            {
+                temp_first = true;
+                Instantiate(snailPrefab, new Vector3(init_x - 6.0f + 50.0f, init_y + 50.0f, -2.0f), Quaternion.identity);
+            }
         }
     }
 
@@ -133,7 +158,7 @@ public class BuilderTutorialController : MonoBehaviour
 
     IEnumerator timer()
     {
-        yield return new WaitForSeconds(15.0f);
+        yield return new WaitForSeconds(13.0f);
         citizenStep = true;
     }
 
