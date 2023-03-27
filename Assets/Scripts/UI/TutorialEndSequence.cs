@@ -33,25 +33,25 @@ public class TutorialEndSequence : MonoBehaviour
             isEndDialogShown = true;
             EventBus.Publish(new EndAllTutorialEvent());
             EventBus.Publish(new DisplayDialogEvent(
-                "Tutorial ended!", "Make your choice.",
+                "Tutorial completed!", "Make your choice.",
                 new Dictionary<string, Tuple<UnityAction, bool>>()
                 {
                     {
                         "Return", new Tuple<UnityAction, bool>(
                             () => SceneManager.LoadScene(SceneManager.GetActiveScene().name), true
                         )
-                    },
-                    {
-                        "Start", new Tuple<UnityAction, bool>(
-                            () =>
-                            {
-                                EventBus.Publish(new DismissHintEvent()); // TODO
-                                EventBus.Publish(new GameStartEvent());
-                                builderTutorialArea.SetActive(false);
-                                mainCamera.transform.position = new Vector3(7.8f, 8.8f, -10);
-                            }, true
-                        )
                     }
+                    // {
+                    //     "Start", new Tuple<UnityAction, bool>(
+                    //         () =>
+                    //         {
+                    //             EventBus.Publish(new DismissHintEvent()); // TODO
+                    //             EventBus.Publish(new GameStartEvent());
+                    //             builderTutorialArea.SetActive(false);
+                    //             mainCamera.transform.position = new Vector3(7.8f, 8.8f, -10);
+                    //         }, true
+                    //     )
+                    // }
                 }
             ));
         }
