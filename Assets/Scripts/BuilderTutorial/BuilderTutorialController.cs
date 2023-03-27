@@ -24,7 +24,7 @@ public class BuilderTutorialController : MonoBehaviour
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
         EventBus.Subscribe<BuildingEndDragEvent>(_ => dragBuilding = true);
         EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
-        EventBus.Subscribe < BuilderTutorialSnailDeadEvent>(_ => endTutorial = true);
+        EventBus.Subscribe <BuilderTutorialSnailDeadEvent>(_ => endTutorial = true);
     }
 
     // Start is called before the first frame update
@@ -159,7 +159,7 @@ public class BuilderTutorialController : MonoBehaviour
             if (!temp_first)
             {
                 temp_first = true;
-                Instantiate(snailPrefab, new Vector3(init_x - 6.0f + 70.0f, init_y + 70.0f, -2.0f),
+                Instantiate(snailPrefab, new Vector3(init_x - 4.0f + 70.0f, init_y + 70.0f, -2.0f),
                     Quaternion.identity);
             }
         }
@@ -177,6 +177,7 @@ public class BuilderTutorialController : MonoBehaviour
             fog1.SetActive(true);
             fog2.SetActive(true);
             fog3.SetActive(true);
+            print("here");
             EventBus.Publish(new EndBuilderTutorialEvent());
         }
     }
@@ -210,5 +211,10 @@ public class BuilderTutorialController : MonoBehaviour
     public GameObject Position2Tile(int x, int y)
     {
         return _gridManager.GetTileAtPosition(new Vector2(x, y));
+    }
+
+    public bool getStart()
+    {
+        return startTutorial;
     }
 }
