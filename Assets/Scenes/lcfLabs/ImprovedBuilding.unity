@@ -8129,10 +8129,6 @@ PrefabInstance:
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
-    - target: {fileID: 6738864931833417201, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8304448893459253556, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: m_Name
       value: BuildingCanvas
@@ -8225,10 +8221,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8304448894352287993, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -1764191498, guid: 96d3f6ea355604855a01e19e91937288, type: 3}
     - target: {fileID: 8304448894352287994, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: gridManager
       value: 
@@ -8241,10 +8233,6 @@ PrefabInstance:
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
-    - target: {fileID: 8304448894548295313, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -6686159, guid: 96d3f6ea355604855a01e19e91937288, type: 3}
     - target: {fileID: 8304448894548295314, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: gridManager
       value: 
@@ -8257,10 +8245,6 @@ PrefabInstance:
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
-    - target: {fileID: 8304448894595588510, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2053704601, guid: 96d3f6ea355604855a01e19e91937288, type: 3}
     - target: {fileID: 8304448894595588511, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: gridManager
       value: 

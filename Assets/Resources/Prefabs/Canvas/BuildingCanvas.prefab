@@ -94,6 +94,7 @@ MonoBehaviour:
   buildingTexture: {fileID: 2800000, guid: ccfb39b75f6614646b151fb813cd358f, type: 3}
   RTScontroller: {fileID: 0}
   SelectedArea: {fileID: 0}
+  gridManager: {fileID: 0}
   isGrowthSource: 1
 --- !u!1 &895403095113627028
 GameObject:
@@ -1103,7 +1104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7409565223783687576
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2395,7 +2396,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 82aa007ae6f0f1e4b8aba73d8c949c50, type: 3}
+  m_Sprite: {fileID: -1764191498, guid: 96d3f6ea355604855a01e19e91937288, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2422,6 +2423,7 @@ MonoBehaviour:
   buildingTexture: {fileID: 2800000, guid: a1e93cb88cfe7cd4db7f9b15a2484619, type: 3}
   RTScontroller: {fileID: 0}
   SelectedArea: {fileID: 0}
+  gridManager: {fileID: 0}
   isGrowthSource: 0
 --- !u!1 &8304448894426768990
 GameObject:
@@ -2528,7 +2530,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ee5b9dc1a7e26ef44820661b8b7104cc, type: 3}
+  m_Sprite: {fileID: -6686159, guid: 96d3f6ea355604855a01e19e91937288, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2555,6 +2557,7 @@ MonoBehaviour:
   buildingTexture: {fileID: 2800000, guid: 6d2c25e88e6fdbb47bb2e5a489ebb815, type: 3}
   RTScontroller: {fileID: 0}
   SelectedArea: {fileID: 0}
+  gridManager: {fileID: 0}
   isGrowthSource: 0
 --- !u!1 &8304448894595588505
 GameObject:
@@ -2623,7 +2626,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1604f085d4a388540aa1c37ffe3a509b, type: 3}
+  m_Sprite: {fileID: -2053704601, guid: 96d3f6ea355604855a01e19e91937288, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2650,6 +2653,7 @@ MonoBehaviour:
   buildingTexture: {fileID: 2800000, guid: 92d4bf3c456e33d4ca4503b792375997, type: 3}
   RTScontroller: {fileID: 0}
   SelectedArea: {fileID: 0}
+  gridManager: {fileID: 0}
   isGrowthSource: 0
 --- !u!1 &8304448894611282129
 GameObject:
