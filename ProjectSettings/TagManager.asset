@@ -16,6 +16,7 @@ TagManager:
   - GrassHide
   - Building
   - Mucus
+  - Hyphae
   layers:
   - Default
   - TransparentFX

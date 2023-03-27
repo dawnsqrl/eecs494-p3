@@ -19,6 +19,7 @@ public class BasecarController : MonoBehaviour
     private void Awake()
     {
         EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
+        EventBus.Subscribe<StartSnailTutorialEvent>(_ => StartTutorial());
         controls = new Controls();
         playerActions = controls.Player;
         forwardDirection = Vector3.zero;
@@ -48,7 +49,7 @@ public class BasecarController : MonoBehaviour
             return;
         }
 
-        if (GameProgressControl.isGameActive && !isDialogBlocking)
+        if ((is_tutorial || GameProgressControl.isGameActive) && !isDialogBlocking)
         {
             // Move the player in the direction of the input
             direction = playerActions.MoveBaseCar.ReadValue<Vector2>();
@@ -73,11 +74,11 @@ public class BasecarController : MonoBehaviour
             GameObject tile = null;
             if (is_tutorial)
             {
-                tile = CaveGridManager._tiles[GetSnailPos(transform.position.x, transform.position.y)];
+                tile = CaveGridManager._tiles[GetSnailPos(transform.position.x + 60, transform.position.y)];
             }
             else
             {
-                tile = GridManager._tiles[GetSnailPos(transform.position.x - forwardDirection.x, transform.position.y - forwardDirection.y)];
+                tile = GridManager._tiles[GetSnailPos(transform.position.x, transform.position.y)];
             }
             if (tile)
             {
@@ -102,5 +103,10 @@ public class BasecarController : MonoBehaviour
             y = 0;
         }
         return new Vector2(Mathf.RoundToInt(x), Mathf.RoundToInt(y));
+    }
+
+    private void StartTutorial()
+    {
+        is_tutorial = true;
     }
 }

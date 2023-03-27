@@ -14,8 +14,8 @@ public class StartupSequence : MonoBehaviour
     private void Awake()
     {
         startDialog = new DisplayDialogEvent(
-            "BIOLOGY 452\nField Ecology of Snail-Fungus Interaction",
-            "What would you like to try?",
+            "BIOLOGY 452",
+            "Field Ecology of Snail-Fungus Interaction",
             new Dictionary<string, Tuple<UnityAction, bool>>()
             {
                 {
@@ -30,7 +30,11 @@ public class StartupSequence : MonoBehaviour
                 // },
                 {
                     "Guide", new Tuple<UnityAction, bool>(
-                        () => EventBus.Publish(new StartBuilderTutorialEvent()), true
+                        () =>
+                        {
+                            EventBus.Publish(new StartBuilderTutorialEvent());
+                            EventBus.Publish(new StartSnailTutorialEvent());
+                        }, true
                     )
                 }
             }
