@@ -147,6 +147,7 @@ MonoBehaviour:
   enemyTag: BaseCar
   healthBar: {fileID: 5562868028843290851}
   _spriteRenderer: {fileID: 7694564767073642411}
+  time_eat_hyphae: 1
 --- !u!1001 &3161862660843811087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -217,6 +218,14 @@ PrefabInstance:
     - target: {fileID: 3376469131505980640, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246215403723214362, guid: efdbd088127f04d679fc99053485471e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324910828693318648, guid: efdbd088127f04d679fc99053485471e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7864977755556870637, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_LocalScale.x
