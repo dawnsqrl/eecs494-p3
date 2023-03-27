@@ -39,6 +39,10 @@ public class CaveGridManager : MonoBehaviour
             {
                 _groundTileManager.SetGrowthed();
             }
+            if (_groundTileManager.mucused)
+            {
+                _groundTileManager.SetMucus();
+            }
         }
     }
 

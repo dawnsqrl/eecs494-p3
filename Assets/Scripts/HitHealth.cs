@@ -26,6 +26,7 @@ public class HitHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag(enemyTag))
         {
+            Debug.Log("hit" + enemyTag);
             if (health > 0)
             {
                 canGetHit = false;
@@ -55,13 +56,14 @@ public class HitHealth : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Hyphae")) {
-    //        collisionTime = Time.time;
-    //        Debug.Log("hit hyphae");
-    //    }
-    //}
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.CompareTag(enemyTag))
+        {
+            Debug.Log("hit" + enemyTag);
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -73,7 +75,14 @@ public class HitHealth : MonoBehaviour
             }
         }
     }
-
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Hyphae")) {
+            if (Time.time - collisionTime > time_eat_hyphae) {
+                collision.gameObject.SetActive(false);
+            }
+        }
+    }
     private IEnumerator HitEffect()
     {
         _spriteRenderer.color = new Color32(0xFF, 0x00, 0x00, 0xFF);

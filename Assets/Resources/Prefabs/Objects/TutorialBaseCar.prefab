@@ -303,6 +303,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isChosen: 0
+  tutorialInitPos: {x: 0, y: 0, z: 0}
+  gameInitPos: {x: 0, y: 0, z: 0}
   speed: 4
   _animator: {fileID: 4047923559195802300}
   _snailHealth: {fileID: 7166689666919232521}
