@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class PauseControl : MonoBehaviour
 {
     private bool isPaused;
-    private bool isPauseEnabled;
+
+    // private bool isPauseEnabled;
     private bool isDialogBlocking;
 
     private void Awake()
@@ -19,16 +20,16 @@ public class PauseControl : MonoBehaviour
     private void Start()
     {
         isPaused = false;
-        isPauseEnabled = Display.displays.Length == 1;
+        // isPauseEnabled = Display.displays.Length == 1;
         isDialogBlocking = false;
     }
 
     private void _OnTriggerPause(TriggerPauseEvent _)
     {
-        if (!isPauseEnabled)
-        {
-            return;
-        }
+        // if (!isPauseEnabled)
+        // {
+        //     return;
+        // }
 
         if (!isPaused && GameProgressControl.isGameActive && !isDialogBlocking)
         {
