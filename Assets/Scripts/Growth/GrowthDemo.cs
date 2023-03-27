@@ -41,6 +41,13 @@ public class GrowthDemo : MonoBehaviour
         EventBus.Publish(new AssignInitGrowthPositionEvent(new Vector2(init_x, init_y)));
         edge_list.Add(new Vector2(init_x, init_y));
         edge_list.Add(new Vector2(init_x, init_y - 2));
+        edge_list.Add(new Vector2(init_x, init_y - 1));
+        edge_list.Add(new Vector2(init_x + 1, init_y));
+        edge_list.Add(new Vector2(init_x + 1, init_y - 1));
+        edge_list.Add(new Vector2(init_x + 1, init_y - 2));
+        edge_list.Add(new Vector2(init_x - 1, init_y));
+        edge_list.Add(new Vector2(init_x - 1, init_y - 1));
+        edge_list.Add(new Vector2(init_x - 1, init_y - 2));
     }
 
     //public void setAim(int x, int y)

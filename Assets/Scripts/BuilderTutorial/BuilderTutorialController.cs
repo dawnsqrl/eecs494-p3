@@ -45,13 +45,13 @@ public class BuilderTutorialController : MonoBehaviour
             clicked = true;
         }
 
-        if (Mouse.current.rightButton.wasPressedThisFrame && citizenStep)
+        if (Mouse.current.rightButton.wasPressedThisFrame && citizenStep && startTutorial)
         {
             movedCitizen = true;
             citizenStep = false;
         }
 
-        if (startTutorial && first_enter)
+        if (startTutorial && first_enter && startTutorial)
         {
             mushroomStep = true;
 
@@ -69,7 +69,7 @@ public class BuilderTutorialController : MonoBehaviour
             ));
         }
 
-        if (mushroomStep && clicked)
+        if (mushroomStep && clicked && startTutorial)
         {
             clicked = false;
             mushroomStep = false;
@@ -88,7 +88,7 @@ public class BuilderTutorialController : MonoBehaviour
             }
         }
 
-        if (myceliumStep && clicked)
+        if (myceliumStep && clicked && startTutorial)
         {
             clicked = false;
             resourceStep = true;
@@ -100,7 +100,7 @@ public class BuilderTutorialController : MonoBehaviour
             VitalityBar.SetActive(true);
         }
 
-        if (resourceStep && clicked)
+        if (resourceStep && clicked && startTutorial)
         {
             clicked = false;
             resourceStep = false;
@@ -114,7 +114,7 @@ public class BuilderTutorialController : MonoBehaviour
             fog1.SetActive(false);
         }
 
-        if (building1Step && dragBuilding)
+        if (building1Step && dragBuilding && startTutorial)
         {
             building1Step = false;
             otherBuildingStep = true;
@@ -134,7 +134,7 @@ public class BuilderTutorialController : MonoBehaviour
             fog3.SetActive(false);
         }
 
-        if (citizenStep && otherBuildingStep)
+        if (citizenStep && otherBuildingStep && startTutorial)
         {
             otherBuildingStep = false;
             EventBus.Publish(new UpdateHintEvent(
@@ -150,7 +150,7 @@ public class BuilderTutorialController : MonoBehaviour
             }
         }
 
-        if (movedCitizen)
+        if (movedCitizen && startTutorial)
         {
             movedCitizen = false;
             EventBus.Publish(new UpdateHintEvent(
@@ -164,7 +164,7 @@ public class BuilderTutorialController : MonoBehaviour
             }
         }
 
-        if (endTutorial)
+        if (endTutorial && startTutorial)
         {
             endTutorial = false;
             Building1.SetActive(true);

@@ -36,10 +36,11 @@ public class HitHealth : MonoBehaviour
             }
             if (health == 0)
             {
-                print("health 0");
                 EventBus.Publish(new BuilderTutorialSnailDeadEvent());
                 if (gameObject.tag == "Building")
+                {
                     Destroy(gameObject);
+                }  
                 else
                 {
                     Transform parent = transform.parent;
