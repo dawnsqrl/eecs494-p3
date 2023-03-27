@@ -1,7 +1,7 @@
 [1] Mushroom and snail involve an unbalanced level of decision-making during gameplay (snail has too little special abilities)
--	Added slime trail for snail, which could prevent mycelium expansion and kill mobile mushroom units that come in contact with it.
+-	Added slime trail for snail, which could prevent mycelium expansion and trap mobile mushroom units that walk onto it.
 -	Snail now travels faster on existing slime trail.
--	Snail is now able to consume mycelium, both as an offensive strategy and as a way to obtain more energy to accelerate its movement.
+-	Snail is now able to consume mycelium, which blocks its movement.
 
 [2] Building buttons are inconsistent with most other UI elements in art style and not visually responsive
 -	Simplified texture and unified surface material for building buttons.
@@ -29,7 +29,6 @@
 -	Added grass patches that can be hiding spots for the snail.
 -	Added rocky boundary to prevent wandering off the map.
 -	Added transparent grid outline to ground tiles to assist with building placement.
--	Added neutrally aggressive creatures that spawn naturally on the map.
 
 [8] Game ends too quickly and cheat-like strategies exist
 -	Removed unlimited spawning of mobile mushroom units. They can now only be spawned with "soldier factory" building.

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class InputInterface : MonoBehaviour
 {
@@ -72,34 +71,34 @@ public class InputInterface : MonoBehaviour
         //     EventBus.Publish(new ScrollSimulationSpeedEvent(false));
         // }
 
-        if (playerActions.ToggleDemo.WasPressedThisFrame())
-        {
-            EventBus.Publish(new ToggleDemoEvent());
-        }
+        // if (playerActions.ToggleDemo.WasPressedThisFrame())
+        // {
+        //     EventBus.Publish(new ToggleDemoEvent());
+        // }
 
-        if (playerActions.SpawnCitizen.WasPressedThisFrame())
-        {
-            EventBus.Publish(new SpawnCitizenEvent());
-        }
+        // if (playerActions.SpawnCitizen.WasPressedThisFrame())
+        // {
+        //     EventBus.Publish(new SpawnCitizenEvent());
+        // }
 
-        if (playerActions.SpawnEnemy.WasPressedThisFrame())
-        {
-            EventBus.Publish(new SpawnEnemyEvent());
-        }
+        // if (playerActions.SpawnEnemy.WasPressedThisFrame())
+        // {
+        //     EventBus.Publish(new SpawnEnemyEvent());
+        // }
 
-        if (Keyboard.current.digit1Key.wasPressedThisFrame)
-        {
-            EventBus.Publish(new DisplayHintEvent("This is useless!"));
-        }
+        // if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        // {
+        //     EventBus.Publish(new DisplayHintEvent("This is useless!"));
+        // }
 
-        if (Keyboard.current.digit2Key.wasPressedThisFrame)
-        {
-            EventBus.Publish(new UpdateHintEvent("What?"));
-        }
+        // if (Keyboard.current.digit2Key.wasPressedThisFrame)
+        // {
+        //     EventBus.Publish(new UpdateHintEvent("What?"));
+        // }
 
-        if (Keyboard.current.digit3Key.wasPressedThisFrame)
-        {
-            EventBus.Publish(new DismissHintEvent());
-        }
+        // if (Keyboard.current.digit3Key.wasPressedThisFrame)
+        // {
+        //     EventBus.Publish(new DismissHintEvent());
+        // }
     }
 }
