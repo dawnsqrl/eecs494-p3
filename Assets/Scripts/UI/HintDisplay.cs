@@ -51,6 +51,8 @@ public class HintDisplay : MonoBehaviour
         }
 
         rectTransform.sizeDelta = new Vector2(rectTransform.rect.width, e.height);
+        rectTransform.offsetMin = new Vector2(marginWidth, rectTransform.offsetMin.y);
+        rectTransform.offsetMax = new Vector2(-marginWidth, rectTransform.offsetMax.y);
         content.text = e.text;
         SetInitialHeight();
         StartCoroutine(DisplayHint());
