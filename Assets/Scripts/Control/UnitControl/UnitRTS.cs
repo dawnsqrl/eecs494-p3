@@ -31,7 +31,7 @@ public class UnitRTS : MonoBehaviour
 
     private void Awake()
     {
-        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
+        startTutorial = GameObject.Find("BuilderTutorial").GetComponent<BuilderTutorialController>().getStart();
     }
     private void Start()
     {
@@ -70,7 +70,6 @@ public class UnitRTS : MonoBehaviour
         
         if (GameProgressControl.isGameActive || startTutorial)
         {
-            print("useful");
             Vector3 direction = (targetPosition - transform.position).normalized;
             _rigidbody.velocity = direction.normalized * (_velocity * SimulationSpeedControl.GetSimulationSpeed());
         }
