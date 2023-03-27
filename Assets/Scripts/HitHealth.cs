@@ -49,24 +49,31 @@ public class HitHealth : MonoBehaviour
                 }
             }
         }
-    }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Hyphae")) {
+        if (other.gameObject.CompareTag("Hyphae")) {
             collisionTime = Time.time;
-            Debug.Log("hit hyphae");
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Hyphae")) {
+    //        collisionTime = Time.time;
+    //        Debug.Log("hit hyphae");
+    //    }
+    //}
+
+    private void OnTriggerStay(Collider other)
     {
-        if(collision.gameObject.CompareTag("Hyphae")) {
-            if (Time.time - collisionTime > time_eat_hyphae) {
-                collision.gameObject.SetActive(false);
+        if (other.gameObject.CompareTag("Hyphae"))
+        {
+            if (Time.time - collisionTime > time_eat_hyphae)
+            {
+                other.gameObject.SetActive(false);
             }
         }
     }
+
     private IEnumerator HitEffect()
     {
         _spriteRenderer.color = new Color32(0xFF, 0x00, 0x00, 0xFF);

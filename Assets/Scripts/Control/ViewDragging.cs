@@ -71,8 +71,8 @@ public class ViewDragging : MonoBehaviour
         {
             DragCamera();
             Zoom();
-            // UpdateCameraPosition();
-            // CheckMouseAtScreenEdge();
+            //UpdateCameraPosition();
+            CheckMouseAtScreenEdge();
             UpdateCameraPosition();
         }
     }
@@ -132,19 +132,33 @@ public class ViewDragging : MonoBehaviour
         targetPosition += moveDirection;
     }
 
+    private Vector3 ClampVector(Vector3 pos) {
+        //TODO: may subjected to change if the display changes
+        float new_x = Mathf.Clamp(pos.x, -5, 55);
+        float new_y = Mathf.Clamp(pos.y, -5, 55);
+        return new Vector3(new_x,new_y,pos.z);
+    }
     private void UpdateCameraPosition()
     {
+        //Vector3 topLeft = builderCam.ViewportToWorldPoint(new Vector3(0, 1, builderCam.nearClipPlane));
+        //Vector3 topRight = builderCam.ViewportToWorldPoint(new Vector3(1, 1, builderCam.nearClipPlane));
+        //Vector3 bottomLeft = builderCam.ViewportToWorldPoint(new Vector3(0, 0, builderCam.nearClipPlane));
+        //Vector3 bottomRight = builderCam.ViewportToWorldPoint(new Vector3(1, 0, builderCam.nearClipPlane));
+        //Debug.Log(bottomLeft);
+        //Debug.Log(topRight);
         if (targetPosition.sqrMagnitude > 0.1f)
         {
             //create a ramp up or acceleration
             speed = Mathf.Lerp(speed, maxSpeed, Time.deltaTime * acceleration);
             transform.position += targetPosition * (speed * Time.deltaTime);
+            transform.position = ClampVector(transform.position);
         }
         else
         {
             //create smooth slow down
             horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, Time.deltaTime * damping);
             transform.position += horizontalVelocity * Time.deltaTime;
+            transform.position = ClampVector(transform.position);
         }
 
         //reset for next frame
