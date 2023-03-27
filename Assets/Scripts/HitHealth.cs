@@ -12,9 +12,8 @@ public class HitHealth : MonoBehaviour
     [SerializeField] private float time_eat_hyphae = 1f;
 
     private bool canGetHit;
-    private float collisionTime;
 
-    
+
 
     private void Start()
     {
@@ -22,7 +21,7 @@ public class HitHealth : MonoBehaviour
         canGetHit = true;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag(enemyTag))
         {
@@ -49,10 +48,6 @@ public class HitHealth : MonoBehaviour
                 }
             }
         }
-
-        if (other.gameObject.CompareTag("Hyphae")) {
-            collisionTime = Time.time;
-        }
     }
 
     //private void OnCollisionEnter(Collision collision)
@@ -64,24 +59,24 @@ public class HitHealth : MonoBehaviour
     //    }
     //}
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Hyphae"))
-        {
-            if (Time.time - collisionTime > time_eat_hyphae)
-            {
-                other.gameObject.SetActive(false);
-            }
-        }
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Hyphae")) {
-            if (Time.time - collisionTime > time_eat_hyphae) {
-                collision.gameObject.SetActive(false);
-            }
-        }
-    }
+    // private void OnTriggerStay(Collider other)
+    // {
+    //     if (other.gameObject.CompareTag("Hyphae"))
+    //     {
+    //         if (Time.time - collisionTime > time_eat_hyphae)
+    //         {
+    //             other.gameObject.SetActive(false);
+    //         }
+    //     }
+    // }
+    // private void OnCollisionStay(Collision collision)
+    // {
+    //     if(collision.gameObject.CompareTag("Hyphae")) {
+    //         if (Time.time - collisionTime > time_eat_hyphae) {
+    //             collision.gameObject.SetActive(false);
+    //         }
+    //     }
+    // }
 
     public void MushroomGetDamage() {
         if (health > 0)

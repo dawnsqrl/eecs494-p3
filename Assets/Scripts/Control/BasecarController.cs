@@ -20,6 +20,8 @@ public class BasecarController : MonoBehaviour
     public bool is_tutorial;
     public bool is_tutorial_end;
 
+    private float normalSpeed = 2;
+    private float fastSpeed = 5;
     private void Awake()
     {
         EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
@@ -65,7 +67,6 @@ public class BasecarController : MonoBehaviour
                 _rigidbody.velocity = direction.normalized * (
                     speed * SimulationSpeedControl.GetSimulationSpeed()
                 );
-         
             }
             else
             {
@@ -75,23 +76,34 @@ public class BasecarController : MonoBehaviour
             {
                 forwardDirection = direction;
             }
-            
-            GameObject tile = null;
+
+            Vector3 forwardPos = new Vector2((forwardDirection + transform.position).x,
+                (forwardDirection + transform.position).y);
+
+            GameObject MacusTile = null;
+            GameObject ForwardTile = null;
             if (is_tutorial)
             {
-                tile = CaveGridManager._tiles[GetSnailPos(transform.position.x + 60, transform.position.y)];
+                MacusTile = CaveGridManager._tiles[GetSnailPos(transform.position.x + 60, transform.position.y)];
+                ForwardTile = CaveGridManager._tiles[GetSnailPos(forwardPos.x + 60, forwardPos.y)];
             }
             else
             {
-                tile = GridManager._tiles[GetSnailPos(transform.position.x, transform.position.y)];
+                MacusTile = GridManager._tiles[GetSnailPos(transform.position.x, transform.position.y)];
+                ForwardTile = GridManager._tiles[GetSnailPos(forwardPos.x, forwardPos.y)];
             }
-            if (tile)
+            if (MacusTile)
             {
-                GroundTileManager _groundTileManager = tile.GetComponentInChildren<GroundTileManager>();
+                GroundTileManager _groundTileManager = MacusTile.GetComponentInChildren<GroundTileManager>();
                 if (!_groundTileManager.mucused)
                 {
                     _groundTileManager.SetMucus();
                 }
+            }
+            if (ForwardTile)
+            {
+                GroundTileManager _groundTileManager = ForwardTile.GetComponentInChildren<GroundTileManager>();
+                speed = _groundTileManager.mucused ? fastSpeed : normalSpeed;
             }
         }
         else
