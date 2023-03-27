@@ -197,8 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134423d73171d43c6bd7de912cbf02a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  health: 3
+  maxHealth: 20
+  health: 20
   enemyTag: Builder
   healthBar: {fileID: 1134652527490715516}
   _spriteRenderer: {fileID: 5260701631150855687}
@@ -337,7 +337,6 @@ MonoBehaviour:
   _snailHealth: {fileID: 7166689666919232521}
   direction: {x: 0, y: 0, z: 0}
   forwardDirection: {x: 0, y: 0, z: 0}
-  on_wall: 0
 --- !u!114 &5082076586482587295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8119e6d3cc5b4188be019975330ca31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxUnitDisplay: {fileID: 0}
 --- !u!114 &9194102917017396560
 MonoBehaviour:
   m_ObjectHideFlags: 0

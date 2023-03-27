@@ -27,12 +27,16 @@ public class HitHealth : MonoBehaviour
             }
             if (health == 0)
             {
-                // Destroy(transform.parent.gameObject);
-                Transform parent = transform.parent;
-                parent.GetComponent<SpriteRenderer>().color = Color.red;
-                if (parent.GetComponent<GameEndTrigger>() != null)
+                if (gameObject.tag == "Building")
+                    Destroy(gameObject);
+                else
                 {
-                    parent.GetComponent<GameEndTrigger>().TriggerDeath();
+                    Transform parent = transform.parent;
+                    parent.GetComponent<SpriteRenderer>().color = Color.red;
+                    if (parent.GetComponent<GameEndTrigger>() != null)
+                    {
+                        parent.GetComponent<GameEndTrigger>().TriggerDeath();
+                    }
                 }
             }
         }
