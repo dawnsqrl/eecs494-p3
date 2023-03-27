@@ -53,7 +53,7 @@ public class HitHealth : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Hyphae") {
+        if (collision.gameObject.CompareTag("Hyphae")) {
             collisionTime = Time.time;
             Debug.Log("hit hyphae");
         }
@@ -61,7 +61,7 @@ public class HitHealth : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if(collision.gameObject.tag == "Hyphae") {
+        if(collision.gameObject.CompareTag("Hyphae")) {
             if (Time.time - collisionTime > time_eat_hyphae) {
                 collision.gameObject.SetActive(false);
             }
