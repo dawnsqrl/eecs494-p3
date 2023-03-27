@@ -9,9 +9,12 @@ public class HitHealth : MonoBehaviour
     [SerializeField] private string enemyTag;
     [SerializeField] private GameObject healthBar;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+
+    private bool canGetHit;
     private void Start()
     {
         health = maxHealth;
+        canGetHit = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,6 +23,7 @@ public class HitHealth : MonoBehaviour
         {
             if (health > 0)
             {
+                canGetHit = false;
                 StartCoroutine(HitEffect());
                 health -= 1;
                 healthBar.GetComponent<SpriteRenderer>().size =
@@ -42,6 +46,7 @@ public class HitHealth : MonoBehaviour
     {
         _spriteRenderer.color = new Color32(0xFF, 0x00, 0x00, 0xFF);
         yield return new WaitForSeconds(0.5f);
+        canGetHit = true;
         _spriteRenderer.color = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
     }
 }

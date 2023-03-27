@@ -94,7 +94,7 @@ public class GrowthDemo : MonoBehaviour
                 {
                     if (Mathf.FloorToInt(adj_pos.x) < 0 || Mathf.FloorToInt(adj_pos.x) >= mapSize_x || Mathf.FloorToInt(adj_pos.y) < 0 || Mathf.FloorToInt(adj_pos.y) >= mapSize_y)
                         continue;
-                    if (Position2Growthed(adj_pos))
+                    if (Position2Growthed(adj_pos) || Position2Mucused(adj_pos))
                         continue;
                     if (growthed.Contains(adj_pos))
                         continue;
@@ -252,6 +252,11 @@ public class GrowthDemo : MonoBehaviour
     public bool Position2Growthed(Vector2 vec)
     {
         return Tile2GroundManager(Position2Tile(vec)).CheckGrowthed();
+    }
+    
+    public bool Position2Mucused(Vector2 vec)
+    {
+        return Tile2GroundManager(Position2Tile(vec)).CheckMucused();
     }
 
     public GroundTileManager Position2GroundManager(int x, int y)

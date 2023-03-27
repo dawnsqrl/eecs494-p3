@@ -71,6 +71,6 @@ public class UnitRTS : MonoBehaviour
 
     public void SetCitizenOnMucus(bool flag)
     {
-        _velocity = flag ? 1 : 4;
+        _velocity = flag ? 0.5f : 4;
     }
 }

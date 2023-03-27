@@ -88,6 +88,12 @@ public class GroundTileManager : MonoBehaviour
     {
         return growthed;
     }
+
+    public bool CheckMucused()
+    {
+        return mucused;
+    }
+    
     public bool BuilderFogLongTermDisabled()
     {
         return transform.parent.GetComponent<TileManager>().builderFogLongTermDisabled;
