@@ -9,8 +9,13 @@ public class HitHealth : MonoBehaviour
     [SerializeField] private string enemyTag;
     [SerializeField] private GameObject healthBar;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private float time_eat_hyphae = 1f;
 
     private bool canGetHit;
+    private float collisionTime;
+
+    
+
     private void Start()
     {
         health = maxHealth;
@@ -46,6 +51,22 @@ public class HitHealth : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Hyphae") {
+            collisionTime = Time.time;
+            Debug.Log("hit hyphae");
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.tag == "Hyphae") {
+            if (Time.time - collisionTime > time_eat_hyphae) {
+                collision.gameObject.SetActive(false);
+            }
+        }
+    }
     private IEnumerator HitEffect()
     {
         _spriteRenderer.color = new Color32(0xFF, 0x00, 0x00, 0xFF);

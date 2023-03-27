@@ -59,7 +59,7 @@ public class BasecarController : MonoBehaviour
                 _rigidbody.velocity = direction.normalized * (
                     speed * SimulationSpeedControl.GetSimulationSpeed()
                 );
-                print(_rigidbody.velocity);
+         
             }
             else
             {

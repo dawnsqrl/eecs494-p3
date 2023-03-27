@@ -178,10 +178,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3850596779152265539, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3850596779152265541, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
       propertyPath: m_Name
       value: MainCamera
@@ -3325,6 +3321,10 @@ PrefabInstance:
     - target: {fileID: 2436142948631421629, guid: 0525126529ef65f44a1c24542f116e52, type: 3}
       propertyPath: m_Name
       value: PopupCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2436142948631421631, guid: 0525126529ef65f44a1c24542f116e52, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0525126529ef65f44a1c24542f116e52, type: 3}
@@ -7933,10 +7933,6 @@ PrefabInstance:
     - target: {fileID: 2223029409045176511, guid: b365fe28deb898b4abbabb78830008c7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8149854324320717282, guid: b365fe28deb898b4abbabb78830008c7, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -160.00006
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b365fe28deb898b4abbabb78830008c7, type: 3}
