@@ -1,9 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using System.Collections;
-using System.Collections.Generic;
-
 
 public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -41,7 +39,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         RTScontroller.SetActive(false);
         SelectedArea.SetActive(false);
         parentAfterDrag = transform.parent;
-        Cursor.SetCursor(buildingTexture, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(buildingTexture, Vector2.zero, CursorMode.ForceSoftware);
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
     }
@@ -163,7 +161,8 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     void ChangeAlpha(Vector2 pos, float alpha)
     {
-        GetSpriteRenderAtPos(pos).color = new Color(GetSpriteRenderAtPos(pos).color.r, GetSpriteRenderAtPos(pos).color.g, GetSpriteRenderAtPos(pos).color.b, alpha);
+        GetSpriteRenderAtPos(pos).color = new Color(GetSpriteRenderAtPos(pos).color.r,
+            GetSpriteRenderAtPos(pos).color.g, GetSpriteRenderAtPos(pos).color.b, alpha);
     }
 
     SpriteRenderer GetSpriteRenderAtPos(Vector2 pos)
