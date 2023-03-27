@@ -67,7 +67,7 @@ public class ViewDragging : MonoBehaviour
 
     private void Update()
     {
-        if (isDraggingEnabled)
+        if (isDraggingEnabled && GameProgressControl.isGameActive)
         {
             DragCamera();
             Zoom();
