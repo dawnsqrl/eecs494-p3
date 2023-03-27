@@ -34,10 +34,13 @@ public class GrowthDemo : MonoBehaviour
     private void Start()
     {
         init_x = (int) GameObject.Find("Mushroom").transform.position.x;
-        init_y = (int) GameObject.Find("Mushroom").transform.position.y;
+        init_y = (int) GameObject.Find("Mushroom").transform.position.y + 1;
+        //print(init_x);
+        //print(init_y);
         StartCoroutine(AutoGrowth(timeGap));
         EventBus.Publish(new AssignInitGrowthPositionEvent(new Vector2(init_x, init_y)));
         edge_list.Add(new Vector2(init_x, init_y));
+        edge_list.Add(new Vector2(init_x, init_y - 2));
     }
 
     //public void setAim(int x, int y)
@@ -71,6 +74,9 @@ public class GrowthDemo : MonoBehaviour
 
         // RemoveFogFromTile(init_x, init_y, 1);
         Position2GroundManager(init_x, init_y).SetGrowthed();
+        Position2GroundManager(init_x, init_y - 2).SetGrowthed();
+        //Position2GroundManager(init_x, init_y).SetGrowthed();
+        //Position2GroundManager(init_x, init_y).SetGrowthed();
 
         while (edge_list.Count < 80)
         {
