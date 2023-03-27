@@ -27,6 +27,12 @@ public class UnitRTS : MonoBehaviour
     private float _velocity;
     // private List<GameObject> clearedFogList;
     // private List<GameObject> prevClearedFogList;
+    private bool startTutorial;
+
+    private void Awake()
+    {
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
+    }
     private void Start()
     {
         selectedGameObject = transform.Find("Selected").gameObject;
@@ -62,8 +68,9 @@ public class UnitRTS : MonoBehaviour
             return;
         }
         
-        if (GameProgressControl.isGameActive)
+        if (GameProgressControl.isGameActive || startTutorial)
         {
+            print("useful");
             Vector3 direction = (targetPosition - transform.position).normalized;
             _rigidbody.velocity = direction.normalized * (_velocity * SimulationSpeedControl.GetSimulationSpeed());
         }

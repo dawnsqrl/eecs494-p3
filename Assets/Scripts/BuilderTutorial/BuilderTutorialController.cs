@@ -12,7 +12,7 @@ public class BuilderTutorialController : MonoBehaviour
     [SerializeField] private GameObject fog1, fog2, fog3;
     [SerializeField] private GameObject citizenPrefab, snailPrefab;
 
-    TMPro.TextMeshProUGUI message;
+    //TMPro.TextMeshProUGUI message;
     bool first_enter = true, clicked = false, mushroomStep = false, myceliumStep = false;
     bool resourceStep = false, building1Step = false, otherBuildingStep = false, citizenStep = false;
     bool movedCitizen = false, temp_first = true, endTutorial = false;
@@ -24,6 +24,7 @@ public class BuilderTutorialController : MonoBehaviour
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
         EventBus.Subscribe<BuildingEndDragEvent>(_ => dragBuilding = true);
         EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
+        EventBus.Subscribe < BuilderTutorialSnailDeadEvent>(_ => endTutorial = true);
     }
 
     // Start is called before the first frame update
@@ -165,6 +166,17 @@ public class BuilderTutorialController : MonoBehaviour
 
         if (endTutorial)
         {
+            endTutorial = false;
+            Building1.SetActive(true);
+            Building2.SetActive(true);
+            Building3.SetActive(true);
+            VitalityBar.SetActive(true);
+            cool1.enabled = true;
+            cool2.enabled = true;
+            cool3.enabled = true;
+            fog1.SetActive(true);
+            fog2.SetActive(true);
+            fog3.SetActive(true);
             EventBus.Publish(new EndBuilderTutorialEvent());
         }
     }
