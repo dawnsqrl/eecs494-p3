@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 7166689666919232521}
   - component: {fileID: 716249461}
   - component: {fileID: 42747394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BaseCarCollider
   m_TagString: BaseCar
   m_Icon: {fileID: 0}

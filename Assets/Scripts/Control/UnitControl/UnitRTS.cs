@@ -23,6 +23,8 @@ public class UnitRTS : MonoBehaviour
     private Vector3 targetPosition;
 
     private bool startMove = false;
+
+    private float _velocity;
     // private List<GameObject> clearedFogList;
     // private List<GameObject> prevClearedFogList;
     private void Start()
@@ -33,6 +35,7 @@ public class UnitRTS : MonoBehaviour
         _movePositionDirect = GetComponent<MovePositionDirect>();
         _rigidbody = GetComponent<Rigidbody>();
         SetSelectedActive(false);
+        _velocity = 4;
     }
 
     public void SetSelectedActive(bool visible)
@@ -62,7 +65,12 @@ public class UnitRTS : MonoBehaviour
         if (GameProgressControl.isGameActive)
         {
             Vector3 direction = (targetPosition - transform.position).normalized;
-            _rigidbody.velocity = direction.normalized * (4 * SimulationSpeedControl.GetSimulationSpeed());
+            _rigidbody.velocity = direction.normalized * (_velocity * SimulationSpeedControl.GetSimulationSpeed());
         }
+    }
+
+    public void SetCitizenOnMucus(bool flag)
+    {
+        _velocity = flag ? 0.5f : 4;
     }
 }

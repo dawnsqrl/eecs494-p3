@@ -15,6 +15,7 @@ TagManager:
   - Mushroom_for_tutorial
   - GrassHide
   - Building
+  - Mucus
   layers:
   - Default
   - TransparentFX
@@ -24,10 +25,10 @@ TagManager:
   - UI
   - Ground
   - Citizen
-  - Fog_builder
+  - Snail
   - GroundParent
-  - Fog_enemy
-  - 
+  - Mucus
+  - Hyphae
   - 
   - 
   - 
