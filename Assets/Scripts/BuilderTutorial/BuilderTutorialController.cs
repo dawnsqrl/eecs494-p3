@@ -24,11 +24,11 @@ public class BuilderTutorialController : MonoBehaviour
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
         EventBus.Subscribe<BuildingEndDragEvent>(_ => dragBuilding = true);
         EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
-        EventBus.Subscribe <BuilderTutorialSnailDeadEvent>(_ => endTutorial = true);
+        EventBus.Subscribe<BuilderTutorialSnailDeadEvent>(_ => endTutorial = true);
+        EventBus.Subscribe<EndAllTutorialEvent>(_ => EventBus.Publish(new DismissHintEvent()));
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         //message = textPrompt.GetComponent<TMPro.TextMeshProUGUI>();
         //EventBus.Publish(new DisplayHintEvent("Start Tutorial."));
@@ -37,8 +37,7 @@ public class BuilderTutorialController : MonoBehaviour
         init_y = (int)GameObject.Find("TMushroom").transform.position.y - 50 - 20;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame && startTutorial)
         {
@@ -166,6 +165,9 @@ public class BuilderTutorialController : MonoBehaviour
 
         if (endTutorial)
         {
+            EventBus.Publish(new UpdateHintEvent(
+                "You completed the tutorial! Please wait for the snail to complete."
+            ));
             endTutorial = false;
             Building1.SetActive(true);
             Building2.SetActive(true);

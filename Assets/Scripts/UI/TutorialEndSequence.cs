@@ -11,6 +11,7 @@ public class TutorialEndSequence : MonoBehaviour
 
     private bool hasBuilderTutorialEnded;
     private bool hasSnailTutorialEnded;
+    private bool isEndDialogShown;
 
     private void Awake()
     {
@@ -22,12 +23,15 @@ public class TutorialEndSequence : MonoBehaviour
     {
         hasBuilderTutorialEnded = false;
         hasSnailTutorialEnded = false;
+        isEndDialogShown = false;
     }
 
     private void Update()
     {
-        if (hasBuilderTutorialEnded && hasSnailTutorialEnded)
+        if (!isEndDialogShown && hasBuilderTutorialEnded && hasSnailTutorialEnded)
         {
+            isEndDialogShown = true;
+            EventBus.Publish(new EndAllTutorialEvent());
             EventBus.Publish(new DisplayDialogEvent(
                 "Tutorial ended!", "Make your choice.",
                 new Dictionary<string, Tuple<UnityAction, bool>>()
