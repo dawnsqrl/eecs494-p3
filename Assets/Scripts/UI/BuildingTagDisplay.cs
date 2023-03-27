@@ -3,20 +3,24 @@ using UnityEngine;
 public class BuildingTagDisplay : MonoBehaviour
 {
     private GameObject banner;
+    private bool isBuilderTutorialActive;
 
     private void Awake()
     {
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
+        EventBus.Subscribe<EndBuilderTutorialEvent>(_ => isBuilderTutorialActive = false);
         banner = GetComponentInChildren<BannerDisplay>().gameObject;
     }
 
     private void Start()
     {
         banner.SetActive(false);
+        isBuilderTutorialActive = false;
     }
 
     public void OnHoverEnter()
     {
-        if (GameProgressControl.isGameActive)
+        if (GameProgressControl.isGameActive || isBuilderTutorialActive)
         {
             banner.SetActive(true);
         }

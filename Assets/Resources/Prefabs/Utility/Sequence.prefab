@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2433649482796304015}
   - component: {fileID: 2433649482796304012}
+  - component: {fileID: 438139400885783314}
   m_Layer: 0
-  m_Name: StartupSequence
+  m_Name: Sequence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,5 +43,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd66e97662f6c8448b1cf5fbd3147937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &438139400885783314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2433649482796304014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e716d27304f0814aa62fec2ba2a45cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

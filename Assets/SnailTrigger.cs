@@ -7,6 +7,8 @@ public class SnailTrigger : MonoBehaviour
 {
     private float collisionTime;
     private float time_eat_hyphae = 1f;
+
+    [SerializeField] private GameObject eatEffect;
     
 
     private void OnTriggerStay(Collider other)
@@ -15,6 +17,7 @@ public class SnailTrigger : MonoBehaviour
             if (other.gameObject.CompareTag("Hyphae"))
             {
                 other.gameObject.SetActive(false);
+                eatEffect.SetActive(false);
             }
         }
        
@@ -25,7 +28,17 @@ public class SnailTrigger : MonoBehaviour
 
         if (other.gameObject.CompareTag("Hyphae"))
         {
+            eatEffect.SetActive(true);
             collisionTime = Time.time;
+        }
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+
+        if (other.gameObject.CompareTag("Hyphae"))
+        {
+            eatEffect.SetActive(false);
         }
     }
 

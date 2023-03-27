@@ -360,6 +360,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
+--- !u!1 &10444119 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3850596779152265541, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
+  m_PrefabInstance: {fileID: 10444118}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &25166739 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7303310475247134961, guid: 7e28c868437477648ab0a48a809a0fac, type: 3}
@@ -811,6 +816,11 @@ PrefabInstance:
       objectReference: {fileID: 819354647}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
+--- !u!1 &181441002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7556157864141780633, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
+  m_PrefabInstance: {fileID: 181441001}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &182965152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2465,14 +2475,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 481437792312408652, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
-      propertyPath: growthed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1745094842977163576, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1745094843415997264, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
       propertyPath: m_Name
       value: SnailTutorial
@@ -2520,18 +2522,6 @@ PrefabInstance:
     - target: {fileID: 1745094843415997265, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1745094843821677483, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3005503846385093542, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
-      propertyPath: growthed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6821951182812401648, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
-      propertyPath: growthed
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
@@ -5183,7 +5173,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3850596779152265537, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
   m_PrefabInstance: {fileID: 10444118}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 10444119}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58da895238ab14c119b690b65a96c250, type: 3}
@@ -7231,10 +7221,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decoratorSpritesList:
-  - {fileID: 1787083130, guid: 45132daec2e1e4e6ca18770aadad1087, type: 3}
-  - {fileID: 814553201, guid: 45132daec2e1e4e6ca18770aadad1087, type: 3}
-  - {fileID: -258248206, guid: 45132daec2e1e4e6ca18770aadad1087, type: 3}
-  - {fileID: -92708933, guid: 45132daec2e1e4e6ca18770aadad1087, type: 3}
+  - {fileID: -75463815, guid: f85574cd7dbfa4b1dbafc3047cd69355, type: 3}
+  - {fileID: 429123607, guid: f85574cd7dbfa4b1dbafc3047cd69355, type: 3}
+  - {fileID: 1790846686, guid: f85574cd7dbfa4b1dbafc3047cd69355, type: 3}
+  - {fileID: -1326085572, guid: f85574cd7dbfa4b1dbafc3047cd69355, type: 3}
+  - {fileID: -1569796934, guid: f85574cd7dbfa4b1dbafc3047cd69355, type: 3}
 --- !u!1 &1281089075
 GameObject:
   m_ObjectHideFlags: 0
@@ -10408,46 +10399,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8492907579301605844, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
-      propertyPath: gameInitPos.x
-      value: 4.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8492907579301605844, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
-      propertyPath: gameInitPos.y
-      value: 46
-      objectReference: {fileID: 0}
-    - target: {fileID: 8492907579301605844, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
-      propertyPath: tutorialInitPos.x
-      value: -52.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8492907579301605844, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
-      propertyPath: tutorialInitPos.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8492907579301605845, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: m_Name
       value: BaseCar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
---- !u!1 &1913960090 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7516242957097626159, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
-  m_PrefabInstance: {fileID: 1913960089}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1913960091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1913960090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 962e57655c3844885ac660084c8cb38c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cd_time: 0.8
 --- !u!224 &1916005892 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2190625779402717399, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
@@ -11619,6 +11576,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 782691532}
     m_Modifications:
+    - target: {fileID: 438139400885783314, guid: d12077d511feb294a85695e299bede47, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 10444119}
+    - target: {fileID: 438139400885783314, guid: d12077d511feb294a85695e299bede47, type: 3}
+      propertyPath: builderTutorialArea
+      value: 
+      objectReference: {fileID: 181441002}
     - target: {fileID: 2433649482796304014, guid: d12077d511feb294a85695e299bede47, type: 3}
       propertyPath: m_Name
       value: StartupSequence

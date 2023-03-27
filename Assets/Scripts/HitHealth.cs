@@ -17,8 +17,9 @@ public class HitHealth : MonoBehaviour
 
     private void Start()
     {
-        health = maxHealth;
         canGetHit = true;
+        healthBar.GetComponent<SpriteRenderer>().size =
+            new Vector2((float)health / (float)maxHealth * 10, healthBar.GetComponent<SpriteRenderer>().size.y);
     }
 
     private void OnTriggerStay(Collider other)
