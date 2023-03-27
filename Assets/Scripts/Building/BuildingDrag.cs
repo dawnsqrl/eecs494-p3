@@ -127,6 +127,8 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             //}
 
             EventBus.Publish(new BuildingEndDragEvent());
+
+            holder.GetComponent<SpellCooldown>().reStart();
         }
         else
         {
@@ -136,7 +138,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             setHighlight(oldPos4, false, white);
         }
 
-        holder.GetComponent<SpellCooldown>().reStart();
+        
         transform.SetParent(parentAfterDrag);
         transform.localScale = new Vector2(1, 1);
         RTScontroller.SetActive(true);
