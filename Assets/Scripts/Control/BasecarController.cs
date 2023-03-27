@@ -139,7 +139,8 @@ public class BasecarController : MonoBehaviour
     {
         if (!is_tutorial_end && other.CompareTag("SnailTutorialEndTrigger"))
         {
-            EventBus.Publish("EndSnailTutorialEvent");
+            print("-------------------------------------------");
+            EventBus.Publish(new EndSnailTutorialEvent());
             is_tutorial_end = true;
         }
     }

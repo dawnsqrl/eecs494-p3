@@ -177,7 +177,7 @@ public class BuilderTutorialController : MonoBehaviour
             fog1.SetActive(true);
             fog2.SetActive(true);
             fog3.SetActive(true);
-            print("here");
+            print("++++++++++++++++++++++++++++++++++++++++++++++");
             EventBus.Publish(new EndBuilderTutorialEvent());
         }
     }
