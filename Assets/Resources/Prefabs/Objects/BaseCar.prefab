@@ -202,6 +202,7 @@ MonoBehaviour:
   enemyTag: Builder
   healthBar: {fileID: 1134652527490715516}
   _spriteRenderer: {fileID: 5260701631150855687}
+  time_eat_hyphae: 1
 --- !u!114 &716249461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,11 +333,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isChosen: 0
-  speed: 4
+  tutorialInitPos: {x: -52.5, y: 2, z: 0}
+  gameInitPos: {x: 4.2, y: 46, z: 0}
+  speed: 2
   _animator: {fileID: 4047923559195802300}
   _snailHealth: {fileID: 7166689666919232521}
   direction: {x: 0, y: 0, z: 0}
   forwardDirection: {x: 0, y: 0, z: 0}
+  is_tutorial: 0
+  is_tutorial_end: 0
 --- !u!114 &5082076586482587295
 MonoBehaviour:
   m_ObjectHideFlags: 0
