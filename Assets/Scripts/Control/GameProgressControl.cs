@@ -47,11 +47,20 @@ public class GameProgressControl : MonoBehaviour
                             () => SceneManager.LoadScene(SceneManager.GetActiveScene().name), true
                         )
                     }
+                    //{
+                    //    "Restart", new Tuple<UnityAction, bool>(
+                    //        () => LoadAllDisplay(), true
+                    //    )
+                    //}
                 }
             ));
         }
     }
 
+    //void LoadAllDisplay() {
+    //    DisplayTest displayTest = FindObjectOfType<DisplayTest>();
+    //    displayTest.LoadSceneOnAllDisplays(2);
+    //}
     private void Start()
     {
         EventBus.Publish(new AssignGameControlEvent(this));
