@@ -12,6 +12,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private GridManager gridManager;
     [SerializeField] private BuilderGridManager TgridManager;
     [SerializeField] private bool isGrowthSource;
+    [SerializeField] private ViewDragging vd;
 
     private Transform parentAfterDrag;
     private GameObject buildingController;
@@ -46,6 +47,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
+        vd.enabled = false;
         Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
         Color blue = new Color(1.0f, 0.0f, 0.0f, 58.0f / 255.0f);
 
@@ -75,10 +77,13 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         oldPos2 = pos2;
         oldPos3 = pos3;
         oldPos4 = pos4;
+
+        //vd.enabled = true;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        //vd.enabled = false;
         GameObject new_building;
         Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
         // temp_building.transform.position = new Vector3(100.0f, 100.0f, -2.0f);
@@ -140,6 +145,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         transform.SetParent(parentAfterDrag);
         transform.localScale = new Vector2(1, 1);
         RTScontroller.SetActive(true);
+        vd.enabled = true;
     }
 
     bool CheckAvai(Vector2 pos)

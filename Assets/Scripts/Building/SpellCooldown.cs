@@ -9,6 +9,7 @@ public class SpellCooldown : MonoBehaviour
     [SerializeField] private TMP_Text textCooldown;
 
     [SerializeField] private int buildingType;
+    [SerializeField] private ViewDragging vd;
     //[SerializeField] private Image imageEdge;
 
     //variable for looking after the cooldown
@@ -41,6 +42,7 @@ public class SpellCooldown : MonoBehaviour
         {
             if (start)
             {
+                vd.enabled = false;
                 switch (buildingType)
                 {
                     case 0: // spread; 200 -> 25, 1000 -> 15
@@ -64,11 +66,14 @@ public class SpellCooldown : MonoBehaviour
                 imageCooldown.gameObject.SetActive(true);
                 UseSpell();
                 start = false;
+                vd.enabled = true;
             }
 
             if (isCoolDown)
             {
+                //vd.enabled = false;
                 ApplyCooldown();
+                //vd.enabled = true;
             }
         }
     }
