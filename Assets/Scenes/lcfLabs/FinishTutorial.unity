@@ -136,11 +136,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3850596779152265536, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.8
+      value: 82.7
       objectReference: {fileID: 0}
     - target: {fileID: 3850596779152265536, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.8
+      value: 83
       objectReference: {fileID: 0}
     - target: {fileID: 3850596779152265536, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
       propertyPath: m_LocalPosition.z
@@ -561,6 +561,10 @@ PrefabInstance:
       propertyPath: VitalityBar
       value: 
       objectReference: {fileID: 1717950854}
+    - target: {fileID: 7556157864141780639, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
+      propertyPath: _gridManager
+      value: 
+      objectReference: {fileID: 2002282845}
     - target: {fileID: 7556157864141780639, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
       propertyPath: BuilderCamera
       value: 
@@ -8248,6 +8252,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 691974118}
     - target: {fileID: 8304448894352287994, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: TgridManager
+      value: 
+      objectReference: {fileID: 2002282845}
+    - target: {fileID: 8304448894352287994, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
@@ -8260,6 +8268,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 691974118}
     - target: {fileID: 8304448894548295314, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: TgridManager
+      value: 
+      objectReference: {fileID: 2002282845}
+    - target: {fileID: 8304448894548295314, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
@@ -8271,6 +8283,10 @@ PrefabInstance:
       propertyPath: SelectedArea
       value: 
       objectReference: {fileID: 691974118}
+    - target: {fileID: 8304448894595588511, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: TgridManager
+      value: 
+      objectReference: {fileID: 2002282845}
     - target: {fileID: 8304448894595588511, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: RTScontroller
       value: 

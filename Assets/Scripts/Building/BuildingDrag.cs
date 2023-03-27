@@ -12,6 +12,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private Texture2D buildingTexture;
     [SerializeField] private GameObject RTScontroller, SelectedArea;
     [SerializeField] private GridManager gridManager;
+    [SerializeField] private BuilderGridManager TgridManager;
     [SerializeField] private bool isGrowthSource;
 
     private Transform parentAfterDrag;
@@ -56,6 +57,10 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         setHighlight(oldPos4, false, white);
 
         Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        if (startTutorial)
+        {
+            Worldpos = new Vector3(Worldpos.x - 70.0f, Worldpos.y - 70.0f, Worldpos.z);
+        }
         //     // temp_building.transform.localScale = new Vector2(0.3f, 0.3f);
         //     // temp_building.transform.position = new Vector3(Worldpos.x, Worldpos.y, -2.0f);
         Vector2 pos1 = new Vector2(Mathf.FloorToInt(Worldpos.x + 1.0f), Mathf.CeilToInt(Worldpos.y - 1.0f));
@@ -76,10 +81,15 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        GameObject new_building;
         Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
         // temp_building.transform.position = new Vector3(100.0f, 100.0f, -2.0f);
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        if (startTutorial)
+        {
+            Worldpos = new Vector3(Worldpos.x - 70.0f, Worldpos.y - 70.0f, Worldpos.z);
+        }
         if ((Worldpos is { x: >= 0 and <= 50, y: >= 0 and <= 50 } || startTutorial)
             && CheckAvai(oldPos1) && CheckAvai(oldPos2) && CheckAvai(oldPos3) && CheckAvai(oldPos4))
         {
@@ -89,7 +99,14 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             //{
             //Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"),
             //    new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
-            GameObject new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f), Quaternion.identity);
+            if (startTutorial)
+            {
+                new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x + 0.5f + 70.0f, oldPos1.y - 0.5f + 70.0f, -2.0f), Quaternion.identity);
+            }
+            else
+            {
+                new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f), Quaternion.identity);
+            }
             //growthDemo.Position2GroundManager(pos).SetGrowthed();
 
             //ChangeAlpha(oldPos1, 1.0f);
@@ -127,6 +144,8 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     bool CheckAvai(Vector2 pos)
     {
+        if (startTutorial)
+            return buildingController.GetComponent<BuildingController>().check_avai(pos);
         GrowthDemo gd = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
         if (gd.Position2Growthed(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
             return true;
@@ -147,11 +166,20 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     SpriteRenderer GetSpriteRenderAtPos(Vector2 pos)
     {
+        if (startTutorial)
+            return TgridManager.GetTileGroundAtPosition(TgridManager.GetTileAtPosition(pos)).gameObject.GetComponent<SpriteRenderer>();
         return gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.GetComponent<SpriteRenderer>();
     }
 
     void setHighlight(Vector2 pos, bool status, Color color)
     {
+        if (startTutorial)
+        {
+            TgridManager.GetTileGroundAtPosition(TgridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight").gameObject.SetActive(status);
+            TgridManager.GetTileGroundAtPosition(TgridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight").gameObject.GetComponent<SpriteRenderer>().color = color;
+
+            return;
+        }
         gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight").gameObject.SetActive(status);
         gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight").gameObject.GetComponent<SpriteRenderer>().color = color;
     }
