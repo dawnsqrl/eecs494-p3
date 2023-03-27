@@ -18,7 +18,7 @@ public class BuilderTutorialController : MonoBehaviour
     TMPro.TextMeshProUGUI message;
     bool first_enter = true, clicked = false, mushroomStep = false, myceliumStep = false;
     bool resourceStep = false, building1Step = false, otherBuildingStep = false, citizenStep = false;
-    bool movedCitizen = false, temp_first = true;
+    bool movedCitizen = false, temp_first = true, endTutorial = false;
     int init_x, init_y;
     private int vitality;
 
@@ -151,8 +151,13 @@ public class BuilderTutorialController : MonoBehaviour
             if (!temp_first)
             {
                 temp_first = true;
-                Instantiate(snailPrefab, new Vector3(init_x - 6.0f + 50.0f, init_y + 50.0f, -2.0f), Quaternion.identity);
+                Instantiate(snailPrefab, new Vector3(init_x - 6.0f + 70.0f, init_y + 70.0f, -2.0f), Quaternion.identity);
             }
+        }
+
+        if (endTutorial)
+        {
+            EventBus.Publish(new EndBuilderTutorialEvent());
         }
     }
 

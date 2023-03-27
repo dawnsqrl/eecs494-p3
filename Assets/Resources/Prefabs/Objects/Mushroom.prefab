@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: ca092d85398c94433875ecf1569b2b74, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -164,6 +164,7 @@ MonoBehaviour:
   enemyTag: Enemy
   healthBar: {fileID: 5620440745084885744}
   _spriteRenderer: {fileID: 2901319194757307674}
+  time_eat_hyphae: 1
 --- !u!1 &7702931926530142126
 GameObject:
   m_ObjectHideFlags: 0
