@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 
 // This script is for GridMap parents. 
-public class BuilderGridManager : MonoBehaviour
+public class GridManager : MonoBehaviour
 {
     public static Dictionary<Vector2, GameObject> _tiles;
     private Dictionary<GameObject, GameObject> _tiles_ground;

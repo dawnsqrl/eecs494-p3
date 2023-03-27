@@ -10,7 +10,7 @@ public class BuilderTutorialController : MonoBehaviour
     [SerializeField] private Camera BuilderCamera;
     [SerializeField] private GameObject VitalityBar, Building1, Building2, Building3;//, textPrompt;
     private bool startTutorial = false, dragBuilding = false;
-    [SerializeField] private GridManager _gridManager;
+    [SerializeField] private BuilderGridManager _gridManager;
     [SerializeField] private SpellCooldown cool1, cool2, cool3;
     [SerializeField] private GameObject fog1, fog2, fog3;
     [SerializeField] private GameObject citizenPrefab, snailPrefab;
