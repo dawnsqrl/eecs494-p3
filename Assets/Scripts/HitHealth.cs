@@ -26,7 +26,6 @@ public class HitHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag(enemyTag))
         {
-            Debug.Log("hit" + enemyTag);
             if (health > 0)
             {
                 canGetHit = false;
@@ -56,14 +55,14 @@ public class HitHealth : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
+    //private void OnCollisionEnter(Collision collision)
+    //{
 
-        if (collision.gameObject.CompareTag(enemyTag))
-        {
-            Debug.Log("hit" + enemyTag);
-        }
-    }
+    //    if (collision.gameObject.CompareTag(enemyTag))
+    //    {
+    //        Debug.Log("hit" + enemyTag);
+    //    }
+    //}
 
     private void OnTriggerStay(Collider other)
     {
@@ -82,6 +81,28 @@ public class HitHealth : MonoBehaviour
                 collision.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void MushroomGetDamage() {
+        if (health > 0)
+        {
+            canGetHit = false;
+            StartCoroutine(HitEffect());
+            health -= 1;
+            healthBar.GetComponent<SpriteRenderer>().size =
+                new Vector2((float)health / (float)maxHealth * 10, healthBar.GetComponent<SpriteRenderer>().size.y);
+        }
+        if (health == 0)
+        {
+            Transform parent = transform.parent;
+            parent.GetComponent<SpriteRenderer>().color = Color.red;
+            if (parent.GetComponent<GameEndTrigger>() != null)
+            {
+                parent.GetComponent<GameEndTrigger>().TriggerDeath();
+            }
+            
+        }
+
     }
     private IEnumerator HitEffect()
     {
