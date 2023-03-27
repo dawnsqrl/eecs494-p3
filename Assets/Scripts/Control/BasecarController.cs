@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class BasecarController : MonoBehaviour
 {
     [SerializeField] private bool isChosen = false;
+    [SerializeField] private Vector3 tutorialInitPos;
+    [SerializeField] private Vector3 gameInitPos;
     [SerializeField] private float speed = 2f;
     [SerializeField] private Animator _animator;
     [SerializeField] private HitHealth _snailHealth;
@@ -15,11 +18,13 @@ public class BasecarController : MonoBehaviour
     public Vector3 forwardDirection;
     private Rigidbody _rigidbody;
     public bool is_tutorial;
+    public bool is_tutorial_end;
 
     private void Awake()
     {
         EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
         EventBus.Subscribe<StartSnailTutorialEvent>(_ => StartTutorial());
+        EventBus.Subscribe<GameStartEvent>(_ => StartGame());
         controls = new Controls();
         playerActions = controls.Player;
         forwardDirection = Vector3.zero;
@@ -108,5 +113,22 @@ public class BasecarController : MonoBehaviour
     private void StartTutorial()
     {
         is_tutorial = true;
+        is_tutorial_end = false;
+        transform.position = tutorialInitPos;
+    }
+
+    private void StartGame()
+    {
+        is_tutorial = false;
+        transform.position = gameInitPos;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!is_tutorial_end && other.CompareTag("SnailTutorialEndTrigger"))
+        {
+            EventBus.Publish("EndSnailTutorialEvent");
+            is_tutorial_end = true;
+        }
     }
 }

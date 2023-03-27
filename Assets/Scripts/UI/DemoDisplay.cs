@@ -11,4 +11,9 @@ public class DemoDisplay : MonoBehaviour
         EventBus.Subscribe<ToggleDemoEvent>(_ => display.enabled = !display.enabled);
         display = GetComponent<TextMeshProUGUI>();
     }
+
+    private void Start()
+    {
+        display.enabled = false;
+    }
 }
