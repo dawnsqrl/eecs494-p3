@@ -219,6 +219,10 @@ public class EndSnailTutorialEvent
 {
 }
 
+public class EndBuilderTutorialEvent
+{
+}
+
 public class BuildingEndDragEvent
 {
 }
