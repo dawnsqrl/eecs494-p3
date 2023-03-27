@@ -95,6 +95,12 @@ public class BasecarController : MonoBehaviour
     }
     
     Vector2 GetSnailPos(float x, float y) {
+        if (x < 0) {
+            x = 0;
+        }
+        if (y < 0) {
+            y = 0;
+        }
         return new Vector2(Mathf.RoundToInt(x), Mathf.RoundToInt(y));
     }
 }
