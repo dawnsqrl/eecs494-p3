@@ -14,6 +14,7 @@ public class BasecarController : MonoBehaviour
     public Vector3 direction;
     public Vector3 forwardDirection;
     private Rigidbody _rigidbody;
+    public bool is_tutorial;
 
     private void Awake()
     {
@@ -69,7 +70,15 @@ public class BasecarController : MonoBehaviour
                 forwardDirection = direction;
             }
             
-            GameObject tile = GridManager._tiles[GetSnailPos(transform.position.x - forwardDirection.x, transform.position.y - forwardDirection.y)];
+            GameObject tile = null;
+            if (is_tutorial)
+            {
+                tile = CaveGridManager._tiles[GetSnailPos(transform.position.x, transform.position.y)];
+            }
+            else
+            {
+                tile = GridManager._tiles[GetSnailPos(transform.position.x - forwardDirection.x, transform.position.y - forwardDirection.y)];
+            }
             if (tile)
             {
                 GroundTileManager _groundTileManager = tile.GetComponentInChildren<GroundTileManager>();
