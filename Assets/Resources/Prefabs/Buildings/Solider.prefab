@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4791414365752071702}
   - component: {fileID: 6873136581425597148}
   - component: {fileID: -6998088123765064612}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Solider
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -147,6 +147,7 @@ MonoBehaviour:
   enemyTag: BaseCar
   healthBar: {fileID: 7698774740942427590}
   _spriteRenderer: {fileID: 1097787921931689731}
+  time_eat_hyphae: 1
 --- !u!1001 &866377227525280810
 PrefabInstance:
   m_ObjectHideFlags: 0

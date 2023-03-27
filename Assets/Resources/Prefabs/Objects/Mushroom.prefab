@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2086738488278001417}
   - component: {fileID: 5960747121515871588}
   - component: {fileID: 5462428841127503988}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: 3DCitizenTriggerManager
   m_TagString: Builder
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3888900475942680156}
   - component: {fileID: 8215979362856209059}
   - component: {fileID: 4479670082595988684}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: resource
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -147,6 +147,7 @@ MonoBehaviour:
   enemyTag: BaseCar
   healthBar: {fileID: 8268709699336207703}
   _spriteRenderer: {fileID: 1480908842962784054}
+  time_eat_hyphae: 1
 --- !u!1001 &1446266811879046331
 PrefabInstance:
   m_ObjectHideFlags: 0
