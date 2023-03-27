@@ -34,8 +34,8 @@ public class BuilderTutorialController : MonoBehaviour
         //message = textPrompt.GetComponent<TMPro.TextMeshProUGUI>();
         //EventBus.Publish(new DisplayHintEvent("Start Tutorial."));
         //message.text = "Start Tutorial";
-        init_x = (int)GameObject.Find("TMushroom").transform.position.x - 50;
-        init_y = (int)GameObject.Find("TMushroom").transform.position.y - 50;
+        init_x = (int)GameObject.Find("TMushroom").transform.position.x - 50 - 20;
+        init_y = (int)GameObject.Find("TMushroom").transform.position.y - 50 - 20;
     }
 
     // Update is called once per frame
@@ -58,14 +58,14 @@ public class BuilderTutorialController : MonoBehaviour
 
             first_enter = false;
             // Camera transfer
-            BuilderCamera.transform.position = new Vector3(65f, 65f, -10.0f);
+            BuilderCamera.transform.position = new Vector3(85f, 85f, -10.0f);
             // remove useless component
             VitalityBar.SetActive(false);
             Building1.SetActive(false);
             Building2.SetActive(false);
             Building3.SetActive(false);
             // Mushroom
-            EventBus.Publish(new UpdateHintEvent("Your goal is to protect your main mushroom.[click]"));
+            EventBus.Publish(new DisplayHintEvent("Your goal is to protect your main mushroom.[click]"));
             //message.text = "Your goal is to protect your main mushroom.[click]";
         }
 
