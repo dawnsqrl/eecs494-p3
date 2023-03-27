@@ -78,7 +78,6 @@ public class GrowthDemo : MonoBehaviour
             yield return null;
 
             count = 0.0f;
-            print(edge_list.Count);
             foreach (Vector2 pos in edge_list)
             {
                 while (isSimulationPaused || !GameProgressControl.isGameActive)
