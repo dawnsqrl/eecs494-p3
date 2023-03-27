@@ -342,6 +342,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3850596779152265537, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3850596779152265538, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1298,6 +1302,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 329327586981448867, guid: 4ecebf2e60246c340ba7ba3fbb668431, type: 3}
   m_PrefabInstance: {fileID: 242227950}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &243720808 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3205091180448035402, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
+  m_PrefabInstance: {fileID: 181441001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748532dc217860c47a4eb8e9fb4bc7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &246020270
 GameObject:
   m_ObjectHideFlags: 0
@@ -5159,6 +5174,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 3850596779152265539, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
   m_PrefabInstance: {fileID: 10444118}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &819354649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3850596779152265537, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
+  m_PrefabInstance: {fileID: 10444118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58da895238ab14c119b690b65a96c250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &864646199
 GameObject:
   m_ObjectHideFlags: 0
@@ -11891,10 +11917,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8304448893799133828, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: vd
+      value: 
+      objectReference: {fileID: 819354649}
+    - target: {fileID: 8304448893894515269, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: vd
+      value: 
+      objectReference: {fileID: 819354649}
     - target: {fileID: 8304448893898818667, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8304448894352287994, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: vd
+      value: 
+      objectReference: {fileID: 819354649}
     - target: {fileID: 8304448894352287994, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: gridManager
       value: 
@@ -11903,6 +11941,10 @@ PrefabInstance:
       propertyPath: SelectedArea
       value: 
       objectReference: {fileID: 691974118}
+    - target: {fileID: 8304448894352287994, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: TgridManager
+      value: 
+      objectReference: {fileID: 243720808}
     - target: {fileID: 8304448894352287994, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: RTScontroller
       value: 
@@ -11912,6 +11954,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8304448894548295314, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: vd
+      value: 
+      objectReference: {fileID: 819354649}
+    - target: {fileID: 8304448894548295314, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: gridManager
       value: 
       objectReference: {fileID: 1755112723}
@@ -11920,9 +11966,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 691974118}
     - target: {fileID: 8304448894548295314, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: TgridManager
+      value: 
+      objectReference: {fileID: 243720808}
+    - target: {fileID: 8304448894548295314, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
+    - target: {fileID: 8304448894595588511, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: vd
+      value: 
+      objectReference: {fileID: 819354649}
     - target: {fileID: 8304448894595588511, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: gridManager
       value: 
@@ -11932,9 +11986,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 691974118}
     - target: {fileID: 8304448894595588511, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: TgridManager
+      value: 
+      objectReference: {fileID: 243720808}
+    - target: {fileID: 8304448894595588511, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
+    - target: {fileID: 8304448895128010722, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: vd
+      value: 
+      objectReference: {fileID: 819354649}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
 --- !u!1001 &9168317154744518616
