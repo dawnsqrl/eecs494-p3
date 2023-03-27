@@ -2554,7 +2554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holder: {fileID: 8304448893894515271}
   gamePrefab: {fileID: 6513006511888720774, guid: 23bb2a88f6986b0439597d6e879b25e2, type: 3}
-  buildingTexture: {fileID: 2800000, guid: 6d2c25e88e6fdbb47bb2e5a489ebb815, type: 3}
+  buildingTexture: {fileID: 2800000, guid: bc949194cdc9f2c47a8b5ccc3227169e, type: 3}
   RTScontroller: {fileID: 0}
   SelectedArea: {fileID: 0}
   gridManager: {fileID: 0}

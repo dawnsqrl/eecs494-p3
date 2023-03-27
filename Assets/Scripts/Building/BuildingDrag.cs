@@ -1,9 +1,7 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using System.Collections;
-using System.Collections.Generic;
-
 
 public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -40,7 +38,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         RTScontroller.SetActive(false);
         SelectedArea.SetActive(false);
         parentAfterDrag = transform.parent;
-        Cursor.SetCursor(buildingTexture, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(buildingTexture, Vector2.zero, CursorMode.ForceSoftware);
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
     }
@@ -89,7 +87,8 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             //{
             //Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Food"),
             //    new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
-            GameObject new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f), Quaternion.identity);
+            GameObject new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f),
+                Quaternion.identity);
             //growthDemo.Position2GroundManager(pos).SetGrowthed();
 
             //ChangeAlpha(oldPos1, 1.0f);
@@ -142,17 +141,21 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     void ChangeAlpha(Vector2 pos, float alpha)
     {
-        GetSpriteRenderAtPos(pos).color = new Color(GetSpriteRenderAtPos(pos).color.r, GetSpriteRenderAtPos(pos).color.g, GetSpriteRenderAtPos(pos).color.b, alpha);
+        GetSpriteRenderAtPos(pos).color = new Color(GetSpriteRenderAtPos(pos).color.r,
+            GetSpriteRenderAtPos(pos).color.g, GetSpriteRenderAtPos(pos).color.b, alpha);
     }
 
     SpriteRenderer GetSpriteRenderAtPos(Vector2 pos)
     {
-        return gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.GetComponent<SpriteRenderer>();
+        return gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject
+            .GetComponent<SpriteRenderer>();
     }
 
     void setHighlight(Vector2 pos, bool status, Color color)
     {
-        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight").gameObject.SetActive(status);
-        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight").gameObject.GetComponent<SpriteRenderer>().color = color;
+        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight")
+            .gameObject.SetActive(status);
+        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight")
+            .gameObject.GetComponent<SpriteRenderer>().color = color;
     }
 }
