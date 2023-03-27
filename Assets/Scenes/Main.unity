@@ -364,6 +364,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
+--- !u!1 &10444119 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3850596779152265541, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
+  m_PrefabInstance: {fileID: 10444118}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &25166739 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7303310475247134961, guid: 7e28c868437477648ab0a48a809a0fac, type: 3}
@@ -815,6 +820,11 @@ PrefabInstance:
       objectReference: {fileID: 819354647}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
+--- !u!1 &181441002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7556157864141780633, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
+  m_PrefabInstance: {fileID: 181441001}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &182965152
 GameObject:
   m_ObjectHideFlags: 0
@@ -5167,7 +5177,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3850596779152265537, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
   m_PrefabInstance: {fileID: 10444118}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 10444119}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58da895238ab14c119b690b65a96c250, type: 3}
@@ -11574,6 +11584,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 782691532}
     m_Modifications:
+    - target: {fileID: 438139400885783314, guid: d12077d511feb294a85695e299bede47, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 10444119}
+    - target: {fileID: 438139400885783314, guid: d12077d511feb294a85695e299bede47, type: 3}
+      propertyPath: builderTutorialArea
+      value: 
+      objectReference: {fileID: 181441002}
     - target: {fileID: 2433649482796304014, guid: d12077d511feb294a85695e299bede47, type: 3}
       propertyPath: m_Name
       value: StartupSequence
