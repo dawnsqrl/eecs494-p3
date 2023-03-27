@@ -131,19 +131,21 @@ public class BuilderTutorialController : MonoBehaviour
 
         if(citizenStep && otherBuildingStep)
         {
+            otherBuildingStep = false;
             EventBus.Publish(new UpdateHintEvent("Left click and drag to select citizen. Right click to move them."));
             //message.text = "Left click and drag to select citizen. Right click to move them.";
             if (temp_first)
             {
                 temp_first = false;
-                Instantiate(citizenPrefab, new Vector3(init_x - 2.0f + 50.0f, init_y - 2.0f + 50.0f, -2.0f), Quaternion.identity);
-                Instantiate(citizenPrefab, new Vector3(init_x - 2.0f + 50.0f, init_y - 1.0f + 50.0f, -2.0f), Quaternion.identity);
+                Instantiate(citizenPrefab, new Vector3(init_x - 2.0f + 70.0f, init_y - 2.0f + 70.0f, -2.0f), Quaternion.identity);
+                Instantiate(citizenPrefab, new Vector3(init_x - 2.0f + 70.0f, init_y - 1.0f + 70.0f, -2.0f), Quaternion.identity);
             }
             
         }
 
         if (movedCitizen)
         {
+            movedCitizen = false;
             EventBus.Publish(new UpdateHintEvent("The snail is coming, control your citizens to attack it!"));
             //message.text = "The snail is coming, control your citizens to attack it!";
             if (!temp_first)
@@ -159,7 +161,8 @@ public class BuilderTutorialController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(2.0f);
-            EventBus.Publish(new ModifyVitalityEvent(vitality + 50));
+            if (vitality < 1000)
+                EventBus.Publish(new ModifyVitalityEvent(vitality + 50));
         }
     }
 

@@ -30,7 +30,9 @@ public class SoliderBuilding : MonoBehaviour
                 yield return new WaitForSeconds(3.0f);
                 GameObject solider = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Citizen"),
                     transform.position, Quaternion.identity);
-                solider.GetComponent<UnitRTS>().MoveTo(transform.position + generateRandomVector());
+                Vector2 newPos = transform.position + generateRandomVector();
+                print(newPos);
+                solider.GetComponent<UnitRTS>().MoveTo(newPos);
                 solider.GetComponent<CitizenBuildingControl>().change_status(gameObject);
                 autoSoliders.Add(solider);
                 CitizenControl.citizenList.Add(solider);
