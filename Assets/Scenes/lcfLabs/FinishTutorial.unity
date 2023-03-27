@@ -565,7 +565,8 @@ PrefabInstance:
       propertyPath: BuilderCamera
       value: 
       objectReference: {fileID: 819354647}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3535889035446240269, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
 --- !u!1 &182965152
 GameObject:
@@ -7050,6 +7051,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BaseCar
       objectReference: {fileID: 0}
+    - target: {fileID: 8492907579301605845, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
 --- !u!224 &1916005892 stripped
@@ -7445,6 +7450,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2002282842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1528702132949036714, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
+  m_PrefabInstance: {fileID: 181441001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2002282845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002282842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748532dc217860c47a4eb8e9fb4bc7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2010991854
 PrefabInstance:
   m_ObjectHideFlags: 0
