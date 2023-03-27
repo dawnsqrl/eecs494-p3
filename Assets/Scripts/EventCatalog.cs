@@ -223,6 +223,10 @@ public class EndBuilderTutorialEvent
 {
 }
 
+public class EndAllTutorialEvent
+{
+}
+
 public class BuildingEndDragEvent
 {
 }
