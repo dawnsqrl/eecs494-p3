@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FakeMushroomManager : MonoBehaviour
 {
+    [SerializeField] private HitHealth _hitHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,9 @@ public class FakeMushroomManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_hitHealth.health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

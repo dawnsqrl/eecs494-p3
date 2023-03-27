@@ -2465,14 +2465,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 481437792312408652, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
-      propertyPath: growthed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1745094842977163576, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1745094843415997264, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
       propertyPath: m_Name
       value: SnailTutorial
@@ -2520,18 +2512,6 @@ PrefabInstance:
     - target: {fileID: 1745094843415997265, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1745094843821677483, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3005503846385093542, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
-      propertyPath: growthed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6821951182812401648, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
-      propertyPath: growthed
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
