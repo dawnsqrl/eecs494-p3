@@ -25,7 +25,7 @@ public class BuilderTutorialController : MonoBehaviour
         EventBus.Subscribe<BuildingEndDragEvent>(_ => dragBuilding = true);
         EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
         EventBus.Subscribe<BuilderTutorialSnailDeadEvent>(_ => endTutorial = true);
-        EventBus.Subscribe<EndAllTutorialEvent>(_ => EventBus.Publish(new DismissHintEvent()));
+        // EventBus.Subscribe<EndAllTutorialEvent>(_ => EventBus.Publish(new DismissHintEvent())); // TODO
     }
 
     private void Start()

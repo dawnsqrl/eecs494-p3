@@ -45,6 +45,7 @@ public class TutorialEndSequence : MonoBehaviour
                         "Start", new Tuple<UnityAction, bool>(
                             () =>
                             {
+                                EventBus.Publish(new DismissHintEvent()); // TODO
                                 EventBus.Publish(new GameStartEvent());
                                 builderTutorialArea.SetActive(false);
                                 mainCamera.transform.position = new Vector3(7.8f, 8.8f, -10);
