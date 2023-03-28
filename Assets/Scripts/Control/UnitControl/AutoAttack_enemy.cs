@@ -67,6 +67,6 @@ public class AutoAttack_enemy : MonoBehaviour
 
     private void OnDestroy()
     {
-        AutoEnemyControl.autoEnemies.Remove(gameObject);
+        AutoEnemyControl.autoSnails.Remove(gameObject);
     }
 }

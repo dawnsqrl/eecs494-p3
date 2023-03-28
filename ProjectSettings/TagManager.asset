@@ -18,6 +18,7 @@ TagManager:
   - Mucus
   - Hyphae
   - SnailTutorialEndTrigger
+  - LittleSnail
   layers:
   - Default
   - TransparentFX

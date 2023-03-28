@@ -13,10 +13,15 @@ public class EnemyTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Builder") || other.CompareTag("Beast"))
+        if (other.CompareTag("Builder"))
         {
             // baseCar.GetComponent<AutoEnemyControl>().RemoveFromList(transform.parent.gameObject);
             Destroy(transform.parent.gameObject);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        int a = 1;
     }
 }

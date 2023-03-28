@@ -28,9 +28,9 @@ public class AutoAttack_beast : MonoBehaviour
             onAssult = true;
         }
         
-        if (AutoEnemyControl.autoEnemies.Count > 0)
+        if (AutoEnemyControl.autoSnails.Count > 0)
         {
-            foreach (GameObject opponent in AutoEnemyControl.autoEnemies)
+            foreach (GameObject opponent in AutoEnemyControl.autoSnails)
             {
                 if ((opponent.transform.position - transform.position).magnitude < range)
                 {

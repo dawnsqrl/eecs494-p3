@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using CodeMonkey.Utils;
 using TMPro;
 using Unity.VisualScripting;
@@ -8,23 +9,20 @@ using UnityEngine;
 
 public class AutoEnemyControl : MonoBehaviour
 {
-    // [SerializeField] private int maxEnemyUnit = 5;
-    public static List<GameObject> autoEnemies;
+    public static List<GameObject> autoSnails;
+    private List<GameObject> foundSnails;
     private BasecarController _basecarController;
-
-    //public TextMeshProUGUI maxUnitDisplay;
-    // Start is called before the first frame update
     void Start()
     {
-        // maxUnitDisplay.text =  "Max unit: " + maxEnemyUnit.ToString();
-        autoEnemies = new List<GameObject>();
-        // EventBus.Subscribe<SpawnEnemyEvent>(_SpawnEnemy);
+        autoSnails = new List<GameObject>();
+        foundSnails = new List<GameObject>();
+        autoSnails = GameObject.FindGameObjectsWithTag("LittleSnail").ToList();
         _basecarController = gameObject.GetComponent<BasecarController>();
     }
 
     public void RemoveFromList(GameObject o)
     {
-        autoEnemies.Remove(o);
+        autoSnails.Remove(o);
     }
     // private void _SpawnEnemy(SpawnEnemyEvent e)
     // {
@@ -38,12 +36,20 @@ public class AutoEnemyControl : MonoBehaviour
 
     private void Update()
     {
+        foreach (var autoSnail in autoSnails)
+        {
+            if ((autoSnail.transform.position - transform.position).magnitude < 5)
+            {
+                foundSnails.Add(autoSnail);
+                autoSnails.Remove(autoSnail);
+            }
+        }
         List<Vector3> targetPositionList =
             GetPositionListAround(transform.position - _basecarController.forwardDirection.normalized * 2, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
         int targetPositionListIndex = 0;
-        foreach (GameObject enemy in autoEnemies)
+        foreach (GameObject enemy in foundSnails)
         {
-            if (enemy.GetComponent<AutoAttack_enemy>().onAssult)
+            if (enemy.IsDestroyed() || enemy.GetComponent<AutoAttack_enemy>().onAssult)
             {
                 continue;
             }

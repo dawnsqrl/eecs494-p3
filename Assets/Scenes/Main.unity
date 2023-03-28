@@ -9938,6 +9938,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom
       objectReference: {fileID: 0}
+    - target: {fileID: 8292571836482282040, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
 --- !u!1 &1577339712
