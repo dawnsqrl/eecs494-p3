@@ -13,6 +13,8 @@ public class GrowthDemo : MonoBehaviour
     [SerializeField] private int mapSize_x, mapSize_y;
     [SerializeField] private float range_factor = 0.8f;
 
+    [SerializeField] private GrassManager grassManager;
+
     //private bool aim_is_set = false, aim_is_reach = false;
     //private Vector2 growthAim;
 
@@ -33,6 +35,16 @@ public class GrowthDemo : MonoBehaviour
 
     private void Start()
     {
+        while (true)
+        {
+            GameObject.Find("Mushroom").transform.position = new Vector3(Random.Range(5, 45), Random.Range(5, 45), 0);
+            init_x = (int)GameObject.Find("Mushroom").transform.position.x;
+            init_y = (int)GameObject.Find("Mushroom").transform.position.y + 1;
+
+            if (!grassManager.CheckRange(new Vector2(init_x, init_y), 5))
+                break;
+        }
+        
         init_x = (int) GameObject.Find("Mushroom").transform.position.x;
         init_y = (int) GameObject.Find("Mushroom").transform.position.y + 1;
         //print(init_x);

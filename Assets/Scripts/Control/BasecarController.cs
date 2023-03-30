@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class BasecarController : MonoBehaviour
 {
     [SerializeField] private bool isChosen = false;
     [SerializeField] private Vector3 tutorialInitPos;
-    [SerializeField] private Vector3 gameInitPos;
+    private Vector3 gameInitPos;
     [SerializeField] private float speed = 2f;
     [SerializeField] private Animator _animator;
     [SerializeField] private HitHealth _snailHealth;
@@ -132,7 +133,16 @@ public class BasecarController : MonoBehaviour
     private void StartGame()
     {
         is_tutorial = false;
-        transform.position = gameInitPos;
+        Vector3 snailPos = Vector3.zero;
+        while (true)
+        {
+            Vector3 mushroomPos = GameObject.Find("Mushroom").transform.position;
+            snailPos = new Vector3(UnityEngine.Random.Range(5, 45), UnityEngine.Random.Range(5, 45), 0);
+            if (Vector3.Distance(mushroomPos, snailPos) > 20)
+                break;
+        }
+
+        transform.position = snailPos;
     }
 
     private void OnTriggerEnter(Collider other)

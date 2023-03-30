@@ -44,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291ba837e802d6448837ef4d5361f078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  init_x: 15
-  init_y: 15
-  growth_speed: 4
+  init_x: 25
+  init_y: 25
+  growth_speed: 1
   timeGap: 2
   _gridManager: {fileID: 0}
   ResourceController: {fileID: 0}
   mapSize_x: 50
   mapSize_y: 50
   range_factor: 0.8
+  grassManager: {fileID: 0}
