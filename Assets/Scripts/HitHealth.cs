@@ -10,10 +10,12 @@ public class HitHealth : MonoBehaviour
     [SerializeField] private GameObject healthBar;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float time_eat_hyphae = 1f;
+    [SerializeField] private float health_recover_rate = 0.1f; //10 s one health
+
 
     private bool canGetHit;
-
-
+    private float deltaHP = 0;
+    
 
     private void Start()
     {
@@ -51,6 +53,23 @@ public class HitHealth : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void Update()
+    {
+        RecoverHealth();
+    }
+
+    void RecoverHealth() {
+        if (deltaHP > 1) {
+            if (health + 1 <= maxHealth) {
+                health += 1;
+            }
+            deltaHP = 0;
+        }
+        else {
+            deltaHP += health_recover_rate * Time.deltaTime;
         }
     }
 
