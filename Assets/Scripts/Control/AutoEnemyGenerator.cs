@@ -38,7 +38,7 @@ public class AutoEnemyGenerator : MonoBehaviour
     {
         GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/LittleSnail"), transform.position, Quaternion.identity);
         enemy.GetComponent<UnitRTS>().MoveTo(transform.position);
-        AutoEnemyControl.autoSnails.Add(enemy);
+        AutoEnemyControl.autoSnails_queue.Add(enemy);
         unitList.Add(enemy);
     }
 }

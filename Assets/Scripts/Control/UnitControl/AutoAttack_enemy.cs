@@ -11,27 +11,24 @@ public class AutoAttack_enemy : MonoBehaviour
 {
     private float range;
     public bool onAssult;
-    private GameObject mushroom; 
+    private GameObject mushroom;
+    private List<GameObject> enemyList;
     private void Start()
     {
         mushroom = GameObject.FindGameObjectWithTag("Mushroom");
         range = 5;
+        enemyList = new List<GameObject>();
     }
 
     private void Update()
     {
         onAssult = false;
         Vector3 movetoPosition = gameObject.transform.position;
-        
-        if ((mushroom.transform.position - transform.position).magnitude < range)
+        enemyList = new List<GameObject>(CitizenControl.citizenList);
+        enemyList.Add(mushroom);
+        if (enemyList.Count > 0)
         {
-            movetoPosition = mushroom.transform.position;
-            onAssult = true;
-        }
-        
-        if (CitizenControl.citizenList.Count > 0)
-        {
-            foreach (GameObject opponent in CitizenControl.citizenList)
+            foreach (GameObject opponent in enemyList)
             {
                 if ((opponent.transform.position - transform.position).magnitude < range)
                 {

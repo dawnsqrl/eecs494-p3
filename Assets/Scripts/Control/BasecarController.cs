@@ -18,7 +18,7 @@ public class BasecarController : MonoBehaviour
     public Vector3 direction;
     public Vector3 forwardDirection;
     private Rigidbody _rigidbody;
-    public bool is_tutorial;
+    public static bool is_tutorial;
     public bool is_tutorial_end;
 
     private float normalSpeed = 2;

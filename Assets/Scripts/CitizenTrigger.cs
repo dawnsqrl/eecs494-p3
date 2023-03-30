@@ -13,17 +13,17 @@ public class CitizenTrigger : MonoBehaviour
                 transform.parent.gameObject.GetComponent<CitizenBuildingControl>().remove_from_list();
             Destroy(transform.parent.gameObject);
         }
-        if (other.CompareTag("Mucus"))
-        {
-            transform.parent.gameObject.GetComponent<UnitRTS>().SetCitizenOnMucus(true);
-        }
+        // if (other.CompareTag("Mucus"))
+        // {
+        //     transform.parent.gameObject.GetComponent<UnitRTS>().SetCitizenOnMucus(true);
+        // }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Mucus"))
-        {
-            transform.parent.gameObject.GetComponent<UnitRTS>().SetCitizenOnMucus(false);
-        }
+        // if (other.CompareTag("Mucus"))
+        // {
+        //     transform.parent.gameObject.GetComponent<UnitRTS>().SetCitizenOnMucus(false);
+        // }
     }
 }
