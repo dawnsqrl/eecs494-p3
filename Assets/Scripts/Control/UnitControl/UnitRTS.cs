@@ -28,20 +28,17 @@ public class UnitRTS : MonoBehaviour
     // private List<GameObject> clearedFogList;
     // private List<GameObject> prevClearedFogList;
     private bool startTutorial;
-
-    private void Awake()
-    {
-        startTutorial = GameObject.Find("BuilderTutorial").GetComponent<BuilderTutorialController>().getStart();
-    }
+    
     private void Start()
     {
+        startTutorial = GameObject.Find("BuilderTutorial").GetComponent<BuilderTutorialController>().getStart() || BasecarController.is_tutorial;
         selectedGameObject = transform.Find("Selected").gameObject;
         movePosition = GetComponent<IMovePosition>();
         moveVelocity = GetComponent<IMoveVelocity>();
         _movePositionDirect = GetComponent<MovePositionDirect>();
         _rigidbody = GetComponent<Rigidbody>();
         SetSelectedActive(false);
-        _velocity = 4;
+        _velocity = 2;
     }
 
     public void SetSelectedActive(bool visible)
@@ -68,7 +65,7 @@ public class UnitRTS : MonoBehaviour
             return;
         }
         
-        if (GameProgressControl.isGameActive || startTutorial)
+        if (GameProgressControl.isGameActive || startTutorial || BasecarController.is_tutorial)
         {
             Vector3 direction = (targetPosition - transform.position).normalized;
             _rigidbody.velocity = direction.normalized * (_velocity * SimulationSpeedControl.GetSimulationSpeed());
@@ -77,6 +74,6 @@ public class UnitRTS : MonoBehaviour
 
     public void SetCitizenOnMucus(bool flag)
     {
-        _velocity = flag ? 0.5f : 4;
+        _velocity = flag ? 2f : 2;
     }
 }

@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1429a703269438592204de0d71786d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  presetCitizen:
+  - {fileID: 0}

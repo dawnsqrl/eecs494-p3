@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CodeMonkey.Utils;
 using UnityEditor;
 using UnityEngine;
@@ -7,10 +8,16 @@ using UnityEngine;
 public class CitizenControl : MonoBehaviour
 {
     public static List<GameObject> citizenList;
+    [SerializeField] private List<GameObject> presetCitizen;
     private void Awake()
     {
         EventBus.Subscribe<SpawnCitizenEvent>(_SpawnCitizen);
-        citizenList = new List<GameObject>();
+    }
+
+    private void Start()
+    {
+        citizenList = new List<GameObject>(presetCitizen);
+        // citizenList = GameObject.FindGameObjectsWithTag("Citizen").ToList();
     }
 
     private void _SpawnCitizen(SpawnCitizenEvent e)

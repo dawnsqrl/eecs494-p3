@@ -9,11 +9,13 @@ using UnityEngine;
 
 public class AutoEnemyControl : MonoBehaviour
 {
+    public static List<GameObject> autoSnails_queue;
     public static List<GameObject> autoSnails;
-    private List<GameObject> foundSnails;
+    public static List<GameObject> foundSnails;
     private BasecarController _basecarController;
     void Start()
     {
+        autoSnails_queue = new List<GameObject>();
         autoSnails = new List<GameObject>();
         foundSnails = new List<GameObject>();
         autoSnails = GameObject.FindGameObjectsWithTag("LittleSnail").ToList();
@@ -36,14 +38,19 @@ public class AutoEnemyControl : MonoBehaviour
 
     private void Update()
     {
-        foreach (var autoSnail in autoSnails)
+        for (int i = autoSnails.Count - 1; i >= 0; i--)
         {
-            if ((autoSnail.transform.position - transform.position).magnitude < 5)
+            if (!autoSnails[i].IsDestroyed() && (autoSnails[i].transform.position - transform.position).magnitude < 5)
             {
-                foundSnails.Add(autoSnail);
-                autoSnails.Remove(autoSnail);
+                foundSnails.Add(autoSnails[i]);
+                autoSnails.RemoveAt(i);
             }
         }
+        foreach (var autoSnail in autoSnails_queue)
+        {
+            autoSnails.Add(autoSnail);
+        }
+        autoSnails_queue.Clear();
         List<Vector3> targetPositionList =
             GetPositionListAround(transform.position - _basecarController.forwardDirection.normalized * 2, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
         int targetPositionListIndex = 0;
