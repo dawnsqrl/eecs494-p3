@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrassManager : MonoBehaviour
 {
-    private List<Vector3> grassList;
+    [SerializeField] private List<Vector3> grassList;
     private void Awake()
     {
         grassList = new List<Vector3>();

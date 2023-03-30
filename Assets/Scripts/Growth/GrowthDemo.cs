@@ -26,6 +26,7 @@ public class GrowthDemo : MonoBehaviour
     private List<Vector2> edge_list = new List<Vector2>();
 
     private int vitality;
+    private GameObject buildingController;
 
     private void Awake()
     {
@@ -47,6 +48,9 @@ public class GrowthDemo : MonoBehaviour
         
         init_x = (int) GameObject.Find("Mushroom").transform.position.x;
         init_y = (int) GameObject.Find("Mushroom").transform.position.y + 1;
+
+        buildingController = GameObject.Find("BuildingCanvas");
+        buildingController.GetComponent<BuildingController>().register_building(new Vector2(init_x, init_y), gameObject);
         //print(init_x);
         //print(init_y);
         StartCoroutine(AutoGrowth(timeGap));

@@ -18,8 +18,7 @@ public class MushroomControl : MonoBehaviour
 
     private void Start()
     {
-        buildingController = GameObject.Find("BuildingCanvas");
-        buildingController.GetComponent<BuildingController>().register_building(new Vector2(7, 8), gameObject);
+       
         isDialogBlocking = false;
     }
 
