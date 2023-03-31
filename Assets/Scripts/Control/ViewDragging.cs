@@ -15,7 +15,7 @@ public class ViewDragging : MonoBehaviour
     [SerializeField] private float acceleration = 10f;
     [SerializeField] private float damping = 15f;
 
-    [SerializeField] [Range(0f, 1f)] private float edgeTolerance = 0.05f;
+    [SerializeField] [Range(0f, 1f)] private float edgeTolerance = 0.001f;
     private Vector3 horizontalVelocity;
     private bool isDraggingEnabled;
     private Camera builderCam;
