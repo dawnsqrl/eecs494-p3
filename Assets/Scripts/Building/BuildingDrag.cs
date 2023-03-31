@@ -13,7 +13,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private BuilderGridManager TgridManager;
     [SerializeField] private bool isGrowthSource;
     [SerializeField] private ViewDragging vd;
-    [SerializeField] private int defenceRange = 6;
+    private int defenceRange = 8;
 
     private Transform parentAfterDrag;
     private GameObject buildingController;
