@@ -10,15 +10,18 @@ public class HitHealth : MonoBehaviour
     [SerializeField] private GameObject healthBar;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float time_eat_hyphae = 1f;
+    [SerializeField] private float hit_cd_time = 0.5f;
     [SerializeField] private float health_recover_rate = 0.1f; //10 s one health
 
 
     private bool canGetHit;
     private float deltaHP = 0;
+    private float hit_cd;
     
 
     private void Start()
     {
+        hit_cd = hit_cd_time;
         canGetHit = true;
         healthBar.GetComponent<SpriteRenderer>().size =
             new Vector2((float)health / (float)maxHealth * 10, healthBar.GetComponent<SpriteRenderer>().size.y);
@@ -32,7 +35,13 @@ public class HitHealth : MonoBehaviour
             {
                 canGetHit = false;
                 StartCoroutine(HitEffect());
-                health -= 1;
+                if (hit_cd > 0) {
+                    hit_cd -= Time.deltaTime;
+                }
+                else {
+                    health -= 1;
+                    hit_cd = hit_cd_time;
+                }
                 healthBar.GetComponent<SpriteRenderer>().size =
                     new Vector2((float)health / (float)maxHealth * 10, healthBar.GetComponent<SpriteRenderer>().size.y);
             }
