@@ -33,7 +33,7 @@ Transform:
   m_LocalScale: {x: 0.12, y: 0.12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2686436167368736095}
+  - {fileID: 1606483162525663558}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -145,10 +145,11 @@ MonoBehaviour:
   maxHealth: 5
   health: 5
   enemyTag: BaseCar
-  healthBar: {fileID: 5562868028843290851}
+  healthBar: {fileID: 9092831861510475002}
   _spriteRenderer: {fileID: 7694564767073642411}
   time_eat_hyphae: 1
---- !u!1001 &3161862660843811087
+  health_recover_rate: 0.1
+--- !u!1001 &1793081154108247318
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -161,11 +162,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1056395531341581392, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.6666666
       objectReference: {fileID: 0}
     - target: {fileID: 1056395531341581392, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.6666666
       objectReference: {fileID: 0}
     - target: {fileID: 1056395531341581392, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_LocalScale.z
@@ -177,7 +178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1056395531341581392, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.33
+      value: -6.69
       objectReference: {fileID: 0}
     - target: {fileID: 1056395531341581392, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -211,6 +212,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1644830795802638576, guid: efdbd088127f04d679fc99053485471e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2110893949665509737, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_Name
       value: HealthBar
@@ -227,6 +232,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 7409115908196418028, guid: efdbd088127f04d679fc99053485471e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7864977755556870637, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.49999994
@@ -237,13 +246,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efdbd088127f04d679fc99053485471e, type: 3}
---- !u!4 &2686436167368736095 stripped
+--- !u!4 &1606483162525663558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1056395531341581392, guid: efdbd088127f04d679fc99053485471e, type: 3}
-  m_PrefabInstance: {fileID: 3161862660843811087}
+  m_PrefabInstance: {fileID: 1793081154108247318}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5562868028843290851 stripped
+--- !u!1 &9092831861510475002 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7409115908196418028, guid: efdbd088127f04d679fc99053485471e, type: 3}
-  m_PrefabInstance: {fileID: 3161862660843811087}
+  m_PrefabInstance: {fileID: 1793081154108247318}
   m_PrefabAsset: {fileID: 0}

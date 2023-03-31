@@ -13,6 +13,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private BuilderGridManager TgridManager;
     [SerializeField] private bool isGrowthSource;
     [SerializeField] private ViewDragging vd;
+    [SerializeField] private int defenceRange = 6;
 
     private Transform parentAfterDrag;
     private GameObject buildingController;
@@ -21,11 +22,20 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     Vector2 oldPos1 = Vector2.zero, oldPos2 = Vector2.zero, oldPos3 = Vector2.zero, oldPos4 = Vector2.zero;
 
+    GameObject AttackRange;
+    Vector3 denfenceOriginScale;
+
     private void Awake()
     {
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
         buildingController = GameObject.Find("BuildingCanvas");
         growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
+
+        if (gameObject.name == "Defence")
+        {
+            AttackRange = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/RangeCircle"), new Vector3(100.0f, 100.0f, 0.0f), Quaternion.identity);
+            denfenceOriginScale = AttackRange.transform.localScale;
+        }
     }
 
     private void Start()
@@ -37,6 +47,8 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        EventBus.Publish(new StartBuildingDragEvent());
+
         RTScontroller.SetActive(false);
         SelectedArea.SetActive(false);
         parentAfterDrag = transform.parent;
@@ -79,6 +91,13 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         oldPos4 = pos4;
 
         //vd.enabled = true;
+        
+        if(gameObject.name == "Defence")
+        {
+            AttackRange.transform.localScale = denfenceOriginScale * defenceRange;
+            AttackRange.transform.position = new Vector3(Worldpos.x + 0.5f + 0.2f, Worldpos.y - 0.5f - 0.2f, -2.0f);
+        }
+        
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -105,10 +124,21 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             if (startTutorial)
             {
                 new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x + 0.5f + 70.0f, oldPos1.y - 0.5f + 70.0f, -2.0f), Quaternion.identity);
+                if (gameObject.name == "Defence")
+                {
+                    AttackRange.transform.position = new Vector3(100.0f, 100.0f, 0.0f);
+                    new_building.GetComponent<DefenceBuilding>().SetPosition(new Vector3(oldPos1.x + 0.5f + 70.0f, oldPos1.y - 0.5f + 70.0f, -2.0f), defenceRange);
+                }
             }
             else
             {
                 new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f), Quaternion.identity);
+                if (gameObject.name == "Defence")
+                {
+                    AttackRange.transform.position = new Vector3(100.0f, 100.0f, 0.0f);
+                    new_building.GetComponent<DefenceBuilding>().SetPosition(new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f), defenceRange);
+
+                }
             }
             //growthDemo.Position2GroundManager(pos).SetGrowthed();
 
@@ -141,11 +171,16 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             setHighlight(oldPos4, false, white);
         }
 
-        
+        if (gameObject.name == "Defence")
+        {
+            AttackRange.transform.position = new Vector3(100.0f, 100.0f, 0.0f);
+        }
         transform.SetParent(parentAfterDrag);
         transform.localScale = new Vector2(1, 1);
         RTScontroller.SetActive(true);
         vd.enabled = true;
+
+        EventBus.Publish(new EndBuildingDragEvent());
     }
 
     bool CheckAvai(Vector2 pos)

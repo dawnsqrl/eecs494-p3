@@ -55,7 +55,7 @@ public class SpellCooldown : MonoBehaviour
                         temp_cool_down_time = -15f / 900 * vitality + 65f / 3;
                         break;
                     case 3: // defence
-                        temp_cool_down_time = 60;
+                        temp_cool_down_time = 3;
                         break;
                     default:
                         temp_cool_down_time = 1;

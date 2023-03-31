@@ -234,3 +234,11 @@ public class BuildingEndDragEvent
 public class BuilderTutorialSnailDeadEvent
 {
 }
+
+public class StartBuildingDragEvent
+{
+}
+
+public class EndBuildingDragEvent
+{
+}
