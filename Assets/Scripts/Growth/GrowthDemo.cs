@@ -28,6 +28,11 @@ public class GrowthDemo : MonoBehaviour
     private int vitality;
     private GameObject buildingController;
 
+    public Vector2 getInitPos()
+    {
+        return new Vector2(init_x, init_y);
+    }
+
     private void Awake()
     {
         EventBus.Subscribe<ModifyPauseEvent>(e => isSimulationPaused = e.status);
