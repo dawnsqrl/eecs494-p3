@@ -52,7 +52,7 @@ public class HitHealth : MonoBehaviour
         //     return;;
         // }
 
-        if (!other.gameObject.GetComponent<HitHealth>() && other.gameObject.GetComponent<HitHealth>().currentOpponent != gameObject)
+        if (other.gameObject.GetComponent<HitHealth>() == null && other.gameObject.GetComponent<HitHealth>().currentOpponent != gameObject)
         {
             return;
         }
@@ -193,15 +193,15 @@ public class HitHealth : MonoBehaviour
             health -= 1;
             healthBar.size =
                 new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
-            if (gameObject.CompareTag("BaseCar"))
-            {
-                GetComponent<BoxCollider>().enabled = false;
-            }
+            // if (gameObject.CompareTag("BaseCar"))
+            // {
+            //     GetComponent<BoxCollider>().enabled = false;
+            // }
             yield return new WaitForSeconds(1f);
-            if (gameObject.CompareTag("BaseCar"))
-            {
-                GetComponent<BoxCollider>().enabled = true;
-            }
+            // if (gameObject.CompareTag("BaseCar"))
+            // {
+            //     GetComponent<BoxCollider>().enabled = true;
+            // }
             canGetHit = true;
             _spriteRenderer.color = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
             hitlock = false;
