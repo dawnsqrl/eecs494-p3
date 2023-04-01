@@ -802,6 +802,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2002412628312044238, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7556157864141780632, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -3982,6 +3986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flag
       objectReference: {fileID: 0}
+    - target: {fileID: 7276902572652670740, guid: 6ba3d13f408bb094e8095a5c1998e2d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7276902572652670741, guid: 6ba3d13f408bb094e8095a5c1998e2d8, type: 3}
       propertyPath: GrowthController
       value: 
@@ -4056,11 +4064,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7276902572652670743, guid: 6ba3d13f408bb094e8095a5c1998e2d8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 45.3
+      value: 75.4
       objectReference: {fileID: 0}
     - target: {fileID: 7276902572652670743, guid: 6ba3d13f408bb094e8095a5c1998e2d8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5.9
+      value: -14.6
       objectReference: {fileID: 0}
     - target: {fileID: 7276902572652670743, guid: 6ba3d13f408bb094e8095a5c1998e2d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -12269,6 +12277,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 560697544}
     m_Modifications:
+    - target: {fileID: 1195475749, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: vd
+      value: 
+      objectReference: {fileID: 819354649}
+    - target: {fileID: 1195475749, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: gridManager
+      value: 
+      objectReference: {fileID: 1755112723}
+    - target: {fileID: 1195475749, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: SelectedArea
+      value: 
+      objectReference: {fileID: 691974118}
+    - target: {fileID: 1195475749, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: RTScontroller
+      value: 
+      objectReference: {fileID: 1470659569}
+    - target: {fileID: 1420149010509160373, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: vd
+      value: 
+      objectReference: {fileID: 819354649}
     - target: {fileID: 4008601779917999612, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: SelectedArea
       value: 
@@ -12279,7 +12307,7 @@ PrefabInstance:
       objectReference: {fileID: 1470659569}
     - target: {fileID: 6738864931833417201, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7409565223783687576, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: m_LocalPosition.x
