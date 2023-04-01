@@ -92,6 +92,18 @@ public class HitHealth : MonoBehaviour
         RecoverHealth();
     }
 
+    public void ReduceHealth(int cnt){
+        if(health-cnt>0){
+            health -= cnt;
+            healthBar.size =
+                new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
+        }else{
+            Destroy(transform.parent.gameObject);
+        }
+        
+    }
+
+
     void RecoverHealth() {
         if (deltaHP > 1) {
             if (health + 1 <= maxHealth) {
