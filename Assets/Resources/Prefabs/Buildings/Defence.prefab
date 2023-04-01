@@ -144,11 +144,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   health: 5
-  enemyTag: BaseCar
-  healthBar: {fileID: 9092831861510475002}
+  healthBar: {fileID: 2454421831015662348}
   _spriteRenderer: {fileID: 7694564767073642411}
-  time_eat_hyphae: 1
+  hit_cd_time: 0.5
   health_recover_rate: 0.1
+  enemyTagList:
+  - BaseCar
+  - LittleSnail
 --- !u!1001 &1793081154108247318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -251,8 +253,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1056395531341581392, guid: efdbd088127f04d679fc99053485471e, type: 3}
   m_PrefabInstance: {fileID: 1793081154108247318}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &9092831861510475002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7409115908196418028, guid: efdbd088127f04d679fc99053485471e, type: 3}
+--- !u!212 &2454421831015662348 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4246215403723214362, guid: efdbd088127f04d679fc99053485471e, type: 3}
   m_PrefabInstance: {fileID: 1793081154108247318}
   m_PrefabAsset: {fileID: 0}

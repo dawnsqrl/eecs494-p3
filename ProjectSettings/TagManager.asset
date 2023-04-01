@@ -34,9 +34,9 @@ TagManager:
   - Hyphae
   - Grass
   - Building
-  - 
-  - 
-  - 
+  - CameraRayCast
+  - LittleSnail
+  - MiniMapCam
   - 
   - 
   - 

@@ -15,9 +15,9 @@ public class SnailExpManager : MonoBehaviour
             new Vector2((float)currentExp / (float)nextLevelExp * 10, expBar.GetComponent<SpriteRenderer>().size.y);
     }
 
-    public void AddExpPoints()
+    public void AddExpPoints(int exp)
     {
-        currentExp++;
+        currentExp += exp;
         expBar.GetComponent<SpriteRenderer>().size =
             new Vector2((float)currentExp / (float)nextLevelExp * 10, expBar.GetComponent<SpriteRenderer>().size.y);
         if (currentExp == nextLevelExp)

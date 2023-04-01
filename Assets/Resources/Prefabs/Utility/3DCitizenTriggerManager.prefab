@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5680027867496336168}
   - component: {fileID: 7621012375919868834}
   - component: {fileID: 8135083049318079029}
+  - component: {fileID: 1182789894812331328}
   m_Layer: 7
   m_Name: 3DCitizenTriggerManager
   m_TagString: Builder
@@ -72,3 +73,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.567898, y: 2.5477955, z: 10}
   m_Center: {x: 0.10050572, y: 0.77389735, z: 0}
+--- !u!114 &1182789894812331328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216541264821508152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134423d73171d43c6bd7de912cbf02a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  health: 3
+  healthBar: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  hit_cd_time: 0.5
+  health_recover_rate: 0.1
+  enemyTagList:
+  - LittleSnail

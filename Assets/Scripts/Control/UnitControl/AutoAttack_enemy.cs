@@ -25,7 +25,7 @@ public class AutoAttack_enemy : MonoBehaviour
         onAssult = false;
         Vector3 movetoPosition = gameObject.transform.position;
         enemyList = new List<GameObject>(CitizenControl.citizenList);
-        enemyList.Add(mushroom);
+        // enemyList.Add(mushroom);
         if (enemyList.Count > 0)
         {
             foreach (GameObject opponent in enemyList)

@@ -58,13 +58,9 @@ public class GroundTileManager : MonoBehaviour
 
     public void SetGrowthed()
     {
-        // gameObject.GetComponent<ClearSurroundingFog>().enabled = true;
-        // gameObject.GetComponent<Tile>().SetBaseColor(new Color32(0xAB, 0xAB, 0x00, 0xFF));
-        // gameObject.GetComponent<Tile>().SetOffsetColor(new Color32(0xAB, 0x1A, 0x59, 0xFF));
-        // gameObject.GetComponent<Tile>().SetColor(true);
         GameObject hyphae = transform.parent.gameObject.transform.Find("Hyphae").gameObject;
         hyphae.SetActive(true);
-        hyphae.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-10, 10));
+        // hyphae.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-10, 10));
         foreach (Transform small_hyphae in hyphae.transform)
         {
             small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");
@@ -76,7 +72,7 @@ public class GroundTileManager : MonoBehaviour
     {
         GameObject mucus = transform.parent.gameObject.transform.Find("Mucus").gameObject;
         mucus.SetActive(true);
-        mucus.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-10, 10));
+        // mucus.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-10, 10));
         foreach (Transform small_hyphae in mucus.transform)
         {
             small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");

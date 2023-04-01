@@ -23,6 +23,15 @@ public class GrassTrigger : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        // if this grid is marked
+        if (GridManager._tiles[new Vector2((int)transform.position.x, (int)transform.position.y)].GetComponentInChildren<GroundTileManager>().growthed)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("BaseCar"))

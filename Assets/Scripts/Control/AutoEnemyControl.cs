@@ -12,13 +12,14 @@ public class AutoEnemyControl : MonoBehaviour
     public static List<GameObject> autoSnails_queue;
     public static List<GameObject> autoSnails;
     public static List<GameObject> foundSnails;
+    [SerializeField] private SnailExpManager _snailExpManager;
     private BasecarController _basecarController;
     void Start()
     {
         autoSnails_queue = new List<GameObject>();
         autoSnails = new List<GameObject>();
         foundSnails = new List<GameObject>();
-        autoSnails = GameObject.FindGameObjectsWithTag("LittleSnail").ToList();
+        // autoSnails = GameObject.FindGameObjectsWithTag("LittleSnail").ToList();
         _basecarController = gameObject.GetComponent<BasecarController>();
     }
 
@@ -42,7 +43,9 @@ public class AutoEnemyControl : MonoBehaviour
         {
             if (!autoSnails[i].IsDestroyed() && (autoSnails[i].transform.position - transform.position).magnitude < 5)
             {
+                // Found a little snail
                 foundSnails.Add(autoSnails[i]);
+                _snailExpManager.AddExpPoints(2);
                 autoSnails.RemoveAt(i);
             }
         }

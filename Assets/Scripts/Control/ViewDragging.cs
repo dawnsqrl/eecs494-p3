@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,13 +39,13 @@ public class ViewDragging : MonoBehaviour
                 transform.position = new Vector3(e.initPos.x, e.initPos.y, transform.position.z)
         );
         EventBus.Subscribe<DialogBlockingEvent>(e => isDraggingEnabled = !e.status);
-        cameraTransform = GetComponent<Transform>();
     }
 
     private void Start()
     {
         isDraggingEnabled = true;
         builderCam = GetComponent<Camera>();
+        cameraTransform = GetComponent<Transform>();
     }
 
     private void Zoom() {
@@ -54,14 +55,14 @@ public class ViewDragging : MonoBehaviour
         if (scroll != 0.0f)
         {
             // Get the current camera size
-            float size = GetComponent<Camera>().orthographicSize;
+            float size = builderCam.orthographicSize;
 
             // Adjust the zoom based on the scroll value and speed
             float zoomDelta = scroll * zoomSpeed;
             size = Mathf.Clamp(size - zoomDelta, zoomMin, zoomMax);
 
             // Set the camera size to the new value
-            GetComponent<Camera>().orthographicSize = size;
+            builderCam.orthographicSize = size;
         }
     }
 

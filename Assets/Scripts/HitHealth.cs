@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -6,17 +8,18 @@ public class HitHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth;
     [SerializeField] public int health;
-    [SerializeField] private string enemyTag;
-    [SerializeField] private GameObject healthBar;
+    // [SerializeField] private string enemyTag;
+    [SerializeField] private SpriteRenderer healthBar;
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private float time_eat_hyphae = 1f;
+    // [SerializeField] private float time_eat_hyphae = 1f;
     [SerializeField] private float hit_cd_time = 0.5f;
     [SerializeField] private float health_recover_rate = 0.1f; //10 s one health
+    [SerializeField] private List<String> enemyTagList;
 
 
     private bool canGetHit;
     private float deltaHP = 0;
-    private float hit_cd;
+    private float original_bar_length;
 
     bool hitlock;
     
@@ -24,54 +27,54 @@ public class HitHealth : MonoBehaviour
     private void Start()
     {
         hitlock = false;
-        hit_cd = hit_cd_time;
+        original_bar_length = healthBar.size.x;
         canGetHit = true;
-        healthBar.GetComponent<SpriteRenderer>().size =
-            new Vector2((float)health / (float)maxHealth * 10, healthBar.GetComponent<SpriteRenderer>().size.y);
+        healthBar.size =
+            new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag(enemyTag))
+        bool ishit = false;
+        foreach (var _enemyTag in enemyTagList)
         {
-            if (health > 0)
+            if (other.gameObject.CompareTag(_enemyTag))
             {
-                canGetHit = false;
-                StartCoroutine(HitEffect());
-                if (gameObject.tag == "Building")
-                {
-                    if (hit_cd > 0)
-                    {
-                        hit_cd -= Time.deltaTime;
-                    }
-                    else
-                    {
-                        health -= 1;
-                        hit_cd = hit_cd_time;
-                    }
-                }
-                else {
-                    health -= 1;
-                }
-                
-                healthBar.GetComponent<SpriteRenderer>().size =
-                    new Vector2((float)health / (float)maxHealth * 10, healthBar.GetComponent<SpriteRenderer>().size.y);
+                ishit = true;
+                break;
             }
-            if (health == 0)
+        }
+
+        if (!ishit)
+        {
+            return;;
+        }
+        if (health > 0)
+        {
+            canGetHit = false;
+            StartCoroutine(HitEffect());
+        }
+        if (health == 0)
+        {
+            EventBus.Publish(new BuilderTutorialSnailDeadEvent());
+            if (gameObject.tag == "Building")
             {
-                EventBus.Publish(new BuilderTutorialSnailDeadEvent());
-                if (gameObject.tag == "Building")
+                Destroy(gameObject);
+            }  
+            else
+            {
+                Transform parent = transform.parent;
+                if (parent.GetComponent<SpriteRenderer>() != null)
                 {
-                    Destroy(gameObject);
-                }  
+                    parent.GetComponent<SpriteRenderer>().color = Color.red;
+                }
+                if (parent.GetComponent<GameEndTrigger>() != null)
+                {
+                    parent.GetComponent<GameEndTrigger>().TriggerDeath();
+                }
                 else
                 {
-                    Transform parent = transform.parent;
-                    parent.GetComponent<SpriteRenderer>().color = Color.red;
-                    if (parent.GetComponent<GameEndTrigger>() != null)
-                    {
-                        parent.GetComponent<GameEndTrigger>().TriggerDeath();
-                    }
+                    Destroy(parent.gameObject);
                 }
             }
         }
@@ -88,8 +91,8 @@ public class HitHealth : MonoBehaviour
                 health += 1;
             }
             deltaHP = 0;
-            healthBar.GetComponent<SpriteRenderer>().size =
-                    new Vector2((float)health / (float)maxHealth * 10, healthBar.GetComponent<SpriteRenderer>().size.y);
+            healthBar.size =
+                    new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
         }
         else {
             deltaHP += health_recover_rate * Time.deltaTime;
@@ -124,24 +127,54 @@ public class HitHealth : MonoBehaviour
     //     }
     // }
 
-    public void MushroomGetDamage() {
+    public void GetDamage() {
+        // if (health > 0)
+        // {
+        //     canGetHit = false;
+        //     StartCoroutine(HitEffect());
+        //     health -= 1;
+        //     healthBar.size =
+        //         new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
+        // }
+        // if (health == 0)
+        // {
+        //     Transform parent = transform.parent;
+        //     parent.GetComponent<SpriteRenderer>().color = Color.red;
+        //     if (parent.GetComponent<GameEndTrigger>() != null)
+        //     {
+        //         parent.GetComponent<GameEndTrigger>().TriggerDeath();
+        //     }
+        //     
+        // }
+        
         if (health > 0)
         {
             canGetHit = false;
             StartCoroutine(HitEffect());
-            health -= 1;
-            healthBar.GetComponent<SpriteRenderer>().size =
-                new Vector2((float)health / (float)maxHealth * 10, healthBar.GetComponent<SpriteRenderer>().size.y);
         }
         if (health == 0)
         {
-            Transform parent = transform.parent;
-            parent.GetComponent<SpriteRenderer>().color = Color.red;
-            if (parent.GetComponent<GameEndTrigger>() != null)
+            EventBus.Publish(new BuilderTutorialSnailDeadEvent());
+            if (gameObject.tag == "Building")
             {
-                parent.GetComponent<GameEndTrigger>().TriggerDeath();
+                Destroy(gameObject);
+            }  
+            else
+            {
+                Transform parent = transform.parent;
+                if (parent.GetComponent<SpriteRenderer>() != null)
+                {
+                    parent.GetComponent<SpriteRenderer>().color = Color.red;
+                }
+                if (parent.GetComponent<GameEndTrigger>() != null)
+                {
+                    parent.GetComponent<GameEndTrigger>().TriggerDeath();
+                }
+                else
+                {
+                    Destroy(parent.gameObject);
+                }
             }
-            
         }
 
     }
@@ -150,7 +183,18 @@ public class HitHealth : MonoBehaviour
         if (!hitlock) {
             hitlock = true;
             _spriteRenderer.color = new Color32(0xFF, 0x00, 0x00, 0xFF);
-            yield return new WaitForSeconds(0.5f);
+            health -= 1;
+            healthBar.size =
+                new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
+            if (gameObject.CompareTag("BaseCar"))
+            {
+                GetComponent<BoxCollider>().enabled = false;
+            }
+            yield return new WaitForSeconds(1f);
+            if (gameObject.CompareTag("BaseCar"))
+            {
+                GetComponent<BoxCollider>().enabled = true;
+            }
             canGetHit = true;
             _spriteRenderer.color = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
             hitlock = false;
@@ -158,5 +202,10 @@ public class HitHealth : MonoBehaviour
         else {
             yield return null;
         }
+    }
+
+    public void SetHealthRestoreRate(float rate)
+    {
+        health_recover_rate = rate;
     }
 }

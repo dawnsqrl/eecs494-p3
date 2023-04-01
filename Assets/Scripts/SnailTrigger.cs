@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SnailTrigger : MonoBehaviour
@@ -10,6 +11,7 @@ public class SnailTrigger : MonoBehaviour
     private SnailExpManager _snailExpManager;
 
     [SerializeField] private GameObject eatEffect;
+    [SerializeField] private GameObject restoreEffect;
 
     private void Start()
     {
@@ -21,7 +23,7 @@ public class SnailTrigger : MonoBehaviour
         if (Time.time - collisionTime > time_eat_hyphae) {
             if (other.gameObject.CompareTag("Hyphae"))
             {
-                _snailExpManager.AddExpPoints();
+                _snailExpManager.AddExpPoints(1);
                 other.gameObject.SetActive(false);
                 eatEffect.SetActive(false);
             }
@@ -36,6 +38,10 @@ public class SnailTrigger : MonoBehaviour
         {
             eatEffect.SetActive(true);
             collisionTime = Time.time;
+        } else if (other.gameObject.CompareTag("GrassHide"))
+        {
+            GetComponent<HitHealth>().SetHealthRestoreRate(0.7f);
+            restoreEffect.SetActive(true);
         }
     }
     
@@ -45,6 +51,11 @@ public class SnailTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Hyphae"))
         {
             eatEffect.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("GrassHide"))
+        {
+            GetComponent<HitHealth>().SetHealthRestoreRate(0.1f);
+            restoreEffect.SetActive(false);
         }
     }
 

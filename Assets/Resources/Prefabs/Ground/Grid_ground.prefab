@@ -229,6 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8078181944727547702}
   - component: {fileID: 3960975885539960805}
+  - component: {fileID: 5625475083708498569}
   m_Layer: 10
   m_Name: Mucus
   m_TagString: Mucus
@@ -266,6 +267,19 @@ BoxCollider:
   m_GameObject: {fileID: 7545952556611990096}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &5625475083708498569
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7545952556611990096}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

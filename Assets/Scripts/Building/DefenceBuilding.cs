@@ -43,15 +43,29 @@ public class DefenceBuilding : MonoBehaviour
     {
         ready = false;
         yield return new WaitForSeconds(1.0f);
-        if (Vector2.Distance(new Vector2(BaseCar.transform.position.x, BaseCar.transform.position.y), bomb_pos) <= 1)
+        for (int i = 0; i < AutoEnemyControl.foundSnails.Count; i++)
         {
-            BaseCar.GetComponentInChildren<HitHealth>().MushroomGetDamage();
+            BombHit(AutoEnemyControl.foundSnails[i]);
         }
+
+        for (int i = 0; i < AutoEnemyControl.autoSnails.Count; i++)
+        {
+            BombHit(AutoEnemyControl.autoSnails[i]);
+        }
+        BombHit(BaseCar);
         GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), bomb_pos, Quaternion.identity);
         yield return new WaitForSeconds(1.0f);
         Destroy(bomb);
         yield return new WaitForSeconds(1.0f);
         ready = true;
+    }
+
+    private void BombHit(GameObject target)
+    {
+        if (Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.y), bomb_pos) <= 1)
+        {
+            target.GetComponentInChildren<HitHealth>().GetDamage();
+        }
     }
 
     public void SetPosition(Vector3 pos, int range)

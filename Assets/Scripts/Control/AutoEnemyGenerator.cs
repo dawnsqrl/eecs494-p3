@@ -11,31 +11,40 @@ public class AutoEnemyGenerator : MonoBehaviour
 {
     [SerializeField] private int maxUnit = 1;
     private List<GameObject> unitList;
+    private int onGenerationSnailNUm;
 
     private void Start()
     {
         unitList = new List<GameObject>();
-        
+        onGenerationSnailNUm = 0;
     }
 
     private void Update()
     {
-        foreach (var unit in unitList)
+        for (int i = 0; i < unitList.Count; i++)
         {
-            if (unit.IsDestroyed())
+            if (unitList[i].IsDestroyed())
             {
-                unitList.Remove(unit);
+                unitList.RemoveAt(i);
+                onGenerationSnailNUm--;
             }
         }
 
-        while (unitList.Count < maxUnit)
+        while (onGenerationSnailNUm < maxUnit)
         {
-            GenerateNewUnit();
+            StartCoroutine(GenerateNewUnit());
+            onGenerationSnailNUm++;
+        }
+        
+        if (GridManager._tiles[new Vector2((int)transform.position.x, (int)transform.position.y)].GetComponentInChildren<GroundTileManager>().growthed)
+        {
+            Destroy(gameObject);
         }
     }
 
-    public void GenerateNewUnit()
+    private IEnumerator GenerateNewUnit()
     {
+        yield return new WaitForSeconds(10);
         GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/LittleSnail"), transform.position, Quaternion.identity);
         enemy.GetComponent<UnitRTS>().MoveTo(transform.position);
         AutoEnemyControl.autoSnails_queue.Add(enemy);

@@ -20,7 +20,7 @@ public class HitMushroom : MonoBehaviour
         else {
             if (other.gameObject.CompareTag("Mushroom"))
             {
-                other.gameObject.GetComponentInChildren<HitHealth>().MushroomGetDamage();
+                other.gameObject.GetComponentInChildren<HitHealth>().GetDamage();
             }
             current_time = 0.8f;
         }
