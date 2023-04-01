@@ -38,19 +38,27 @@ public class SpellCooldown : MonoBehaviour
 
     private void Update()
     {
-        if ((buildingType == 0 && vitality < 400) || (buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200) || (buildingType == 3 && vitality < 300))
-        {
-            textCooldown.gameObject.SetActive(false);
-            imageCooldown.gameObject.SetActive(true);
-            imageCooldown.fillAmount = 1.0f;
-        }
-        else
-        {
-            imageCooldown.gameObject.SetActive(false);
-            imageCooldown.fillAmount = 0.0f;
-        }
+        
         if (GameProgressControl.isGameActive)
         {
+            if ((buildingType == 0 && vitality < 400) || (buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200) || (buildingType == 3 && vitality < 300))
+            {
+                if (!isCoolDown)
+                {
+                    textCooldown.gameObject.SetActive(false);
+                    imageCooldown.gameObject.SetActive(true);
+                    imageCooldown.fillAmount = 1.0f;
+                }
+            }
+            else
+            {
+                if (!isCoolDown)
+                {
+                    imageCooldown.gameObject.SetActive(false);
+                    imageCooldown.fillAmount = 0.0f;
+                }
+            }
+            
             if (start)
             {
                 vd.enabled = false;
