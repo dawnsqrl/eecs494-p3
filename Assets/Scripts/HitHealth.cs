@@ -52,7 +52,7 @@ public class HitHealth : MonoBehaviour
         //     return;;
         // }
 
-        if (other.gameObject.GetComponent<HitHealth>() == null && other.gameObject.GetComponent<HitHealth>().currentOpponent != gameObject)
+        if (other.gameObject.GetComponent<HitHealth>() == null || other.gameObject.GetComponent<HitHealth>().currentOpponent != gameObject)
         {
             return;
         }
