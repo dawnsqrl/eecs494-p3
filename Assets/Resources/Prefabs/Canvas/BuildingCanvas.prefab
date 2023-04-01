@@ -95,7 +95,9 @@ MonoBehaviour:
   RTScontroller: {fileID: 0}
   SelectedArea: {fileID: 0}
   gridManager: {fileID: 0}
+  TgridManager: {fileID: 0}
   isGrowthSource: 1
+  vd: {fileID: 0}
 --- !u!1 &895403095113627028
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +164,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>Soldier Factory</b>\nCost: 20% vitality\n\u20137.5% vitality / minute"
+  m_text: "<b>Soldier Factory</b> (1x spawn)\nCost: 20% vitality\n\u20137.5% vitality
+    / minute"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -269,7 +272,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 180}
+  m_SizeDelta: {x: 680, y: 180}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &7956853499673401119
 CanvasRenderer:
@@ -815,6 +818,7 @@ MonoBehaviour:
   imageCooldown: {fileID: 4821397985908070758}
   textCooldown: {fileID: 7957654476082387320}
   buildingType: 0
+  vd: {fileID: 0}
   cooldownTime: 1
 --- !u!114 &9202489645015901251
 MonoBehaviour:
@@ -911,7 +915,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 135}
+  m_SizeDelta: {x: 420, y: 135}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &2776650259073429503
 CanvasRenderer:
@@ -2054,6 +2058,7 @@ MonoBehaviour:
   imageCooldown: {fileID: 8304448893657786841}
   textCooldown: {fileID: 8304448895196572817}
   buildingType: 1
+  vd: {fileID: 0}
   cooldownTime: 1
 --- !u!114 &3526262605205403091
 MonoBehaviour:
@@ -2233,6 +2238,7 @@ MonoBehaviour:
   imageCooldown: {fileID: 8304448894726667017}
   textCooldown: {fileID: 8304448893495862661}
   buildingType: 2
+  vd: {fileID: 0}
   cooldownTime: 6
 --- !u!114 &2336901900044963920
 MonoBehaviour:
@@ -2424,7 +2430,9 @@ MonoBehaviour:
   RTScontroller: {fileID: 0}
   SelectedArea: {fileID: 0}
   gridManager: {fileID: 0}
+  TgridManager: {fileID: 0}
   isGrowthSource: 0
+  vd: {fileID: 0}
 --- !u!1 &8304448894426768990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2558,7 +2566,9 @@ MonoBehaviour:
   RTScontroller: {fileID: 0}
   SelectedArea: {fileID: 0}
   gridManager: {fileID: 0}
+  TgridManager: {fileID: 0}
   isGrowthSource: 0
+  vd: {fileID: 0}
 --- !u!1 &8304448894595588505
 GameObject:
   m_ObjectHideFlags: 0
@@ -2654,7 +2664,9 @@ MonoBehaviour:
   RTScontroller: {fileID: 0}
   SelectedArea: {fileID: 0}
   gridManager: {fileID: 0}
+  TgridManager: {fileID: 0}
   isGrowthSource: 0
+  vd: {fileID: 0}
 --- !u!1 &8304448894611282129
 GameObject:
   m_ObjectHideFlags: 0
@@ -3034,6 +3046,7 @@ MonoBehaviour:
   imageCooldown: {fileID: 8304448893363921193}
   textCooldown: {fileID: 8304448894611282135}
   buildingType: 3
+  vd: {fileID: 0}
   cooldownTime: 3
 --- !u!114 &5032080538769183634
 MonoBehaviour:
