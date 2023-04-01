@@ -165,7 +165,7 @@ public class DismissHintEvent
 {
 }
 
-public class ToggleDemoEvent
+public class TransitSceneEvent
 {
 }
 

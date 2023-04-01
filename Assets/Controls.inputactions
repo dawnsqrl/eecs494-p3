@@ -94,6 +94,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ConfirmMushroomControl",
+                    "type": "Button",
+                    "id": "a3398864-60f7-453c-9a99-6f7e760276ac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ConfirmSnailControl",
+                    "type": "Button",
+                    "id": "faf136ca-e6e8-4f46-bceb-578886945def",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -305,6 +323,28 @@
                     "action": "MoveBaseCar",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "867458b8-2976-4eb7-b464-d39a9110cead",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ConfirmMushroomControl",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "81919f37-5acb-4639-9946-8a224f15e868",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ConfirmSnailControl",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

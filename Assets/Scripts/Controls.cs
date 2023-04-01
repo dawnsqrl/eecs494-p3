@@ -116,6 +116,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ConfirmMushroomControl"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3398864-60f7-453c-9a99-6f7e760276ac"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ConfirmSnailControl"",
+                    ""type"": ""Button"",
+                    ""id"": ""faf136ca-e6e8-4f46-bceb-578886945def"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -327,6 +345,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""MoveBaseCar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""867458b8-2976-4eb7-b464-d39a9110cead"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ConfirmMushroomControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81919f37-5acb-4639-9946-8a224f15e868"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ConfirmSnailControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -640,6 +680,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_GenerateBanner = m_Player.FindAction("GenerateBanner", throwIfNotFound: true);
         m_Player_SpawnEnemy = m_Player.FindAction("SpawnEnemy", throwIfNotFound: true);
         m_Player_MoveBaseCar = m_Player.FindAction("MoveBaseCar", throwIfNotFound: true);
+        m_Player_ConfirmMushroomControl = m_Player.FindAction("ConfirmMushroomControl", throwIfNotFound: true);
+        m_Player_ConfirmSnailControl = m_Player.FindAction("ConfirmSnailControl", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -719,6 +761,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_GenerateBanner;
     private readonly InputAction m_Player_SpawnEnemy;
     private readonly InputAction m_Player_MoveBaseCar;
+    private readonly InputAction m_Player_ConfirmMushroomControl;
+    private readonly InputAction m_Player_ConfirmSnailControl;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -733,6 +777,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @GenerateBanner => m_Wrapper.m_Player_GenerateBanner;
         public InputAction @SpawnEnemy => m_Wrapper.m_Player_SpawnEnemy;
         public InputAction @MoveBaseCar => m_Wrapper.m_Player_MoveBaseCar;
+        public InputAction @ConfirmMushroomControl => m_Wrapper.m_Player_ConfirmMushroomControl;
+        public InputAction @ConfirmSnailControl => m_Wrapper.m_Player_ConfirmSnailControl;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -772,6 +818,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @MoveBaseCar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveBaseCar;
                 @MoveBaseCar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveBaseCar;
                 @MoveBaseCar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveBaseCar;
+                @ConfirmMushroomControl.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirmMushroomControl;
+                @ConfirmMushroomControl.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirmMushroomControl;
+                @ConfirmMushroomControl.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirmMushroomControl;
+                @ConfirmSnailControl.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirmSnailControl;
+                @ConfirmSnailControl.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirmSnailControl;
+                @ConfirmSnailControl.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirmSnailControl;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -806,6 +858,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @MoveBaseCar.started += instance.OnMoveBaseCar;
                 @MoveBaseCar.performed += instance.OnMoveBaseCar;
                 @MoveBaseCar.canceled += instance.OnMoveBaseCar;
+                @ConfirmMushroomControl.started += instance.OnConfirmMushroomControl;
+                @ConfirmMushroomControl.performed += instance.OnConfirmMushroomControl;
+                @ConfirmMushroomControl.canceled += instance.OnConfirmMushroomControl;
+                @ConfirmSnailControl.started += instance.OnConfirmSnailControl;
+                @ConfirmSnailControl.performed += instance.OnConfirmSnailControl;
+                @ConfirmSnailControl.canceled += instance.OnConfirmSnailControl;
             }
         }
     }
@@ -920,6 +978,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnGenerateBanner(InputAction.CallbackContext context);
         void OnSpawnEnemy(InputAction.CallbackContext context);
         void OnMoveBaseCar(InputAction.CallbackContext context);
+        void OnConfirmMushroomControl(InputAction.CallbackContext context);
+        void OnConfirmSnailControl(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
