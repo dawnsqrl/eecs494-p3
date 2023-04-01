@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -62,7 +63,7 @@ public class DefenceBuilding : MonoBehaviour
 
     private void BombHit(GameObject target)
     {
-        if (Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.y), bomb_pos) <= 1)
+        if (!target.IsDestroyed() && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.y), bomb_pos) <= 1)
         {
             target.GetComponentInChildren<HitHealth>().GetDamage();
         }

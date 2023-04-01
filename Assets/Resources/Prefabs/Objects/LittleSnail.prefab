@@ -512,7 +512,7 @@ MonoBehaviour:
   hit_cd_time: 0.5
   health_recover_rate: 0.1
   enemyTagList:
-  - Builder
+  - Citizen
 --- !u!1 &5423375138029293349
 GameObject:
   m_ObjectHideFlags: 0

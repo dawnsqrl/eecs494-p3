@@ -22,6 +22,8 @@ public class HitHealth : MonoBehaviour
     private float original_bar_length;
 
     bool hitlock;
+
+    private GameObject currentOpponent;
     
 
     private void Start()
@@ -35,19 +37,24 @@ public class HitHealth : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        bool ishit = false;
-        foreach (var _enemyTag in enemyTagList)
-        {
-            if (other.gameObject.CompareTag(_enemyTag))
-            {
-                ishit = true;
-                break;
-            }
-        }
+        // bool ishit = false;
+        // foreach (var _enemyTag in enemyTagList)
+        // {
+        //     if (other.gameObject.CompareTag(_enemyTag))
+        //     {
+        //         ishit = true;
+        //         break;
+        //     }
+        // }
+        //
+        // if (!ishit)
+        // {
+        //     return;;
+        // }
 
-        if (!ishit)
+        if (!other.gameObject.GetComponent<HitHealth>() && other.gameObject.GetComponent<HitHealth>().currentOpponent != gameObject)
         {
-            return;;
+            return;
         }
         if (health > 0)
         {
@@ -207,5 +214,10 @@ public class HitHealth : MonoBehaviour
     public void SetHealthRestoreRate(float rate)
     {
         health_recover_rate = rate;
+    }
+
+    public void SetCurrentOpponent(GameObject _opponent)
+    {
+        currentOpponent = _opponent;
     }
 }

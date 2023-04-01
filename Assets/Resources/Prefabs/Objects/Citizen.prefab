@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 3034705973140775190}
   m_Layer: 7
   m_Name: 3DCitizenTriggerManager
-  m_TagString: Builder
+  m_TagString: Citizen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 8063988301787699477}
   m_Layer: 7
   m_Name: Citizen
-  m_TagString: Builder
+  m_TagString: Citizen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 7318596355154976545}
   m_Layer: 7
   m_Name: 2DBoxCollider
-  m_TagString: Untagged
+  m_TagString: Citizen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -57,7 +57,7 @@ public class GameRTSControl : MonoBehaviour
             Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, UtilsClass.GetMouseWorldPosition());
             foreach (var unitRTS in selectedUnitRTSList)
             {
-                if (!unitRTS.IsDestroyed() && unitRTS.gameObject.CompareTag("Builder"))
+                if (!unitRTS.IsDestroyed() && unitRTS.gameObject.CompareTag("Citizen"))
                 {
                     unitRTS.SetSelectedActive(false);
                 }
@@ -67,6 +67,10 @@ public class GameRTSControl : MonoBehaviour
             selectedUnitRTSList.Clear();
             foreach (Collider2D collider2D in collider2DArray)
             {
+                if (!collider2D.transform.parent.gameObject.CompareTag("Citizen"))
+                {
+                    continue;
+                }
                 UnitRTS unitRTS = collider2D.transform.parent.gameObject.GetComponent<UnitRTS>();
                 if (unitRTS)
                 {

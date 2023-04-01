@@ -13,27 +13,51 @@ public class AutoAttack_enemy : MonoBehaviour
     public bool onAssult;
     private GameObject mushroom;
     private List<GameObject> enemyList;
+    private HitHealth _self_hitHealth;
+    private GameObject currentOpponent;
+
+    private UnitRTS _rts;
+    private Vector3 movetoPosition;
     private void Start()
     {
         mushroom = GameObject.FindGameObjectWithTag("Mushroom");
         range = 5;
         enemyList = new List<GameObject>();
+        _self_hitHealth = GetComponentInChildren<HitHealth>();
+        _rts = GetComponent<UnitRTS>();
+        movetoPosition = transform.position;
     }
 
     private void Update()
     {
-        onAssult = false;
-        Vector3 movetoPosition = gameObject.transform.position;
+        if (currentOpponent.IsDestroyed())
+        {
+            onAssult = false;
+        }
+        if (onAssult)
+        {
+            movetoPosition = currentOpponent.transform.position;
+            _rts.MoveTo(movetoPosition);
+            return;
+        }
+        // movetoPosition = gameObject.transform.position;
         enemyList = new List<GameObject>(CitizenControl.citizenList);
         // enemyList.Add(mushroom);
         if (enemyList.Count > 0)
         {
-            foreach (GameObject opponent in enemyList)
+            for (int i = 0; i < enemyList.Count; i++)
             {
+                if (enemyList[i].IsDestroyed())
+                {
+                    continue;
+                }
+                GameObject opponent = enemyList[i];
                 if ((opponent.transform.position - transform.position).magnitude < range)
                 {
                     movetoPosition = opponent.transform.position;
                     onAssult = true;
+                    _self_hitHealth.SetCurrentOpponent(opponent);
+                    currentOpponent = opponent;
                     break;
                 }
             }
@@ -51,15 +75,9 @@ public class AutoAttack_enemy : MonoBehaviour
         //         }
         //     }
         // }
-
-        if (!onAssult)
-        {
-            return;
-        }
         
         // GetComponent<ClearSurroundingFog>().enabled = onAssult;
-        UnitRTS unitRTS = GetComponent<UnitRTS>();
-        unitRTS.MoveTo(movetoPosition);
+        // _rts.MoveTo(movetoPosition);
     }
 
     private void OnDestroy()

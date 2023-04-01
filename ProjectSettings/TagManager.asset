@@ -19,6 +19,7 @@ TagManager:
   - Hyphae
   - SnailTutorialEndTrigger
   - LittleSnail
+  - Citizen
   layers:
   - Default
   - TransparentFX

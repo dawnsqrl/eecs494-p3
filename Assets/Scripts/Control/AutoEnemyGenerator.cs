@@ -19,6 +19,23 @@ public class AutoEnemyGenerator : MonoBehaviour
         onGenerationSnailNUm = 0;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("BaseCar"))
+        {
+            // trigger anim
+            // generate a snail
+            while (onGenerationSnailNUm < maxUnit)
+            {
+                GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/LittleSnail"), transform.position, Quaternion.identity);
+                enemy.GetComponent<UnitRTS>().MoveTo(transform.position);
+                AutoEnemyControl.autoSnails_queue.Add(enemy);
+                unitList.Add(enemy);
+                onGenerationSnailNUm++;
+            }
+        }
+    }
+
     private void Update()
     {
         for (int i = 0; i < unitList.Count; i++)
@@ -30,13 +47,8 @@ public class AutoEnemyGenerator : MonoBehaviour
             }
         }
 
-        while (onGenerationSnailNUm < maxUnit)
-        {
-            StartCoroutine(GenerateNewUnit());
-            onGenerationSnailNUm++;
-        }
-        
-        if (GridManager._tiles[new Vector2((int)transform.position.x, (int)transform.position.y)].GetComponentInChildren<GroundTileManager>().growthed)
+        Vector2 loc = new Vector2((int)transform.position.x, (int)transform.position.y);
+        if (GridManager._tiles.ContainsKey(loc) && GridManager._tiles[loc].GetComponentInChildren<GroundTileManager>().growthed)
         {
             Destroy(gameObject);
         }

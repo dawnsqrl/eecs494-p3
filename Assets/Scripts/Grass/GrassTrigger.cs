@@ -26,7 +26,8 @@ public class GrassTrigger : MonoBehaviour
     private void Update()
     {
         // if this grid is marked
-        if (GridManager._tiles[new Vector2((int)transform.position.x, (int)transform.position.y)].GetComponentInChildren<GroundTileManager>().growthed)
+        Vector2 loc = new Vector2((int)transform.position.x, (int)transform.position.y);
+        if (GridManager._tiles.ContainsKey(loc) && GridManager._tiles[loc].GetComponentInChildren<GroundTileManager>().growthed)
         {
             Destroy(gameObject);
         }
