@@ -54,8 +54,8 @@ public class SpellCooldown : MonoBehaviour
                     case 2: // citizen; 100 -> 20, 1000 -> 5
                         temp_cool_down_time = -15f / 900 * vitality + 65f / 3;
                         break;
-                    case 3: // defence
-                        temp_cool_down_time = 3;
+                    case 3: // citizen; 100 -> 20, 1000 -> 5
+                        temp_cool_down_time = -15f / 900 * vitality + 65f / 3;
                         break;
                     default:
                         temp_cool_down_time = 1;
@@ -80,13 +80,18 @@ public class SpellCooldown : MonoBehaviour
 
     void ApplyCooldown()
     {
-        if ((buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200))
-            return;
+        //if ((buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200) || (buildingType == 3 && vitality < 300))
+        //    return;
         cooldownTimer -= SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime;
         if (cooldownTimer < 0)
         {
-            if ((buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200))
+            if ((buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200) || (buildingType == 3 && vitality < 300))
+            {
+                textCooldown.gameObject.SetActive(false);
+                imageCooldown.fillAmount = 1.0f;
                 return;
+            }
+                
 
             isCoolDown = false;
             textCooldown.gameObject.SetActive(false);
@@ -96,8 +101,7 @@ public class SpellCooldown : MonoBehaviour
         }
         else
         {
-            if ((buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200))
-                return;
+
             textCooldown.text = Mathf.RoundToInt(cooldownTimer).ToString();
             imageCooldown.fillAmount = cooldownTimer / cooldownTime;
 
