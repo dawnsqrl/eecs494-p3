@@ -369,11 +369,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3850596779152265541, guid: 609c76018c562be449afa0dd29dbc210, type: 3}
   m_PrefabInstance: {fileID: 10444118}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &12785004 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5209452303892321977, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-  m_PrefabInstance: {fileID: 8304448894578436627}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &14343103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7991,30 +7986,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2605391741065239475, guid: 68672ea18252e4875ac4d92c1adb2b54, type: 3}
   m_PrefabInstance: {fileID: 1185686730}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1195475744 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 416182037463815564, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-  m_PrefabInstance: {fileID: 8304448894578436627}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1195475749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195475744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bc227dc3fdd8fb4893c0aa39562644c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holder: {fileID: 12785004}
-  gamePrefab: {fileID: 3406579744892136608, guid: 3c01556971dae4ee6933845b9e771f93, type: 3}
-  buildingTexture: {fileID: 2800000, guid: ccfb39b75f6614646b151fb813cd358f, type: 3}
-  RTScontroller: {fileID: 1470659569}
-  SelectedArea: {fileID: 691974118}
-  gridManager: {fileID: 1755112723}
-  vd: {fileID: 819354649}
 --- !u!1001 &1232815750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13617,26 +13588,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 560697544}
     m_Modifications:
+    - target: {fileID: 1195475749, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: vd
+      value: 
+      objectReference: {fileID: 819354649}
+    - target: {fileID: 1195475749, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: gridManager
+      value: 
+      objectReference: {fileID: 1755112723}
+    - target: {fileID: 1195475749, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: SelectedArea
+      value: 
+      objectReference: {fileID: 691974118}
+    - target: {fileID: 1195475749, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: RTScontroller
+      value: 
+      objectReference: {fileID: 1470659569}
     - target: {fileID: 1420149010509160373, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: vd
       value: 
       objectReference: {fileID: 819354649}
-    - target: {fileID: 4008601779917999612, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: SelectedArea
-      value: 
-      objectReference: {fileID: 691974118}
-    - target: {fileID: 4008601779917999612, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: RTScontroller
-      value: 
-      objectReference: {fileID: 1470659569}
-    - target: {fileID: 6738864931833417201, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7409565223783687576, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8304448893459253556, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: m_Name
       value: BuildingCanvas
@@ -13729,10 +13700,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8304448893714618580, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8304448893799133828, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: vd
       value: 
@@ -13741,10 +13708,6 @@ PrefabInstance:
       propertyPath: vd
       value: 
       objectReference: {fileID: 819354649}
-    - target: {fileID: 8304448893898818667, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8304448894352287994, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: vd
       value: 
@@ -13765,10 +13728,6 @@ PrefabInstance:
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
-    - target: {fileID: 8304448894426768989, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8304448894548295314, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: vd
       value: 
@@ -13813,8 +13772,7 @@ PrefabInstance:
       propertyPath: vd
       value: 
       objectReference: {fileID: 819354649}
-    m_RemovedComponents:
-    - {fileID: 4008601779917999612, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
 --- !u!1001 &9168317154744518616
 PrefabInstance:
