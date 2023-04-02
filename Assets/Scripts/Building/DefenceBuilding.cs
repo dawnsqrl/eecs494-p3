@@ -29,6 +29,11 @@ public class DefenceBuilding : MonoBehaviour
         BaseCar = GameObject.Find("BaseCar");
     }
 
+    private void OnDestroy()
+    {
+        GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
+    }
+
     private void Update()
     {
         Vector2 pos = new Vector2(BaseCar.transform.position.x, BaseCar.transform.position.y);
@@ -87,4 +92,5 @@ public class DefenceBuilding : MonoBehaviour
     {
         AttackRange.SetActive(false);
     }
+
 }

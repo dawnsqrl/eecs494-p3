@@ -42,6 +42,11 @@ public class SoliderBuilding : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
+    }
+
     private Vector3 generateRandomVector()
     {
         float new_res1, new_res2;
