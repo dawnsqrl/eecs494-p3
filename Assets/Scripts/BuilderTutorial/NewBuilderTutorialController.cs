@@ -165,6 +165,9 @@ public class NewBuilderTutorialController : MonoBehaviour
                 "Drag and Drop buildings on your mycelium."));
                 firstcall = true;
             }
+
+            EventBus.Publish(new CloseZoomEvent());
+            EventBus.Publish(new CloseDragEvent());
         }
 
         if (Mouse.current.leftButton.wasPressedThisFrame)

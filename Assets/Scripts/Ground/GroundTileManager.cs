@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Random = System.Random;
-
+[SelectionBase]
 public class GroundTileManager : MonoBehaviour
 {
     [SerializeField] public bool growthed = false;

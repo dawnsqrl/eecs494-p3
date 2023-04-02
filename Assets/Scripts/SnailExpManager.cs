@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SnailExpManager : MonoBehaviour
@@ -34,7 +35,7 @@ public class SnailExpManager : MonoBehaviour
             new Vector2((float)currentExp / (float)nextLevelExp * 10, expBar.GetComponent<SpriteRenderer>().size.y);
         levelUpBanner.SetActive(false);
         optionsBanner.SetActive(false);
-        pendingLevelUps = 1;
+        pendingLevelUps = 0;
         _controls = new Controls();
         _playerActions = _controls.Player;
         canSelect = false;
@@ -43,25 +44,16 @@ public class SnailExpManager : MonoBehaviour
     public void AddExpPoints(int exp)
     {
         currentExp += exp;
-        expBar.GetComponent<SpriteRenderer>().size =
-            new Vector2((float)currentExp / (float)nextLevelExp * 10, expBar.GetComponent<SpriteRenderer>().size.y);
-        if (currentExp == nextLevelExp)
+        if (currentExp >= nextLevelExp)
         {
-            // TODO: Activate next skill
             pendingLevelUps++;
             currentExp = 0;
         }
-    }
-
-    private void Update()
-    {
+        expBar.GetComponent<SpriteRenderer>().size =
+            new Vector2((float)currentExp / (float)nextLevelExp * 10, expBar.GetComponent<SpriteRenderer>().size.y);
         if (pendingLevelUps > 0 && !levelUpBanner.activeSelf)
         {
             levelUpBanner.SetActive(true);
-        }
-        else if (pendingLevelUps <= 0 && levelUpBanner.activeSelf)
-        {
-            levelUpBanner.SetActive(false);
         }
     }
 
@@ -74,6 +66,10 @@ public class SnailExpManager : MonoBehaviour
             optionsBanner.SetActive(true);
             canSelect = true;
             pendingLevelUps--;
+        }
+        if (pendingLevelUps <= 0 && levelUpBanner.activeSelf)
+        {
+            levelUpBanner.SetActive(false);
         }
     }
 
@@ -101,7 +97,7 @@ public class SnailExpManager : MonoBehaviour
             }
             else
             {
-                _snailSprintManager.AddSprintForce(5);
+                _snailSprintManager.AddSprintSpeed(2);
             }
         }
 

@@ -45,7 +45,7 @@ public class InputInterface : MonoBehaviour
         
         if (playerActions.Sprint.WasPressedThisFrame())
         {
-            EventBus.Publish(new SnailLevelupOptionEvent_2());
+            EventBus.Publish(new SnailSprintEvent());
         }
 
         // if (playerActions.GenerateDialog.WasPressedThisFrame())
