@@ -76,13 +76,14 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
         //     // temp_building.transform.localScale = new Vector2(0.3f, 0.3f);
         //     // temp_building.transform.position = new Vector3(Worldpos.x, Worldpos.y, -2.0f);
         Vector2 pos1 = new Vector2(Mathf.FloorToInt(Worldpos.x - (decayRange / 2 - 0.5f) ), Mathf.CeilToInt(Worldpos.y + (decayRange / 2 - 0.5f) ));
-        pos_list.Add(pos1);
+        if (pos1 is { x: >= 0 and < 50, y: >= 0 and < 50 })
+            pos_list.Add(pos1);
         for (int i = 0; i < decayRange; i++)
         {
             for (int j = 0; j < decayRange; j++)
             {
                 Vector2 p = new Vector2(Mathf.FloorToInt(pos1.x + (float)i), Mathf.CeilToInt(pos1.y - (float)j));
-                if (p is { x: >= 0 and <= 50, y: >= 0 and <= 50 })
+                if (p is { x: >= 0 and < 50, y: >= 0 and < 50 })
                     pos_list.Add(p);
             }
         }
@@ -126,7 +127,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
                 avaCheckRes = true;
         }
         
-        if ((Worldpos is { x: >= 0 and <= 50, y: >= 0 and <= 50 }) //|| startTutorial)
+        if ((Worldpos is { x: >= 0 and < 50, y: >= 0 and < 50 }) //|| startTutorial)
             && avaCheckRes)
         {
             //Vector2 pos = new Vector2(Mathf.FloorToInt(Worldpos.x + 0.5f), Mathf.FloorToInt(Worldpos.y - 0.5f));
@@ -176,6 +177,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         //if (startTutorial)
         //    return buildingController.GetComponent<BuildingController>().check_avai(pos);
+        print(pos);
         GrowthDemo gd = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
         if (gd.Position2Mucused(pos))
             return true;
