@@ -37,8 +37,8 @@ public class GrassTrigger : MonoBehaviour
         }
         else
         {
-            isDead = CaveGridManager._tiles.ContainsKey(loc) &&
-                     CaveGridManager._tiles[loc].GetComponentInChildren<GroundTileManager>().growthed;
+            isDead = GridManager._tiles.ContainsKey(loc) &&
+                     GridManager._tiles[loc].GetComponentInChildren<GroundTileManager>().growthed;
         }
         // if this grid is marked
         
@@ -66,6 +66,8 @@ public class GrassTrigger : MonoBehaviour
     {
         _animator.SetTrigger("destroy");
         yield return new WaitForSeconds(1);
+        AudioClip clip = Resources.Load<AudioClip>("Audio/BushDies");
+        AudioSource.PlayClipAtPoint(clip, transform.position);
         Destroy(_gameObject);
     }
 }
