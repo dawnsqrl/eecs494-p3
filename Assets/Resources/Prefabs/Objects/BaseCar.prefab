@@ -5511,6 +5511,7 @@ GameObject:
   - component: {fileID: 5082076586482587295}
   - component: {fileID: 9194102917017396560}
   - component: {fileID: 495595451}
+  - component: {fileID: 7265589556658211210}
   m_Layer: 8
   m_Name: BaseCar
   m_TagString: BaseCar
@@ -5655,6 +5656,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
+--- !u!114 &7265589556658211210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492907579301605845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5defa451ec4f4177b2bb8ce240ea812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  current_mines: 0
+  mines: {fileID: 6029114985109348048, guid: 0d1d5116dbc2741d09656f1e0a67b26f, type: 3}
 --- !u!1001 &706331794466573149
 PrefabInstance:
   m_ObjectHideFlags: 0

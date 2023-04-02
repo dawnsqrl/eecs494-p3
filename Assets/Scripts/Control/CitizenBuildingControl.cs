@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,5 +22,10 @@ public class CitizenBuildingControl : MonoBehaviour
     public void remove_from_list()
     {
         building.GetComponent<SoliderBuilding>().removeCitizen(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        remove_from_list();
     }
 }

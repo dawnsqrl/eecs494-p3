@@ -54,4 +54,5 @@ public class MinimapMoveManager : MonoBehaviour
         }
         _main_camera.transform.position = targetPos;
     }
+    
 }
