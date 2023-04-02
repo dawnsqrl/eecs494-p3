@@ -79,6 +79,19 @@ public class GroundTileManager : MonoBehaviour
         }
         mucused = true;
     }
+    
+    public void RemoveMucus()
+    {
+        GameObject mucus = transform.parent.gameObject.transform.Find("Mucus").gameObject;
+        // mucus.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-10, 10));
+        mucused = false;
+        // foreach (Transform small_hyphae in mucus.transform)
+        // {
+        //     small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("disappear");
+        // }
+        mucus.SetActive(false);
+        
+    }
 
     public bool CheckGrowthed()
     {
