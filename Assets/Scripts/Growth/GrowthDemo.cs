@@ -108,7 +108,9 @@ public class GrowthDemo : MonoBehaviour
 
         // RemoveFogFromTile(init_x, init_y, 1);
         Position2GroundManager(init_x, init_y).SetGrowthed();
-        Position2GroundManager(init_x, init_y - 2).SetGrowthed();
+        Position2GroundManager(init_x + 1, init_y).SetGrowthed();
+        Position2GroundManager(init_x + 1, init_y - 1).SetGrowthed();
+        Position2GroundManager(init_x, init_y - 1).SetGrowthed();
         //Position2GroundManager(init_x, init_y).SetGrowthed();
         //Position2GroundManager(init_x, init_y).SetGrowthed();
 

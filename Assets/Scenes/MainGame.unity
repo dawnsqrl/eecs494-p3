@@ -844,7 +844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7556157864141780633, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7556157864141780639, guid: 02c02c64ea87bb348b68e5b737d00dbc, type: 3}
       propertyPath: fog1
@@ -2110,7 +2110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1745094843415997264, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1745094843415997265, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
       propertyPath: m_RootOrder
@@ -2163,6 +2163,10 @@ PrefabInstance:
     - target: {fileID: 5068767805453330851, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
       propertyPath: m_RootOrder
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068767805453330853, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7656014074379232364, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
       propertyPath: m_RootOrder
@@ -10298,6 +10302,10 @@ PrefabInstance:
     - target: {fileID: 3232443855882663146, guid: 3c0b2c1123a1141ec8505d943e0e36d3, type: 3}
       propertyPath: m_Name
       value: Citizen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232443855882663146, guid: 3c0b2c1123a1141ec8505d943e0e36d3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3232443855882663148, guid: 3c0b2c1123a1141ec8505d943e0e36d3, type: 3}
       propertyPath: m_RootOrder

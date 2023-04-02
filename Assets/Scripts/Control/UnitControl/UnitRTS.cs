@@ -27,11 +27,11 @@ public class UnitRTS : MonoBehaviour
     private float _velocity;
     // private List<GameObject> clearedFogList;
     // private List<GameObject> prevClearedFogList;
-    private bool startTutorial;
+    //private bool startTutorial;
     
     private void Start()
     {
-        startTutorial = GameObject.Find("BuilderTutorial").GetComponent<BuilderTutorialController>().getStart() || BasecarController.is_tutorial;
+        //startTutorial = GameObject.Find("BuilderTutorial").GetComponent<BuilderTutorialController>().getStart() || BasecarController.is_tutorial;
         selectedGameObject = transform.Find("Selected").gameObject;
         movePosition = GetComponent<IMovePosition>();
         moveVelocity = GetComponent<IMoveVelocity>();
@@ -65,7 +65,7 @@ public class UnitRTS : MonoBehaviour
             return;
         }
         
-        if (GameProgressControl.isGameActive || startTutorial || BasecarController.is_tutorial)
+        if (GameProgressControl.isGameActive || BasecarController.is_tutorial) //|| startTutorial)
         {
             Vector3 direction = (targetPosition - transform.position).normalized;
             _rigidbody.velocity = direction.normalized * (_velocity * SimulationSpeedControl.GetSimulationSpeed());

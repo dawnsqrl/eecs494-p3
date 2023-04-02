@@ -154,6 +154,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             //}
             //else
             //{
+            oldPos1 = new Vector2(Mathf.FloorToInt(Worldpos.x), Mathf.CeilToInt(Worldpos.y));
             new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f),
                 Quaternion.identity);
             if (gameObject.name == "Defence")
