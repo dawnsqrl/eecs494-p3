@@ -67,7 +67,7 @@ public class ViewDragging : MonoBehaviour
             float zoomDelta = scroll * zoomSpeed;
             size = Mathf.Clamp(size - zoomDelta, zoomMin, zoomMax);
 
-            if (size >= 8.0f)
+            if (size >= 9.0f)
                 EventBus.Publish(new ZoomMaxEvent());
             // Set the camera size to the new value
             builderCam.orthographicSize = size;

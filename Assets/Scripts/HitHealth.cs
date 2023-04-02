@@ -68,7 +68,8 @@ public class HitHealth : MonoBehaviour
         }
         if (health == 0)
         {
-            EventBus.Publish(new BuilderTutorialSnailDeadEvent());
+            EventBus.Publish(new TBaseCarDestroy());
+            //EventBus.Publish(new BuilderTutorialSnailDeadEvent());
             if (gameObject.tag == "Building")
             {
                 if (!deadAnimBegan)
@@ -189,7 +190,6 @@ public class HitHealth : MonoBehaviour
         //     }
         //     
         // }
-        
         if (health > 0)
         {
             canGetHit = false;
@@ -197,7 +197,7 @@ public class HitHealth : MonoBehaviour
         }
         if (health == 0)
         {
-            EventBus.Publish(new BuilderTutorialSnailDeadEvent());
+            //EventBus.Publish(new BuilderTutorialSnailDeadEvent());
             if (gameObject.tag == "Building")
             {
                 if (!deadAnimBegan)

@@ -9,7 +9,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private GameObject holder;
     [SerializeField] private GameObject gamePrefab;
     [SerializeField] private Sprite buildingTexture;
-    [SerializeField] private GameObject RTScontroller, SelectedArea;
+    [SerializeField] private GameObject RTScontroller, SelectedArea, fog;
     [SerializeField] private GridManager gridManager;
     [SerializeField] private BuilderGridManager TgridManager;
     [SerializeField] private ViewDragging vd;
@@ -18,7 +18,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private Transform parentAfterDrag;
     private GameObject buildingController;
     //private GrowthDemo growthDemo;
-    //private bool startTutorial = false;
+    private bool startTutorial = false;
 
     Vector2 oldPos1 = Vector2.zero, oldPos2 = Vector2.zero, oldPos3 = Vector2.zero, oldPos4 = Vector2.zero;
 
@@ -35,7 +35,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
         pos_list = new List<Vector2>();
         oldPos_list = new List<Vector2>();
-        //EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
         buildingController = GameObject.Find("BuildingCanvas");
         //growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
 
@@ -128,11 +128,11 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         //{
         //    Worldpos = new Vector3(Worldpos.x - 70.0f, Worldpos.y - 70.0f, Worldpos.z);
         //}
-        bool avaCheckRes = false;
+        bool avaCheckRes = true;
         foreach (Vector2 oldPos in oldPos_list)
         {
-            if (CheckAvai(oldPos))
-                avaCheckRes = true;
+            if (!CheckAvai(oldPos))
+                avaCheckRes = false;
         }
 
         if ((Worldpos is { x: >= 0 and < 50, y: >= 0 and < 50 }) //|| startTutorial)
@@ -180,6 +180,11 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
             buildingController.GetComponent<BuildingController>().register_building(oldPos1, new_building);
             //}
+
+            if (startTutorial)
+            {
+                fog.SetActive(true);
+            }
 
             EventBus.Publish(new BuildingEndDragEvent());
 

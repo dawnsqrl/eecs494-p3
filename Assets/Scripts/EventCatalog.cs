@@ -301,3 +301,7 @@ public class CloseDragEvent
 public class CloseZoomEvent
 {
 }
+
+public class TBaseCarDestroy
+{
+}

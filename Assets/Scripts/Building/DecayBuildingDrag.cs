@@ -9,7 +9,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
     [SerializeField] private GameObject holder;
     //[SerializeField] private GameObject gamePrefab;
     [SerializeField] private Sprite buildingTexture;
-    [SerializeField] private GameObject RTScontroller, SelectedArea;
+    [SerializeField] private GameObject RTScontroller, SelectedArea, fog;
     [SerializeField] private GridManager gridManager;
     //[SerializeField] private BuilderGridManager TgridManager;
     [SerializeField] private ViewDragging vd;
@@ -18,7 +18,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private Transform parentAfterDrag;
     private GameObject buildingController;
     //private GrowthDemo growthDemo;
-    //private bool startTutorial = false;
+    private bool startTutorial = false;
 
     Vector2 oldPos1 = Vector2.zero, oldPos2 = Vector2.zero, oldPos3 = Vector2.zero, oldPos4 = Vector2.zero;
 
@@ -29,7 +29,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         pos_list = new List<Vector2>();
         oldPos_list = new List<Vector2>();
-        //EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
         buildingController = GameObject.Find("BuildingCanvas");
         //growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
     }
@@ -156,7 +156,12 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
             //buildingController.GetComponent<BuildingController>().register_building(oldPos1, new_building);
             //}
 
-            
+            if (startTutorial)
+            {
+                fog.SetActive(true);
+            }
+
+
             EventBus.Publish(new BuildingEndDragEvent());
 
             holder.GetComponent<SpellCooldown>().reStart();

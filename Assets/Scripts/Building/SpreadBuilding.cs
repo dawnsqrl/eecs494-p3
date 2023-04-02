@@ -11,15 +11,21 @@ public class SpreadBuilding : MonoBehaviour
     SpreadBuildingDrag spreadBuilding;
 
     float spread_time = 0.0f;
-    bool finishSpread = false;
+    bool finishSpread = false, isBuilderTutorialActive = false;
     float cooldownTimer = 0;
 
     private GameObject buildingController;
     private GrowthDemo growthDemo;
+    NewBuilderTutorialController gd;
     private float original_bar_length;
 
     Vector2 pos;
     GameObject building;
+
+    private void Awake()
+    {
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
+    }
 
     private void Start()
     {
@@ -28,7 +34,14 @@ public class SpreadBuilding : MonoBehaviour
 
         spreadBuilding = GameObject.Find("BuildingCanvas").transform.Find("Building0").transform.Find("BuildingIconHolder1").transform.Find("Spread").GetComponent<SpreadBuildingDrag>();
         buildingController = GameObject.Find("BuildingCanvas");
-        growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
+        if (!isBuilderTutorialActive)
+        {
+            growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
+        }
+        else
+        {
+            gd = GameObject.Find("BuilderTutorial").GetComponent<NewBuilderTutorialController>();
+        }
 
         vitality = GameObject.Find("VitalityController").GetComponent<VitalityController>();
         vitality.decreaseVitality(400);
@@ -37,7 +50,14 @@ public class SpreadBuilding : MonoBehaviour
         pos = spreadBuilding.getPos();
         building = spreadBuilding.getBuilding();
 
-        spread_time = calculateSpreadTime(growthDemo.getInitPos(), pos);
+        if (!isBuilderTutorialActive)
+        {
+            spread_time = calculateSpreadTime(growthDemo.getInitPos(), pos);
+        }
+        else
+        {
+            spread_time = 5.0f;
+        }
 
         StartCoroutine(StartSpread());
     }
@@ -47,8 +67,15 @@ public class SpreadBuilding : MonoBehaviour
         if (finishSpread)
         {
             buildingController.GetComponent<BuildingController>().register_one_building(pos, building);
-            growthDemo.Position2GroundManager(pos).SetGrowthed();
-            growthDemo.AddToEdge(pos);
+            if (!isBuilderTutorialActive)
+            {
+                growthDemo.Position2GroundManager(pos).SetGrowthed();
+                growthDemo.AddToEdge(pos);
+            }
+            else
+            {
+                gd.Position2GroundManager(pos).SetGrowthed();
+            }
             finishSpread = false;
         }
     }

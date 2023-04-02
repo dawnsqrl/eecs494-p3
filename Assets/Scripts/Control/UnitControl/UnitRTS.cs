@@ -22,13 +22,17 @@ public class UnitRTS : MonoBehaviour
 
     private Vector3 targetPosition;
 
-    private bool startMove = false;
+    private bool startMove = false, isBuilderTutorialActive = false;
 
     private float _velocity;
     // private List<GameObject> clearedFogList;
     // private List<GameObject> prevClearedFogList;
     //private bool startTutorial;
-    
+
+    private void Awake()
+    {
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
+    }
     private void Start()
     {
         //startTutorial = GameObject.Find("BuilderTutorial").GetComponent<BuilderTutorialController>().getStart() || BasecarController.is_tutorial;
@@ -65,7 +69,7 @@ public class UnitRTS : MonoBehaviour
             return;
         }
         
-        if (GameProgressControl.isGameActive || BasecarController.is_tutorial) //|| startTutorial)
+        if (GameProgressControl.isGameActive || BasecarController.is_tutorial || isBuilderTutorialActive) //|| startTutorial)
         {
             Vector3 direction = (targetPosition - transform.position).normalized;
             _rigidbody.velocity = direction.normalized * (_velocity * SimulationSpeedControl.GetSimulationSpeed());

@@ -8,7 +8,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
     [SerializeField] private GameObject holder;
     [SerializeField] private GameObject gamePrefab;
     [SerializeField] private Sprite buildingTexture;
-    [SerializeField] private GameObject RTScontroller, SelectedArea;
+    [SerializeField] private GameObject RTScontroller, SelectedArea, fog;
 
     [SerializeField] private GridManager gridManager;
 
@@ -20,7 +20,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
     private GameObject buildingController;
 
     //private GrowthDemo growthDemo;
-    //private bool startTutorial = false;
+    private bool startTutorial = false;
 
     Vector2 oldPos1 = Vector2.zero, oldPos2 = Vector2.zero, oldPos3 = Vector2.zero, oldPos4 = Vector2.zero;
 
@@ -39,7 +39,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     private void Awake()
     {
-        //EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
         buildingController = GameObject.Find("BuildingCanvas");
         //growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
     }
@@ -133,9 +133,13 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
             //}
             //}
 
+            holder.GetComponent<SpellCooldown>().reStart();
             EventBus.Publish(new BuildingEndDragEvent());
 
-            holder.GetComponent<SpellCooldown>().reStart();
+            if (startTutorial)
+            {
+                fog.SetActive(true);
+            }
         }
         else
         {
@@ -153,12 +157,25 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
         EventBus.Publish(new EndBuildingDragEvent());
     }
 
+
     bool CheckAvai(Vector2 pos)
     {
-        GrowthDemo gd = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
-        if (!gd.Position2Growthed(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
-            return true;
-        return false;
+        //if (startTutorial)
+        //    return buildingController.GetComponent<BuildingController>().check_avai(pos);
+        if (!startTutorial)
+        {
+            GrowthDemo gd = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
+            if (!gd.Position2Growthed(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
+                return true;
+            return false;
+        }
+        else
+        {
+            NewBuilderTutorialController gd = GameObject.Find("BuilderTutorial").GetComponent<NewBuilderTutorialController>();
+            if (!gd.Position2Growthed(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
+                return true;
+            return false;
+        }
     }
 
     IEnumerator GenerateShade(float time, Vector2 pos, float alpha)

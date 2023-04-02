@@ -10,6 +10,13 @@ public class SoliderBuilding : MonoBehaviour
 
     private VitalityController vitalityController;
 
+    bool isBuilderTutorialActive = false;
+
+    private void Awake()
+    {
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
+    }
+
     private void Start()
     {
         autoSoliders = new List<GameObject>();
@@ -27,8 +34,13 @@ public class SoliderBuilding : MonoBehaviour
         {
             if (autoSoliders.Count < maxSolider)
             {
+                GameObject solider;
                 yield return new WaitForSeconds(3.0f);
-                GameObject solider = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Citizen"),
+                if (!isBuilderTutorialActive)
+                    solider = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Citizen"),
+                        transform.position, Quaternion.identity);
+                else
+                    solider = Instantiate(Resources.Load<GameObject>("Prefabs/BuilderTutorial/TCitizen"),
                     transform.position, Quaternion.identity);
                 Vector2 newPos = transform.position + generateRandomVector();
                 print(newPos);
@@ -69,7 +81,8 @@ public class SoliderBuilding : MonoBehaviour
                 break;
             }
         }
-
+        print(new_res1);
+        print(new_res2);
         return new Vector3(new_res1, new_res2, 0.0f);
     }
 

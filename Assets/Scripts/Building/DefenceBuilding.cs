@@ -15,9 +15,11 @@ public class DefenceBuilding : MonoBehaviour
     bool ready = true;
 
     int DefenceRange;
+    bool isBuilderTutorialActive = false;
 
     private void Awake()
     {
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
         EventBus.Subscribe<StartBuildingDragEvent>(_ => OnDrag = true);
         EventBus.Subscribe<EndBuildingDragEvent>(_ => OnDrag = false);
     }
@@ -36,7 +38,12 @@ public class DefenceBuilding : MonoBehaviour
 
     private void Update()
     {
-        Vector2 pos = new Vector2(BaseCar.transform.position.x, BaseCar.transform.position.y);
+        Vector2 pos;
+        if (!isBuilderTutorialActive)
+           pos = new Vector2(BaseCar.transform.position.x, BaseCar.transform.position.y);
+        else
+            pos = new Vector2(0.0f, 0.0f);
+
         float DefencecRangeFloat = (float)DefenceRange;
         if (Vector2.Distance(pos, new Vector2(transform.position.x, transform.position.y)) < DefencecRangeFloat && ready)
         {

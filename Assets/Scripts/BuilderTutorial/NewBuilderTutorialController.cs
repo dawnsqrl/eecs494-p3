@@ -8,26 +8,35 @@ public class NewBuilderTutorialController : MonoBehaviour
     [SerializeField] private GameObject vitalityBar, Mushroom, miniMap, snail, VitalityBar;
     [SerializeField] private GridManager _gridManager;
 
-    [SerializeField] private GameObject building1, fog1, building2, fog2, building3, fog3;
-    [SerializeField] private SpellCooldown cool1, cool2, cool3;
+    [SerializeField] private GameObject building1, fog1, building2, fog2, building3, fog3, building4, fog4, building0, fog0;
+    [SerializeField] private SpellCooldown cool1, cool2, cool3, cool4, cool0;
 
     private int STEP_NUM = 0;
     // stwp 0 -> mushroom and snail 
     // 2 -> mycelium and mucus
     // 3 -> vitality
-    // 3.5 -> voew drag and minimap
+    // 3.5 -> view drag and minimap
     // 4 -> building
     // 5 -> max building
     // 6 -> enemy
 
-    bool maxzoom = false, clicked = false;
-    bool firstcall = false;
+    bool maxzoom = false, clicked = false, lockClick = false;
+    bool firstcall = false, win0 = false;
     private int vitality;
+    int buildingCount = 0;
 
     private void Awake()
     {
+        EventBus.Subscribe<TBaseCarDestroy>(_ => win0 = true);
         EventBus.Subscribe<ZoomMaxEvent>(_ => maxzoom = true);
         EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
+
+        EventBus.Subscribe<BuildingEndDragEvent>(_ => BuildingEndDrag());
+    }
+
+    private void BuildingEndDrag()
+    {
+        buildingCount += 1;
     }
 
     private void Start()
@@ -42,18 +51,21 @@ public class NewBuilderTutorialController : MonoBehaviour
         if (STEP_NUM == 0)
         {
             EventBus.Publish(new OpenZoomEvent());
-            EventBus.Publish(new DisplayHintEvent(
+            EventBus.Publish(new DisplayHintEvent(0,
                 "Use the mouse wheel to zoom the screen."
             ));
             if (maxzoom)
+            {
+                EventBus.Publish(new CloseZoomEvent());
                 STEP_NUM = 1;
+            }   
         }
 
         if (STEP_NUM == 1)
         {      
             if(!firstcall)
             {
-                EventBus.Publish(new UpdateHintEvent(
+                EventBus.Publish(new UpdateHintEvent(0,
                 "You find the snail.[Lclick]"));
                 firstcall = true;
             }
@@ -69,7 +81,7 @@ public class NewBuilderTutorialController : MonoBehaviour
         {
             if (!firstcall)
             {
-                EventBus.Publish(new UpdateHintEvent(
+                EventBus.Publish(new UpdateHintEvent(0,
                 "Mushrooms have periodically expanding mycelium.\nSnail movement leaves mucus.[Lclick]"));
                 firstcall = true;
             }
@@ -107,18 +119,19 @@ public class NewBuilderTutorialController : MonoBehaviour
 
         if (STEP_NUM == 3)
         {
+            lockClick = true;
             snail.transform.position = new Vector3(10.0f, 25.0f, 0.0f);
             EventBus.Publish(new OpenDragEvent());
             miniMap.SetActive(true);
             if (!firstcall)
             {
-                EventBus.Publish(new UpdateHintEvent(
+                EventBus.Publish(new UpdateHintEvent(0,
                 "You can click on the mini-map or move the mouse to the edge of the screen to move the view. " +
                 "Try to find the snail!"));
                 firstcall = true;
             }
 
-            if (BuilderCamera.transform.position.x < 17.0f && BuilderCamera.transform.position.y > 17.0f)
+            if (BuilderCamera.transform.position.x < 15.0f && BuilderCamera.transform.position.y > 17.0f)
             {
                 STEP_NUM = 4;
                 firstcall = false;
@@ -128,12 +141,13 @@ public class NewBuilderTutorialController : MonoBehaviour
         if (STEP_NUM == 4)
         {
             VitalityBar.SetActive(true);
-            StartCoroutine(vitality_change());
             if (!firstcall)
             {
-                EventBus.Publish(new UpdateHintEvent(
+                StartCoroutine(vitality_change());
+                EventBus.Publish(new UpdateHintEvent(0,
                 "At the top of the screen is the vitality bar. Vitality controls how fast you can expand and construct.[Lclick]"));
                 firstcall = true;
+                lockClick = false;
             }
 
             if (clicked)
@@ -147,30 +161,172 @@ public class NewBuilderTutorialController : MonoBehaviour
         if (STEP_NUM == 5)
         {
             
-            building1.SetActive(true);
-            cool1.enabled = false;
-            fog1.SetActive(false);
-            building2.SetActive(true);
-            cool2.enabled = false;
-            fog2.SetActive(false);
-            building3.SetActive(true);
-            cool3.enabled = false;
-            fog3.SetActive(false);
 
             EventBus.Publish(new StartBuilderTutorialEvent());
             if (!firstcall)
             {
+                building1.SetActive(true);
+                cool1.enabled = false;
+                fog1.SetActive(false);
+                building2.SetActive(true);
+                cool2.enabled = false;
+                fog2.SetActive(false);
+                building3.SetActive(true);
+                cool3.enabled = false;
+                fog3.SetActive(false);
+
                 BuilderCamera.transform.position = new Vector3(10.0f, 27.5f, -10.0f);
-                EventBus.Publish(new UpdateHintEvent(
-                "Drag and Drop buildings on your mycelium."));
+                EventBus.Publish(new UpdateHintEvent(0,
+                "Drag and Drop buildings on your mycelium.\nHover your mouse over the building icon for more information."));
+                firstcall = true;
+                Position2GroundManager(5, 31).SetGrowthed();
+                Position2GroundManager(5, 30).SetGrowthed();
+                Position2GroundManager(6, 31).SetGrowthed();
+                Position2GroundManager(6, 30).SetGrowthed();
+
+                Position2GroundManager(10, 31).SetGrowthed();
+                Position2GroundManager(10, 30).SetGrowthed();
+                Position2GroundManager(11, 31).SetGrowthed();
+                Position2GroundManager(11, 30).SetGrowthed();
+
+                Position2GroundManager(15, 31).SetGrowthed();
+                Position2GroundManager(15, 30).SetGrowthed();
+                Position2GroundManager(16, 31).SetGrowthed();
+                Position2GroundManager(16, 30).SetGrowthed();
+            }
+
+            EventBus.Publish(new CloseDragEvent());
+            EventBus.Publish(new StartBuilderTutorialEvent());
+            if (buildingCount == 3)
+            {
+                STEP_NUM = 6;
+                firstcall = false;
+                EventBus.Publish(new StartBuilderTutorialEvent());
+            }
+        }
+
+        if (STEP_NUM == 6)
+        {
+            EventBus.Publish(new StartBuilderTutorialEvent());
+            if (!firstcall)
+            {
+                EventBus.Publish(new UpdateHintEvent(0,
+                "[LDrag] to select mushroom citizens. [RClick] lead them to a point.\nGuide your citizens to attack the Snail!"));
+                firstcall = true;
+                Instantiate(Resources.Load<GameObject>("Prefabs/BuilderTutorial/TCitizen"), new Vector3(10.0f ,28.0f),
+                    Quaternion.identity);
+                Instantiate(Resources.Load<GameObject>("Prefabs/BuilderTutorial/TCitizen"), new Vector3(11.0f, 28.0f),
+                    Quaternion.identity);
+            }
+
+            if (win0)
+            {
+                STEP_NUM = 7;
+                firstcall = false;
+                EventBus.Publish(new StartBuilderTutorialEvent());
+            }
+        }
+
+        if (STEP_NUM == 7)
+        {
+            EventBus.Publish(new StartBuilderTutorialEvent());
+            if (!firstcall)
+            {
+                building0.SetActive(true);
+                cool0.enabled = false;
+                fog0.SetActive(false);
+
+                building1.SetActive(false);
+                building2.SetActive(false);
+                building3.SetActive(false);
+
+                EventBus.Publish(new StartBuilderTutorialEvent());
+
+                EventBus.Publish(new UpdateHintEvent(0,
+                "Unlike the previous buildings, the Spread Building is the source of new mycelium, so it should be placed outside the mycelium. Drag and drop a new mycelium source."));
                 firstcall = true;
             }
 
-            EventBus.Publish(new CloseZoomEvent());
-            EventBus.Publish(new CloseDragEvent());
+            if (buildingCount == 4)
+            {
+                STEP_NUM = 8;
+                firstcall = false;
+                EventBus.Publish(new StartBuilderTutorialEvent());
+            }
         }
 
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (STEP_NUM == 8)
+        { 
+            if (!firstcall)
+            {
+                building4.SetActive(true);
+                building1.SetActive(false);
+                cool4.enabled = false;
+                fog4.SetActive(false);
+
+                EventBus.Publish(new StartBuilderTutorialEvent());
+
+                BuilderCamera.transform.position = new Vector3(30.0f, 27.5f, -10.0f);
+
+                EventBus.Publish(new UpdateHintEvent(0,
+                "As the mucus approaches your mycelium, you can spend vitality to decay the mucus. Try to decay the mucus on the scrren."));
+                firstcall = true;
+
+                Position2GroundManager(30, 27).SetMucus();
+                Position2GroundManager(30, 26).SetMucus();
+                Position2GroundManager(31, 27).SetMucus();
+                Position2GroundManager(31, 26).SetMucus();
+                Position2GroundManager(32, 26).SetGrowthed();
+            }
+            
+            if (clicked)
+            {
+                clicked = false;
+                STEP_NUM = 9;
+                firstcall = false;
+            }
+        }
+
+        if (STEP_NUM == 9)
+        {
+            if (!firstcall)
+            {
+                building0.SetActive(true);
+                building1.SetActive(true);
+                building2.SetActive(true);
+                building3.SetActive(true);
+                building4.SetActive(true);
+                fog0.SetActive(true);
+                fog1.SetActive(true);
+                fog2.SetActive(true);
+                fog3.SetActive(true);
+                fog4.SetActive(true);
+
+                EventBus.Publish(new StartBuilderTutorialEvent());
+
+                BuilderCamera.transform.position = new Vector3(30.0f, 27.5f, -10.0f);
+
+                EventBus.Publish(new UpdateHintEvent(0,
+                "As the mucus approaches your mycelium, you can spend vitality to decay the mucus. Try to decay the mucus on the scrren."));
+                firstcall = true;
+
+                Position2GroundManager(30, 27).SetMucus();
+                Position2GroundManager(30, 26).SetMucus();
+                Position2GroundManager(31, 27).SetMucus();
+                Position2GroundManager(31, 26).SetMucus();
+                Position2GroundManager(32, 26).SetGrowthed();
+            }
+
+            if (clicked)
+            {
+                clicked = false;
+                STEP_NUM = 10;
+                firstcall = false;
+            }
+        }
+
+
+        if (Mouse.current.leftButton.wasPressedThisFrame && !lockClick)
         {
             clicked = true;
         }
@@ -189,6 +345,11 @@ public class NewBuilderTutorialController : MonoBehaviour
     public GroundTileManager Position2GroundManager(int x, int y)
     {
         return Tile2GroundManager(Position2Tile(x, y));
+    }
+
+    public GroundTileManager Position2GroundManager(Vector2 vec)
+    {
+        return Tile2GroundManager(Position2Tile(vec));
     }
 
     public GroundTileManager Tile2GroundManager(GameObject tile)
