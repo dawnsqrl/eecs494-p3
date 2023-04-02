@@ -60,6 +60,8 @@ public class SpreadBuilding : MonoBehaviour
         }
 
         StartCoroutine(StartSpread());
+        AudioClip clip = Resources.Load<AudioClip>("Audio/PlaceSpore");
+        AudioSource.PlayClipAtPoint(clip, transform.position);
     }
 
     private void Update()
@@ -83,6 +85,8 @@ public class SpreadBuilding : MonoBehaviour
     private void OnDestroy()
     {
         GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
+        AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
+        AudioSource.PlayClipAtPoint(clip, transform.position);
     }
 
     IEnumerator StartSpread()

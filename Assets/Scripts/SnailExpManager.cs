@@ -65,6 +65,8 @@ public class SnailExpManager : MonoBehaviour
             // wait for input
             optionsBanner.SetActive(true);
             canSelect = true;
+            AudioClip clip = Resources.Load<AudioClip>("Audio/SnailLevelUp");
+            AudioSource.PlayClipAtPoint(clip, transform.position);
             pendingLevelUps--;
         }
         if (pendingLevelUps <= 0 && levelUpBanner.activeSelf)

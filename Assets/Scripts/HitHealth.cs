@@ -56,6 +56,7 @@ public class HitHealth : MonoBehaviour
 
         if (other.gameObject.GetComponent<HitHealth>() == null 
             || (other.gameObject.GetComponent<HitHealth>().currentOpponent != null 
+                && transform.parent != null
                 && other.gameObject.GetComponent<HitHealth>().currentOpponent != transform.parent.gameObject)
             || !enemyTagList.Contains(other.gameObject.tag))
         {

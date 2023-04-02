@@ -22,6 +22,8 @@ public class DefenceBuilding : MonoBehaviour
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
         EventBus.Subscribe<StartBuildingDragEvent>(_ => OnDrag = true);
         EventBus.Subscribe<EndBuildingDragEvent>(_ => OnDrag = false);
+        AudioClip clip = Resources.Load<AudioClip>("Audio/DefenseBuilding");
+        AudioSource.PlayClipAtPoint(clip, transform.position);
     }
 
     private void Start()
@@ -34,6 +36,8 @@ public class DefenceBuilding : MonoBehaviour
     private void OnDestroy()
     {
         GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
+        AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
+        AudioSource.PlayClipAtPoint(clip, transform.position);
     }
 
     private void Update()

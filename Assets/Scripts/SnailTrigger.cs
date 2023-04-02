@@ -21,6 +21,8 @@ public class SnailTrigger : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Hyphae") && Time.time - collisionTime > time_eat_hyphae) {
+            AudioClip clip = Resources.Load<AudioClip>("Audio/Bite");
+            AudioSource.PlayClipAtPoint(clip, transform.position);
             _snailExpManager.AddExpPoints(1);
             other.gameObject.SetActive(false);
             other.transform.parent.GetComponentInChildren<GroundTileManager>().growthed = false;

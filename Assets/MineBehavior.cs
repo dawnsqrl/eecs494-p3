@@ -20,6 +20,8 @@ public class MineBehavior : MonoBehaviour
         if(other.gameObject.CompareTag("Citizen")){
             if (!explode_lock) {
                 animator.SetTrigger("explode");
+                AudioClip clip = Resources.Load<AudioClip>("Audio/Explosion");
+                AudioSource.PlayClipAtPoint(clip, transform.position);
                 StartCoroutine(DestoryAll(gameObject));
                 explode_lock = true;
             }

@@ -26,6 +26,8 @@ public class SoliderBuilding : MonoBehaviour
 
         vitalityController.decreaseVitality(200);
         vitalityController.decreaseVitalityGrowth(5);
+        AudioClip clip = Resources.Load<AudioClip>("Audio/SoilderBuilding");
+        AudioSource.PlayClipAtPoint(clip, transform.position);
     }
 
     IEnumerator GenerateSolider()
@@ -57,6 +59,8 @@ public class SoliderBuilding : MonoBehaviour
     private void OnDestroy()
     {
         GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
+        AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
+        AudioSource.PlayClipAtPoint(clip, transform.position);
     }
 
     private Vector3 generateRandomVector()
