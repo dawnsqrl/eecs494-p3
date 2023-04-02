@@ -1127,6 +1127,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8301121978775769228, guid: 95ebde7ecbbc9474d924895c34abac76, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 645266100}
     - target: {fileID: 8301121978775769231, guid: 95ebde7ecbbc9474d924895c34abac76, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2474,6 +2478,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1781906783}
     m_Modifications:
+    - target: {fileID: 4034701124882229233, guid: 2158d513058ff4b8b914856fe5d7f6d4, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 645266100}
     - target: {fileID: 5598681515771840876, guid: 2158d513058ff4b8b914856fe5d7f6d4, type: 3}
       propertyPath: m_Name
       value: LevelUpCanvas
