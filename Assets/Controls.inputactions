@@ -15,51 +15,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GenerateDialog",
-                    "type": "Button",
-                    "id": "e2b54896-8696-4b30-9547-a10d50185809",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "IncreaseSimulationSpeed",
-                    "type": "Button",
-                    "id": "486353e0-d1a9-4759-95f8-99a1482d208d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "DecreaseSimulationSpeed",
-                    "type": "Button",
-                    "id": "ff29aa2c-517a-4f9e-b4a9-453fad42108d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ToggleDemo",
-                    "type": "Button",
-                    "id": "2fd5d247-6fc7-4729-9d2b-26aaa49f9896",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SpawnCitizen",
-                    "type": "Button",
-                    "id": "6e8391eb-e8ea-43d6-b7d2-d1645ba1c1b1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "GeneratePopup",
                     "type": "Button",
                     "id": "04e53f8a-b4eb-4396-a276-58b202527225",
@@ -72,15 +27,6 @@
                     "name": "GenerateBanner",
                     "type": "Button",
                     "id": "5c79aaa1-cc34-4f74-a334-eddebd456fea",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SpawnEnemy",
-                    "type": "Button",
-                    "id": "df08b137-5498-49c5-87ad-3f4756a364c8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -128,61 +74,6 @@
                 },
                 {
                     "name": "",
-                    "id": "435775e4-1c7e-4230-921d-bc5ed400441f",
-                    "path": "<Keyboard>/backslash",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "GenerateDialog",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "68323d46-95e8-4130-b6b7-bd4f326f6796",
-                    "path": "<Keyboard>/equals",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "IncreaseSimulationSpeed",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4f58b305-f863-4cbb-932f-ef9366a13801",
-                    "path": "<Keyboard>/minus",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DecreaseSimulationSpeed",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "36b44c4e-549e-4daa-8ca7-b4ba634f775f",
-                    "path": "<Keyboard>/0",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ToggleDemo",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "113fd68d-00ba-4805-a489-cb63dfdd032d",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SpawnCitizen",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "75e4c9a0-06e3-443f-b7c5-3fc5ec3878a2",
                     "path": "<Keyboard>/slash",
                     "interactions": "",
@@ -200,17 +91,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "GenerateBanner",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5033b828-a5d0-45ea-92b5-4cd26640d95e",
-                    "path": "<Keyboard>/k",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SpawnEnemy",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

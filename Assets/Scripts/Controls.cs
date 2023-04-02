@@ -37,51 +37,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""GenerateDialog"",
-                    ""type"": ""Button"",
-                    ""id"": ""e2b54896-8696-4b30-9547-a10d50185809"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""IncreaseSimulationSpeed"",
-                    ""type"": ""Button"",
-                    ""id"": ""486353e0-d1a9-4759-95f8-99a1482d208d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""DecreaseSimulationSpeed"",
-                    ""type"": ""Button"",
-                    ""id"": ""ff29aa2c-517a-4f9e-b4a9-453fad42108d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ToggleDemo"",
-                    ""type"": ""Button"",
-                    ""id"": ""2fd5d247-6fc7-4729-9d2b-26aaa49f9896"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SpawnCitizen"",
-                    ""type"": ""Button"",
-                    ""id"": ""6e8391eb-e8ea-43d6-b7d2-d1645ba1c1b1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""GeneratePopup"",
                     ""type"": ""Button"",
                     ""id"": ""04e53f8a-b4eb-4396-a276-58b202527225"",
@@ -94,15 +49,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""name"": ""GenerateBanner"",
                     ""type"": ""Button"",
                     ""id"": ""5c79aaa1-cc34-4f74-a334-eddebd456fea"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SpawnEnemy"",
-                    ""type"": ""Button"",
-                    ""id"": ""df08b137-5498-49c5-87ad-3f4756a364c8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -150,61 +96,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""435775e4-1c7e-4230-921d-bc5ed400441f"",
-                    ""path"": ""<Keyboard>/backslash"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""GenerateDialog"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""68323d46-95e8-4130-b6b7-bd4f326f6796"",
-                    ""path"": ""<Keyboard>/equals"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""IncreaseSimulationSpeed"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4f58b305-f863-4cbb-932f-ef9366a13801"",
-                    ""path"": ""<Keyboard>/minus"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DecreaseSimulationSpeed"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""36b44c4e-549e-4daa-8ca7-b4ba634f775f"",
-                    ""path"": ""<Keyboard>/0"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ToggleDemo"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""113fd68d-00ba-4805-a489-cb63dfdd032d"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SpawnCitizen"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""75e4c9a0-06e3-443f-b7c5-3fc5ec3878a2"",
                     ""path"": ""<Keyboard>/slash"",
                     ""interactions"": """",
@@ -222,17 +113,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""GenerateBanner"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5033b828-a5d0-45ea-92b5-4cd26640d95e"",
-                    ""path"": ""<Keyboard>/k"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SpawnEnemy"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -671,14 +551,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_TriggerPause = m_Player.FindAction("TriggerPause", throwIfNotFound: true);
-        m_Player_GenerateDialog = m_Player.FindAction("GenerateDialog", throwIfNotFound: true);
-        m_Player_IncreaseSimulationSpeed = m_Player.FindAction("IncreaseSimulationSpeed", throwIfNotFound: true);
-        m_Player_DecreaseSimulationSpeed = m_Player.FindAction("DecreaseSimulationSpeed", throwIfNotFound: true);
-        m_Player_ToggleDemo = m_Player.FindAction("ToggleDemo", throwIfNotFound: true);
-        m_Player_SpawnCitizen = m_Player.FindAction("SpawnCitizen", throwIfNotFound: true);
         m_Player_GeneratePopup = m_Player.FindAction("GeneratePopup", throwIfNotFound: true);
         m_Player_GenerateBanner = m_Player.FindAction("GenerateBanner", throwIfNotFound: true);
-        m_Player_SpawnEnemy = m_Player.FindAction("SpawnEnemy", throwIfNotFound: true);
         m_Player_MoveBaseCar = m_Player.FindAction("MoveBaseCar", throwIfNotFound: true);
         m_Player_ConfirmMushroomControl = m_Player.FindAction("ConfirmMushroomControl", throwIfNotFound: true);
         m_Player_ConfirmSnailControl = m_Player.FindAction("ConfirmSnailControl", throwIfNotFound: true);
@@ -752,14 +626,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_TriggerPause;
-    private readonly InputAction m_Player_GenerateDialog;
-    private readonly InputAction m_Player_IncreaseSimulationSpeed;
-    private readonly InputAction m_Player_DecreaseSimulationSpeed;
-    private readonly InputAction m_Player_ToggleDemo;
-    private readonly InputAction m_Player_SpawnCitizen;
     private readonly InputAction m_Player_GeneratePopup;
     private readonly InputAction m_Player_GenerateBanner;
-    private readonly InputAction m_Player_SpawnEnemy;
     private readonly InputAction m_Player_MoveBaseCar;
     private readonly InputAction m_Player_ConfirmMushroomControl;
     private readonly InputAction m_Player_ConfirmSnailControl;
@@ -768,14 +636,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @TriggerPause => m_Wrapper.m_Player_TriggerPause;
-        public InputAction @GenerateDialog => m_Wrapper.m_Player_GenerateDialog;
-        public InputAction @IncreaseSimulationSpeed => m_Wrapper.m_Player_IncreaseSimulationSpeed;
-        public InputAction @DecreaseSimulationSpeed => m_Wrapper.m_Player_DecreaseSimulationSpeed;
-        public InputAction @ToggleDemo => m_Wrapper.m_Player_ToggleDemo;
-        public InputAction @SpawnCitizen => m_Wrapper.m_Player_SpawnCitizen;
         public InputAction @GeneratePopup => m_Wrapper.m_Player_GeneratePopup;
         public InputAction @GenerateBanner => m_Wrapper.m_Player_GenerateBanner;
-        public InputAction @SpawnEnemy => m_Wrapper.m_Player_SpawnEnemy;
         public InputAction @MoveBaseCar => m_Wrapper.m_Player_MoveBaseCar;
         public InputAction @ConfirmMushroomControl => m_Wrapper.m_Player_ConfirmMushroomControl;
         public InputAction @ConfirmSnailControl => m_Wrapper.m_Player_ConfirmSnailControl;
@@ -791,30 +653,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @TriggerPause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriggerPause;
                 @TriggerPause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriggerPause;
                 @TriggerPause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTriggerPause;
-                @GenerateDialog.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateDialog;
-                @GenerateDialog.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateDialog;
-                @GenerateDialog.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateDialog;
-                @IncreaseSimulationSpeed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnIncreaseSimulationSpeed;
-                @IncreaseSimulationSpeed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnIncreaseSimulationSpeed;
-                @IncreaseSimulationSpeed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnIncreaseSimulationSpeed;
-                @DecreaseSimulationSpeed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDecreaseSimulationSpeed;
-                @DecreaseSimulationSpeed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDecreaseSimulationSpeed;
-                @DecreaseSimulationSpeed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDecreaseSimulationSpeed;
-                @ToggleDemo.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleDemo;
-                @ToggleDemo.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleDemo;
-                @ToggleDemo.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleDemo;
-                @SpawnCitizen.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnCitizen;
-                @SpawnCitizen.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnCitizen;
-                @SpawnCitizen.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnCitizen;
                 @GeneratePopup.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGeneratePopup;
                 @GeneratePopup.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGeneratePopup;
                 @GeneratePopup.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGeneratePopup;
                 @GenerateBanner.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateBanner;
                 @GenerateBanner.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateBanner;
                 @GenerateBanner.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerateBanner;
-                @SpawnEnemy.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnEnemy;
-                @SpawnEnemy.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnEnemy;
-                @SpawnEnemy.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpawnEnemy;
                 @MoveBaseCar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveBaseCar;
                 @MoveBaseCar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveBaseCar;
                 @MoveBaseCar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveBaseCar;
@@ -831,30 +675,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @TriggerPause.started += instance.OnTriggerPause;
                 @TriggerPause.performed += instance.OnTriggerPause;
                 @TriggerPause.canceled += instance.OnTriggerPause;
-                @GenerateDialog.started += instance.OnGenerateDialog;
-                @GenerateDialog.performed += instance.OnGenerateDialog;
-                @GenerateDialog.canceled += instance.OnGenerateDialog;
-                @IncreaseSimulationSpeed.started += instance.OnIncreaseSimulationSpeed;
-                @IncreaseSimulationSpeed.performed += instance.OnIncreaseSimulationSpeed;
-                @IncreaseSimulationSpeed.canceled += instance.OnIncreaseSimulationSpeed;
-                @DecreaseSimulationSpeed.started += instance.OnDecreaseSimulationSpeed;
-                @DecreaseSimulationSpeed.performed += instance.OnDecreaseSimulationSpeed;
-                @DecreaseSimulationSpeed.canceled += instance.OnDecreaseSimulationSpeed;
-                @ToggleDemo.started += instance.OnToggleDemo;
-                @ToggleDemo.performed += instance.OnToggleDemo;
-                @ToggleDemo.canceled += instance.OnToggleDemo;
-                @SpawnCitizen.started += instance.OnSpawnCitizen;
-                @SpawnCitizen.performed += instance.OnSpawnCitizen;
-                @SpawnCitizen.canceled += instance.OnSpawnCitizen;
                 @GeneratePopup.started += instance.OnGeneratePopup;
                 @GeneratePopup.performed += instance.OnGeneratePopup;
                 @GeneratePopup.canceled += instance.OnGeneratePopup;
                 @GenerateBanner.started += instance.OnGenerateBanner;
                 @GenerateBanner.performed += instance.OnGenerateBanner;
                 @GenerateBanner.canceled += instance.OnGenerateBanner;
-                @SpawnEnemy.started += instance.OnSpawnEnemy;
-                @SpawnEnemy.performed += instance.OnSpawnEnemy;
-                @SpawnEnemy.canceled += instance.OnSpawnEnemy;
                 @MoveBaseCar.started += instance.OnMoveBaseCar;
                 @MoveBaseCar.performed += instance.OnMoveBaseCar;
                 @MoveBaseCar.canceled += instance.OnMoveBaseCar;
@@ -969,14 +795,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnTriggerPause(InputAction.CallbackContext context);
-        void OnGenerateDialog(InputAction.CallbackContext context);
-        void OnIncreaseSimulationSpeed(InputAction.CallbackContext context);
-        void OnDecreaseSimulationSpeed(InputAction.CallbackContext context);
-        void OnToggleDemo(InputAction.CallbackContext context);
-        void OnSpawnCitizen(InputAction.CallbackContext context);
         void OnGeneratePopup(InputAction.CallbackContext context);
         void OnGenerateBanner(InputAction.CallbackContext context);
-        void OnSpawnEnemy(InputAction.CallbackContext context);
         void OnMoveBaseCar(InputAction.CallbackContext context);
         void OnConfirmMushroomControl(InputAction.CallbackContext context);
         void OnConfirmSnailControl(InputAction.CallbackContext context);

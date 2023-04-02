@@ -169,6 +169,20 @@ public class TransitSceneEvent
 {
 }
 
+public class UpdateCursorEvent
+{
+    public readonly Sprite sprite;
+    public readonly float size;
+    public readonly float alpha;
+
+    public UpdateCursorEvent(Sprite _sprite, float _size = 32, float _alpha = 0.5f)
+    {
+        sprite = _sprite;
+        size = _size;
+        alpha = _alpha;
+    }
+}
+
 public class AssignGameControlEvent
 {
     public readonly GameProgressControl gameProgressControl;
@@ -190,10 +204,6 @@ public class AssignInitGrowthPositionEvent
 }
 
 public class SpawnCitizenEvent
-{
-}
-
-public class SpawnEnemyEvent
 {
 }
 

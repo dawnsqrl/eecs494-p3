@@ -11,20 +11,18 @@ public class MenuDisplayManager : MonoBehaviour
 
     private void Awake()
     {
+        mouseCamera.targetDisplay = 0;
+        mouseCamera.rect = rectFull;
+        mouseCanvas.targetDisplay = 0;
         if (Display.displays.Length > 1)
         {
-            mouseCamera.targetDisplay = 1;
-            mouseCamera.rect = rectFull;
-            mouseCanvas.targetDisplay = 1;
-            keyboardCamera.targetDisplay = 0;
+            Display.displays[1].Activate();
+            keyboardCamera.targetDisplay = 1;
             keyboardCamera.rect = rectFull;
-            keyboardCanvas.targetDisplay = 0;
+            keyboardCanvas.targetDisplay = 1;
         }
         else
         {
-            mouseCamera.targetDisplay = 0;
-            mouseCamera.rect = rectFull;
-            mouseCanvas.targetDisplay = 0;
             keyboardCamera.enabled = false;
             keyboardCanvas.enabled = false;
         }

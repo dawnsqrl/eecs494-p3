@@ -7,11 +7,10 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 {
     [SerializeField] private GameObject holder;
     [SerializeField] private GameObject gamePrefab;
-    [SerializeField] private Texture2D buildingTexture;
+    [SerializeField] private Sprite buildingTexture;
     [SerializeField] private GameObject RTScontroller, SelectedArea;
     [SerializeField] private GridManager gridManager;
     [SerializeField] private BuilderGridManager TgridManager;
-    [SerializeField] private bool isGrowthSource;
     [SerializeField] private ViewDragging vd;
     private int defenceRange = 3;
 
@@ -33,7 +32,8 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
         if (gameObject.name == "Defence")
         {
-            AttackRange = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/RangeCircle"), new Vector3(100.0f, 100.0f, 0.0f), Quaternion.identity);
+            AttackRange = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/RangeCircle"),
+                new Vector3(100.0f, 100.0f, 0.0f), Quaternion.identity);
             denfenceOriginScale = AttackRange.transform.localScale;
         }
     }
@@ -41,18 +41,17 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private void Start()
     {
         // buildingTexture.Reinitialize(100, 100);
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        EventBus.Publish(new UpdateCursorEvent(null));
         // temp_building = Instantiate(gameMapPrefab, new Vector3(100.0f, 100.0f, -2.0f), Quaternion.identity);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         EventBus.Publish(new StartBuildingDragEvent());
-
         RTScontroller.SetActive(false);
         SelectedArea.SetActive(false);
         parentAfterDrag = transform.parent;
-        Cursor.SetCursor(buildingTexture, Vector2.zero, CursorMode.ForceSoftware);
+        EventBus.Publish(new UpdateCursorEvent(buildingTexture, 128, 0.8f));
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
     }
@@ -73,9 +72,10 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             Worldpos = new Vector3(Worldpos.x - 70.0f, Worldpos.y - 70.0f, Worldpos.z);
         }
+
         //     // temp_building.transform.localScale = new Vector2(0.3f, 0.3f);
         //     // temp_building.transform.position = new Vector3(Worldpos.x, Worldpos.y, -2.0f);
-        Vector2 pos1 = new Vector2(Mathf.FloorToInt(Worldpos.x + 1.0f), Mathf.CeilToInt(Worldpos.y - 1.0f));
+        Vector2 pos1 = new Vector2(Mathf.FloorToInt(Worldpos.x), Mathf.CeilToInt(Worldpos.y));
         Vector2 pos2 = new Vector2(Mathf.FloorToInt(pos1.x + 1.1f), Mathf.CeilToInt(pos1.y));
         Vector2 pos3 = new Vector2(Mathf.FloorToInt(pos1.x + 1.1f), Mathf.CeilToInt(pos1.y - 1.1f));
         Vector2 pos4 = new Vector2(Mathf.FloorToInt(pos1.x), Mathf.CeilToInt(pos1.y - 1.1f));
@@ -91,13 +91,12 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         oldPos4 = pos4;
 
         //vd.enabled = true;
-        
-        if(gameObject.name == "Defence")
+
+        if (gameObject.name == "Defence")
         {
             AttackRange.transform.localScale = denfenceOriginScale * defenceRange;
             AttackRange.transform.position = new Vector3(Worldpos.x + 0.5f + 0.2f, Worldpos.y - 0.5f - 0.2f, -2.0f);
         }
-        
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -106,12 +105,13 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         GameObject new_building;
         Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
         // temp_building.transform.position = new Vector3(100.0f, 100.0f, -2.0f);
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        EventBus.Publish(new UpdateCursorEvent(null));
         Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         if (startTutorial)
         {
             Worldpos = new Vector3(Worldpos.x - 70.0f, Worldpos.y - 70.0f, Worldpos.z);
         }
+
         if ((Worldpos is { x: >= 0 and <= 50, y: >= 0 and <= 50 } || startTutorial)
             && CheckAvai(oldPos1) && CheckAvai(oldPos2) && CheckAvai(oldPos3) && CheckAvai(oldPos4))
         {
@@ -123,21 +123,24 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             //    new Vector3(pos.x, pos.y, -2.0f), Quaternion.identity);
             if (startTutorial)
             {
-                new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x + 0.5f + 70.0f, oldPos1.y - 0.5f + 70.0f, -2.0f), Quaternion.identity);
+                new_building = Instantiate(gamePrefab,
+                    new Vector3(oldPos1.x + 0.5f + 70.0f, oldPos1.y - 0.5f + 70.0f, -2.0f), Quaternion.identity);
                 if (gameObject.name == "Defence")
                 {
                     AttackRange.transform.position = new Vector3(100.0f, 100.0f, 0.0f);
-                    new_building.GetComponent<DefenceBuilding>().SetPosition(new Vector3(oldPos1.x + 0.5f + 70.0f, oldPos1.y - 0.5f + 70.0f, -2.0f), defenceRange);
+                    new_building.GetComponent<DefenceBuilding>().SetPosition(
+                        new Vector3(oldPos1.x + 0.5f + 70.0f, oldPos1.y - 0.5f + 70.0f, -2.0f), defenceRange);
                 }
             }
             else
             {
-                new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f), Quaternion.identity);
+                new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f),
+                    Quaternion.identity);
                 if (gameObject.name == "Defence")
                 {
                     AttackRange.transform.position = new Vector3(100.0f, 100.0f, 0.0f);
-                    new_building.GetComponent<DefenceBuilding>().SetPosition(new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f), defenceRange);
-
+                    new_building.GetComponent<DefenceBuilding>()
+                        .SetPosition(new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f), defenceRange);
                 }
             }
             //growthDemo.Position2GroundManager(pos).SetGrowthed();
@@ -152,11 +155,6 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             setHighlight(oldPos4, false, white);
 
             buildingController.GetComponent<BuildingController>().register_building(oldPos1, new_building);
-            if (isGrowthSource)
-            {
-                growthDemo.Position2GroundManager(pos).SetGrowthed();
-                growthDemo.AddToEdge(pos);
-            }
             //}
 
             EventBus.Publish(new BuildingEndDragEvent());
@@ -175,6 +173,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             AttackRange.transform.position = new Vector3(100.0f, 100.0f, 0.0f);
         }
+
         transform.SetParent(parentAfterDrag);
         transform.localScale = new Vector2(1, 1);
         RTScontroller.SetActive(true);
@@ -209,20 +208,27 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     SpriteRenderer GetSpriteRenderAtPos(Vector2 pos)
     {
         if (startTutorial)
-            return TgridManager.GetTileGroundAtPosition(TgridManager.GetTileAtPosition(pos)).gameObject.GetComponent<SpriteRenderer>();
-        return gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.GetComponent<SpriteRenderer>();
+            return TgridManager.GetTileGroundAtPosition(TgridManager.GetTileAtPosition(pos)).gameObject
+                .GetComponent<SpriteRenderer>();
+        return gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject
+            .GetComponent<SpriteRenderer>();
     }
 
     void setHighlight(Vector2 pos, bool status, Color color)
     {
         if (startTutorial)
         {
-            TgridManager.GetTileGroundAtPosition(TgridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight").gameObject.SetActive(status);
-            TgridManager.GetTileGroundAtPosition(TgridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight").gameObject.GetComponent<SpriteRenderer>().color = color;
+            TgridManager.GetTileGroundAtPosition(TgridManager.GetTileAtPosition(pos)).gameObject.transform
+                .Find("Highlight").gameObject.SetActive(status);
+            TgridManager.GetTileGroundAtPosition(TgridManager.GetTileAtPosition(pos)).gameObject.transform
+                .Find("Highlight").gameObject.GetComponent<SpriteRenderer>().color = color;
 
             return;
         }
-        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight").gameObject.SetActive(status);
-        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight").gameObject.GetComponent<SpriteRenderer>().color = color;
+
+        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight")
+            .gameObject.SetActive(status);
+        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).gameObject.transform.Find("Highlight")
+            .gameObject.GetComponent<SpriteRenderer>().color = color;
     }
 }

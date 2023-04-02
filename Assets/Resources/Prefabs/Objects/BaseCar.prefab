@@ -5733,10 +5733,6 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 5347742314661802366, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 16375
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
 --- !u!4 &4898678668236388896 stripped

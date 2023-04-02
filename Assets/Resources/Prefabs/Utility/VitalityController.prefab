@@ -44,5 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88476e48a94de2e488793dbe16f69667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  init_vitality: 800
+  init_vitality: 500
   max_vitality: 1000
+  init_vitality_increase: 20
+  gap_time: 4

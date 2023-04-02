@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GrowthDemo : MonoBehaviour
 {
-    [SerializeField] private int init_x, init_y;
     [SerializeField] private int growth_speed = 1; // 0 -> 0, 5 -> 80
     [SerializeField] private int timeGap = 3;
-    [SerializeField] private GridManager _gridManager;
-    [SerializeField] private GameObject ResourceController;
-    [SerializeField] private int mapSize_x, mapSize_y;
-    [SerializeField] private float range_factor = 0.8f;
 
+    [SerializeField] private GridManager _gridManager;
+
+    // [SerializeField] private GameObject ResourceController;
+    [SerializeField] private int mapSize_x, mapSize_y;
+
+    // [SerializeField] private float range_factor = 0.8f;
     [SerializeField] private GrassManager grassManager;
 
     //private bool aim_is_set = false, aim_is_reach = false;
@@ -25,6 +25,7 @@ public class GrowthDemo : MonoBehaviour
     private bool first_loop = true;
     private List<Vector2> edge_list = new List<Vector2>();
 
+    private int init_x, init_y;
     private int vitality;
     private GameObject buildingController;
 
@@ -47,17 +48,20 @@ public class GrowthDemo : MonoBehaviour
             init_x = (int)GameObject.Find("Mushroom").transform.position.x;
             init_y = (int)GameObject.Find("Mushroom").transform.position.y + 1;
 
-            GameObject.Find("Mushroom").transform.position = new Vector3(GameObject.Find("Mushroom").transform.position.x + 0.5f, GameObject.Find("Mushroom").transform.position.y, GameObject.Find("Mushroom").transform.position.z);
+            GameObject.Find("Mushroom").transform.position = new Vector3(
+                GameObject.Find("Mushroom").transform.position.x + 0.5f,
+                GameObject.Find("Mushroom").transform.position.y, GameObject.Find("Mushroom").transform.position.z);
 
             if (!grassManager.CheckRange(new Vector2(init_x, init_y), 5))
                 break;
         }
-        
-        init_x = (int) GameObject.Find("Mushroom").transform.position.x;
-        init_y = (int) GameObject.Find("Mushroom").transform.position.y + 1;
+
+        init_x = (int)GameObject.Find("Mushroom").transform.position.x;
+        init_y = (int)GameObject.Find("Mushroom").transform.position.y + 1;
 
         buildingController = GameObject.Find("BuildingCanvas");
-        buildingController.GetComponent<BuildingController>().register_building(new Vector2(init_x, init_y), GameObject.Find("Mushroom"));
+        buildingController.GetComponent<BuildingController>()
+            .register_building(new Vector2(init_x, init_y), GameObject.Find("Mushroom"));
         //print(init_x);
         //print(init_y);
         StartCoroutine(AutoGrowth(timeGap));
@@ -84,11 +88,11 @@ public class GrowthDemo : MonoBehaviour
     //    {
     //        aim_is_set = false;
     //    }
-        //if (!aim_is_set)
-        //{
-        //    growthAim = aimCoord;
-        //    aim_is_set = true;
-        //}
+    //if (!aim_is_set)
+    //{
+    //    growthAim = aimCoord;
+    //    aim_is_set = true;
+    //}
     //}
 
     IEnumerator AutoGrowth(int timeGap)
@@ -124,10 +128,15 @@ public class GrowthDemo : MonoBehaviour
                 //else
                 //    aim_is_reach = true;
 
-                Vector2[] temp = { new Vector2(pos.x + 1, pos.y), new Vector2(pos.x, pos.y + 1), new Vector2(pos.x - 1, pos.y), new Vector2(pos.x, pos.y - 1) };
+                Vector2[] temp =
+                {
+                    new Vector2(pos.x + 1, pos.y), new Vector2(pos.x, pos.y + 1), new Vector2(pos.x - 1, pos.y),
+                    new Vector2(pos.x, pos.y - 1)
+                };
                 foreach (Vector2 adj_pos in temp)
                 {
-                    if (Mathf.FloorToInt(adj_pos.x) < 0 || Mathf.FloorToInt(adj_pos.x) >= mapSize_x || Mathf.FloorToInt(adj_pos.y) < 0 || Mathf.FloorToInt(adj_pos.y) >= mapSize_y)
+                    if (Mathf.FloorToInt(adj_pos.x) < 0 || Mathf.FloorToInt(adj_pos.x) >= mapSize_x ||
+                        Mathf.FloorToInt(adj_pos.y) < 0 || Mathf.FloorToInt(adj_pos.y) >= mapSize_y)
                         continue;
                     if (Position2Growthed(adj_pos) || Position2Mucused(adj_pos))
                         continue;
@@ -171,8 +180,7 @@ public class GrowthDemo : MonoBehaviour
                         //ResourceController.GetComponent<Resource>().change_growth_amount(ResourceController.GetComponent<Resource>().get_growth_amount() - 0.5f);
                         //ResourceController.GetComponent<Resource>().change_resource(ResourceController.GetComponent<Resource>().get_resource() - 1.0f);
                     }
-                }     
-                
+                }
             }
 
             //avg_aim_dis = new_avg_dis / count;
@@ -182,13 +190,14 @@ public class GrowthDemo : MonoBehaviour
             {
                 //if (item == growthAim)
                 //    aim_is_reach = true;
-            //    Position2GroundManager(item).SetGrowthed();
+                //    Position2GroundManager(item).SetGrowthed();
                 edge_list.Add(item);
             }
 
             growthed.Clear();
 
-            edge_list.RemoveAll(item => count_growthed_adjacent(Mathf.FloorToInt(item.x), Mathf.FloorToInt(item.y)) == 4);
+            edge_list.RemoveAll(
+                item => count_growthed_adjacent(Mathf.FloorToInt(item.x), Mathf.FloorToInt(item.y)) == 4);
 
             if (first_loop)
                 first_loop = false;
@@ -288,7 +297,7 @@ public class GrowthDemo : MonoBehaviour
     {
         return Tile2GroundManager(Position2Tile(vec)).CheckGrowthed();
     }
-    
+
     public bool Position2Mucused(Vector2 vec)
     {
         return Tile2GroundManager(Position2Tile(vec)).CheckMucused();

@@ -71,11 +71,6 @@ public class InputInterface : MonoBehaviour
         //     EventBus.Publish(new ScrollSimulationSpeedEvent(false));
         // }
 
-        // if (playerActions.ToggleDemo.WasPressedThisFrame())
-        // {
-        //     EventBus.Publish(new ToggleDemoEvent());
-        // }
-
         // if (playerActions.SpawnCitizen.WasPressedThisFrame())
         // {
         //     EventBus.Publish(new SpawnCitizenEvent());

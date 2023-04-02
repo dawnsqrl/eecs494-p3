@@ -1,17 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
-using CodeMonkey.Utils;
-using UnityEditor.Playables;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
 
 public class MinimapMoveManager : MonoBehaviour
 {
     private Camera _camera;
     private GameObject _main_camera;
     private Coroutine camMovePos;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +25,7 @@ public class MinimapMoveManager : MonoBehaviour
             {
                 StopCoroutine(camMovePos);
             }
+
             camMovePos = StartCoroutine(MoveCam(targetPos));
             // RaycastHit hit;
             // Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -52,7 +48,7 @@ public class MinimapMoveManager : MonoBehaviour
             _main_camera.transform.position += 50f * Time.deltaTime * dir;
             yield return null;
         }
+
         _main_camera.transform.position = targetPos;
     }
-    
 }

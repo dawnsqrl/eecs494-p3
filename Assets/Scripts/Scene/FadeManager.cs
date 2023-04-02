@@ -22,14 +22,14 @@ public class FadeManager : MonoBehaviour
         mouseImage = mouseOverlay.GetComponentInChildren<Image>();
         keyboardCanvas = keyboardOverlay.GetComponentInChildren<Canvas>();
         keyboardImage = keyboardOverlay.GetComponentInChildren<Image>();
+        mouseCanvas.targetDisplay = 0;
         if (Display.displays.Length > 1)
         {
-            mouseCanvas.targetDisplay = 1;
-            keyboardCanvas.targetDisplay = 0;
+            Display.displays[1].Activate();
+            keyboardCanvas.targetDisplay = 1;
         }
         else
         {
-            mouseCanvas.targetDisplay = 0;
             keyboardCanvas.enabled = false;
         }
     }

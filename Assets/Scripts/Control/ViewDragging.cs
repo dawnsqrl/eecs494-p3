@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,10 +22,8 @@ public class ViewDragging : MonoBehaviour
 
     Vector3 startDrag;
 
-    [SerializeField]
-    private float zoomMin = 0.5f;
-    [SerializeField]
-    private float zoomMax = 10.0f;
+    [SerializeField] private float zoomMin = 0.5f;
+    [SerializeField] private float zoomMax = 10.0f;
 
     // Speed of zooming
     private float zoomSpeed = 1.0f;
@@ -48,7 +45,8 @@ public class ViewDragging : MonoBehaviour
         cameraTransform = GetComponent<Transform>();
     }
 
-    private void Zoom() {
+    private void Zoom()
+    {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         // If the scroll value is not zero, adjust the camera size
@@ -82,7 +80,9 @@ public class ViewDragging : MonoBehaviour
     private void DragCamera()
     {
         if (!Mouse.current.middleButton.isPressed)
+        {
             return;
+        }
 
         Plane plane = new Plane(new Vector3(0, 0, 1), Vector3.zero);
         Ray ray = builderCam.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -117,11 +117,16 @@ public class ViewDragging : MonoBehaviour
         //mouse position is in pixels
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Vector3 moveDirection = Vector3.zero;
+        float detectionWidth = Screen.width;
+        if (Display.displays.Length == 1)
+        {
+            detectionWidth /= 2;
+        }
 
         //horizontal scrolling
-        if (mousePosition.x < edgeTolerance * Screen.width)
+        if (mousePosition.x < edgeTolerance * detectionWidth)
             moveDirection += -GetCameraRight();
-        else if (mousePosition.x > (1f - edgeTolerance) * Screen.width)
+        else if (mousePosition.x > (1f - edgeTolerance) * detectionWidth)
             moveDirection += GetCameraRight();
 
         //vertical scrolling
@@ -133,12 +138,14 @@ public class ViewDragging : MonoBehaviour
         targetPosition += moveDirection;
     }
 
-    private Vector3 ClampVector(Vector3 pos) {
+    private Vector3 ClampVector(Vector3 pos)
+    {
         //TODO: may subjected to change if the display changes
         float new_x = Mathf.Clamp(pos.x, -5, 55);
         float new_y = Mathf.Clamp(pos.y, -5, 55);
-        return new Vector3(new_x,new_y,pos.z);
+        return new Vector3(new_x, new_y, pos.z);
     }
+
     private void UpdateCameraPosition()
     {
         //Vector3 topLeft = builderCam.ViewportToWorldPoint(new Vector3(0, 1, builderCam.nearClipPlane));
