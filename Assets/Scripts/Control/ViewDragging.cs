@@ -17,7 +17,7 @@ public class ViewDragging : MonoBehaviour
 
     [SerializeField] [Range(0f, 1f)] private float edgeTolerance = 0.001f;
     private Vector3 horizontalVelocity;
-    private bool isDraggingEnabled;
+    private bool isDraggingEnabled, isBuilderTutorialActive = false;
     private Camera builderCam;
 
     Vector3 startDrag;
@@ -28,6 +28,8 @@ public class ViewDragging : MonoBehaviour
     // Speed of zooming
     private float zoomSpeed = 1.0f;
 
+    bool openZoom = false, openDrag = false;
+
     private void Awake()
     {
         // set camera init position
@@ -36,6 +38,12 @@ public class ViewDragging : MonoBehaviour
                 transform.position = new Vector3(e.initPos.x, e.initPos.y, transform.position.z)
         );
         EventBus.Subscribe<DialogBlockingEvent>(e => isDraggingEnabled = !e.status);
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
+        EventBus.Subscribe<OpenZoomEvent>(_ => openZoom = true);
+        EventBus.Subscribe<OpenDragEvent>(_ => openDrag = true);
+
+        EventBus.Subscribe<CloseZoomEvent>(_ => openZoom = false);
+        EventBus.Subscribe<CloseDragEvent>(_ => openDrag = false);
     }
 
     private void Start()
@@ -59,6 +67,8 @@ public class ViewDragging : MonoBehaviour
             float zoomDelta = scroll * zoomSpeed;
             size = Mathf.Clamp(size - zoomDelta, zoomMin, zoomMax);
 
+            if (size >= 8.0f)
+                EventBus.Publish(new ZoomMaxEvent());
             // Set the camera size to the new value
             builderCam.orthographicSize = size;
         }
@@ -66,13 +76,18 @@ public class ViewDragging : MonoBehaviour
 
     private void Update()
     {
-        if (isDraggingEnabled && GameProgressControl.isGameActive)
+        if ((isDraggingEnabled && GameProgressControl.isGameActive) || isBuilderTutorialActive)
         {
-            DragCamera();
-            Zoom();
-            //UpdateCameraPosition();
-            CheckMouseAtScreenEdge();
-            UpdateCameraPosition();
+            
+            if (openZoom || GameProgressControl.isGameActive)
+                Zoom();
+            if (openDrag || GameProgressControl.isGameActive)
+            {
+                DragCamera();
+                //UpdateCameraPosition();
+                CheckMouseAtScreenEdge();
+                UpdateCameraPosition();
+            }
         }
     }
 

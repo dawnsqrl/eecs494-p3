@@ -27,9 +27,12 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private List<Vector2> pos_list, oldPos_list;
 
     bool adv_ava_check = true;
+    bool isBuilderTutorialActive = false;
 
     private void Awake()
     {
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
+
         pos_list = new List<Vector2>();
         oldPos_list = new List<Vector2>();
         //EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
@@ -203,10 +206,20 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         //if (startTutorial)
         //    return buildingController.GetComponent<BuildingController>().check_avai(pos);
-        GrowthDemo gd = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
-        if (gd.Position2Growthed(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
-            return true;
-        return false;
+        if (!isBuilderTutorialActive)
+        {
+            GrowthDemo gd = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
+            if (gd.Position2Growthed(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
+                return true;
+            return false;
+        }
+        else
+        {
+            NewBuilderTutorialController gd = GameObject.Find("BuilderTutorial").GetComponent<NewBuilderTutorialController>();
+            if (gd.Position2Growthed(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
+                return true;
+            return false;
+        }
     }
 
     //IEnumerator GenerateShade(float time, Vector2 pos, float alpha)

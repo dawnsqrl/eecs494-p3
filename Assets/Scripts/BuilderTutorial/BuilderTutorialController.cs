@@ -35,6 +35,8 @@ public class BuilderTutorialController : MonoBehaviour
         //message.text = "Start Tutorial";
         init_x = (int)GameObject.Find("TMushroom").transform.position.x - 50 - 20;
         init_y = (int)GameObject.Find("TMushroom").transform.position.y - 50 - 20;
+
+        EventBus.Publish(new StartBuilderTutorialEvent());
     }
 
     private void Update()
