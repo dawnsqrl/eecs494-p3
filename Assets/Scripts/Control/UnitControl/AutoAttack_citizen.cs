@@ -42,7 +42,6 @@ public class AutoAttack_citizen : MonoBehaviour
         // movetoPosition = gameObject.transform.position;
 
         enemyList = new List<GameObject>(AutoEnemyControl.foundSnails);
-        
         if (enemyList.Count > 0)
         {
             for (int i = 0; i < enemyList.Count; i++)
@@ -64,6 +63,8 @@ public class AutoAttack_citizen : MonoBehaviour
         } 
         else if ((basecar.transform.position - transform.position).magnitude < range) {
             movetoPosition = basecar.transform.position;
+            _self_hitHealth.SetCurrentOpponent(basecar);
+            currentOpponent = basecar;
             onAssult = true;
         }
 

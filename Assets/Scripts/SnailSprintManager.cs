@@ -6,7 +6,8 @@ using UnityEngine;
 public class SnailSprintManager : MonoBehaviour
 {
     private bool canSprint;
-    private float pushForce;
+    private float sprintSpeed;
+    private float sprintTime;
     private Rigidbody _rigidbody;
     private BasecarController _basecarController;
 
@@ -20,7 +21,8 @@ public class SnailSprintManager : MonoBehaviour
     private void Start()
     {
         canSprint = false;
-        pushForce = 5;
+        sprintSpeed = 10;
+        sprintTime = 0.3f;
     }
     public bool CanSprint()
     {
@@ -32,9 +34,9 @@ public class SnailSprintManager : MonoBehaviour
         canSprint = true;
     }
 
-    public void AddSprintForce(float frc)
+    public void AddSprintSpeed(float spd)
     {
-        pushForce += frc;
+        sprintSpeed += spd;
     }
 
     public void Sprint()
@@ -43,6 +45,17 @@ public class SnailSprintManager : MonoBehaviour
         {
             return;
         }
-        _rigidbody.AddForce(pushForce * _basecarController.forwardDirection);
+
+        canSprint = false;
+        StartCoroutine(SprintProcess());
+    }
+
+    private IEnumerator SprintProcess()
+    {
+        _basecarController.is_sprint = true;
+        _basecarController.speed = sprintSpeed;
+        yield return new WaitForSeconds(sprintTime);
+        _basecarController.speed = _basecarController.normalSpeed;
+        canSprint = true;
     }
 }

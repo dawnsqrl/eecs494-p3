@@ -1,17 +1,26 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TutorialArrowManager : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("BaseCar"))
+    [SerializeField] private GameObject next;
+    private void Start()
         {
-            EventBus.Publish(new DisplayHintEvent(
-                "Consuming a block of hyphae grants you exp points. You will gain new skills when exp bar is filled. [Enter]"
-            ));
+            if (next)
+            {
+                next.SetActive(false);
+            }
         }
-    }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (next)
+            {
+                next.SetActive(true);
+            }
+            gameObject.SetActive(false);
+        }
 }

@@ -54,9 +54,22 @@ public class AutoEnemyGenerator : MonoBehaviour
                 onGenerationSnailNUm--;
             }
         }
-
+        
+        bool isDead = false;
         Vector2 loc = new Vector2((int)transform.position.x, (int)transform.position.y);
-        if (GridManager._tiles.ContainsKey(loc) && GridManager._tiles[loc].GetComponentInChildren<GroundTileManager>().growthed)
+        if (BasecarController.is_tutorial)
+        {
+            loc = new Vector2((int)transform.position.x+ 60, (int)transform.position.y);
+            isDead = CaveGridManager._tiles.ContainsKey(loc) &&
+                     CaveGridManager._tiles[loc].GetComponentInChildren<GroundTileManager>().growthed;
+        }
+        else
+        {
+            isDead = CaveGridManager._tiles.ContainsKey(loc) &&
+                     CaveGridManager._tiles[loc].GetComponentInChildren<GroundTileManager>().growthed;
+        }
+        
+        if (isDead)
         {
             if (!deadAnimBegan)
             {

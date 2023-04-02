@@ -8,7 +8,7 @@ public class BasecarController : MonoBehaviour
     [SerializeField] private bool isChosen = false;
     [SerializeField] private Vector3 tutorialInitPos;
     private Vector3 gameInitPos;
-    [SerializeField] private float speed = 2f;
+    public float speed = 2f;
     [SerializeField] private Animator _animator;
     [SerializeField] private HitHealth _snailHealth;
 
@@ -20,8 +20,9 @@ public class BasecarController : MonoBehaviour
     private Rigidbody _rigidbody;
     public static bool is_tutorial;
     public bool is_tutorial_end;
+    public bool is_sprint;
 
-    private float normalSpeed = 2;
+    public float normalSpeed = 2;
     private float fastSpeed = 5;
     private void Awake()
     {
@@ -37,6 +38,7 @@ public class BasecarController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         playerActions = controls.Player;
         forwardDirection = Vector3.zero;
+        is_sprint = false;
     }
 
     private void OnEnable()
@@ -101,7 +103,7 @@ public class BasecarController : MonoBehaviour
                     _groundTileManager.SetMucus();
                 }
             }
-            if (ForwardTile)
+            if (ForwardTile && !is_sprint)
             {
                 GroundTileManager _groundTileManager = ForwardTile.GetComponentInChildren<GroundTileManager>();
                 speed = _groundTileManager.mucused ? fastSpeed : normalSpeed;
