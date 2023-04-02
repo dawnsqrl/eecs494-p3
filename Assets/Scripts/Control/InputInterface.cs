@@ -28,6 +28,26 @@ public class InputInterface : MonoBehaviour
             EventBus.Publish(new TriggerPauseEvent());
         }
 
+        if (playerActions.SnailLevelUpBegins.WasPressedThisFrame())
+        {
+            EventBus.Publish(new SnailLevelUpEvent());
+        }
+        
+        if (playerActions.LevelUpOption1.WasPressedThisFrame())
+        {
+            EventBus.Publish(new SnailLevelupOptionEvent_1());
+        }
+        
+        if (playerActions.LevelUpOption2.WasPressedThisFrame())
+        {
+            EventBus.Publish(new SnailLevelupOptionEvent_2());
+        }
+        
+        if (playerActions.Sprint.WasPressedThisFrame())
+        {
+            EventBus.Publish(new SnailLevelupOptionEvent_2());
+        }
+
         // if (playerActions.GenerateDialog.WasPressedThisFrame())
         // {
         //     EventBus.Publish(new DisplayDialogEvent(

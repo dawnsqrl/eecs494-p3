@@ -80,6 +80,42 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SnailLevelUpBegins"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d0cf7bf-ca46-43f1-b804-282e0c08a7a7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LevelUpOption1"",
+                    ""type"": ""Button"",
+                    ""id"": ""1c75faf5-ee7b-44ff-8f16-c7a25dcf78ff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LevelUpOption2"",
+                    ""type"": ""Button"",
+                    ""id"": ""4ba5b637-3350-429a-b71d-46fc99baefe3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe2b3957-07b2-4ce4-841c-57ace975558a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +283,50 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""ConfirmSnailControl"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73abda64-97ab-4a65-a3fb-6cb432761553"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SnailLevelUpBegins"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ada1d4c-8568-4c4e-b2bb-cbfa4b4c56b6"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LevelUpOption1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2029021c-4f84-4a16-9dd5-5995697e885e"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LevelUpOption2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd0db869-f989-4b6f-9753-1de205ca25bf"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -321,6 +401,33 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""name"": ""RightClick"",
                     ""type"": ""PassThrough"",
                     ""id"": ""2a73731b-d06b-45ea-abcc-873eb0911814"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SnailLevelUpBegins"",
+                    ""type"": ""Button"",
+                    ""id"": ""eaaead47-59c6-46de-be09-81a5cc061d52"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LevelUpOption1"",
+                    ""type"": ""Button"",
+                    ""id"": ""891ab554-fc61-4f40-8003-4ba9e2e3eec0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LevelUpOption2"",
+                    ""type"": ""Button"",
+                    ""id"": ""13c8f067-4ced-4fd3-8c9b-986497e9e6e7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -556,6 +663,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_MoveBaseCar = m_Player.FindAction("MoveBaseCar", throwIfNotFound: true);
         m_Player_ConfirmMushroomControl = m_Player.FindAction("ConfirmMushroomControl", throwIfNotFound: true);
         m_Player_ConfirmSnailControl = m_Player.FindAction("ConfirmSnailControl", throwIfNotFound: true);
+        m_Player_SnailLevelUpBegins = m_Player.FindAction("SnailLevelUpBegins", throwIfNotFound: true);
+        m_Player_LevelUpOption1 = m_Player.FindAction("LevelUpOption1", throwIfNotFound: true);
+        m_Player_LevelUpOption2 = m_Player.FindAction("LevelUpOption2", throwIfNotFound: true);
+        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -566,6 +677,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
+        m_UI_SnailLevelUpBegins = m_UI.FindAction("SnailLevelUpBegins", throwIfNotFound: true);
+        m_UI_LevelUpOption1 = m_UI.FindAction("LevelUpOption1", throwIfNotFound: true);
+        m_UI_LevelUpOption2 = m_UI.FindAction("LevelUpOption2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -631,6 +745,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MoveBaseCar;
     private readonly InputAction m_Player_ConfirmMushroomControl;
     private readonly InputAction m_Player_ConfirmSnailControl;
+    private readonly InputAction m_Player_SnailLevelUpBegins;
+    private readonly InputAction m_Player_LevelUpOption1;
+    private readonly InputAction m_Player_LevelUpOption2;
+    private readonly InputAction m_Player_Sprint;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -641,6 +759,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @MoveBaseCar => m_Wrapper.m_Player_MoveBaseCar;
         public InputAction @ConfirmMushroomControl => m_Wrapper.m_Player_ConfirmMushroomControl;
         public InputAction @ConfirmSnailControl => m_Wrapper.m_Player_ConfirmSnailControl;
+        public InputAction @SnailLevelUpBegins => m_Wrapper.m_Player_SnailLevelUpBegins;
+        public InputAction @LevelUpOption1 => m_Wrapper.m_Player_LevelUpOption1;
+        public InputAction @LevelUpOption2 => m_Wrapper.m_Player_LevelUpOption2;
+        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -668,6 +790,18 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @ConfirmSnailControl.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirmSnailControl;
                 @ConfirmSnailControl.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirmSnailControl;
                 @ConfirmSnailControl.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirmSnailControl;
+                @SnailLevelUpBegins.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSnailLevelUpBegins;
+                @SnailLevelUpBegins.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSnailLevelUpBegins;
+                @SnailLevelUpBegins.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSnailLevelUpBegins;
+                @LevelUpOption1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelUpOption1;
+                @LevelUpOption1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelUpOption1;
+                @LevelUpOption1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelUpOption1;
+                @LevelUpOption2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelUpOption2;
+                @LevelUpOption2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelUpOption2;
+                @LevelUpOption2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelUpOption2;
+                @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -690,6 +824,18 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @ConfirmSnailControl.started += instance.OnConfirmSnailControl;
                 @ConfirmSnailControl.performed += instance.OnConfirmSnailControl;
                 @ConfirmSnailControl.canceled += instance.OnConfirmSnailControl;
+                @SnailLevelUpBegins.started += instance.OnSnailLevelUpBegins;
+                @SnailLevelUpBegins.performed += instance.OnSnailLevelUpBegins;
+                @SnailLevelUpBegins.canceled += instance.OnSnailLevelUpBegins;
+                @LevelUpOption1.started += instance.OnLevelUpOption1;
+                @LevelUpOption1.performed += instance.OnLevelUpOption1;
+                @LevelUpOption1.canceled += instance.OnLevelUpOption1;
+                @LevelUpOption2.started += instance.OnLevelUpOption2;
+                @LevelUpOption2.performed += instance.OnLevelUpOption2;
+                @LevelUpOption2.canceled += instance.OnLevelUpOption2;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
         }
     }
@@ -706,6 +852,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_MiddleClick;
     private readonly InputAction m_UI_RightClick;
+    private readonly InputAction m_UI_SnailLevelUpBegins;
+    private readonly InputAction m_UI_LevelUpOption1;
+    private readonly InputAction m_UI_LevelUpOption2;
     public struct UIActions
     {
         private @Controls m_Wrapper;
@@ -718,6 +867,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
         public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
+        public InputAction @SnailLevelUpBegins => m_Wrapper.m_UI_SnailLevelUpBegins;
+        public InputAction @LevelUpOption1 => m_Wrapper.m_UI_LevelUpOption1;
+        public InputAction @LevelUpOption2 => m_Wrapper.m_UI_LevelUpOption2;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -751,6 +903,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @RightClick.started -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
                 @RightClick.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
                 @RightClick.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
+                @SnailLevelUpBegins.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSnailLevelUpBegins;
+                @SnailLevelUpBegins.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSnailLevelUpBegins;
+                @SnailLevelUpBegins.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSnailLevelUpBegins;
+                @LevelUpOption1.started -= m_Wrapper.m_UIActionsCallbackInterface.OnLevelUpOption1;
+                @LevelUpOption1.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnLevelUpOption1;
+                @LevelUpOption1.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnLevelUpOption1;
+                @LevelUpOption2.started -= m_Wrapper.m_UIActionsCallbackInterface.OnLevelUpOption2;
+                @LevelUpOption2.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnLevelUpOption2;
+                @LevelUpOption2.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnLevelUpOption2;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -779,6 +940,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @RightClick.started += instance.OnRightClick;
                 @RightClick.performed += instance.OnRightClick;
                 @RightClick.canceled += instance.OnRightClick;
+                @SnailLevelUpBegins.started += instance.OnSnailLevelUpBegins;
+                @SnailLevelUpBegins.performed += instance.OnSnailLevelUpBegins;
+                @SnailLevelUpBegins.canceled += instance.OnSnailLevelUpBegins;
+                @LevelUpOption1.started += instance.OnLevelUpOption1;
+                @LevelUpOption1.performed += instance.OnLevelUpOption1;
+                @LevelUpOption1.canceled += instance.OnLevelUpOption1;
+                @LevelUpOption2.started += instance.OnLevelUpOption2;
+                @LevelUpOption2.performed += instance.OnLevelUpOption2;
+                @LevelUpOption2.canceled += instance.OnLevelUpOption2;
             }
         }
     }
@@ -800,6 +970,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnMoveBaseCar(InputAction.CallbackContext context);
         void OnConfirmMushroomControl(InputAction.CallbackContext context);
         void OnConfirmSnailControl(InputAction.CallbackContext context);
+        void OnSnailLevelUpBegins(InputAction.CallbackContext context);
+        void OnLevelUpOption1(InputAction.CallbackContext context);
+        void OnLevelUpOption2(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -811,5 +985,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnMiddleClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
+        void OnSnailLevelUpBegins(InputAction.CallbackContext context);
+        void OnLevelUpOption1(InputAction.CallbackContext context);
+        void OnLevelUpOption2(InputAction.CallbackContext context);
     }
 }

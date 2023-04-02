@@ -29,14 +29,14 @@ public class BasecarController : MonoBehaviour
         EventBus.Subscribe<StartSnailTutorialEvent>(_ => StartTutorial());
         EventBus.Subscribe<GameStartEvent>(_ => StartGame());
         controls = new Controls();
-        playerActions = controls.Player;
-        forwardDirection = Vector3.zero;
     }
 
     private void Start()
     {
         isDialogBlocking = false;
         _rigidbody = GetComponent<Rigidbody>();
+        playerActions = controls.Player;
+        forwardDirection = Vector3.zero;
     }
 
     private void OnEnable()

@@ -58,6 +58,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SnailLevelUpBegins",
+                    "type": "Button",
+                    "id": "7d0cf7bf-ca46-43f1-b804-282e0c08a7a7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LevelUpOption1",
+                    "type": "Button",
+                    "id": "1c75faf5-ee7b-44ff-8f16-c7a25dcf78ff",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LevelUpOption2",
+                    "type": "Button",
+                    "id": "4ba5b637-3350-429a-b71d-46fc99baefe3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "fe2b3957-07b2-4ce4-841c-57ace975558a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -225,6 +261,50 @@
                     "action": "ConfirmSnailControl",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73abda64-97ab-4a65-a3fb-6cb432761553",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SnailLevelUpBegins",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ada1d4c-8568-4c4e-b2bb-cbfa4b4c56b6",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LevelUpOption1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2029021c-4f84-4a16-9dd5-5995697e885e",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LevelUpOption2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd0db869-f989-4b6f-9753-1de205ca25bf",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -299,6 +379,33 @@
                     "name": "RightClick",
                     "type": "PassThrough",
                     "id": "2a73731b-d06b-45ea-abcc-873eb0911814",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SnailLevelUpBegins",
+                    "type": "Button",
+                    "id": "eaaead47-59c6-46de-be09-81a5cc061d52",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LevelUpOption1",
+                    "type": "Button",
+                    "id": "891ab554-fc61-4f40-8003-4ba9e2e3eec0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LevelUpOption2",
+                    "type": "Button",
+                    "id": "13c8f067-4ced-4fd3-8c9b-986497e9e6e7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",

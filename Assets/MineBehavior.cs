@@ -14,13 +14,10 @@ public class MineBehavior : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-
-   
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Citizen")){
-            //TODO: mine explosion effect
             if (!explode_lock) {
                 animator.SetTrigger("explode");
                 StartCoroutine(DestoryAll(gameObject));

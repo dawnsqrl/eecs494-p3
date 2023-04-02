@@ -5497,6 +5497,10 @@ MonoBehaviour:
   nextLevelExp: 10
   currentExp: 0
   expBar: {fileID: 6594772991893989532}
+  levelUpBanner: {fileID: 0}
+  optionsBanner: {fileID: 0}
+  mineIcon: {fileID: 0}
+  sprintIcon: {fileID: 0}
 --- !u!1 &8492907579301605845
 GameObject:
   m_ObjectHideFlags: 0
@@ -5512,6 +5516,7 @@ GameObject:
   - component: {fileID: 9194102917017396560}
   - component: {fileID: 495595451}
   - component: {fileID: 7265589556658211210}
+  - component: {fileID: 2929099172006440559}
   m_Layer: 8
   m_Name: BaseCar
   m_TagString: BaseCar
@@ -5670,6 +5675,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current_mines: 0
   mines: {fileID: 6029114985109348048, guid: 0d1d5116dbc2741d09656f1e0a67b26f, type: 3}
+--- !u!114 &2929099172006440559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492907579301605845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4a9fe6135941f5874c2c4f968a92ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &706331794466573149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5680,10 +5697,6 @@ PrefabInstance:
     - target: {fileID: 5347742314661802362, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
       propertyPath: m_Name
       value: MovingCam
-      objectReference: {fileID: 0}
-    - target: {fileID: 5347742314661802362, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5347742314661802365, guid: 7c69b6c4a5b864e60aca64cda016eef9, type: 3}
       propertyPath: m_RootOrder

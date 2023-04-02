@@ -252,3 +252,23 @@ public class StartBuildingDragEvent
 public class EndBuildingDragEvent
 {
 }
+
+public class SnailLevelUpEvent
+{
+    
+}
+
+public class SnailLevelupOptionEvent_1
+{
+    
+}
+
+public class SnailLevelupOptionEvent_2
+{
+    
+}
+
+public class SnailSprintEvent
+{
+    
+}
