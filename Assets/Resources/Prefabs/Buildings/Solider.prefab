@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4791414365752071702}
   - component: {fileID: 6873136581425597148}
   - component: {fileID: -6998088123765064612}
+  - component: {fileID: 6075005779831690266}
   m_Layer: 13
   m_Name: Solider
   m_TagString: Building
@@ -151,6 +152,27 @@ MonoBehaviour:
   enemyTagList:
   - BaseCar
   - LittleSnail
+  _animator: {fileID: 6075005779831690266}
+--- !u!95 &6075005779831690266
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6513006511888720774}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 83bb654a808ce4de6bc77a8cff647c86, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1001 &866377227525280810
 PrefabInstance:
   m_ObjectHideFlags: 0

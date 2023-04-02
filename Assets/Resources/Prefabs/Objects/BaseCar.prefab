@@ -5335,6 +5335,7 @@ MonoBehaviour:
   health_recover_rate: 0.1
   enemyTagList:
   - Citizen
+  _animator: {fileID: 4047923559195802300}
 --- !u!114 &716249461
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 814325717966417367}
   - component: {fileID: -2909959099891873897}
   - component: {fileID: 5830567961017830810}
+  - component: {fileID: 8850580825963552547}
   m_Layer: 13
   m_Name: Defence
   m_TagString: Building
@@ -151,6 +152,27 @@ MonoBehaviour:
   enemyTagList:
   - BaseCar
   - LittleSnail
+  _animator: {fileID: 8850580825963552547}
+--- !u!95 &8850580825963552547
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3255566222332663551}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 83bb654a808ce4de6bc77a8cff647c86, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1001 &1793081154108247318
 PrefabInstance:
   m_ObjectHideFlags: 0

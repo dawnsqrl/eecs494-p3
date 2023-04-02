@@ -178,6 +178,7 @@ MonoBehaviour:
   enemyTagList:
   - LittleSnail
   - BaseCar
+  _animator: {fileID: 7124682391608205388}
 --- !u!1 &3232443855882663146
 GameObject:
   m_ObjectHideFlags: 0

@@ -168,6 +168,7 @@ MonoBehaviour:
   enemyTagList:
   - Enemy
   - LittleSnail
+  _animator: {fileID: 5164460816530346031}
 --- !u!1 &7702931926530142126
 GameObject:
   m_ObjectHideFlags: 0

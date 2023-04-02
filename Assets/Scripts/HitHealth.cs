@@ -15,7 +15,8 @@ public class HitHealth : MonoBehaviour
     [SerializeField] private float hit_cd_time = 0.5f;
     [SerializeField] private float health_recover_rate = 0.1f; //10 s one health
     [SerializeField] private List<String> enemyTagList;
-
+    [SerializeField] private Animator _animator;
+    private bool deadAnimBegan;
 
     private bool canGetHit;
     private float deltaHP = 0;
@@ -33,6 +34,7 @@ public class HitHealth : MonoBehaviour
         canGetHit = true;
         healthBar.size =
             new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
+        deadAnimBegan = false;
     }
 
     private void OnTriggerStay(Collider other)
@@ -52,7 +54,10 @@ public class HitHealth : MonoBehaviour
         //     return;;
         // }
 
-        if (other.gameObject.GetComponent<HitHealth>() == null || other.gameObject.GetComponent<HitHealth>().currentOpponent != gameObject)
+        if (other.gameObject.GetComponent<HitHealth>() == null 
+            || (other.gameObject.GetComponent<HitHealth>().currentOpponent != null 
+                && other.gameObject.GetComponent<HitHealth>().currentOpponent != transform.parent.gameObject
+                && enemyTagList.Contains(other.gameObject.tag)))
         {
             return;
         }
@@ -66,9 +71,14 @@ public class HitHealth : MonoBehaviour
             EventBus.Publish(new BuilderTutorialSnailDeadEvent());
             if (gameObject.tag == "Building")
             {
-                Destroy(gameObject);
+                if (!deadAnimBegan)
+                {
+                    deadAnimBegan = true;
+                    StartCoroutine(DestroyWithAnim(gameObject));
+                    // Destroy(gameObject);
+                }
             }  
-            else
+            else 
             {
                 Transform parent = transform.parent;
                 if (parent.GetComponent<SpriteRenderer>() != null)
@@ -81,7 +91,12 @@ public class HitHealth : MonoBehaviour
                 }
                 else
                 {
-                    Destroy(parent.gameObject);
+                    if (!deadAnimBegan)
+                    {
+                        deadAnimBegan = true;
+                        StartCoroutine(DestroyWithAnim(parent.gameObject));
+                        // Destroy(parent.gameObject);
+                    }
                 }
             }
         }
@@ -89,6 +104,10 @@ public class HitHealth : MonoBehaviour
 
     private void Update()
     {
+        if (CompareTag("Citizen") || CompareTag("LittleSnail"))
+        {
+            return;
+        }
         RecoverHealth();
     }
 
@@ -98,7 +117,12 @@ public class HitHealth : MonoBehaviour
             healthBar.size =
                 new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
         }else{
-            Destroy(transform.parent.gameObject);
+            if (!deadAnimBegan)
+            {
+                deadAnimBegan = true;
+                StartCoroutine(DestroyWithAnim(transform.parent.gameObject));
+                // Destroy(transform.parent.gameObject);
+            }
         }
         
     }
@@ -176,7 +200,12 @@ public class HitHealth : MonoBehaviour
             EventBus.Publish(new BuilderTutorialSnailDeadEvent());
             if (gameObject.tag == "Building")
             {
-                Destroy(gameObject);
+                if (!deadAnimBegan)
+                {
+                    deadAnimBegan = true;
+                    StartCoroutine(DestroyWithAnim(gameObject));
+                    // Destroy(gameObject);
+                }
             }  
             else
             {
@@ -191,7 +220,12 @@ public class HitHealth : MonoBehaviour
                 }
                 else
                 {
-                    Destroy(parent.gameObject);
+                    if (!deadAnimBegan)
+                    {
+                        deadAnimBegan = true;
+                        StartCoroutine(DestroyWithAnim(parent.gameObject));
+                        // Destroy(parent.gameObject);
+                    }
                 }
             }
         }
@@ -232,4 +266,14 @@ public class HitHealth : MonoBehaviour
     {
         currentOpponent = _opponent;
     }
+
+    private IEnumerator DestroyWithAnim(GameObject _gameObject)
+    {
+        _animator.SetTrigger("destroy");
+        Debug.Log("wait");
+        yield return new WaitForSeconds(1);
+        Debug.Log("wait end");
+        Destroy(_gameObject);
+    }
+
 }

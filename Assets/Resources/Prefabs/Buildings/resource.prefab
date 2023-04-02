@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3888900475942680156}
   - component: {fileID: 8215979362856209059}
   - component: {fileID: 4479670082595988684}
+  - component: {fileID: 4017795613422312020}
   m_Layer: 13
   m_Name: resource
   m_TagString: Building
@@ -151,6 +152,27 @@ MonoBehaviour:
   enemyTagList:
   - BaseCar
   - LittleSnail
+  _animator: {fileID: 4017795613422312020}
+--- !u!95 &4017795613422312020
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4743352643833115571}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 83bb654a808ce4de6bc77a8cff647c86, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1001 &1446266811879046331
 PrefabInstance:
   m_ObjectHideFlags: 0
