@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3406579744892136608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.98, y: 1.97, z: 0}
-  m_LocalScale: {x: 0.43, y: 0.43, z: 2.3888888}
+  m_LocalPosition: {x: 2.51, y: 2.5, z: 0}
+  m_LocalScale: {x: 0.22, y: 0.22, z: 1.2222222}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3742933708838381220}
@@ -120,6 +120,7 @@ MonoBehaviour:
   hit_cd_time: 0.5
   health_recover_rate: 0.1
   enemyTagList: []
+  _animator: {fileID: 0}
 --- !u!1001 &4420424059897604852
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -27,6 +27,11 @@ public class BuildingController : MonoBehaviour
         buildings.Add(new Vector2(pos.x, pos.y - 1), building);
     }
 
+    public void register_one_building(Vector2 pos, GameObject building)
+    {
+        buildings.Add(pos, building);
+    }
+
     public void unregister_building(GameObject building)
     {
 
