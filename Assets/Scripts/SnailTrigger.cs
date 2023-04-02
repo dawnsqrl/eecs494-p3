@@ -20,13 +20,15 @@ public class SnailTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Time.time - collisionTime > time_eat_hyphae) {
-            if (other.gameObject.CompareTag("Hyphae"))
-            {
-                _snailExpManager.AddExpPoints(1);
-                other.gameObject.SetActive(false);
-                eatEffect.SetActive(false);
-            }
+        if (other.gameObject.CompareTag("Hyphae") && Time.time - collisionTime > time_eat_hyphae) {
+            _snailExpManager.AddExpPoints(1);
+            other.gameObject.SetActive(false);
+            eatEffect.SetActive(false);
+        } 
+        else if (other.gameObject.CompareTag("GrassHide"))
+        {
+            GetComponent<HitHealth>().SetHealthRestoreRate(0.7f);
+            restoreEffect.SetActive(true);
         }
        
     }
@@ -38,10 +40,6 @@ public class SnailTrigger : MonoBehaviour
         {
             eatEffect.SetActive(true);
             collisionTime = Time.time;
-        } else if (other.gameObject.CompareTag("GrassHide"))
-        {
-            GetComponent<HitHealth>().SetHealthRestoreRate(0.7f);
-            restoreEffect.SetActive(true);
         }
     }
     
