@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1f52e0c9ec80446bf87ad9ed759f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  movingCamera: {fileID: 0}
+  mouseCamera: {fileID: 0}
+  keyboardCamera: {fileID: 0}
   dividerCanvas: {fileID: 0}

@@ -57,3 +57,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e716d27304f0814aa62fec2ba2a45cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  builderTutorialArea: {fileID: 0}
+  mainCamera: {fileID: 0}
