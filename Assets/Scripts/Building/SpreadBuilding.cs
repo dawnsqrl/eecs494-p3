@@ -52,6 +52,11 @@ public class SpreadBuilding : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
+    }
+
     IEnumerator StartSpread()
     {
         cooldownTimer = spread_time;

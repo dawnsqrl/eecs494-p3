@@ -10,4 +10,9 @@ public class ResourceBuilding : MonoBehaviour
         vitality.decreaseVitality(100);
         vitality.increaseVitalityGrowth(20);
     }
+
+    private void OnDestroy()
+    {
+        GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
+    }
 }

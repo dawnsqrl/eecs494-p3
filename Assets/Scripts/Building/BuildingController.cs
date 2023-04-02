@@ -1,4 +1,7 @@
 using System.Collections;
+using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,5 +25,16 @@ public class BuildingController : MonoBehaviour
         buildings.Add(new Vector2(pos.x + 1, pos.y), building);
         buildings.Add(new Vector2(pos.x + 1, pos.y - 1), building);
         buildings.Add(new Vector2(pos.x, pos.y - 1), building);
+    }
+
+    public void unregister_building(GameObject building)
+    {
+
+        var toRemove = buildings.Where(kvp => kvp.Value == building).ToList();
+        foreach (var item in toRemove)
+        {
+            buildings.Remove(item.Key);
+        }
+
     }
 }
