@@ -9,11 +9,7 @@ public class TutorialNoteManager : MonoBehaviour
     // "This is a wild snail nest. Green snails are drawn out of their nest to help with mushroom hunt."
     // "Large mushrooms are all a snail can dream of. Go get'em!"
     // "Small mushrooms are dangerous warriors of the mushroom kingdom. They attack snails on sight."
-    // "A snail regenerates health faster and becomes invisible to mushrooms in bushes."
-    private void Start()
-    {
-        msg = "Test msg";
-    }
+    // "A snail regenerates health faster and becomes invisible to mushrooms in bushes.
 
     private void OnTriggerEnter(Collider other)
     {

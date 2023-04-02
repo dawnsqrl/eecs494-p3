@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SnailExpManager : MonoBehaviour
@@ -43,7 +44,7 @@ public class SnailExpManager : MonoBehaviour
     public void AddExpPoints(int exp)
     {
         currentExp += exp;
-        if (currentExp == nextLevelExp)
+        if (currentExp >= nextLevelExp)
         {
             pendingLevelUps++;
             currentExp = 0;
