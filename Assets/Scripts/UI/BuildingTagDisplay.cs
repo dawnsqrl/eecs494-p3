@@ -3,7 +3,7 @@ using UnityEngine;
 public class BuildingTagDisplay : MonoBehaviour
 {
     private GameObject banner;
-    private bool isBuilderTutorialActive;
+    private bool isBuilderTutorialActive = false;
 
     private void Awake()
     {
@@ -15,7 +15,7 @@ public class BuildingTagDisplay : MonoBehaviour
     private void Start()
     {
         banner.SetActive(false);
-        isBuilderTutorialActive = false;
+        //isBuilderTutorialActive = false;
     }
 
     public void OnHoverEnter()

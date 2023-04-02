@@ -277,4 +277,27 @@ public class SnailLevelupOptionEvent_2
 
 public class SnailSprintEvent
 {
+    
+}
+
+
+// builder Tutorial
+public class OpenZoomEvent
+{
+}
+
+public class OpenDragEvent
+{
+}
+
+public class ZoomMaxEvent
+{
+}
+
+public class CloseDragEvent
+{
+}
+
+public class CloseZoomEvent
+{
 }

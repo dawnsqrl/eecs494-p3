@@ -4,6 +4,7 @@ public class MushroomControl : MonoBehaviour
 {
     [SerializeField] private Camera targetCamera;
     [SerializeField] bool isChosen = false;
+    [SerializeField] GameObject BuildingCanvas;
     private GameObject buildingController;
 
     private bool isDialogBlocking;
@@ -18,7 +19,6 @@ public class MushroomControl : MonoBehaviour
 
     private void Start()
     {
-       
         isDialogBlocking = false;
     }
 
@@ -64,7 +64,7 @@ public class MushroomControl : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
+        BuildingCanvas.GetComponent<BuildingController>().unregister_building(gameObject);
         CitizenControl.citizenList.Remove(gameObject);
         Destroy(GameObject.Find("GrowthDemoController"));
     }

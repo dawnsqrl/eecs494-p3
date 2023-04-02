@@ -35,6 +35,7 @@ public class FoodControl : MonoBehaviour
         {
             if (!color_changed)
             {
+                print("adawdadwadadaw");
                 color_changed = true;
                 EventBus.Publish(new DisplayBannerEvent(
                     transform, -4, Color.red + Color.yellow / 2, StringPool.infestPromptBanner

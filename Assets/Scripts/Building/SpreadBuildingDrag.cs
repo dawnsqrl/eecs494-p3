@@ -19,7 +19,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
     private Transform parentAfterDrag;
     private GameObject buildingController;
 
-    private GrowthDemo growthDemo;
+    //private GrowthDemo growthDemo;
     //private bool startTutorial = false;
 
     Vector2 oldPos1 = Vector2.zero, oldPos2 = Vector2.zero, oldPos3 = Vector2.zero, oldPos4 = Vector2.zero;
@@ -41,7 +41,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         //EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
         buildingController = GameObject.Find("BuildingCanvas");
-        growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
+        //growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
     }
 
     private void Start()
