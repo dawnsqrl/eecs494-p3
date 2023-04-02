@@ -57,7 +57,7 @@ public class GrowthDemo : MonoBehaviour
         init_y = (int) GameObject.Find("Mushroom").transform.position.y + 1;
 
         buildingController = GameObject.Find("BuildingCanvas");
-        buildingController.GetComponent<BuildingController>().register_building(new Vector2(init_x, init_y), gameObject);
+        buildingController.GetComponent<BuildingController>().register_building(new Vector2(init_x, init_y), GameObject.Find("Mushroom"));
         //print(init_x);
         //print(init_y);
         StartCoroutine(AutoGrowth(timeGap));

@@ -22,6 +22,8 @@ public class SpellCooldown : MonoBehaviour
     private bool start = true;
     private int vitality;
 
+    int buildingNum, maxBuildingNum;
+
     private void Awake()
     {
         EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
@@ -41,7 +43,10 @@ public class SpellCooldown : MonoBehaviour
         
         if (GameProgressControl.isGameActive)
         {
-            if ((buildingType == 0 && vitality < 400) || (buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200) || (buildingType == 3 && vitality < 300))
+            buildingNum = GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().building_num;
+            maxBuildingNum = GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().max_building_num;
+
+            if ((buildingNum == maxBuildingNum && buildingType != 0) || (buildingType == 0 && vitality < 400) || (buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200) || (buildingType == 3 && vitality < 300))
             {
                 if (!isCoolDown)
                 {

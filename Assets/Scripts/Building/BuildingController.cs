@@ -25,6 +25,8 @@ public class BuildingController : MonoBehaviour
 
     public void register_building(Vector2 pos, GameObject building)
     {
+        if (building != GameObject.Find("Mushroom"))
+            building_num += 1;
         buildings.Add(pos, building);
         buildings.Add(new Vector2(pos.x + 1, pos.y), building);
         buildings.Add(new Vector2(pos.x + 1, pos.y - 1), building);
@@ -33,6 +35,7 @@ public class BuildingController : MonoBehaviour
 
     public void register_one_building(Vector2 pos, GameObject building)
     {
+        max_building_num += 5;
         buildings.Add(pos, building);
     }
 

@@ -49,6 +49,7 @@ public class SpreadBuilding : MonoBehaviour
             buildingController.GetComponent<BuildingController>().register_one_building(pos, building);
             growthDemo.Position2GroundManager(pos).SetGrowthed();
             growthDemo.AddToEdge(pos);
+            finishSpread = false;
         }
     }
 
