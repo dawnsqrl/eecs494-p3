@@ -5,10 +5,14 @@ using UnityEngine;
 public class BuildingController : MonoBehaviour
 {
     private Dictionary<Vector2, GameObject> buildings;
+    public int max_building_num;
+    public int building_num;
     // Start is called before the first frame update
     void Start()
     {
         buildings = new Dictionary<Vector2, GameObject>();
+        max_building_num = 5;
+        building_num = 0;
     }
 
     public bool check_avai(Vector2 pos)

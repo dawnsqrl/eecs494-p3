@@ -23,6 +23,7 @@ public class SnailTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Hyphae") && Time.time - collisionTime > time_eat_hyphae) {
             _snailExpManager.AddExpPoints(1);
             other.gameObject.SetActive(false);
+            other.transform.parent.GetComponent<GroundTileManager>().growthed = false;
             eatEffect.SetActive(false);
         } 
         else if (other.gameObject.CompareTag("GrassHide"))
