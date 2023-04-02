@@ -12,7 +12,7 @@ public class NewBuilderTutorialController : MonoBehaviour
     [SerializeField] private SpellCooldown cool1, cool2, cool3, cool4, cool0;
 
     private int STEP_NUM = 0;
-    // stwp 0 -> mushroom and snail 
+    // step 0 -> mushroom and snail 
     // 2 -> mycelium and mucus
     // 3 -> vitality
     // 3.5 -> view drag and minimap
@@ -278,13 +278,14 @@ public class NewBuilderTutorialController : MonoBehaviour
                 Position2GroundManager(31, 26).SetMucus();
                 Position2GroundManager(32, 26).SetGrowthed();
             }
-            
-            if (clicked)
+
+            if (!(Position2GroundManager(30, 27).CheckMucused() && Position2GroundManager(30, 26).CheckMucused() && Position2GroundManager(31, 27).CheckMucused() && Position2GroundManager(31, 26).CheckMucused())))
             {
                 clicked = false;
                 STEP_NUM = 9;
                 firstcall = false;
             }
+                
         }
 
         if (STEP_NUM == 9)
@@ -303,21 +304,12 @@ public class NewBuilderTutorialController : MonoBehaviour
                 fog4.SetActive(true);
 
                 EventBus.Publish(new StartBuilderTutorialEvent());
-
-                BuilderCamera.transform.position = new Vector3(30.0f, 27.5f, -10.0f);
-
                 EventBus.Publish(new UpdateHintEvent(0,
-                "As the mucus approaches your mycelium, you can spend vitality to decay the mucus. Try to decay the mucus on the scrren."));
+                ""));
                 firstcall = true;
-
-                Position2GroundManager(30, 27).SetMucus();
-                Position2GroundManager(30, 26).SetMucus();
-                Position2GroundManager(31, 27).SetMucus();
-                Position2GroundManager(31, 26).SetMucus();
-                Position2GroundManager(32, 26).SetGrowthed();
             }
 
-            if (clicked)
+            if ()
             {
                 clicked = false;
                 STEP_NUM = 10;
