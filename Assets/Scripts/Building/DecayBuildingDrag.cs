@@ -161,6 +161,8 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
                 fog.SetActive(true);
             }
 
+            foreach (Vector2 oldPos in oldPos_list)
+                removeMucus(oldPos);
 
             EventBus.Publish(new BuildingEndDragEvent());
 
@@ -176,6 +178,13 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
         vd.enabled = true;
 
         EventBus.Publish(new EndBuildingDragEvent());
+
+        
+    }
+
+    private void removeMucus(Vector2 pos)
+    {
+        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).GetComponent<GroundTileManager>().RemoveMucus();
     }
 
     bool CheckAvai(Vector2 pos)
