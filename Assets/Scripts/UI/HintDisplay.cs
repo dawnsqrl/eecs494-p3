@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class HintDisplay : MonoBehaviour
 {
+    [SerializeField] private int index;
     [SerializeField] private float marginWidth = 75;
     [SerializeField] private float lerpDuration = 0.5f;
     [SerializeField] private float lerpInterval = 0.4f;
@@ -21,7 +22,13 @@ public class HintDisplay : MonoBehaviour
     {
         EventBus.Subscribe<DisplayHintEvent>(_OnDisplayHint);
         EventBus.Subscribe<UpdateHintEvent>(_OnUpdateHint);
-        EventBus.Subscribe<DismissHintEvent>(_ => doDismissHint = true);
+        EventBus.Subscribe<DismissHintEvent>(e =>
+        {
+            if (e.index == index)
+            {
+                doDismissHint = true;
+            }
+        });
         rectTransform = GetComponent<RectTransform>();
         content = GetComponentInChildren<TextMeshProUGUI>();
         dialogCurve = Resources.Load<AnimationCurveAsset>("Curves/DialogCurve");
@@ -45,7 +52,7 @@ public class HintDisplay : MonoBehaviour
 
     private void _OnDisplayHint(DisplayHintEvent e)
     {
-        if (isHintLerping || isHintVisible)
+        if (e.index != index || isHintLerping || isHintVisible)
         {
             return;
         }
@@ -60,7 +67,7 @@ public class HintDisplay : MonoBehaviour
 
     private void _OnUpdateHint(UpdateHintEvent e)
     {
-        if (isHintLerping || !isHintVisible)
+        if (e.index != index || isHintLerping || !isHintVisible)
         {
             return;
         }

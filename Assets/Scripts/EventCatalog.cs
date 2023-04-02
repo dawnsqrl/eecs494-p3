@@ -141,11 +141,13 @@ public class DisplayBannerEvent
 
 public class DisplayHintEvent
 {
+    public readonly int index;
     public readonly string text;
     public readonly float height; // one line = 100, two lines = 160
 
-    public DisplayHintEvent(string _text, float _height = 100)
+    public DisplayHintEvent(int _index, string _text, float _height = 100)
     {
+        index = _index;
         text = _text;
         height = _height;
     }
@@ -153,16 +155,24 @@ public class DisplayHintEvent
 
 public class UpdateHintEvent
 {
+    public readonly int index;
     public readonly string text;
 
-    public UpdateHintEvent(string _text)
+    public UpdateHintEvent(int _index, string _text)
     {
+        index = _index;
         text = _text;
     }
 }
 
 public class DismissHintEvent
 {
+    public readonly int index;
+
+    public DismissHintEvent(int _index)
+    {
+        index = _index;
+    }
 }
 
 public class TransitSceneEvent
@@ -255,20 +265,16 @@ public class EndBuildingDragEvent
 
 public class SnailLevelUpEvent
 {
-    
 }
 
 public class SnailLevelupOptionEvent_1
 {
-    
 }
 
 public class SnailLevelupOptionEvent_2
 {
-    
 }
 
 public class SnailSprintEvent
 {
-    
 }

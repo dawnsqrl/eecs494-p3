@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TutorialNoteManager : MonoBehaviour
 {
     [SerializeField] private string msg;
-    
+
     // "Consuming a block of hyphae grants a snail exp points. A snail gains new skills / resources when the exp bar is filled. [Enter]
     // "A snail move faster on its silver slime. The slime prevents hyphae from expanding. 
     // "This is a wild snail nest. Green snails are drawn out of their nest to help with mushroom hunt."
@@ -22,15 +19,15 @@ public class TutorialNoteManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("BaseCar"))
         {
-            EventBus.Publish(new DisplayHintEvent(msg));
+            EventBus.Publish(new DisplayHintEvent(1, msg));
         }
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("BaseCar"))
         {
-            EventBus.Publish(new DismissHintEvent());
+            EventBus.Publish(new DismissHintEvent(1));
         }
     }
 }

@@ -64,7 +64,7 @@ public class BuilderTutorialController : MonoBehaviour
             Building3.SetActive(false);
             // Mushroom
             EventBus.Publish(new DisplayHintEvent(
-                "Protect your home mushroom from the snail! [Lclick]"
+                0, "Protect your home mushroom from the snail! [Lclick]"
             ));
         }
 
@@ -75,7 +75,7 @@ public class BuilderTutorialController : MonoBehaviour
             myceliumStep = true;
 
             EventBus.Publish(new UpdateHintEvent(
-                "Mycelium expands periodically with time. [Lclick]"
+                0, "Mycelium expands periodically with time. [Lclick]"
             ));
             int radius = 3;
             for (int i = init_x - radius; i < init_x + radius; i++)
@@ -94,7 +94,7 @@ public class BuilderTutorialController : MonoBehaviour
             myceliumStep = false;
 
             EventBus.Publish(new UpdateHintEvent(
-                "This is vitality bar. Vitality controls how fast you can expand and construct. [Lclick]"
+                0, "This is vitality bar. Vitality controls how fast you can expand and construct. [Lclick]"
             ));
             VitalityBar.SetActive(true);
         }
@@ -106,7 +106,7 @@ public class BuilderTutorialController : MonoBehaviour
             building1Step = true;
 
             EventBus.Publish(new UpdateHintEvent(
-                "Drag and drop buildings onto mycelium. Construction costs vitality."
+                0, "Drag and drop buildings onto mycelium. Construction costs vitality."
             ));
             Building1.SetActive(true);
             cool1.enabled = false;
@@ -118,7 +118,7 @@ public class BuilderTutorialController : MonoBehaviour
             building1Step = false;
             otherBuildingStep = true;
             EventBus.Publish(new UpdateHintEvent(
-                "Hover over the buildings to see their function and stats."
+                0, "Hover over the buildings to see their function and stats."
             ));
 
             StartCoroutine(vitality_change());
@@ -137,7 +137,7 @@ public class BuilderTutorialController : MonoBehaviour
         {
             otherBuildingStep = false;
             EventBus.Publish(new UpdateHintEvent(
-                "[LDrag] to select citizens. [RClick] lead them to a point."
+                0, "[LDrag] to select citizens. [RClick] lead them to a point."
             ));
             if (temp_first)
             {
@@ -153,7 +153,7 @@ public class BuilderTutorialController : MonoBehaviour
         {
             movedCitizen = false;
             EventBus.Publish(new UpdateHintEvent(
-                "The snail is coming, guide your citizens to attack it!"
+                0, "The snail is coming, guide your citizens to attack it!"
             ));
             if (!temp_first)
             {
@@ -166,7 +166,7 @@ public class BuilderTutorialController : MonoBehaviour
         if (endTutorial && startTutorial)
         {
             EventBus.Publish(new UpdateHintEvent(
-                "You completed the tutorial! Please wait for the snail to complete."
+                0, "You completed the tutorial! Please wait for the snail to complete."
             ));
             endTutorial = false;
             Building1.SetActive(true);
