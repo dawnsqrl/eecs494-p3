@@ -12,6 +12,7 @@ public class SnailTrigger : MonoBehaviour
 
     [SerializeField] private GameObject eatEffect;
     [SerializeField] private GameObject restoreEffect;
+    [SerializeField] private HitHealth _hitHealth;
 
     private void Start()
     {

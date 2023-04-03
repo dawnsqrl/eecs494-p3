@@ -19,7 +19,8 @@ public class VitalityController : MonoBehaviour
 
     private void Update()
     {
-        _mesh.text = vitality_increase.ToString() + "% / min";
+        String note = vitality_increase > 0 ? "+" : "-";
+        _mesh.text =  note + vitality_increase * 15 + "%/min";
     }
 
     private void Start()
