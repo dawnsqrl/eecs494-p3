@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class GameProgressControl : MonoBehaviour
 {
@@ -10,6 +9,8 @@ public class GameProgressControl : MonoBehaviour
 
     public float timeElapsed;
 
+    private Sprite mouseGameImage;
+    private Sprite keyboardGameImage;
     private bool isGamePaused;
     private bool isGameStarted;
     private bool isGameEnded;
@@ -43,15 +44,27 @@ public class GameProgressControl : MonoBehaviour
                 new Dictionary<string, Tuple<UnityAction, bool>>()
                 {
                     {
+                        "Return", new Tuple<UnityAction, bool>(
+                            () =>
+                            {
+                                SceneState.SetTransition(
+                                    1, 2, "MainMenu", mouseGameImage, keyboardGameImage
+                                );
+                                EventBus.Publish(new TransitSceneEvent());
+                            }, true
+                        )
+                    },
+                    {
                         "Restart", new Tuple<UnityAction, bool>(
-                            () => SceneManager.LoadScene(SceneManager.GetActiveScene().name), true
+                            () =>
+                            {
+                                SceneState.SetTransition(
+                                    1, 0, "MainGame", mouseGameImage, keyboardGameImage
+                                );
+                                EventBus.Publish(new TransitSceneEvent());
+                            }, true
                         )
                     }
-                    //{
-                    //    "Restart", new Tuple<UnityAction, bool>(
-                    //        () => LoadAllDisplay(), true
-                    //    )
-                    //}
                 }
             ));
         }
