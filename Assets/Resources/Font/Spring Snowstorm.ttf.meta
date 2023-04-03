@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 194c6d257123f5948afe74bee3268e2c
+guid: 17f7fad8584c8eb46a7748d44e9f5e6c
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Take Coffee
+  - Spring Snowstorm
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
