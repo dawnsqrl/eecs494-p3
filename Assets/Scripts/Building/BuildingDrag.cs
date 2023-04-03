@@ -112,7 +112,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (gameObject.name == "Defence")
         {
             AttackRange.transform.localScale = denfenceOriginScale * defenceRange;
-            AttackRange.transform.position = new Vector3(Worldpos.x + 0.5f + 0.2f, Worldpos.y - 0.5f - 0.2f, -2.0f);
+            AttackRange.transform.position = new Vector3(Worldpos.x, Worldpos.y, -2.0f);
         }
 
     }
