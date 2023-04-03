@@ -71,9 +71,9 @@ public class DefenceBuilding : MonoBehaviour
         }
         BombHit(BaseCar);
         GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), bomb_pos, Quaternion.identity);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.75f);
         Destroy(bomb);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.75f);
         ready = true;
     }
 
@@ -81,7 +81,7 @@ public class DefenceBuilding : MonoBehaviour
     {
         if (!target.IsDestroyed() && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.y), bomb_pos) <= 1)
         {
-            target.GetComponentInChildren<HitHealth>().GetDamage();
+            target.GetComponentInChildren<HitHealth>().GetDamage(2);
         }
     }
 

@@ -3656,6 +3656,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 560697544}
     m_Modifications:
+    - target: {fileID: 1421365277334767105, guid: 95ebde7ecbbc9474d924895c34abac76, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8080652076219160655, guid: 95ebde7ecbbc9474d924895c34abac76, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -7206,8 +7210,23 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6777137679077778789, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 368
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
+--- !u!114 &2190625779705927380 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1126768865597385036, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
+  m_PrefabInstance: {fileID: 2190625779705927379}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2223029409467206536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7932,6 +7951,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VitalityController
       objectReference: {fileID: 0}
+    - target: {fileID: 9168317154175586897, guid: 3d87b17e436fef544a9b0aa4a5f8ff78, type: 3}
+      propertyPath: _mesh
+      value: 
+      objectReference: {fileID: 2190625779705927380}
     - target: {fileID: 9168317154175586898, guid: 3d87b17e436fef544a9b0aa4a5f8ff78, type: 3}
       propertyPath: m_RootOrder
       value: 10

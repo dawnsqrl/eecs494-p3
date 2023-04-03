@@ -1,19 +1,25 @@
+using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class VitalityController : MonoBehaviour
 {
     [SerializeField] private int init_vitality = 500, max_vitality = 1000;
     [SerializeField] private int init_vitality_increase = 50, gap_time = 4;
-
+    [SerializeField] private TextMeshProUGUI _mesh;
     private int vitality;
     private int vitality_increase;
 
     private void Awake()
     {
         int a = -1;
-        print(a + 10);
         EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
+    }
+
+    private void Update()
+    {
+        _mesh.text = vitality_increase.ToString() + "% / min";
     }
 
     private void Start()
