@@ -6,7 +6,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 {
     [SerializeField] private Camera BuilderCamera;
     [SerializeField] private GameObject vitalityBar, Mushroom, miniMap, snail, VitalityBar, maxBuilding, grass, cave;
-    [SerializeField] private GameObject arrow;
+    [SerializeField] private GameObject arrow, arrow2;
     [SerializeField] private GridManager _gridManager;
 
     [SerializeField]
@@ -138,7 +138,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 firstcall = true;
             }
 
-            if (BuilderCamera.transform.position.x < 15.0f && BuilderCamera.transform.position.y > 17.0f)
+            if (BuilderCamera.transform.position.x < 17.0f && BuilderCamera.transform.position.y > 15.0f)
             {
                 STEP_NUM = 4;
                 firstcall = false;
@@ -297,6 +297,8 @@ public class NewBuilderTutorialController : MonoBehaviour
                 cool4.enabled = false;
                 fog4.SetActive(false);
 
+                arrow2.SetActive(true);
+
                 EventBus.Publish(new StartBuilderTutorialEvent());
 
                 BuilderCamera.transform.position = new Vector3(30.0f, 27.5f, -10.0f);
@@ -326,6 +328,7 @@ public class NewBuilderTutorialController : MonoBehaviour
         {
             if (!firstcall)
             {
+                arrow2.SetActive(false);
                 maxBuilding.SetActive(true);
                 arrow.SetActive(true);
 

@@ -164,6 +164,9 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
                 fog.SetActive(true);
             }
 
+            AudioClip clip = Resources.Load<AudioClip>("Audio/Shovel");
+            AudioSource.PlayClipAtPoint(clip, transform.position);
+
             foreach (Vector2 oldPos in oldPos_list)
                 removeMucus(oldPos);
 
