@@ -57,9 +57,15 @@ public class AutoEnemyControl : MonoBehaviour
         List<Vector3> targetPositionList =
             GetPositionListAround(transform.position - _basecarController.forwardDirection.normalized * 2, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
         int targetPositionListIndex = 0;
-        foreach (GameObject enemy in foundSnails)
+        for (int i = 0; i < foundSnails.Count; i++)
         {
-            if (enemy.IsDestroyed() || enemy.GetComponent<AutoAttack_enemy>().onAssult)
+            GameObject enemy = foundSnails[i];
+            if (enemy.IsDestroyed())
+            {
+                foundSnails.RemoveAt(i);
+                continue;
+            }
+            if (enemy.GetComponent<AutoAttack_enemy>().onAssult)
             {
                 continue;
             }

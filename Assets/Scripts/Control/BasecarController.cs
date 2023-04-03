@@ -155,7 +155,7 @@ public class BasecarController : MonoBehaviour
     {
         if (!is_tutorial_end && other.CompareTag("SnailTutorialEndTrigger"))
         {
-            print("-------------------------------------------");
+            EventBus.Publish(new DisplayHintEvent(1, "End of snail tutorial. Please wait for the other player to finish."));
             EventBus.Publish(new EndSnailTutorialEvent());
             is_tutorial_end = true;
         }
