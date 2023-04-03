@@ -26,6 +26,8 @@ public class BuildingController : MonoBehaviour
 
     public void register_building(Vector2 pos, GameObject building)
     {
+        if (building == mushroom)
+            buildings = new Dictionary<Vector2, GameObject>();
         //print("register");
         if (building != mushroom)
             building_num += 1;

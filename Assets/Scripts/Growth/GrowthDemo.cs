@@ -114,7 +114,7 @@ public class GrowthDemo : MonoBehaviour
         //Position2GroundManager(init_x, init_y).SetGrowthed();
         //Position2GroundManager(init_x, init_y).SetGrowthed();
 
-        while (edge_list.Count < 80)
+        while (true)
         {
             yield return new WaitForSeconds(timeGap / SimulationSpeedControl.GetSimulationSpeed());
             yield return null;
