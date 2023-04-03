@@ -52,6 +52,7 @@ public class AutoEnemyGenerator : MonoBehaviour
             {
                 unitList.RemoveAt(i);
                 onGenerationSnailNUm--;
+                _mesh.text = (maxUnit - onGenerationSnailNUm).ToString();
             }
         }
         
