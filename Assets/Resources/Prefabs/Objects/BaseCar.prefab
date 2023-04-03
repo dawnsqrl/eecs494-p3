@@ -5433,8 +5433,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134423d73171d43c6bd7de912cbf02a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  health: 20
+  maxHealth: 15
+  health: 15
   healthBar: {fileID: 6017083662407680138}
   _spriteRenderer: {fileID: 5260701631150855687}
   hit_cd_time: 0.5
@@ -5619,6 +5619,9 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   forwardDirection: {x: 0, y: 0, z: 0}
   is_tutorial_end: 0
+  is_sprint: 0
+  normalSpeed: 2
+  gridDelta: 0.1
 --- !u!114 &5082076586482587295
 MonoBehaviour:
   m_ObjectHideFlags: 0

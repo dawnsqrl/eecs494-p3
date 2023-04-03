@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Press 1] + 5 mines
+  m_text: '[Press 1] + 3 mines
 
     [Press 2] + sprint distance'
   m_isRightToLeft: 0
