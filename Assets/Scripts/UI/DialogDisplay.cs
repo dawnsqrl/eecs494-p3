@@ -91,7 +91,7 @@ public class DialogDisplay : MonoBehaviour
 
     private void SetContent(DisplayDialogEvent e)
     {
-        rectTransform.sizeDelta = e.size == Vector2.zero ? new Vector2(800, 500) : e.size;
+        rectTransform.sizeDelta = e.size == Vector2.zero ? new Vector2(1050, 500) : e.size;
         dialogTitle.SetTitle(e.title);
         dialogContent.SetContent(e.content);
         dialogButtonContainer.SetButton(e.buttons);

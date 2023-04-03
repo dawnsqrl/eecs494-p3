@@ -1111,7 +1111,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>Soldier Factory</b> (1x spawn)\nCost: 20% vitality\n\u20137.5% vitality
+  m_text: "<b>Soldier Factory</b> (2x spawn)\nCost: 20% vitality\n\u20137.5% vitality
     / minute"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
@@ -1219,7 +1219,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 560, y: 180}
+  m_SizeDelta: {x: 580, y: 180}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &7956853499673401119
 CanvasRenderer:
@@ -1312,7 +1312,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 420, y: 180}
+  m_SizeDelta: {x: 470, y: 180}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &240270082299482648
 CanvasRenderer:
@@ -1657,9 +1657,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<b>Defense Unit</b>
-
-    Cost: 30% vitality'
+  m_text: "<b>Defense Unit</b>\nCost: 30% vitality\n\u201315% vitality / minute"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
   m_sharedMaterial: {fileID: 4119859082983581503, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
@@ -1945,7 +1943,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 350, y: 135}
+  m_SizeDelta: {x: 420, y: 180}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &2776650259073429503
 CanvasRenderer:
@@ -2227,7 +2225,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>Growth Source</b>\nCost: 40% vitality\n\u201315% vitality / minute"
+  m_text: "<b>Growth Source</b>\nCost: 40% vitality\n\u201322.5% vitality / minute"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
   m_sharedMaterial: {fileID: 4119859082983581503, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
