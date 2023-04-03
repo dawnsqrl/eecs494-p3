@@ -10,10 +10,10 @@ public class MineBehavior : MonoBehaviour
     Animator animator;
     bool explode_lock = false;
 
-    private void Awake()
-    {
-        transform.GetChild(0).gameObject.SetActive(false);
-    }
+    //private void Awake()
+    //{
+    //    transform.GetChild(0).gameObject.SetActive(false);
+    //}
     private void Start()
     {
         animator = GetComponent<Animator>();
