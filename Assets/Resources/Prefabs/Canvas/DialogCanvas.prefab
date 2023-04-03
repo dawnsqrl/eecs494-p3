@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonHeight: 80
   buttonWidth: 200
-  buttonSpacing: 40
+  buttonSpacing: 20
 --- !u!1 &7357948789244360942
 GameObject:
   m_ObjectHideFlags: 0

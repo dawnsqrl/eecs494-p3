@@ -22,6 +22,8 @@ public class GameProgressControl : MonoBehaviour
         EventBus.Subscribe<ModifyPauseEvent>(e => isGamePaused = e.status);
         EventBus.Subscribe<GameStartEvent>(_ => isGameStarted = true);
         EventBus.Subscribe<GameEndEvent>(_OnGameEnd);
+        mouseGameImage = Resources.Load<Sprite>("Sprites/Background/MouseGame");
+        keyboardGameImage = Resources.Load<Sprite>("Sprites/Background/KeyboardGame");
     }
 
     private void _OnGameEnd(GameEndEvent e)

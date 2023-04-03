@@ -1069,6 +1069,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 972103698, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437496189, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 1745094843415997264, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
       propertyPath: m_Name
       value: SnailTutorial
@@ -1124,6 +1132,14 @@ PrefabInstance:
     - target: {fileID: 1745094844158489027, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232443856329153359, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249860629877718802, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5068767805453330851, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
       propertyPath: m_RootOrder
@@ -2891,10 +2907,6 @@ PrefabInstance:
     - target: {fileID: 8600309828609052623, guid: ecd1d59253eb69645bb104b13d22c944, type: 3}
       propertyPath: m_Name
       value: FadeManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8600309828609052623, guid: ecd1d59253eb69645bb104b13d22c944, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecd1d59253eb69645bb104b13d22c944, type: 3}
