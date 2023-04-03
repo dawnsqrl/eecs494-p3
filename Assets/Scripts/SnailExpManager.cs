@@ -46,6 +46,8 @@ public class SnailExpManager : MonoBehaviour
         currentExp += exp;
         if (currentExp >= nextLevelExp)
         {
+            AudioClip clip = Resources.Load<AudioClip>("Audio/SnailLevelUp");
+            AudioSource.PlayClipAtPoint(clip, transform.position);
             pendingLevelUps++;
             currentExp = 0;
         }

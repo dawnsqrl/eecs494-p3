@@ -22,7 +22,7 @@ public class BasecarController : MonoBehaviour
     public bool is_tutorial_end;
     public bool is_sprint;
 
-    public float normalSpeed = 2;
+    public float normalSpeed = 1.5f;
     private float fastSpeed = 5;
     
     private bool lastMovementAxis;

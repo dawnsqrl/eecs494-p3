@@ -9,7 +9,9 @@ public class NewBuilderTutorialController : MonoBehaviour
     [SerializeField] private GameObject arrow;
     [SerializeField] private GridManager _gridManager;
 
-    [SerializeField] private GameObject building1, fog1, building2, fog2, building3, fog3, building4, fog4, building0, fog0;
+    [SerializeField]
+    private GameObject building1, fog1, building2, fog2, building3, fog3, building4, fog4, building0, fog0;
+
     [SerializeField] private SpellCooldown cool1, cool2, cool3, cool4, cool0;
 
     bool finishGrowth = false;
@@ -61,23 +63,24 @@ public class NewBuilderTutorialController : MonoBehaviour
             {
                 EventBus.Publish(new CloseZoomEvent());
                 STEP_NUM = 1;
-            }   
+            }
         }
 
         if (STEP_NUM == 1)
-        {      
-            if(!firstcall)
+        {
+            if (!firstcall)
             {
                 EventBus.Publish(new UpdateHintEvent(0,
-                "You find the snail.[Lclick]"));
+                    "You find the snail.[Lclick]"));
                 firstcall = true;
             }
+
             if (clicked)
             {
                 clicked = false;
                 STEP_NUM = 2;
                 firstcall = false;
-            }  
+            }
         }
 
         if (STEP_NUM == 2)
@@ -85,16 +88,17 @@ public class NewBuilderTutorialController : MonoBehaviour
             if (!firstcall)
             {
                 EventBus.Publish(new UpdateHintEvent(0,
-                "Mushrooms have periodically expanding mycelium.\nSnail movement leaves mucus.[Lclick]"));
+                    "Mushrooms have periodically expanding mycelium.\nSnail movement leaves mucus.[Lclick]"));
                 firstcall = true;
             }
+
             for (int i = 23; i < 27; i++)
-                for (int j = 14; j < 17; j++)
-                    Position2GroundManager(i, j).SetGrowthed();
+            for (int j = 14; j < 17; j++)
+                Position2GroundManager(i, j).SetGrowthed();
 
             for (int i = 27; i < 29; i++)
-                for (int j = 14; j < 16; j++)
-                    Position2GroundManager(i, j).SetGrowthed();
+            for (int j = 14; j < 16; j++)
+                Position2GroundManager(i, j).SetGrowthed();
 
             Position2GroundManager(28, 14).SetGrowthed();
             Position2GroundManager(28, 15).SetGrowthed();
@@ -129,8 +133,8 @@ public class NewBuilderTutorialController : MonoBehaviour
             if (!firstcall)
             {
                 EventBus.Publish(new UpdateHintEvent(0,
-                "You can click on the mini-map or move the mouse to the edge of the screen to move the view. " +
-                "Try to find the snail!"));
+                    "You can move the mouse to the edge of the screen to move the view. " +
+                    "Try to find the snail!"));
                 firstcall = true;
             }
 
@@ -150,7 +154,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             {
                 StartCoroutine(vitality_change());
                 EventBus.Publish(new UpdateHintEvent(0,
-                "At the top of the screen is the vitality bar. Vitality controls how fast you can expand and construct.[Lclick]"));
+                    "At the top of the screen is the vitality bar. Vitality controls how fast you can expand and construct.[Lclick]"));
                 firstcall = true;
                 lockClick = false;
             }
@@ -180,7 +184,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
                 BuilderCamera.transform.position = new Vector3(10.0f, 27.5f, -10.0f);
                 EventBus.Publish(new UpdateHintEvent(0,
-                "Drag and Drop buildings on your mycelium.\nHover your mouse over the building icon for more information."));
+                    "Drag and Drop buildings on your mycelium.\nHover your mouse over the building icon for more information."));
                 firstcall = true;
                 Position2GroundManager(5, 31).SetGrowthed();
                 Position2GroundManager(5, 30).SetGrowthed();
@@ -205,7 +209,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             }
 
 
-                EventBus.Publish(new CloseDragEvent());
+            EventBus.Publish(new CloseDragEvent());
             EventBus.Publish(new StartBuilderTutorialEvent());
             if (buildingCount == 3)
             {
@@ -221,9 +225,9 @@ public class NewBuilderTutorialController : MonoBehaviour
             if (!firstcall)
             {
                 EventBus.Publish(new UpdateHintEvent(0,
-                "[LDrag] to select mushroom citizens. [RClick] lead them to a point.\nGuide your citizens to attack the Snail!"));
+                    "[LDrag] to select mushroom citizens. [RClick] lead them to a point.\nGuide your citizens to attack the Snail!"));
                 firstcall = true;
-                Instantiate(Resources.Load<GameObject>("Prefabs/BuilderTutorial/TCitizen"), new Vector3(10.0f ,28.0f),
+                Instantiate(Resources.Load<GameObject>("Prefabs/BuilderTutorial/TCitizen"), new Vector3(10.0f, 28.0f),
                     Quaternion.identity);
                 Instantiate(Resources.Load<GameObject>("Prefabs/BuilderTutorial/TCitizen"), new Vector3(11.0f, 28.0f),
                     Quaternion.identity);
@@ -253,7 +257,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 EventBus.Publish(new StartBuilderTutorialEvent());
 
                 EventBus.Publish(new UpdateHintEvent(0,
-                "Unlike the previous buildings, the Spread Building is the source of new mycelium, so it should be placed outside the mycelium. Drag and drop a new mycelium source."));
+                    "Unlike the previous buildings, the Spread Building is the source of new mycelium, so it should be placed outside the mycelium. Drag and drop a new mycelium source."));
                 firstcall = true;
             }
 
@@ -267,12 +271,11 @@ public class NewBuilderTutorialController : MonoBehaviour
 
         if (STEP_NUM == 8)
         {
-            
             EventBus.Publish(new StartBuilderTutorialEvent());
             if (!firstcall)
             {
                 EventBus.Publish(new UpdateHintEvent(0,
-                "The new source of mycelium will gradually grow up."));
+                    "The new source of mycelium will gradually grow up."));
                 firstcall = true;
                 StartCoroutine(waitForGrowth());
             }
@@ -286,7 +289,7 @@ public class NewBuilderTutorialController : MonoBehaviour
         }
 
         if (STEP_NUM == 9)
-        { 
+        {
             if (!firstcall)
             {
                 building4.SetActive(true);
@@ -299,7 +302,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 BuilderCamera.transform.position = new Vector3(30.0f, 27.5f, -10.0f);
 
                 EventBus.Publish(new UpdateHintEvent(0,
-                "As the mucus approaches your mycelium, you can spend vitality to decay the mucus. Try to decay the mucus on the scrren."));
+                    "As the mucus approaches your mycelium, you can spend vitality to decay the mucus. Try to decay the mucus on the scrren."));
                 firstcall = true;
 
                 Position2GroundManager(30, 27).SetMucus();
@@ -310,13 +313,13 @@ public class NewBuilderTutorialController : MonoBehaviour
             }
 
             if (!(Position2GroundManager(30, 27).CheckMucused() && Position2GroundManager(30, 26).CheckMucused()
-                && Position2GroundManager(31, 27).CheckMucused() && Position2GroundManager(31, 26).CheckMucused()))
+                                                                && Position2GroundManager(31, 27).CheckMucused() &&
+                                                                Position2GroundManager(31, 26).CheckMucused()))
             {
                 clicked = false;
                 STEP_NUM = 10;
                 firstcall = false;
             }
-                
         }
 
         if (STEP_NUM == 10)
@@ -341,7 +344,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
                 EventBus.Publish(new StartBuilderTutorialEvent());
                 EventBus.Publish(new UpdateHintEvent(0,
-                "Note that you have a max number of building. And you can increase the limit by building Spread Building.[Lclick]"));
+                    "Note that you have a max number of building. And you can increase the limit by building Spread Building.[Lclick]"));
                 firstcall = true;
             }
 
@@ -365,7 +368,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
                 EventBus.Publish(new StartBuilderTutorialEvent());
                 EventBus.Publish(new UpdateHintEvent(0,
-                "Please note that the Snail may hide in the grass, while small snails will come out of the cave to follow the big snail.[Lclick]"));
+                    "Please note that the Snail may hide in the grass, while small snails will come out of the cave to follow the big snail.[Lclick]"));
                 firstcall = true;
             }
 
@@ -383,9 +386,10 @@ public class NewBuilderTutorialController : MonoBehaviour
             {
                 EventBus.Publish(new StartBuilderTutorialEvent());
                 EventBus.Publish(new UpdateHintEvent(0,
-                "You completed the tutorial! Please wait for the snail to complete."));
+                    "You completed the tutorial! Please wait for the snail to complete."));
                 firstcall = true;
             }
+
             EventBus.Publish(new EndBuilderTutorialEvent());
         }
 

@@ -65,7 +65,7 @@ public class HitHealth : MonoBehaviour
         if (health > 0)
         {
             canGetHit = false;
-            StartCoroutine(HitEffect());
+            StartCoroutine(HitEffect(1));
         }
         if (health == 0)
         {
@@ -172,7 +172,7 @@ public class HitHealth : MonoBehaviour
     //     }
     // }
 
-    public void GetDamage() {
+    public void GetDamage(int damage) {
         // if (health > 0)
         // {
         //     canGetHit = false;
@@ -194,7 +194,7 @@ public class HitHealth : MonoBehaviour
         if (health > 0)
         {
             canGetHit = false;
-            StartCoroutine(HitEffect());
+            StartCoroutine(HitEffect(damage));
         }
         if (health == 0)
         {
@@ -232,12 +232,12 @@ public class HitHealth : MonoBehaviour
         }
 
     }
-    private IEnumerator HitEffect()
+    private IEnumerator HitEffect(int damage)
     {
         if (!hitlock) {
             hitlock = true;
             _spriteRenderer.color = new Color32(0xFF, 0x00, 0x00, 0xFF);
-            health -= 1;
+            health -= damage;
             healthBar.size =
                 new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
             // if (gameObject.CompareTag("BaseCar"))
