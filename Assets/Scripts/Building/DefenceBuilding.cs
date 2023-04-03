@@ -30,6 +30,7 @@ public class DefenceBuilding : MonoBehaviour
     {
         vitality = GameObject.Find("VitalityController").GetComponent<VitalityController>();
         vitality.decreaseVitality(300);
+        vitality.decreaseVitalityGrowth(10);
         BaseCar = GameObject.Find("BaseCar");
     }
 
@@ -59,7 +60,7 @@ public class DefenceBuilding : MonoBehaviour
     IEnumerator BombAnimate(Vector3 bomb_pos)
     {
         ready = false;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.75f);
         for (int i = 0; i < AutoEnemyControl.foundSnails.Count; i++)
         {
             BombHit(AutoEnemyControl.foundSnails[i]);
@@ -73,7 +74,7 @@ public class DefenceBuilding : MonoBehaviour
         GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), bomb_pos, Quaternion.identity);
         yield return new WaitForSeconds(0.75f);
         Destroy(bomb);
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
         ready = true;
     }
 
