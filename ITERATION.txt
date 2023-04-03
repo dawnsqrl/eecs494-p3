@@ -1,8 +1,12 @@
-[Devlog] An Introductory Review of BIOLOGY 452
+Devlog 0 – An Introductory Review of BIOLOGY 452
 
-(Full title) BIOLOGY 452: Field Ecology of Snail-Fungus Interaction
+[b]BIOLOGY 452: Field Ecology of Snail-Fungus Interaction[/b]
+
+[img width=512]https://dawnsqrl.github.io/2cb416c75d1f9d14/assets/bio452-logo.png[/img]
 
 This is not actually a homework report (or is it), but a (local) two-player asymmetric RTS game where you play as Mushroom and Snail that want to consume each other. You are being observed by students from the aforementioned course who are interested in the special abilities that the two species have.
+
+[img width=512]https://dawnsqrl.github.io/2cb416c75d1f9d14/assets/bio452-screenshot.png[/img]
 
 The game is in its 4th week of development by a team of 4. In the past week we focused on gameplay balancing and UI improvements.
 [1] Snail can now randomly find little snails around the map that will follow and fight for it. This is the way for Snail to gradually build up an offensive force against Mushroom.
@@ -13,4 +17,4 @@ The game is in its 4th week of development by a team of 4. In the past week we f
 
 In future iterations, balancing adjustments will remain the top priority of our development. As we get closer to finishing all planned new features, we will turn to finalizing the appearance of in-game UI elements.
 
-Builds available for Windows and Mac. The game supports one or two monitors, but playing in dual-display yields the best experience.
+Builds available for Windows ([url=https://github.com/dawnsqrl/2cb416c75d1f9d14/releases/download/v0-alpha/WindowsBuild.zip]https://github.com/dawnsqrl/2cb416c75d1f9d14/releases/download/v0-alpha/WindowsBuild.zip[/url]) and Mac ([url=https://github.com/dawnsqrl/2cb416c75d1f9d14/releases/download/v0-alpha/MacBuild.zip]https://github.com/dawnsqrl/2cb416c75d1f9d14/releases/download/v0-alpha/MacBuild.zip[/url]). The game supports one or two monitors, but playing in dual-display yields the best experience.
