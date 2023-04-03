@@ -12,7 +12,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private GameObject RTScontroller, SelectedArea, fog;
     [SerializeField] private GridManager gridManager;
     [SerializeField] private BuilderGridManager TgridManager;
-    [SerializeField] private ViewDragging vd;
+    private ViewDragging vd;
     private int defenceRange = 3;
 
     private Transform parentAfterDrag;
@@ -49,6 +49,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     private void Start()
     {
+        vd = Camera.main.gameObject.GetComponent<ViewDragging>();
         // buildingTexture.Reinitialize(100, 100);
         EventBus.Publish(new UpdateCursorEvent(null));
         // temp_building = Instantiate(gameMapPrefab, new Vector3(100.0f, 100.0f, -2.0f), Quaternion.identity);

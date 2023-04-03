@@ -14,7 +14,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     //[SerializeField] private BuilderGridManager TgridManager;
     //[SerializeField] private bool isGrowthSource;
-    [SerializeField] private ViewDragging vd;
+    private ViewDragging vd;
 
     private Transform parentAfterDrag;
     private GameObject buildingController;
@@ -46,6 +46,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     private void Start()
     {
+        vd = Camera.main.gameObject.GetComponent<ViewDragging>();
         // buildingTexture.Reinitialize(100, 100);
         EventBus.Publish(new UpdateCursorEvent(null));
         // temp_building = Instantiate(gameMapPrefab, new Vector3(100.0f, 100.0f, -2.0f), Quaternion.identity);

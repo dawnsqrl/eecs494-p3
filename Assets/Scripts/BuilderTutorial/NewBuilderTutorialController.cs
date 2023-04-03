@@ -143,6 +143,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
         if (STEP_NUM == 4)
         {
+            miniMap.SetActive(false);
             VitalityBar.SetActive(true);
             if (!firstcall)
             {
@@ -163,8 +164,6 @@ public class NewBuilderTutorialController : MonoBehaviour
 
         if (STEP_NUM == 5)
         {
-            
-
             EventBus.Publish(new StartBuilderTutorialEvent());
             if (!firstcall)
             {
@@ -330,7 +329,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 fog3.SetActive(true);
                 fog4.SetActive(true);
 
-                miniMap.SetActive(true);
+                //miniMap.SetActive(true);
 
                 EventBus.Publish(new StartBuilderTutorialEvent());
                 EventBus.Publish(new UpdateHintEvent(0,
