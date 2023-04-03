@@ -68,8 +68,8 @@ public class SoliderBuilding : MonoBehaviour
         float new_res1, new_res2;
         while (true)
         {
-            new_res1 = Random.Range(0.6f, 2.0f);
-            if (new_res1 != last_res)
+            new_res1 = Random.Range(-2.0f, 2.0f);
+            if (new_res1 != last_res && (new_res1 >= 0.6f || new_res1 <= -0.6f))
             {
                 last_res = new_res1;
                 break;
@@ -78,8 +78,8 @@ public class SoliderBuilding : MonoBehaviour
 
         while (true)
         {
-            new_res2 = Random.Range(0.6f, 2.0f);
-            if (new_res2 != last_res)
+            new_res2 = Random.Range(-2.0f, 2.0f);
+            if (new_res2 != last_res && (new_res2 >= 0.6f || new_res2 <= -0.6f))
             {
                 last_res = new_res2;
                 break;

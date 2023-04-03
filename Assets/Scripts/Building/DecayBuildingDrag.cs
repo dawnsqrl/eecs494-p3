@@ -12,7 +12,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
     [SerializeField] private GameObject RTScontroller, SelectedArea, fog;
     [SerializeField] private GridManager gridManager;
     //[SerializeField] private BuilderGridManager TgridManager;
-    [SerializeField] private ViewDragging vd;
+    private ViewDragging vd;
     //private int defenceRange = 3;
 
     private Transform parentAfterDrag;
@@ -38,6 +38,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private void Start()
     {
+        vd = Camera.main.gameObject.GetComponent<ViewDragging>();
         // buildingTexture.Reinitialize(100, 100);
         EventBus.Publish(new UpdateCursorEvent(null));
         // temp_building = Instantiate(gameMapPrefab, new Vector3(100.0f, 100.0f, -2.0f), Quaternion.identity);
@@ -49,7 +50,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
         RTScontroller.SetActive(false);
         SelectedArea.SetActive(false);
         parentAfterDrag = transform.parent;
-        EventBus.Publish(new UpdateCursorEvent(buildingTexture, 128, 0.8f));
+        EventBus.Publish(new UpdateCursorEvent(buildingTexture, 420, 0.8f));
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
     }
@@ -77,7 +78,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
         //     // temp_building.transform.localScale = new Vector2(0.3f, 0.3f);
         //     // temp_building.transform.position = new Vector3(Worldpos.x, Worldpos.y, -2.0f);
-        Vector2 pos1 = new Vector2(Mathf.FloorToInt(Worldpos.x - (decayRange / 2 - 0.5f) ), Mathf.CeilToInt(Worldpos.y + (decayRange / 2 - 0.5f) ));
+        Vector2 pos1 = new Vector2(Mathf.FloorToInt(Worldpos.x - (decayRange / 2 - 0.5f) + 0.5f ), Mathf.CeilToInt(Worldpos.y + (decayRange / 2 - 0.5f) - 0.5f ));
         if (pos1 is { x: >= 0 and < 50, y: >= 0 and < 50 })
             pos_list.Add(pos1);
         for (int i = 0; i < decayRange; i++)
