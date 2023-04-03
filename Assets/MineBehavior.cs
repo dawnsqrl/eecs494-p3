@@ -5,7 +5,7 @@ using UnityEngine;
 public class MineBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
-    float damage_radius = 5.0f;
+    float damage_radius = 3.0f;
     int damage = 3;
     Animator animator;
     bool explode_lock = false;
@@ -33,7 +33,7 @@ public class MineBehavior : MonoBehaviour
     }
 
     IEnumerator DestoryAll(GameObject gameObject) {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         foreach (var citizen in CitizenControl.citizenList)
         {
             Debug.Log(citizen.name);
@@ -41,11 +41,11 @@ public class MineBehavior : MonoBehaviour
             {
                 if (Vector3.Distance(citizen.transform.position, transform.position) < damage_radius)
                 {
-                    citizen.GetComponentInChildren<HitHealth>().ReduceHealth(damage);
+                    citizen.GetComponentInChildren<HitHealth>().GetDamage(damage);
                 }
             }
         }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         Destroy(gameObject);
     }
    
