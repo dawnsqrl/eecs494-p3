@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class BuildingController : MonoBehaviour
 {
+    public GameObject mushroom;
     private Dictionary<Vector2, GameObject> buildings;
     public int max_building_num;
     public int building_num;
@@ -25,7 +26,8 @@ public class BuildingController : MonoBehaviour
 
     public void register_building(Vector2 pos, GameObject building)
     {
-        if (building != GameObject.Find("Mushroom"))
+        //print("register");
+        if (building != mushroom)
             building_num += 1;
         buildings.Add(pos, building);
         buildings.Add(new Vector2(pos.x + 1, pos.y), building);

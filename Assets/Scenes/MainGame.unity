@@ -3071,6 +3071,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1010284209 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8292571836482282040, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
+  m_PrefabInstance: {fileID: 1573559149}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1045490681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3145,6 +3150,10 @@ PrefabInstance:
       value: GrowthDemoController
       objectReference: {fileID: 0}
     - target: {fileID: 9015777209491499946, guid: c4a91e7fd58bb4104b9fc0feb3d137e7, type: 3}
+      propertyPath: mushuroom
+      value: 
+      objectReference: {fileID: 1010284209}
+    - target: {fileID: 9015777209491499946, guid: c4a91e7fd58bb4104b9fc0feb3d137e7, type: 3}
       propertyPath: _gridManager
       value: 
       objectReference: {fileID: 1755112723}
@@ -3152,6 +3161,10 @@ PrefabInstance:
       propertyPath: grassManager
       value: 
       objectReference: {fileID: 775949534}
+    - target: {fileID: 9015777209491499946, guid: c4a91e7fd58bb4104b9fc0feb3d137e7, type: 3}
+      propertyPath: buildingController
+      value: 
+      objectReference: {fileID: 1589502761}
     - target: {fileID: 9015777209491499947, guid: c4a91e7fd58bb4104b9fc0feb3d137e7, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -5077,6 +5090,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8304448893459253563, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
   m_PrefabInstance: {fileID: 8304448894578436627}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1589502761 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1589502764, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+  m_PrefabInstance: {fileID: 8304448894578436627}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424501791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1769e9a280949409eed812858b804d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1590378054
 GameObject:
   m_ObjectHideFlags: 0
@@ -7712,6 +7736,10 @@ PrefabInstance:
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
+    - target: {fileID: 1589502764, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: mushroom
+      value: 
+      objectReference: {fileID: 1010284209}
     - target: {fileID: 1420149010509160373, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: vd
       value: 

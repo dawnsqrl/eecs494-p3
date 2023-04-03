@@ -27,7 +27,8 @@ public class GrowthDemo : MonoBehaviour
 
     private int init_x, init_y;
     private int vitality;
-    private GameObject buildingController;
+    [SerializeField] private BuildingController buildingController;
+    [SerializeField] private GameObject mushuroom;
 
     public Vector2 getInitPos()
     {
@@ -59,9 +60,8 @@ public class GrowthDemo : MonoBehaviour
         init_x = (int)GameObject.Find("Mushroom").transform.position.x;
         init_y = (int)GameObject.Find("Mushroom").transform.position.y + 1;
 
-        buildingController = GameObject.Find("BuildingCanvas");
-        buildingController.GetComponent<BuildingController>()
-            .register_building(new Vector2(init_x, init_y), GameObject.Find("Mushroom"));
+        //buildingController = GameObject.Find("Canvas").transform.Find("BuildingCanvas").gameObject;
+        buildingController.register_building(new Vector2(init_x, init_y), mushuroom);
         //print(init_x);
         //print(init_y);
         StartCoroutine(AutoGrowth(timeGap));
