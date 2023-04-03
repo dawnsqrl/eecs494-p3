@@ -42,4 +42,9 @@ public class ButtonAction : MonoBehaviour
         );
         EventBus.Publish(new TransitSceneEvent());
     }
+
+    public void OnClickQuit()
+    {
+        Application.Quit();
+    }
 }
