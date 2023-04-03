@@ -7,14 +7,8 @@
 [3] Bacteria sprite
 	https://pngtree.com/freepng/blue-cartoon-bacterial-cell_4733697.html.
 
-[4] Mushroom sprite
-	https://pngtree.com/freepng/watercolor-fairy-tale-mushroom-house_6517760.html.
-
-[5] Mushroom sprite
-	https://pngtree.com/freepng/mushroom-house-in-fairy-tales_8363491.html.
-
-[6] Grass patch interaction sound effect
+[4] Grass patch interaction sound effect
 	https://elements.envato.com/tall-grass-hit-slow-moving-UZQHE4P.
 
-[7] Spring Snowstorm
+[5] Spring Snowstorm
 	Font by Misti Hammers, https://mistifonts.com/spring-snowstorm/.

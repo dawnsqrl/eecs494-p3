@@ -21,8 +21,8 @@ public class VitalityTextControl : MonoBehaviour
     {
         yield return null;
         number.text = Mathf.FloorToInt((float)e.vitality / 10).ToString() + "<size=-16>%";
-        number.fontSize = 80;
+        number.fontSize = 90;
         yield return new WaitForSeconds(0.3f);
-        number.fontSize = 60;
+        number.fontSize = 80;
     }
 }
