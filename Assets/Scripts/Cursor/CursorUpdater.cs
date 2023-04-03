@@ -16,7 +16,7 @@ public class CursorUpdater : MonoBehaviour
         EventBus.Subscribe<UpdateCursorEvent>(_OnUpdateCursor);
         cursor = GetComponent<Image>();
         rectTransform = GetComponent<RectTransform>();
-        defaultCursorSprite = Resources.Load<Sprite>("Sprites/circle-xxl");
+        defaultCursorSprite = Resources.Load<Sprite>("Sprites/Theme/Cursor");
     }
 
     private void Start()
@@ -24,15 +24,14 @@ public class CursorUpdater : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         cursor.sprite = defaultCursorSprite;
-        cursor.color = new Color(1, 1, 1, 0.5f);
-        size = 32;
+        cursor.color = new Color(1, 1, 1, 1);
+        size = 64;
         rectTransform.sizeDelta = new Vector2(1, 1) * size;
     }
 
     private void Update()
     {
-        rectTransform.anchoredPosition = Mouse.current.position.ReadValue()
-                                         + new Vector2(-1, 1) * (size / 2);
+        rectTransform.anchoredPosition = Mouse.current.position.ReadValue();
         if (Keyboard.current.minusKey.wasPressedThisFrame)
         {
             Cursor.lockState = CursorLockMode.None;

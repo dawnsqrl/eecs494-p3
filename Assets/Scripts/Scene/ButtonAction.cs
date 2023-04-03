@@ -6,8 +6,6 @@ public class ButtonAction : MonoBehaviour
     private Sprite mouseGameImage;
     private Sprite keyboardTransitionImage;
     private Sprite keyboardGameImage;
-    private float transitionDuration = 1;
-    private float holdDuration = 0;
 
     private void Awake()
     {
@@ -27,8 +25,7 @@ public class ButtonAction : MonoBehaviour
         else
         {
             SceneState.SetTransition(
-                transitionDuration, holdDuration, "MainGame",
-                mouseGameImage, keyboardGameImage
+                1, 0, "MainGame", mouseGameImage, keyboardGameImage
             );
             EventBus.Publish(new TransitSceneEvent());
         }
@@ -37,8 +34,7 @@ public class ButtonAction : MonoBehaviour
     public void OnClickTutorial()
     {
         SceneState.SetTransition(
-            transitionDuration, holdDuration, "MainGetReady",
-            mouseTransitionImage, keyboardTransitionImage
+            1, 0, "MainGetReady", mouseTransitionImage, keyboardTransitionImage
         );
         EventBus.Publish(new TransitSceneEvent());
     }

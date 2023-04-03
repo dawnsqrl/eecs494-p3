@@ -143,9 +143,9 @@ public class DisplayHintEvent
 {
     public readonly int index;
     public readonly string text;
-    public readonly float height; // one line = 100, two lines = 160
+    public readonly float height;
 
-    public DisplayHintEvent(int _index, string _text, float _height = 100)
+    public DisplayHintEvent(int _index, string _text, float _height = 160)
     {
         index = _index;
         text = _text;
@@ -185,7 +185,7 @@ public class UpdateCursorEvent
     public readonly float size;
     public readonly float alpha;
 
-    public UpdateCursorEvent(Sprite _sprite, float _size = 32, float _alpha = 0.5f)
+    public UpdateCursorEvent(Sprite _sprite, float _size = 64, float _alpha = 1)
     {
         sprite = _sprite;
         size = _size;
@@ -243,9 +243,9 @@ public class EndBuilderTutorialEvent
 {
 }
 
-public class EndAllTutorialEvent
-{
-}
+// public class EndAllTutorialEvent
+// {
+// }
 
 public class BuildingEndDragEvent
 {
@@ -277,7 +277,6 @@ public class SnailLevelupOptionEvent_2
 
 public class SnailSprintEvent
 {
-    
 }
 
 

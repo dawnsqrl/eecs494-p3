@@ -42,7 +42,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7777046095864349174}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cebc78c54de4c3f4fb11fe2a7e34beed, type: 3}
   m_Name: 
@@ -59,8 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ebd93ae5bf4fc4ae5cde221618cd12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeDuration: 60
-  timeRemaining: 0
+  timeElapsed: 0
 --- !u!114 &7325258897764028933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,3 +85,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1429a703269438592204de0d71786d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  presetCitizen: []

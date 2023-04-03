@@ -2,13 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class TutorialEndSequence : MonoBehaviour
 {
-    [SerializeField] private GameObject builderTutorialArea;
-    [SerializeField] private GameObject mainCamera;
-
+    private Sprite mouseGameImage;
+    private Sprite keyboardGameImage;
     private bool hasBuilderTutorialEnded;
     private bool hasSnailTutorialEnded;
     private bool isEndDialogShown;
@@ -17,6 +15,8 @@ public class TutorialEndSequence : MonoBehaviour
     {
         EventBus.Subscribe<EndBuilderTutorialEvent>(_ => hasBuilderTutorialEnded = true);
         EventBus.Subscribe<EndSnailTutorialEvent>(_ => hasSnailTutorialEnded = true);
+        mouseGameImage = Resources.Load<Sprite>("Sprites/Background/MouseGame");
+        keyboardGameImage = Resources.Load<Sprite>("Sprites/Background/KeyboardGame");
     }
 
     private void Start()
@@ -31,27 +31,35 @@ public class TutorialEndSequence : MonoBehaviour
         if (!isEndDialogShown && hasBuilderTutorialEnded && hasSnailTutorialEnded)
         {
             isEndDialogShown = true;
-            EventBus.Publish(new EndAllTutorialEvent());
+            // EventBus.Publish(new EndAllTutorialEvent());
+            EventBus.Publish(new DismissHintEvent(0));
+            EventBus.Publish(new DismissHintEvent(1));
             EventBus.Publish(new DisplayDialogEvent(
                 "Tutorial completed!", "Make your choice.",
                 new Dictionary<string, Tuple<UnityAction, bool>>()
                 {
                     {
                         "Return", new Tuple<UnityAction, bool>(
-                            () => SceneManager.LoadScene(SceneManager.GetActiveScene().name), true
+                            () =>
+                            {
+                                SceneState.SetTransition(
+                                    1, 2, "MainMenu", mouseGameImage, keyboardGameImage
+                                );
+                                EventBus.Publish(new TransitSceneEvent());
+                            }, true
+                        )
+                    },
+                    {
+                        "Start", new Tuple<UnityAction, bool>(
+                            () =>
+                            {
+                                SceneState.SetTransition(
+                                    1, 0, "MainGame", mouseGameImage, keyboardGameImage
+                                );
+                                EventBus.Publish(new TransitSceneEvent());
+                            }, true
                         )
                     }
-                    // {
-                    //     "Start", new Tuple<UnityAction, bool>(
-                    //         () =>
-                    //         {
-                    //             EventBus.Publish(new DismissHintEvent()); // TODO
-                    //             EventBus.Publish(new GameStartEvent());
-                    //             builderTutorialArea.SetActive(false);
-                    //             mainCamera.transform.position = new Vector3(7.8f, 8.8f, -10);
-                    //         }, true
-                    //     )
-                    // }
                 }
             ));
         }
