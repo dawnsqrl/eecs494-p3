@@ -145,7 +145,7 @@ public class DisplayHintEvent
     public readonly string text;
     public readonly float height;
 
-    public DisplayHintEvent(int _index, string _text, float _height = 180)
+    public DisplayHintEvent(int _index, string _text, float _height = 160)
     {
         index = _index;
         text = _text;
