@@ -61,7 +61,7 @@ public class GrowthDemo : MonoBehaviour
         init_y = (int)GameObject.Find("Mushroom").transform.position.y + 1;
 
         //buildingController = GameObject.Find("Canvas").transform.Find("BuildingCanvas").gameObject;
-        buildingController.register_building(new Vector2(init_x, init_y), mushuroom);
+        //buildingController.register_building(new Vector2(init_x, init_y), mushuroom);
         //print(init_x);
         //print(init_y);
         StartCoroutine(AutoGrowth(timeGap));
@@ -97,6 +97,7 @@ public class GrowthDemo : MonoBehaviour
 
     IEnumerator AutoGrowth(int timeGap)
     {
+        
         yield return new WaitForSeconds(3.0f);
         int base_rate = 16 * growth_speed;
         //float new_avg_dis = 0.0f;
@@ -113,6 +114,8 @@ public class GrowthDemo : MonoBehaviour
         Position2GroundManager(init_x, init_y - 1).SetGrowthed();
         //Position2GroundManager(init_x, init_y).SetGrowthed();
         //Position2GroundManager(init_x, init_y).SetGrowthed();
+
+        buildingController.register_building(new Vector2(init_x, init_y), mushuroom);
 
         while (true)
         {

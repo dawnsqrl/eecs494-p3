@@ -11,6 +11,8 @@ public class BuildingController : MonoBehaviour
     private Dictionary<Vector2, GameObject> buildings;
     public int max_building_num;
     public int building_num;
+
+    bool first = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +28,18 @@ public class BuildingController : MonoBehaviour
 
     public void register_building(Vector2 pos, GameObject building)
     {
-        if (building == mushroom)
+        if (first)
+        {
             buildings = new Dictionary<Vector2, GameObject>();
+            first = false;
+        }
+            
+        //if (building == mushroom)
+        //    buildings = new Dictionary<Vector2, GameObject>();
         //print("register");
         if (building != mushroom)
             building_num += 1;
+
         buildings.Add(pos, building);
         buildings.Add(new Vector2(pos.x + 1, pos.y), building);
         buildings.Add(new Vector2(pos.x + 1, pos.y - 1), building);
