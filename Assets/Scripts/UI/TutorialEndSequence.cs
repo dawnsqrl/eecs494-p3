@@ -32,8 +32,6 @@ public class TutorialEndSequence : MonoBehaviour
         {
             isEndDialogShown = true;
             // EventBus.Publish(new EndAllTutorialEvent());
-            EventBus.Publish(new DismissHintEvent(0));
-            EventBus.Publish(new DismissHintEvent(1));
             EventBus.Publish(new DisplayDialogEvent(
                 "Tutorial completed!", "Make your choice.",
                 new Dictionary<string, Tuple<UnityAction, bool>>()
@@ -62,6 +60,8 @@ public class TutorialEndSequence : MonoBehaviour
                     }
                 }
             ));
+            EventBus.Publish(new DismissHintEvent(0));
+            EventBus.Publish(new DismissHintEvent(1));
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -111,6 +112,13 @@ public class StartupSequence : MonoBehaviour
 
     private void Start()
     {
-        EventBus.Publish(startDialog);
+        // EventBus.Publish(startDialog);
+        StartCoroutine(DelayStart());
+    }
+
+    private IEnumerator DelayStart()
+    {
+        yield return new WaitForSeconds(1);
+        EventBus.Publish(new GameStartEvent());
     }
 }

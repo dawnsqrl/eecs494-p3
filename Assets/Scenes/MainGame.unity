@@ -7301,6 +7301,10 @@ PrefabInstance:
       propertyPath: builderTutorialArea
       value: 
       objectReference: {fileID: 181441002}
+    - target: {fileID: 2433649482796304012, guid: d12077d511feb294a85695e299bede47, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2433649482796304014, guid: d12077d511feb294a85695e299bede47, type: 3}
       propertyPath: m_Name
       value: StartupSequence
