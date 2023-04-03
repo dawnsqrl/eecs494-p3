@@ -19,6 +19,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private GameObject buildingController;
     //private GrowthDemo growthDemo;
     private bool startTutorial = false;
+    bool isBuilderTutorialActive = false;
 
     Vector2 oldPos1 = Vector2.zero, oldPos2 = Vector2.zero, oldPos3 = Vector2.zero, oldPos4 = Vector2.zero;
 
@@ -27,6 +28,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private void Awake()
     {
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
         pos_list = new List<Vector2>();
         oldPos_list = new List<Vector2>();
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
@@ -190,13 +192,20 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     bool CheckAvai(Vector2 pos)
     {
-        //if (startTutorial)
-        //    return buildingController.GetComponent<BuildingController>().check_avai(pos);
-        print(pos);
-        GrowthDemo gd = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
-        if (gd.Position2Mucused(pos))
-            return true;
-        return false;
+        if (!isBuilderTutorialActive)
+        {
+            GrowthDemo gd = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
+            if (gd.Position2Mucused(pos))
+                return true;
+            return false;
+        }
+        else
+        {
+            NewBuilderTutorialController gd = GameObject.Find("BuilderTutorial").GetComponent<NewBuilderTutorialController>();
+            if (gd.Position2Mucused(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
+                return true;
+            return false;
+        }
     }
 
 

@@ -5,11 +5,14 @@ using UnityEngine.InputSystem;
 public class NewBuilderTutorialController : MonoBehaviour
 {
     [SerializeField] private Camera BuilderCamera;
-    [SerializeField] private GameObject vitalityBar, Mushroom, miniMap, snail, VitalityBar;
+    [SerializeField] private GameObject vitalityBar, Mushroom, miniMap, snail, VitalityBar, maxBuilding, grass, cave;
+    [SerializeField] private GameObject arrow;
     [SerializeField] private GridManager _gridManager;
 
     [SerializeField] private GameObject building1, fog1, building2, fog2, building3, fog3, building4, fog4, building0, fog0;
     [SerializeField] private SpellCooldown cool1, cool2, cool3, cool4, cool0;
+
+    bool finishGrowth = false;
 
     private int STEP_NUM = 0;
     // step 0 -> mushroom and snail 
@@ -256,6 +259,26 @@ public class NewBuilderTutorialController : MonoBehaviour
         }
 
         if (STEP_NUM == 8)
+        {
+            
+            EventBus.Publish(new StartBuilderTutorialEvent());
+            if (!firstcall)
+            {
+                EventBus.Publish(new UpdateHintEvent(0,
+                "The new source of mycelium will gradually grow up."));
+                firstcall = true;
+                StartCoroutine(waitForGrowth());
+            }
+
+            if (finishGrowth)
+            {
+                STEP_NUM = 9;
+                firstcall = false;
+                EventBus.Publish(new StartBuilderTutorialEvent());
+            }
+        }
+
+        if (STEP_NUM == 9)
         { 
             if (!firstcall)
             {
@@ -279,19 +302,23 @@ public class NewBuilderTutorialController : MonoBehaviour
                 Position2GroundManager(32, 26).SetGrowthed();
             }
 
-            if (!(Position2GroundManager(30, 27).CheckMucused() && Position2GroundManager(30, 26).CheckMucused() && Position2GroundManager(31, 27).CheckMucused() && Position2GroundManager(31, 26).CheckMucused())))
+            if (!(Position2GroundManager(30, 27).CheckMucused() && Position2GroundManager(30, 26).CheckMucused()
+                && Position2GroundManager(31, 27).CheckMucused() && Position2GroundManager(31, 26).CheckMucused()))
             {
                 clicked = false;
-                STEP_NUM = 9;
+                STEP_NUM = 10;
                 firstcall = false;
             }
                 
         }
 
-        if (STEP_NUM == 9)
+        if (STEP_NUM == 10)
         {
             if (!firstcall)
             {
+                maxBuilding.SetActive(true);
+                arrow.SetActive(true);
+
                 building0.SetActive(true);
                 building1.SetActive(true);
                 building2.SetActive(true);
@@ -303,18 +330,56 @@ public class NewBuilderTutorialController : MonoBehaviour
                 fog3.SetActive(true);
                 fog4.SetActive(true);
 
+                miniMap.SetActive(true);
+
                 EventBus.Publish(new StartBuilderTutorialEvent());
                 EventBus.Publish(new UpdateHintEvent(0,
-                ""));
+                "Note that you have a max number of building. And you can increase the limit by building Spread Building.[Lclick]"));
                 firstcall = true;
             }
 
-            if ()
+            if (clicked)
             {
                 clicked = false;
-                STEP_NUM = 10;
+                STEP_NUM = 11;
                 firstcall = false;
             }
+        }
+
+        if (STEP_NUM == 11)
+        {
+            if (!firstcall)
+            {
+                maxBuilding.SetActive(true);
+                arrow.SetActive(false);
+
+                grass.SetActive(true);
+                cave.SetActive(true);
+
+                EventBus.Publish(new StartBuilderTutorialEvent());
+                EventBus.Publish(new UpdateHintEvent(0,
+                "Please note that the Snail may hide in the grass, while small snails will come out of the cave to follow the big snail.[Lclick]"));
+                firstcall = true;
+            }
+
+            if (clicked)
+            {
+                clicked = false;
+                STEP_NUM = 12;
+                firstcall = false;
+            }
+        }
+
+        if (STEP_NUM == 12)
+        {
+            if (!firstcall)
+            {
+                EventBus.Publish(new StartBuilderTutorialEvent());
+                EventBus.Publish(new UpdateHintEvent(0,
+                "You completed the tutorial! Please wait for the snail to complete."));
+                firstcall = true;
+            }
+            EventBus.Publish(new EndBuilderTutorialEvent());
         }
 
 
@@ -332,6 +397,12 @@ public class NewBuilderTutorialController : MonoBehaviour
             if (vitality < 1000)
                 EventBus.Publish(new ModifyVitalityEvent(vitality + 50));
         }
+    }
+
+    IEnumerator waitForGrowth()
+    {
+        yield return new WaitForSeconds(6.0f);
+        finishGrowth = true;
     }
 
     public GroundTileManager Position2GroundManager(int x, int y)
@@ -362,5 +433,10 @@ public class NewBuilderTutorialController : MonoBehaviour
     public GameObject Position2Tile(Vector2 vec)
     {
         return _gridManager.GetTileAtPosition(vec);
+    }
+
+    public bool Position2Mucused(Vector2 vec)
+    {
+        return Tile2GroundManager(Position2Tile(vec)).CheckMucused();
     }
 }
