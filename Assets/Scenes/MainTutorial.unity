@@ -1710,6 +1710,7 @@ MonoBehaviour:
   grass: {fileID: 1435297351}
   cave: {fileID: 1365226691}
   arrow: {fileID: 2138707566}
+  arrow2: {fileID: 1700332051}
   _gridManager: {fileID: 1689908120}
   building1: {fileID: 102250920}
   fog1: {fileID: 102250919}
