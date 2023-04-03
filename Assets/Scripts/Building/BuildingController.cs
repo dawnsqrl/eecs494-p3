@@ -54,6 +54,8 @@ public class BuildingController : MonoBehaviour
 
     public void unregister_building(GameObject building)
     {
+        if (building != mushroom)
+            building_num -= 1;
 
         var toRemove = buildings.Where(kvp => kvp.Value == building).ToList();
         foreach (var item in toRemove)

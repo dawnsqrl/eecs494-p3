@@ -60,7 +60,7 @@ public class DefenceBuilding : MonoBehaviour
     IEnumerator BombAnimate(Vector3 bomb_pos)
     {
         ready = false;
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < AutoEnemyControl.foundSnails.Count; i++)
         {
             BombHit(AutoEnemyControl.foundSnails[i]);
