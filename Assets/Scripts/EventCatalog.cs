@@ -188,7 +188,7 @@ public class UpdateCursorEvent
 
     public UpdateCursorEvent(Sprite _sprite, float _size = 64, float _alpha = 1)
     {
-        doAlignCorner = _sprite is null;
+        doAlignCorner = _sprite == null;
         sprite = _sprite;
         size = _size;
         alpha = _alpha;

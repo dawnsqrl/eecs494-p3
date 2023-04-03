@@ -10,6 +10,7 @@ public class CursorUpdater : MonoBehaviour
     private RectTransform rectTransform;
     private Sprite defaultCursorSprite;
     private float size;
+    private bool doAlignCorner;
 
     private void Awake()
     {
@@ -27,11 +28,17 @@ public class CursorUpdater : MonoBehaviour
         cursor.color = new Color(1, 1, 1, 1);
         size = 64;
         rectTransform.sizeDelta = new Vector2(1, 1) * size;
+        doAlignCorner = true;
     }
 
     private void Update()
     {
         rectTransform.anchoredPosition = Mouse.current.position.ReadValue();
+        if (!doAlignCorner)
+        {
+            rectTransform.anchoredPosition += new Vector2(-1, 1) * (size / 2);
+        }
+
         if (Keyboard.current.minusKey.wasPressedThisFrame)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -49,5 +56,6 @@ public class CursorUpdater : MonoBehaviour
         cursor.color = new Color(1, 1, 1, e.alpha);
         size = e.size;
         rectTransform.sizeDelta = new Vector2(1, 1) * size;
+        doAlignCorner = e.doAlignCorner;
     }
 }
