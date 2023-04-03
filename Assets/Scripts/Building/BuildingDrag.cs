@@ -163,6 +163,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 Quaternion.identity);
             if (gameObject.name == "Defence")
             {
+                //new_building.transform.localScale = new Vector2(0.5f, 0.5f);
                 AttackRange.transform.position = new Vector3(100.0f, 100.0f, 0.0f);
                 new_building.GetComponent<DefenceBuilding>()
                     .SetPosition(new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f), defenceRange);
