@@ -26,7 +26,7 @@ public class NewBuilderTutorialController : MonoBehaviour
     bool maxzoom = false, clicked = false, lockClick = false;
     bool firstcall = false, win0 = false;
     private int vitality;
-    int buildingCount = 0;
+    int buildingCount = 0, temp_count = 0;
 
     private void Awake()
     {
@@ -138,6 +138,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             {
                 STEP_NUM = 4;
                 firstcall = false;
+                miniMap.SetActive(false);
             }
         }
 
@@ -197,7 +198,14 @@ public class NewBuilderTutorialController : MonoBehaviour
                 Position2GroundManager(16, 30).SetGrowthed();
             }
 
-            EventBus.Publish(new CloseDragEvent());
+            if (temp_count < 2)
+            {
+                BuilderCamera.transform.position = new Vector3(10.0f, 27.5f, -10.0f);
+                temp_count += 1;
+            }
+
+
+                EventBus.Publish(new CloseDragEvent());
             EventBus.Publish(new StartBuilderTutorialEvent());
             if (buildingCount == 3)
             {
