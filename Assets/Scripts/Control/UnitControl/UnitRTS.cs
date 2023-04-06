@@ -25,6 +25,8 @@ public class UnitRTS : MonoBehaviour
     private bool startMove = false, isBuilderTutorialActive = false;
 
     private float _velocity;
+
+    public int dd = 0;
     // private List<GameObject> clearedFogList;
     // private List<GameObject> prevClearedFogList;
     //private bool startTutorial;
@@ -63,6 +65,10 @@ public class UnitRTS : MonoBehaviour
     
     private void Update()
     {
+        if (dd == 1 && Input.GetKey(KeyCode.Alpha1))
+        {
+            MoveTo(transform.position + new Vector3(-32.0f, 18.0f, 0.0f));
+        }
         if (!startMove || (targetPosition - transform.position).magnitude < 0.3f)
         {
             _rigidbody.velocity = Vector3.zero;

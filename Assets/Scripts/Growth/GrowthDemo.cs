@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class GrowthDemo : MonoBehaviour
 {
@@ -41,6 +43,15 @@ public class GrowthDemo : MonoBehaviour
         EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Position2GroundManager(Mathf.FloorToInt(Worldpos.x), Mathf.CeilToInt(Worldpos.y)).SetGrowthed();
+        }
+    }
+
     private void Start()
     {
         while (true)
@@ -75,6 +86,8 @@ public class GrowthDemo : MonoBehaviour
         edge_list.Add(new Vector2(init_x - 1, init_y));
         edge_list.Add(new Vector2(init_x - 1, init_y - 1));
         edge_list.Add(new Vector2(init_x - 1, init_y - 2));
+
+        
     }
 
     //public void setAim(int x, int y)
@@ -114,6 +127,21 @@ public class GrowthDemo : MonoBehaviour
         Position2GroundManager(init_x, init_y - 1).SetGrowthed();
         //Position2GroundManager(init_x, init_y).SetGrowthed();
         //Position2GroundManager(init_x, init_y).SetGrowthed();
+
+        Position2GroundManager(8 + 18, 4).SetGrowthed();
+        Position2GroundManager(8 + 18, 5).SetGrowthed();
+        Position2GroundManager(9 + 18, 4).SetGrowthed();
+        Position2GroundManager(9 + 18, 5).SetGrowthed();
+
+        Position2GroundManager(16 + 18, 8).SetGrowthed();
+        Position2GroundManager(16 + 18, 9).SetGrowthed();
+        Position2GroundManager(17 + 18, 8).SetGrowthed();
+        Position2GroundManager(17 + 18, 9).SetGrowthed();
+
+        Position2GroundManager(24 + 18, 13).SetGrowthed();
+        Position2GroundManager(24 + 18, 14).SetGrowthed();
+        Position2GroundManager(25 + 18, 13).SetGrowthed();
+        Position2GroundManager(25 + 18, 14).SetGrowthed();
 
         buildingController.register_building(new Vector2(init_x, init_y), mushuroom);
 

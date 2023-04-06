@@ -12,10 +12,10 @@ public class DefenceBuilding : MonoBehaviour
     bool OnDrag = false;
     Vector3 bomb_pos;
 
-    bool ready = true;
+    bool ready = true, ready1 = true, ready2 = true;
 
     int DefenceRange;
-    bool isBuilderTutorialActive = false;
+    bool isBuilderTutorialActive = false, time = false;
 
     private void Awake()
     {
@@ -32,6 +32,7 @@ public class DefenceBuilding : MonoBehaviour
         vitality.decreaseVitality(300);
         vitality.decreaseVitalityGrowth(10);
         BaseCar = GameObject.Find("BaseCar");
+        //StartCoroutine(count_Time());
     }
 
     private void OnDestroy()
@@ -43,23 +44,76 @@ public class DefenceBuilding : MonoBehaviour
 
     private void Update()
     {
+        float x, y;
         Vector2 pos;
         if (!isBuilderTutorialActive)
-           pos = new Vector2(BaseCar.transform.position.x, BaseCar.transform.position.y);
+           pos = new Vector2(transform.position.x, transform.position.y);
         else
             pos = new Vector2(0.0f, 0.0f);
 
         float DefencecRangeFloat = (float)DefenceRange;
-        if (Vector2.Distance(pos, new Vector2(transform.position.x, transform.position.y)) < DefencecRangeFloat && ready)
+        if (ready)
         {
-            bomb_pos = BaseCar.transform.position;
+            while (true)
+            {
+                x = Random.Range(pos.x - DefencecRangeFloat, pos.x + DefencecRangeFloat);
+                y = Random.Range(pos.y - DefencecRangeFloat, pos.y + DefencecRangeFloat);
+                if (Vector2.Distance(new Vector2(x, y), pos) <= DefencecRangeFloat && Vector2.Distance(new Vector2(x, y), pos) >= 1)
+                    break;
+            }
+            bomb_pos = new Vector3(x, y, 0.0f);
             StartCoroutine(BombAnimate(bomb_pos));
+        }
+        if (ready1)
+        {
+            while (true)
+            {
+                x = Random.Range(pos.x - DefencecRangeFloat, pos.x + DefencecRangeFloat);
+                y = Random.Range(pos.y - DefencecRangeFloat, pos.y + DefencecRangeFloat);
+                if (Vector2.Distance(new Vector2(x, y), pos) <= DefencecRangeFloat && Vector2.Distance(new Vector2(x, y), pos) >= 1)
+                    break;
+            }
+            bomb_pos = new Vector3(x, y, 0.0f);
+            StartCoroutine(BombAnimate2(bomb_pos));
+        }
+        if (ready2)
+        {
+            while (true)
+            {
+                x = Random.Range(pos.x - DefencecRangeFloat, pos.x + DefencecRangeFloat);
+                y = Random.Range(pos.y - DefencecRangeFloat, pos.y + DefencecRangeFloat);
+                if (Vector2.Distance(new Vector2(x, y), pos) <= DefencecRangeFloat && Vector2.Distance(new Vector2(x, y), pos) >= 1)
+                    break;
+            }
+            bomb_pos = new Vector3(x, y, 0.0f);
+            StartCoroutine(BombAnimate3(bomb_pos));
         }
     }
 
     IEnumerator BombAnimate(Vector3 bomb_pos)
     {
         ready = false;
+        //yield return new WaitForSeconds(0.25f);
+        for (int i = 0; i < AutoEnemyControl.foundSnails.Count; i++)
+        {
+            BombHit(AutoEnemyControl.foundSnails[i]);
+        }
+
+        for (int i = 0; i < AutoEnemyControl.autoSnails.Count; i++)
+        {
+            BombHit(AutoEnemyControl.autoSnails[i]);
+        }
+        BombHit(BaseCar);
+        GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), bomb_pos, Quaternion.identity);
+        yield return new WaitForSeconds(1.0f);
+        Destroy(bomb);
+        yield return new WaitForSeconds(0.25f);
+        ready = true;
+    }
+
+    IEnumerator BombAnimate2(Vector3 bomb_pos)
+    {
+        ready1 = false;
         yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < AutoEnemyControl.foundSnails.Count; i++)
         {
@@ -72,10 +126,31 @@ public class DefenceBuilding : MonoBehaviour
         }
         BombHit(BaseCar);
         GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), bomb_pos, Quaternion.identity);
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1.0f);
         Destroy(bomb);
-        yield return new WaitForSeconds(0.5f);
-        ready = true;
+        yield return new WaitForSeconds(0.25f);
+        ready1 = true;
+    }
+
+    IEnumerator BombAnimate3(Vector3 bomb_pos)
+    {
+        ready2 = false;
+        yield return new WaitForSeconds(1.0f);
+        for (int i = 0; i < AutoEnemyControl.foundSnails.Count; i++)
+        {
+            BombHit(AutoEnemyControl.foundSnails[i]);
+        }
+
+        for (int i = 0; i < AutoEnemyControl.autoSnails.Count; i++)
+        {
+            BombHit(AutoEnemyControl.autoSnails[i]);
+        }
+        BombHit(BaseCar);
+        GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), bomb_pos, Quaternion.identity);
+        yield return new WaitForSeconds(1.0f);
+        Destroy(bomb);
+        //yield return new WaitForSeconds(0.25f);
+        ready2 = true;
     }
 
     private void BombHit(GameObject target)

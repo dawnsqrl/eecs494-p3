@@ -13,20 +13,10 @@ public class GameDisplayManager : MonoBehaviour
     private void Awake()
     {
         mouseCamera.targetDisplay = 0;
-        if (Display.displays.Length > 1)
-        {
-            dividerCanvas.SetActive(false);
-            Display.displays[1].Activate();
-            keyboardCamera.targetDisplay = 1;
-            mouseCamera.rect = rectFull;
-            keyboardCamera.rect = rectFull;
-        }
-        else
-        {
-            dividerCanvas.SetActive(true);
-            keyboardCamera.targetDisplay = 0;
-            mouseCamera.rect = rectLeft;
-            keyboardCamera.rect = rectRight;
-        }
+        dividerCanvas.SetActive(false);
+        //Display.displays[1].Activate();
+        //keyboardCamera.targetDisplay = 0;
+        mouseCamera.rect = rectFull;
+        keyboardCamera.rect = new Rect(0, 0, 0, 0);
     }
 }
