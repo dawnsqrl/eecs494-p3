@@ -46,7 +46,10 @@ public class SpellCooldown : MonoBehaviour
             buildingNum = GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().building_num;
             maxBuildingNum = GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().max_building_num;
 
-            if ((buildingNum == maxBuildingNum && buildingType != 0 && buildingType != 4) || (buildingType == 0 && vitality < 400) || (buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200) || (buildingType == 3 && vitality < 300) || (buildingType == 4 && vitality < 100))
+            if ((buildingNum == maxBuildingNum && buildingType != 0 && buildingType != 4 && buildingType != 5) 
+                || (buildingType == 0 && vitality < 400) || (buildingType == 1 && vitality < 100) 
+                || (buildingType == 2 && vitality < 200) || (buildingType == 3 && vitality < 300) 
+                || (buildingType == 4 && vitality < 100))
             {
                 if (!isCoolDown)
                 {

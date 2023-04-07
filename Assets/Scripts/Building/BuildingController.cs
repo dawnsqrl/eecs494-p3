@@ -12,6 +12,7 @@ public class BuildingController : MonoBehaviour
     private static Dictionary<Vector2, GameObject> buildings;
     public int max_building_num;
     public int building_num;
+    private VitalityController vitality;
 
     bool first = true;
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class BuildingController : MonoBehaviour
         buildings = new Dictionary<Vector2, GameObject>();
         max_building_num = 5;
         building_num = 0;
+        vitality = GameObject.Find("VitalityController").GetComponent<VitalityController>();
     }
 
     public bool check_avai(Vector2 pos)
@@ -51,6 +53,11 @@ public class BuildingController : MonoBehaviour
     {
         max_building_num += 5;
         buildings.Add(pos, building);
+    }
+
+    public void deregister_one_building()
+    {
+        max_building_num -= 5;
     }
 
     public void unregister_building(GameObject building)
@@ -86,5 +93,41 @@ public class BuildingController : MonoBehaviour
             }
         }
         return res;
+    }
+
+    public void destoryBuildingUnregister(Vector2 pos)
+    {
+        switch(buildings[pos].gameObject.name[2])
+        {
+            case 'f':
+                vitality.increaseVitality(150);
+                break;
+            case 's':
+                vitality.increaseVitality(50);
+                break;
+            case 'l':
+                vitality.increaseVitality(100);
+                break;
+            case 'r':
+                vitality.increaseVitality(200);
+                break;
+            default:
+                break;
+        }
+        Destroy(buildings[pos].gameObject);
+    }
+
+    public void setBuildingHighlight(Vector2 pos, bool status)
+    {
+        if (check_avai(pos))
+            return;
+
+        Color origin = new Color(255.0f, 255.0f, 255.0f, 255.0f);
+        Color red = new Color(1.0f, 0.0f, 0.0f, 58.0f / 255.0f);
+
+        if(status)
+            buildings[pos].gameObject.GetComponent<SpriteRenderer>().color = red;
+        else
+            buildings[pos].gameObject.GetComponent<SpriteRenderer>().color = origin;
     }
 }
