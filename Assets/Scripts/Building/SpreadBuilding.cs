@@ -84,6 +84,7 @@ public class SpreadBuilding : MonoBehaviour
 
     private void OnDestroy()
     {
+        vitality.increaseVitalityGrowth(15);
         GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
         AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
         AudioSource.PlayClipAtPoint(clip, transform.position);

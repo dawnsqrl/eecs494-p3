@@ -58,6 +58,7 @@ public class SoliderBuilding : MonoBehaviour
 
     private void OnDestroy()
     {
+        vitalityController.increaseVitalityGrowth(5);
         GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
         AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
         AudioSource.PlayClipAtPoint(clip, transform.position);

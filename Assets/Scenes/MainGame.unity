@@ -7821,6 +7821,10 @@ PrefabInstance:
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
+    - target: {fileID: 8304448894352287994, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: buildingTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: a07b0fc55b6764f78b116e5646aea823, type: 3}
     - target: {fileID: 8304448894548295314, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: gridManager
       value: 
@@ -7837,6 +7841,10 @@ PrefabInstance:
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
+    - target: {fileID: 8304448894548295314, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: buildingTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: 65784c2f618784844a0e6f2f65f8afa8, type: 3}
     - target: {fileID: 8304448894595588511, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: gridManager
       value: 
@@ -7853,6 +7861,10 @@ PrefabInstance:
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
+    - target: {fileID: 8304448894595588511, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: buildingTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: 76769f852f1a8421f95ce6cbe5e3a14f, type: 3}
     - target: {fileID: 8304448895128010722, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: vd
       value: 

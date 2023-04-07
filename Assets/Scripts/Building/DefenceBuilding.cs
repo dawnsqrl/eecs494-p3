@@ -36,6 +36,8 @@ public class DefenceBuilding : MonoBehaviour
 
     private void OnDestroy()
     {
+        AttackRange.SetActive(false);
+        vitality.increaseVitalityGrowth(10);
         GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
         AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
         AudioSource.PlayClipAtPoint(clip, transform.position);
