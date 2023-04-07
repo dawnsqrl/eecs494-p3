@@ -143,13 +143,13 @@ public class DisplayHintEvent
 {
     public readonly int index;
     public readonly string text;
-    public readonly float height;
+    public readonly float margin;
 
-    public DisplayHintEvent(int _index, string _text, float _height = 160)
+    public DisplayHintEvent(int _index, string _text, float _margin = -1)
     {
         index = _index;
         text = _text;
-        height = _height;
+        margin = _margin;
     }
 }
 
@@ -157,11 +157,13 @@ public class UpdateHintEvent
 {
     public readonly int index;
     public readonly string text;
+    public readonly float margin;
 
-    public UpdateHintEvent(int _index, string _text)
+    public UpdateHintEvent(int _index, string _text, float _margin = -1)
     {
         index = _index;
         text = _text;
+        margin = _margin;
     }
 }
 

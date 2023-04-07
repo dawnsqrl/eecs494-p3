@@ -20,7 +20,7 @@ public class VitalityController : MonoBehaviour
     private void Update()
     {
         String note = vitality_increase > 0 ? "+" : "-";
-        _mesh.text = $"{note}{vitality_increase * 1.5f}%/min";
+        _mesh.text = $"{note}{vitality_increase * 1.5f}% / min";
     }
 
     private void Start()
