@@ -5361,7 +5361,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 18
   m_Sprite: {fileID: 21300000, guid: 8d219b0b08d9a442a99e2ad15b3a6f51, type: 3}
-  m_Color: {r: 0.34509805, g: 0.7560322, b: 0.77254903, a: 1}
+  m_Color: {r: 0.85882354, g: 0.17254902, b: 0.39607844, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -5456,6 +5456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eatEffect: {fileID: 867260530}
   restoreEffect: {fileID: 1620348520}
+  _hitHealth: {fileID: 0}
 --- !u!65 &42747394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5678,6 +5679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   current_mines: 0
   mines: {fileID: 6029114985109348048, guid: 0d1d5116dbc2741d09656f1e0a67b26f, type: 3}
+  _mesh: {fileID: 0}
 --- !u!114 &2929099172006440559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5830,6 +5832,18 @@ PrefabInstance:
     - target: {fileID: 4246215403723214362, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_Size.y
       value: 6.2313914
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246215403723214362, guid: efdbd088127f04d679fc99053485471e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.99607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246215403723214362, guid: efdbd088127f04d679fc99053485471e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.84313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246215403723214362, guid: efdbd088127f04d679fc99053485471e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.77254903
       objectReference: {fileID: 0}
     - target: {fileID: 7864977755556870637, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_LocalScale.x

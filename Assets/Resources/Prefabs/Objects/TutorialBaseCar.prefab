@@ -198,10 +198,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   health: 3
-  enemyTag: Builder
   healthBar: {fileID: 1134652527490715516}
   _spriteRenderer: {fileID: 5260701631150855687}
-  time_eat_hyphae: 1
+  hit_cd_time: 0.5
+  health_recover_rate: 0.1
+  enemyTagList: []
+  _animator: {fileID: 0}
 --- !u!114 &3124284146541576525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,14 +320,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isChosen: 0
   tutorialInitPos: {x: 0, y: 0, z: 0}
-  gameInitPos: {x: 0, y: 0, z: 0}
   speed: 4
   _animator: {fileID: 4047923559195802300}
   _snailHealth: {fileID: 7166689666919232521}
   direction: {x: 0, y: 0, z: 0}
   forwardDirection: {x: 0, y: 0, z: 0}
-  is_tutorial: 0
   is_tutorial_end: 0
+  is_sprint: 0
+  normalSpeed: 1.5
+  gridDelta: 0.1
 --- !u!1001 &7596851152212922000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -400,6 +403,18 @@ PrefabInstance:
     - target: {fileID: 4246215403723214362, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_Size.y
       value: 6.2313914
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246215403723214362, guid: efdbd088127f04d679fc99053485471e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.99607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246215403723214362, guid: efdbd088127f04d679fc99053485471e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.84313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 4246215403723214362, guid: efdbd088127f04d679fc99053485471e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.77254903
       objectReference: {fileID: 0}
     - target: {fileID: 7864977755556870637, guid: efdbd088127f04d679fc99053485471e, type: 3}
       propertyPath: m_LocalScale.x
