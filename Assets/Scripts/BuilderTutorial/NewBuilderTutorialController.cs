@@ -234,7 +234,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             {
                 EventBus.Publish(new UpdateHintEvent(0,
                     "[LDrag] to select mushroom citizens. [RClick] lead them to a point.\n" +
-                    "Guide your citizens to attack the Snail!"
+                    "Guide your citizens to attack the Snail!", 575
                 ));
                 firstcall = true;
                 Instantiate(Resources.Load<GameObject>("Prefabs/BuilderTutorial/TCitizen"),
@@ -268,7 +268,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
                 EventBus.Publish(new UpdateHintEvent(0,
                     "Unlike the previous buildings, the Spread Building is the source of new mycelium, " +
-                    "so it should be placed outside the mycelium. Drag and drop a new mycelium source."
+                    "so it should be placed outside the mycelium. Drag and drop a new mycelium source.", 575
                 ));
                 firstcall = true;
             }
@@ -287,7 +287,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             if (!firstcall)
             {
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "The new source of mycelium will gradually grow up."
+                    "The new source of mycelium will gradually grow up.", 575
                 ));
                 firstcall = true;
                 StartCoroutine(waitForGrowth());
@@ -318,7 +318,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
                 EventBus.Publish(new UpdateHintEvent(0,
                     "As the mucus approaches your mycelium, you can spend vitality to decay the mucus. " +
-                    "Try to decay the mucus on the scrren."
+                    "Try to decay the mucus on the screen."
                 ));
                 firstcall = true;
 

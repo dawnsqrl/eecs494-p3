@@ -107,7 +107,6 @@ GameObject:
   - component: {fileID: 8264544720655054559}
   - component: {fileID: 241305890165427116}
   - component: {fileID: 3936359468580666783}
-  - component: {fileID: 5119732982221693460}
   m_Layer: 3
   m_Name: BannerDisplay
   m_TagString: Untagged
@@ -174,21 +173,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5119732982221693460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2765367018528858340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96f7c180675f15b40b5546886dbf48d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fontSize: 3
-  fontPadding: 2
-  lerpDuration: 0.05
 --- !u!1 &2937753269624402671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,7 +1502,6 @@ GameObject:
   - component: {fileID: 7041037401533735525}
   - component: {fileID: 7363817216675874329}
   - component: {fileID: 3432020472382598012}
-  - component: {fileID: 4785877918496608462}
   m_Layer: 3
   m_Name: BannerDisplay
   m_TagString: Untagged
@@ -1585,21 +1568,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4785877918496608462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8309823679288676063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96f7c180675f15b40b5546886dbf48d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fontSize: 3
-  fontPadding: 2
-  lerpDuration: 0.05
 --- !u!1 &9127199006963775107
 GameObject:
   m_ObjectHideFlags: 0

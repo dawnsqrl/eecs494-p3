@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class BuildingTagDisplay : MonoBehaviour
 {
-    private GameObject banner;
+    private GameObject bannerPositive;
+    private GameObject bannerNegative;
     private bool isBuilderTutorialActive;
     private bool isDialogBlocking;
 
@@ -11,12 +12,13 @@ public class BuildingTagDisplay : MonoBehaviour
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
         EventBus.Subscribe<EndBuilderTutorialEvent>(_ => isBuilderTutorialActive = false);
         EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
-        banner = GetComponentInChildren<BannerDisplay>().gameObject;
+        bannerPositive = GetComponentInChildren<BuildingTagPositive>().gameObject;
+        bannerNegative = GetComponentInChildren<BuildingTagNegative>().gameObject;
     }
 
     private void Start()
     {
-        banner.SetActive(false);
+        OnHoverExit();
     }
 
     public void OnHoverEnter()
@@ -28,12 +30,14 @@ public class BuildingTagDisplay : MonoBehaviour
 
         if (GameProgressControl.isGameActive || isBuilderTutorialActive)
         {
-            banner.SetActive(true);
+            bannerPositive.SetActive(true);
+            bannerNegative.SetActive(false);
         }
     }
 
     public void OnHoverExit()
     {
-        banner.SetActive(false);
+        bannerPositive.SetActive(false);
+        bannerNegative.SetActive(true);
     }
 }
