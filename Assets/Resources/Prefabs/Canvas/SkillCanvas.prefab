@@ -888,7 +888,7 @@ GameObject:
   - component: {fileID: 8301121977227753514}
   - component: {fileID: 8301121977227753515}
   m_Layer: 5
-  m_Name: Sprint
+  m_Name: SprintR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1240,7 +1240,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3522689124502514791}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: BuildingTagDisplay, Assembly-CSharp
           m_MethodName: OnHoverEnter
           m_Mode: 1
@@ -1256,7 +1256,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3522689124502514791}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: BuildingTagDisplay, Assembly-CSharp
           m_MethodName: OnHoverExit
           m_Mode: 1
@@ -1399,8 +1399,6 @@ GameObject:
   - component: {fileID: 8301121979114597182}
   - component: {fileID: 8301121979114597183}
   - component: {fileID: 8301121979114597168}
-  - component: {fileID: 3522689124502514791}
-  - component: {fileID: 7802120795484399205}
   m_Layer: 5
   m_Name: SkillIconHolder1
   m_TagString: Untagged
@@ -1509,63 +1507,6 @@ MonoBehaviour:
   buildingType: 1
   vd: {fileID: 0}
   cooldownTime: 1
---- !u!114 &3522689124502514791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8301121979114597170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce4bda53498423e4f896e78699086dc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7802120795484399205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8301121979114597170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3522689124502514791}
-          m_TargetAssemblyTypeName: BuildingTagDisplay, Assembly-CSharp
-          m_MethodName: OnHoverEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3522689124502514791}
-          m_TargetAssemblyTypeName: BuildingTagDisplay, Assembly-CSharp
-          m_MethodName: OnHoverExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &8309823679288676063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,7 +1613,7 @@ GameObject:
   - component: {fileID: 2230964594760104421}
   - component: {fileID: 5305980041153622535}
   m_Layer: 5
-  m_Name: Sprint (1)
+  m_Name: SprintL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

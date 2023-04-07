@@ -31,7 +31,7 @@ public class TutorialEndSequence : MonoBehaviour
         if (!isEndDialogShown && hasBuilderTutorialEnded && hasSnailTutorialEnded)
         {
             isEndDialogShown = true;
-            // EventBus.Publish(new EndAllTutorialEvent());
+            EventBus.Publish(new EndAllTutorialEvent());
             EventBus.Publish(new DisplayDialogEvent(
                 "Tutorial completed!", "Make your choice.",
                 new Dictionary<string, Tuple<UnityAction, bool>>()

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PauseControl : MonoBehaviour
 {
@@ -40,7 +41,8 @@ public class PauseControl : MonoBehaviour
                             () =>
                             {
                                 SceneState.SetTransition(
-                                    1, 0, "MainGame", mouseGameImage, keyboardGameImage
+                                    1, 0, SceneManager.GetActiveScene().name,
+                                    mouseGameImage, keyboardGameImage
                                 );
                                 EventBus.Publish(new TransitSceneEvent());
                             }, true

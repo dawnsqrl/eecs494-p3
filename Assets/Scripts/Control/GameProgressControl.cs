@@ -21,7 +21,9 @@ public class GameProgressControl : MonoBehaviour
     {
         EventBus.Subscribe<ModifyPauseEvent>(e => isGamePaused = e.status);
         EventBus.Subscribe<GameStartEvent>(_ => isGameStarted = true);
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isGameStarted = true);
         EventBus.Subscribe<GameEndEvent>(_OnGameEnd);
+        EventBus.Subscribe<EndAllTutorialEvent>(_OnTutorialEnd);
         mouseGameImage = Resources.Load<Sprite>("Sprites/Background/MouseGame");
         keyboardGameImage = Resources.Load<Sprite>("Sprites/Background/KeyboardGame");
     }
@@ -72,10 +74,16 @@ public class GameProgressControl : MonoBehaviour
         }
     }
 
-    //void LoadAllDisplay() {
-    //    DisplayTest displayTest = FindObjectOfType<DisplayTest>();
-    //    displayTest.LoadSceneOnAllDisplays(2);
-    //}
+    private void _OnTutorialEnd(EndAllTutorialEvent e)
+    {
+        if (isGameEnded)
+        {
+            return;
+        }
+
+        isGameEnded = true;
+    }
+
     private void Start()
     {
         EventBus.Publish(new AssignGameControlEvent(this));
