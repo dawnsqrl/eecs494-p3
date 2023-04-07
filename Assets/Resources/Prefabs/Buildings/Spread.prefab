@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: aa9281aa470254a5d8f48572f3382c39, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d94f4cbe2f2f24c39bee50c19b575e2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -116,8 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134423d73171d43c6bd7de912cbf02a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  health: 5
+  maxHealth: 15
+  health: 15
   healthBar: {fileID: 555374501320172782}
   _spriteRenderer: {fileID: 2377066214466126515}
   hit_cd_time: 0.5

@@ -39,29 +39,22 @@ public class HitHealth : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        // bool ishit = false;
-        // foreach (var _enemyTag in enemyTagList)
-        // {
-        //     if (other.gameObject.CompareTag(_enemyTag))
-        //     {
-        //         ishit = true;
-        //         break;
-        //     }
-        // }
-        //
-        // if (!ishit)
-        // {
-        //     return;;
-        // }
-
-        if (other.gameObject.GetComponent<HitHealth>() == null 
-            || (other.gameObject.GetComponent<HitHealth>().currentOpponent != null 
-                && transform.parent != null
-                && other.gameObject.GetComponent<HitHealth>().currentOpponent != transform.parent.gameObject)
-            || !enemyTagList.Contains(other.gameObject.tag))
+        if (other.gameObject.GetComponent<HitHealth>() == null || !enemyTagList.Contains(other.gameObject.tag))
         {
+            // if this object is not an opponent,
             return;
         }
+
+        if (other.gameObject.GetComponent<HitHealth>().currentOpponent != null)
+        {
+            if (transform.parent != null && other.gameObject.GetComponent<HitHealth>().currentOpponent != transform.parent.gameObject)
+            {
+                // if this opponent is not a building, and the other's current opponent is not self
+                // make this a current opponent
+                GetComponent<HitHealth>().currentOpponent = other.transform.parent.gameObject;
+            }
+        }
+        
         if (health > 0)
         {
             canGetHit = false;
@@ -271,6 +264,7 @@ public class HitHealth : MonoBehaviour
     private IEnumerator DestroyWithAnim(GameObject _gameObject)
     {
         _animator.SetTrigger("destroy");
+        GetComponent<BoxCollider>().enabled = false;
         Debug.Log("wait");
         yield return new WaitForSeconds(1);
         Debug.Log("wait end");

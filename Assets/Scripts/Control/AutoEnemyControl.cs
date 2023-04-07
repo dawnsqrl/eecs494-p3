@@ -101,4 +101,25 @@ public class AutoEnemyControl : MonoBehaviour
 
         return positionList;
     }
+
+    public static GameObject NearestEnemy( Vector3 pos)
+    {
+        float leastDistance = 999;
+        GameObject res = null;
+        for (int i = 0; i < foundSnails.Count; i++)
+        {
+            if (foundSnails[i].IsDestroyed())
+            {
+                continue;
+            }
+
+            float distance = Vector3.Distance(pos, foundSnails[i].transform.position);
+            if (distance < leastDistance)
+            {
+                leastDistance = distance;
+                res = foundSnails[i];
+            }
+        }
+        return res;
+    }
 }

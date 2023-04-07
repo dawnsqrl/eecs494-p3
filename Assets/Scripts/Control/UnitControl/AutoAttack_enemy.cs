@@ -33,6 +33,7 @@ public class AutoAttack_enemy : MonoBehaviour
         if (currentOpponent.IsDestroyed())
         {
             onAssult = false;
+            currentOpponent = null;
         }
         if (onAssult)
         {
@@ -62,22 +63,19 @@ public class AutoAttack_enemy : MonoBehaviour
                 }
             }
         }
-        
-        // if ( WildBeastControl.beastList.Count > 0)
-        // {
-        //     foreach (GameObject opponent in  WildBeastControl.beastList)
-        //     {
-        //         if ((opponent.transform.position - transform.position).magnitude < range)
-        //         {
-        //             movetoPosition = opponent.transform.position;
-        //             onAssult = true;
-        //             break;
-        //         }
-        //     }
-        // }
-        
-        // GetComponent<ClearSurroundingFog>().enabled = onAssult;
-        // _rts.MoveTo(movetoPosition);
+
+        // if no small citizen on sight
+        if (currentOpponent == null)
+        {
+            GameObject building = BuildingController.NearestBuilding(transform.position);
+            if (building != null && (building.transform.position - transform.position).magnitude < range)
+            {
+                movetoPosition = building.transform.position;
+                onAssult = true;
+                _self_hitHealth.SetCurrentOpponent(building);
+                currentOpponent = building;
+            }
+        }
     }
 
     private void OnDestroy()

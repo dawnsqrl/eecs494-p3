@@ -32,14 +32,18 @@ public class AutoAttack_citizen : MonoBehaviour
         if (currentOpponent.IsDestroyed())
         {
             onAssult = false;
+            currentOpponent = null;
         }
         if (onAssult)
         {
+            // continue chasing the current opponent
+            // or change current opponent to the current collision
             movetoPosition = currentOpponent.transform.position;
             _rts.MoveTo(movetoPosition);
             return;
         }
-        // movetoPosition = gameObject.transform.position;
+        
+        // search for new enemy
 
         enemyList = new List<GameObject>(AutoEnemyControl.foundSnails);
         if ((basecar.transform.position - transform.position).magnitude < range) {
@@ -66,23 +70,7 @@ public class AutoAttack_citizen : MonoBehaviour
                     break;
                 }
             }
-        } 
-        
-
-        // if ( WildBeastControl.beastList.Count > 0)
-        // {
-        //     foreach (GameObject opponent in  WildBeastControl.beastList)
-        //     {
-        //         if ((opponent.transform.position - transform.position).magnitude < range)
-        //         {
-        //             movetoPosition = opponent.transform.position;
-        //             onAssult = true;
-        //             break;
-        //         }
-        //     }
-        // }
-        // GetComponent<ClearSurroundingFog>().enabled = onAssult;
-        // _rts.MoveTo(movetoPosition);
+        }
     }
 
     private void OnDestroy()

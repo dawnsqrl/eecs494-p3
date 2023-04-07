@@ -3,12 +3,13 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BuildingController : MonoBehaviour
 {
     public GameObject mushroom;
-    private Dictionary<Vector2, GameObject> buildings;
+    private static Dictionary<Vector2, GameObject> buildings;
     public int max_building_num;
     public int building_num;
 
@@ -63,5 +64,27 @@ public class BuildingController : MonoBehaviour
             buildings.Remove(item.Key);
         }
 
+    }
+
+    public static GameObject NearestBuilding(Vector3 pos)
+    {
+        float leastDistance = 999;
+        GameObject res = null;
+        for (int i = 0; i < buildings.Count; i++)
+        {
+            KeyValuePair<Vector2, GameObject> building = buildings.ElementAt(i);
+            if (building.Value.IsDestroyed())
+            {
+                continue;
+            }
+
+            float distance = Vector3.Distance(pos, building.Value.transform.position);
+            if (distance < leastDistance)
+            {
+                leastDistance = distance;
+                res = building.Value;
+            }
+        }
+        return res;
     }
 }

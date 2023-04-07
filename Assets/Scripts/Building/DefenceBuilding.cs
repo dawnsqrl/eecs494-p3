@@ -45,17 +45,29 @@ public class DefenceBuilding : MonoBehaviour
 
     private void Update()
     {
-        Vector2 pos;
+        Vector2 pos = new Vector2(0.0f, 0.0f);;
         if (!isBuilderTutorialActive)
-           pos = new Vector2(BaseCar.transform.position.x, BaseCar.transform.position.y);
-        else
-            pos = new Vector2(0.0f, 0.0f);
-
-        float DefencecRangeFloat = (float)DefenceRange;
-        if (Vector2.Distance(pos, new Vector2(transform.position.x, transform.position.y)) < DefencecRangeFloat && ready)
         {
-            bomb_pos = BaseCar.transform.position;
-            StartCoroutine(BombAnimate(bomb_pos));
+            pos = new Vector2(BaseCar.transform.position.x, BaseCar.transform.position.y);
+        }
+
+        if (!(Vector2.Distance(pos, new Vector2(transform.position.x, transform.position.y)) < (float)DefenceRange))
+        {
+            if (AutoEnemyControl.NearestEnemy(transform.position) != null)
+            {
+                pos = AutoEnemyControl.NearestEnemy(transform.position).transform.position;
+            }
+        }
+
+        if (pos == new Vector2(0.0f, 0.0f))
+        {
+            return;
+        }
+
+        // float DefencecRangeFloat = (float)DefenceRange;
+        if ((Vector2.Distance(pos, new Vector2(transform.position.x, transform.position.y)) < (float)DefenceRange) && ready)
+        {
+            StartCoroutine(BombAnimate(pos));
         }
     }
 
