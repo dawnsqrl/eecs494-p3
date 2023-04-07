@@ -1130,6 +1130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2276f89a8d33f47951f25ed2aa31eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mousePrompt: {fileID: 56738836}
+  keyboardPrompt: {fileID: 385288500}
 --- !u!1001 &2046371653
 PrefabInstance:
   m_ObjectHideFlags: 0

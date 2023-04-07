@@ -1,8 +1,7 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
 
 public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -16,23 +15,26 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     private int defenceRange = 4;
 
     private Transform parentAfterDrag;
+
     private GameObject buildingController;
+
     //private GrowthDemo growthDemo;
     private bool startTutorial = false;
 
-    Vector2 oldPos1 = Vector2.zero, oldPos2 = Vector2.zero, oldPos3 = Vector2.zero, oldPos4 = Vector2.zero;
+    private Vector2 oldPos1 = Vector2.zero;
 
-    GameObject AttackRange;
-    Vector3 denfenceOriginScale;
+    private GameObject AttackRange;
+    private Vector3 denfenceOriginScale;
     private List<Vector2> pos_list, oldPos_list;
 
-    bool adv_ava_check = true;
-    bool isBuilderTutorialActive = false;
+    private bool adv_ava_check = true;
+    private bool isBuilderTutorialActive = false;
+    private bool isDialogBlocking;
 
     private void Awake()
     {
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
-
+        EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
         pos_list = new List<Vector2>();
         oldPos_list = new List<Vector2>();
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
@@ -51,12 +53,19 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         vd = Camera.main.gameObject.GetComponent<ViewDragging>();
         // buildingTexture.Reinitialize(100, 100);
+        isDialogBlocking = false;
         EventBus.Publish(new UpdateCursorEvent(null));
         // temp_building = Instantiate(gameMapPrefab, new Vector3(100.0f, 100.0f, -2.0f), Quaternion.identity);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (isDialogBlocking)
+        {
+            EventBus.Publish(new UpdateCursorEvent(null));
+            return;
+        }
+
         EventBus.Publish(new StartBuildingDragEvent());
         RTScontroller.SetActive(false);
         SelectedArea.SetActive(false);
@@ -68,6 +77,12 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (isDialogBlocking)
+        {
+            EventBus.Publish(new UpdateCursorEvent(null));
+            return;
+        }
+
         vd.enabled = false;
         Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
         Color blue = new Color(1.0f, 0.0f, 0.0f, 58.0f / 255.0f);
@@ -97,7 +112,6 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                     pos_list.Add(p);
                 else
                     adv_ava_check = false;
-
             }
         }
 
@@ -114,11 +128,16 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             AttackRange.transform.localScale = denfenceOriginScale * defenceRange;
             AttackRange.transform.position = new Vector3(Worldpos.x, Worldpos.y, -2.0f);
         }
-
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (isDialogBlocking)
+        {
+            EventBus.Publish(new UpdateCursorEvent(null));
+            return;
+        }
+
         //vd.enabled = false;
         GameObject new_building;
         Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
@@ -222,7 +241,8 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         }
         else
         {
-            NewBuilderTutorialController gd = GameObject.Find("BuilderTutorial").GetComponent<NewBuilderTutorialController>();
+            NewBuilderTutorialController gd = GameObject.Find("BuilderTutorial")
+                .GetComponent<NewBuilderTutorialController>();
             if (gd.Position2Growthed(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
                 return true;
             return false;

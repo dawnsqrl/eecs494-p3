@@ -1,1 +1,1 @@
-In this game, the player must sustain and expand mushroom biomes that grow according to cellular automata rules, like in Conway's Game of Life. However, the growth probabilities are not entirely deterministic, and the player must factor this into their strategy to defeat the opponent biome (not yet implemented).
+In this game, players control Mushroom and Snail as two opposing species that aim to destroy each other in an enclosed natural environment with limited resources. Each side has unique abilities and tools to help it achieve dominance over the other.

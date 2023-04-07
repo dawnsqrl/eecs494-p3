@@ -29,6 +29,7 @@ public class PauseControl : MonoBehaviour
         if (!isPaused && GameProgressControl.isGameActive && !isDialogBlocking)
         {
             SetPauseState(true);
+            EventBus.Publish(new UpdateCursorEvent(null));
             EventBus.Publish(new DisplayDialogEvent(
                 "Game paused!", "Take a rest.",
                 new Dictionary<string, Tuple<UnityAction, bool>>()

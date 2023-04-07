@@ -92,9 +92,20 @@ public class DialogDisplay : MonoBehaviour
     private void SetContent(DisplayDialogEvent e)
     {
         rectTransform.sizeDelta = e.size == Vector2.zero ? new Vector2(1050, 500) : e.size;
-        dialogTitle.SetTitle(e.title);
-        dialogContent.SetContent(e.content);
-        dialogButtonContainer.SetButton(e.buttons);
+        if (e.title != null)
+        {
+            dialogTitle.SetTitle(e.title);
+        }
+
+        if (e.content != null)
+        {
+            dialogContent.SetContent(e.content);
+        }
+
+        if (e.buttons != null)
+        {
+            dialogButtonContainer.SetButton(e.buttons);
+        }
     }
 
     private void SetInitialHeight()

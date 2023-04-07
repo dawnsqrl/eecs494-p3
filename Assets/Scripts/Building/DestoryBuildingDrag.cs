@@ -1,27 +1,32 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
 
 public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private GameObject holder;
+
     //[SerializeField] private GameObject gamePrefab;
     [SerializeField] private Sprite buildingTexture;
     [SerializeField] private GameObject RTScontroller, SelectedArea, fog;
+
     [SerializeField] private GridManager gridManager;
+
     //[SerializeField] private BuilderGridManager TgridManager;
     private ViewDragging vd;
     //private int defenceRange = 3;
 
     private Transform parentAfterDrag;
+
     private GameObject buildingController;
+
     //private GrowthDemo growthDemo;
     private bool startTutorial = false;
     bool isBuilderTutorialActive = false;
+    private bool isDialogBlocking;
 
-    Vector2 oldPos1 = Vector2.zero, oldPos2 = Vector2.zero, oldPos3 = Vector2.zero, oldPos4 = Vector2.zero;
+    private Vector2 oldPos1 = Vector2.zero;
 
     //private int decayRange = 4;
     private List<Vector2> pos_list, oldPos_list;
@@ -29,6 +34,7 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
     private void Awake()
     {
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
+        EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
         pos_list = new List<Vector2>();
         oldPos_list = new List<Vector2>();
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
@@ -40,12 +46,19 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
     {
         vd = Camera.main.gameObject.GetComponent<ViewDragging>();
         // buildingTexture.Reinitialize(100, 100);
+        isDialogBlocking = false;
         EventBus.Publish(new UpdateCursorEvent(null));
         // temp_building = Instantiate(gameMapPrefab, new Vector3(100.0f, 100.0f, -2.0f), Quaternion.identity);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (isDialogBlocking)
+        {
+            EventBus.Publish(new UpdateCursorEvent(null));
+            return;
+        }
+
         EventBus.Publish(new StartBuildingDragEvent());
         RTScontroller.SetActive(false);
         SelectedArea.SetActive(false);
@@ -57,6 +70,12 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (isDialogBlocking)
+        {
+            EventBus.Publish(new UpdateCursorEvent(null));
+            return;
+        }
+
         vd.enabled = false;
         setHighlight(oldPos1, false);
 
@@ -69,6 +88,12 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (isDialogBlocking)
+        {
+            EventBus.Publish(new UpdateCursorEvent(null));
+            return;
+        }
+
         EventBus.Publish(new UpdateCursorEvent(null));
         //Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
 
@@ -101,7 +126,8 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     private void removeMucus(Vector2 pos)
     {
-        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).GetComponent<GroundTileManager>().RemoveMucus();
+        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).GetComponent<GroundTileManager>()
+            .RemoveMucus();
     }
 
     bool CheckAvai(Vector2 pos)

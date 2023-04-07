@@ -1,7 +1,11 @@
+using TMPro;
 using UnityEngine;
 
 public class GetReadyController : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI mousePrompt;
+    [SerializeField] private TextMeshProUGUI keyboardPrompt;
+
     private Sprite mouseGameImage;
     private Sprite keyboardGameImage;
     private Controls controls;
@@ -31,6 +35,8 @@ public class GetReadyController : MonoBehaviour
     {
         hasMushroomConfirmed = false;
         hasSnailConfirmed = false;
+        mousePrompt.text = "[LClick] to get ready!";
+        keyboardPrompt.text = "[Enter] to get ready!";
     }
 
     private void Update()
@@ -38,11 +44,17 @@ public class GetReadyController : MonoBehaviour
         if (!hasMushroomConfirmed && playerActions.ConfirmMushroomControl.WasPressedThisFrame())
         {
             hasMushroomConfirmed = true;
+            mousePrompt.text = "Mushroom is ready!";
+            ColorUtility.TryParseHtmlString("#f3be09", out Color color);
+            mousePrompt.color = color;
         }
 
         if (!hasSnailConfirmed && playerActions.ConfirmSnailControl.WasPressedThisFrame())
         {
             hasSnailConfirmed = true;
+            keyboardPrompt.text = "Snail is ready!";
+            ColorUtility.TryParseHtmlString("#a1dfc1", out Color color);
+            keyboardPrompt.color = color;
         }
 
         if (hasMushroomConfirmed && hasSnailConfirmed)

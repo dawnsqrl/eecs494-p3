@@ -7,37 +7,38 @@ using UnityEngine.Events;
 public class StartupSequence : MonoBehaviour
 {
     private DisplayDialogEvent startDialog;
+
     // private UpdateDialogEvent gameDescriptionDialog;
     // private UpdateDialogEvent generalControlListDialog;
     // private UpdateDialogEvent builderControlListDialog;
     // private UpdateDialogEvent enemyControlListDialog;
+    private readonly string startingInString = "Starting in...";
 
     private void Awake()
     {
         startDialog = new DisplayDialogEvent(
-            "BIOLOGY 452",
-            "Field Ecology of Snail-Fungus Interaction",
+            "Get ready!", $"{startingInString} 3",
             new Dictionary<string, Tuple<UnityAction, bool>>()
             {
-                {
-                    "Start", new Tuple<UnityAction, bool>(
-                        () => EventBus.Publish(new GameStartEvent()), true
-                    )
-                },
                 // {
-                //     "Tutorial", new Tuple<UnityAction, bool>(
-                //         () => EventBus.Publish(new DisplayDialogEvent(gameDescriptionDialog)), true
+                //     "Start", new Tuple<UnityAction, bool>(
+                //         () => EventBus.Publish(new GameStartEvent()), true
                 //     )
                 // },
-                {
-                    "Guide", new Tuple<UnityAction, bool>(
-                        () =>
-                        {
-                            EventBus.Publish(new StartBuilderTutorialEvent());
-                            EventBus.Publish(new StartSnailTutorialEvent());
-                        }, true
-                    )
-                }
+                // // {
+                // //     "Tutorial", new Tuple<UnityAction, bool>(
+                // //         () => EventBus.Publish(new DisplayDialogEvent(gameDescriptionDialog)), true
+                // //     )
+                // // },
+                // {
+                //     "Guide", new Tuple<UnityAction, bool>(
+                //         () =>
+                //         {
+                //             EventBus.Publish(new StartBuilderTutorialEvent());
+                //             EventBus.Publish(new StartSnailTutorialEvent());
+                //         }, true
+                //     )
+                // }
             }
         );
         // gameDescriptionDialog = new UpdateDialogEvent(
@@ -112,13 +113,21 @@ public class StartupSequence : MonoBehaviour
 
     private void Start()
     {
-        // EventBus.Publish(startDialog);
         StartCoroutine(DelayStart());
     }
 
     private IEnumerator DelayStart()
     {
-        yield return new WaitForSeconds(1);
+        EventBus.Publish(startDialog);
+        yield return new WaitForSeconds(0.5f);
         EventBus.Publish(new GameStartEvent());
+        yield return new WaitForSeconds(1);
+        EventBus.Publish(new UpdateDialogEvent(null, $"{startingInString} 2", null));
+        yield return new WaitForSeconds(1);
+        EventBus.Publish(new UpdateDialogEvent(null, $"{startingInString} 1", null));
+        yield return new WaitForSeconds(1);
+        EventBus.Publish(new UpdateDialogEvent(null, "Start!", null));
+        yield return new WaitForSeconds(0.5f);
+        EventBus.Publish(new DismissDialogEvent());
     }
 }

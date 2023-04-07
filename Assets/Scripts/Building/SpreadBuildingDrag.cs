@@ -21,6 +21,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     //private GrowthDemo growthDemo;
     private bool startTutorial = false;
+    private bool isDialogBlocking;
 
     Vector2 oldPos1 = Vector2.zero, oldPos2 = Vector2.zero, oldPos3 = Vector2.zero, oldPos4 = Vector2.zero;
 
@@ -40,6 +41,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
     private void Awake()
     {
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
+        EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
         buildingController = GameObject.Find("BuildingCanvas");
         //growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
     }
@@ -54,6 +56,12 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (isDialogBlocking)
+        {
+            EventBus.Publish(new UpdateCursorEvent(null));
+            return;
+        }
+
         EventBus.Publish(new StartBuildingDragEvent());
         EventBus.Publish(new UpdateCursorEvent(buildingTexture, 64, 0.8f));
         RTScontroller.SetActive(false);
@@ -65,6 +73,12 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (isDialogBlocking)
+        {
+            EventBus.Publish(new UpdateCursorEvent(null));
+            return;
+        }
+
         vd.enabled = false;
         Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
         Color blue = new Color(1.0f, 0.0f, 0.0f, 58.0f / 255.0f);
@@ -101,6 +115,12 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (isDialogBlocking)
+        {
+            EventBus.Publish(new UpdateCursorEvent(null));
+            return;
+        }
+
         //vd.enabled = false;
         EventBus.Publish(new UpdateCursorEvent(null));
         Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
@@ -172,7 +192,8 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
         }
         else
         {
-            NewBuilderTutorialController gd = GameObject.Find("BuilderTutorial").GetComponent<NewBuilderTutorialController>();
+            NewBuilderTutorialController gd = GameObject.Find("BuilderTutorial")
+                .GetComponent<NewBuilderTutorialController>();
             if (!gd.Position2Growthed(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
                 return true;
             return false;

@@ -1,27 +1,31 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
 
 public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] private GameObject holder;
+
     //[SerializeField] private GameObject gamePrefab;
     [SerializeField] private Sprite buildingTexture;
     [SerializeField] private GameObject RTScontroller, SelectedArea, fog;
+
     [SerializeField] private GridManager gridManager;
+
     //[SerializeField] private BuilderGridManager TgridManager;
     private ViewDragging vd;
     //private int defenceRange = 3;
 
     private Transform parentAfterDrag;
+
     private GameObject buildingController;
+
     //private GrowthDemo growthDemo;
     private bool startTutorial = false;
-    bool isBuilderTutorialActive = false;
-
-    Vector2 oldPos1 = Vector2.zero, oldPos2 = Vector2.zero, oldPos3 = Vector2.zero, oldPos4 = Vector2.zero;
+    private bool isBuilderTutorialActive = false;
+    private bool isDialogBlocking;
 
     private int decayRange = 4;
     private List<Vector2> pos_list, oldPos_list;
@@ -29,6 +33,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
     private void Awake()
     {
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
+        EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
         pos_list = new List<Vector2>();
         oldPos_list = new List<Vector2>();
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
@@ -40,12 +45,19 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         vd = Camera.main.gameObject.GetComponent<ViewDragging>();
         // buildingTexture.Reinitialize(100, 100);
+        isDialogBlocking = false;
         EventBus.Publish(new UpdateCursorEvent(null));
         // temp_building = Instantiate(gameMapPrefab, new Vector3(100.0f, 100.0f, -2.0f), Quaternion.identity);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (isDialogBlocking)
+        {
+            EventBus.Publish(new UpdateCursorEvent(null));
+            return;
+        }
+
         EventBus.Publish(new StartBuildingDragEvent());
         RTScontroller.SetActive(false);
         SelectedArea.SetActive(false);
@@ -57,6 +69,12 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (isDialogBlocking)
+        {
+            EventBus.Publish(new UpdateCursorEvent(null));
+            return;
+        }
+
         vd.enabled = false;
         Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
         Color blue = new Color(1.0f, 0.0f, 0.0f, 58.0f / 255.0f);
@@ -65,7 +83,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
         {
             setHighlight(oldPos, false, white);
         }
-        
+
         //setHighlight(oldPos2, false, white);
         //setHighlight(oldPos3, false, white);
         //setHighlight(oldPos4, false, white);
@@ -78,7 +96,8 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
         //     // temp_building.transform.localScale = new Vector2(0.3f, 0.3f);
         //     // temp_building.transform.position = new Vector3(Worldpos.x, Worldpos.y, -2.0f);
-        Vector2 pos1 = new Vector2(Mathf.FloorToInt(Worldpos.x - (decayRange / 2 - 0.5f) + 0.5f ), Mathf.CeilToInt(Worldpos.y + (decayRange / 2 - 0.5f) - 0.5f ));
+        Vector2 pos1 = new Vector2(Mathf.FloorToInt(Worldpos.x - (decayRange / 2 - 0.5f) + 0.5f),
+            Mathf.CeilToInt(Worldpos.y + (decayRange / 2 - 0.5f) - 0.5f));
         if (pos1 is { x: >= 0 and < 50, y: >= 0 and < 50 })
             pos_list.Add(pos1);
         for (int i = 0; i < decayRange; i++)
@@ -90,6 +109,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
                     pos_list.Add(p);
             }
         }
+
         //Vector2 pos2 = new Vector2(Mathf.FloorToInt(pos1.x + 1.1f), Mathf.CeilToInt(pos1.y));
         //Vector2 pos3 = new Vector2(Mathf.FloorToInt(pos1.x + 1.1f), Mathf.CeilToInt(pos1.y - 1.1f));
         //Vector2 pos4 = new Vector2(Mathf.FloorToInt(pos1.x), Mathf.CeilToInt(pos1.y - 1.1f));
@@ -108,11 +128,16 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
         //oldPos4 = pos4;
 
         //vd.enabled = true;
-
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (isDialogBlocking)
+        {
+            EventBus.Publish(new UpdateCursorEvent(null));
+            return;
+        }
+
         //vd.enabled = false;
         //GameObject new_building;
         Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
@@ -129,7 +154,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
             if (CheckAvai(oldPos))
                 avaCheckRes = true;
         }
-        
+
         if ((Worldpos is { x: >= 0 and < 50, y: >= 0 and < 50 }) //|| startTutorial)
             && avaCheckRes)
         {
@@ -185,13 +210,12 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
         vd.enabled = true;
 
         EventBus.Publish(new EndBuildingDragEvent());
-
-        
     }
 
     private void removeMucus(Vector2 pos)
     {
-        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).GetComponent<GroundTileManager>().RemoveMucus();
+        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).GetComponent<GroundTileManager>()
+            .RemoveMucus();
     }
 
     bool CheckAvai(Vector2 pos)
@@ -205,7 +229,8 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
         }
         else
         {
-            NewBuilderTutorialController gd = GameObject.Find("BuilderTutorial").GetComponent<NewBuilderTutorialController>();
+            NewBuilderTutorialController gd = GameObject.Find("BuilderTutorial")
+                .GetComponent<NewBuilderTutorialController>();
             if (gd.Position2Mucused(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
                 return true;
             return false;

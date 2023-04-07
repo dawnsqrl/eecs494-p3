@@ -13,7 +13,6 @@ public class DialogButtonContainer : MonoBehaviour
 
     private GameObject buttonTemplate;
     private GameObject buttonContainer;
-    private bool doDismiss;
 
     private void Awake()
     {
@@ -23,7 +22,6 @@ public class DialogButtonContainer : MonoBehaviour
     private void Start()
     {
         buttonContainer = null;
-        doDismiss = true;
     }
 
     public void SetButton(Dictionary<string, Tuple<UnityAction, bool>> buttons)
@@ -66,12 +64,12 @@ public class DialogButtonContainer : MonoBehaviour
                 index++;
             }
         }
-        else
-        {
-            GameObject thisButton = Instantiate(buttonTemplate, buttonContainer.transform);
-            thisButton.GetComponentInChildren<TextMeshProUGUI>().text = StringPool.defaultDialogButtonText;
-            thisButton.GetComponent<Button>().onClick.AddListener(_DismissAction);
-        }
+        // else
+        // {
+        //     GameObject thisButton = Instantiate(buttonTemplate, buttonContainer.transform);
+        //     thisButton.GetComponentInChildren<TextMeshProUGUI>().text = StringPool.defaultDialogButtonText;
+        //     thisButton.GetComponent<Button>().onClick.AddListener(_DismissAction);
+        // }
     }
 
     private void _DismissAction()
