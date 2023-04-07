@@ -5,32 +5,33 @@ using UnityEngine;
 public class MineBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
-    float damage_radius = 3.0f;
+    float damage_radius = 2.0f;
     int damage = 3;
     Animator animator;
     bool explode_lock = false;
+    float delay_time = 3f;
+    float start_time;
 
    
     private void Start()
     {
         animator = GetComponent<Animator>();
+        start_time = Time.time;
     }
-    
-    private void OnTriggerEnter(Collider other)
+
+    private void Update()
     {
-        if(other.gameObject.CompareTag("Citizen")){
+        if (Time.time - start_time > delay_time) {
             if (!explode_lock) {
+                explode_lock = true;
                 animator.SetTrigger("explode");
-                transform.GetChild(0).gameObject.GetComponent<Animator>().SetTrigger("explode");
                 AudioClip clip = Resources.Load<AudioClip>("Audio/Explosion");
                 AudioSource.PlayClipAtPoint(clip, transform.position);
                 StartCoroutine(DestoryAll(gameObject));
-                explode_lock = true;
             }
-            
         }
-       
     }
+
 
     IEnumerator DestoryAll(GameObject gameObject) {
         yield return new WaitForSeconds(0.4f);
@@ -45,9 +46,34 @@ public class MineBehavior : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Finding buildings");
+        GameObject nearestBuilding = BuildingController.NearestBuilding(transform.position);
+        while (nearestBuilding != null && Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(nearestBuilding.transform.position.x, nearestBuilding.transform.position.y))<damage_radius) {
+            Debug.Log("stucked");
+            Destroy(nearestBuilding);
+            nearestBuilding= BuildingController.NearestBuilding(transform.position);
+        }
+        List<Vector2> tile_list = Get_tiles_in_range(new Vector2(transform.position.x, transform.position.y), damage_radius);
+        foreach (Vector2 pos in tile_list) {
+            if (GridManager._tiles.ContainsKey(pos)) {
+                GridManager._tiles[pos].GetComponentInChildren<GroundTileManager>().SetMucus();
+                GridManager._tiles[pos].GetComponentInChildren<GroundTileManager>().growthed = false;
+            }
+        }
         yield return new WaitForSeconds(0.4f);
         Destroy(gameObject);
     }
-   
+
+    List<Vector2> Get_tiles_in_range(Vector2 pos, float radius) {
+        List<Vector2> pos_list = new List<Vector2>();
+        for(int i=Mathf.RoundToInt(pos.x-radius);i< Mathf.RoundToInt(pos.x + radius); ++i) {
+            for(int j= Mathf.RoundToInt(pos.y - radius); j < Mathf.RoundToInt(pos.y + radius); ++j) {
+                if (Vector2.Distance(new Vector2(i, j), pos) < radius) {
+                    pos_list.Add(new Vector2(i, j));
+                }
+            }
+        }
+        return pos_list;
+    }
 
 }
