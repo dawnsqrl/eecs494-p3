@@ -8,6 +8,7 @@ public class DialogDisplay : MonoBehaviour
     [SerializeField] private float initialTilt = 10;
     [SerializeField] private float lerpDuration = 0.5f;
     [SerializeField] private float lerpInterval = 0.2f;
+    [SerializeField] private bool isReadOnly;
 
     private RectTransform rectTransform;
     private float initialHeight;
@@ -58,7 +59,7 @@ public class DialogDisplay : MonoBehaviour
 
     private void Update()
     {
-        if (isDialogBlocking != (isDialogLerping || isDialogVisible))
+        if (!isReadOnly && isDialogBlocking != (isDialogLerping || isDialogVisible))
         {
             isDialogBlocking = isDialogLerping || isDialogVisible;
             EventBus.Publish(new DialogBlockingEvent(isDialogBlocking));
@@ -102,7 +103,7 @@ public class DialogDisplay : MonoBehaviour
             dialogContent.SetContent(e.content);
         }
 
-        if (e.buttons != null)
+        if (e.buttons != null && !isReadOnly)
         {
             dialogButtonContainer.SetButton(e.buttons);
         }
