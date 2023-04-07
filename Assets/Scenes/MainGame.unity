@@ -7681,10 +7681,26 @@ PrefabInstance:
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
+    - target: {fileID: 961836633, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: vd
+      value: 
+      objectReference: {fileID: 819354649}
     - target: {fileID: 970278064, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: vd
       value: 
       objectReference: {fileID: 819354649}
+    - target: {fileID: 1118048891, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: gridManager
+      value: 
+      objectReference: {fileID: 1755112723}
+    - target: {fileID: 1118048891, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: SelectedArea
+      value: 
+      objectReference: {fileID: 691974118}
+    - target: {fileID: 1118048891, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: RTScontroller
+      value: 
+      objectReference: {fileID: 1470659569}
     - target: {fileID: 1195475749, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: gridManager
       value: 
