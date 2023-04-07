@@ -68,7 +68,6 @@ public class BasecarController : MonoBehaviour
             // Move the player in the direction of the input
             direction = playerActions.MoveBaseCar.ReadValue<Vector2>();
             _animator.SetFloat("dir_x", direction.x);
-            direction = GetAlignedInput(direction);
             if (direction.magnitude > 0)
             {
                 _rigidbody.velocity = direction.normalized * (
@@ -161,43 +160,43 @@ public class BasecarController : MonoBehaviour
         }
     }
     
-    private Vector2 GetAlignedInput(Vector2 dir)
-    {
-        Vector2 rawInput = dir;
-        Vector2 position = transform.position;
-        bool newMovementAxis = Mathf.Abs(rawInput.x) > 0f;
-        if (newMovementAxis == lastMovementAxis)
-        {
-            return rawInput;
-        }
-
-        if (lastMovementAxis) // horizontal -> vertical
-        {
-            float alignedX = (float)Mathf.RoundToInt(position.x * 2) / 2;
-            if (Mathf.Repeat(position.x, 0.5f) < gridDelta)
-            {
-                transform.position = new Vector2(alignedX, position.y);
-                lastMovementAxis = newMovementAxis;
-                return rawInput;
-            }
-            else
-            {
-                return new Vector2(Mathf.Abs(rawInput.y) * Mathf.Sign(alignedX - position.x), 0f);
-            }
-        }
-        else // vertical -> horizontal
-        {
-            float alignedY = (float)Mathf.RoundToInt(position.y * 2) / 2;
-            if (Mathf.Repeat(position.y, 0.5f) < gridDelta)
-            {
-                transform.position = new Vector2(position.x, alignedY);
-                lastMovementAxis = newMovementAxis;
-                return rawInput;
-            }
-            else
-            {
-                return new Vector2(0f, Mathf.Abs(rawInput.x) * Mathf.Sign(alignedY - position.y));
-            }
-        }
-    }
+    // private Vector2 GetAlignedInput(Vector2 dir)
+    // {
+    //     Vector2 rawInput = dir;
+    //     Vector2 position = transform.position;
+    //     bool newMovementAxis = Mathf.Abs(rawInput.x) > 0f;
+    //     if (newMovementAxis == lastMovementAxis)
+    //     {
+    //         return rawInput;
+    //     }
+    //
+    //     if (lastMovementAxis) // horizontal -> vertical
+    //     {
+    //         float alignedX = (float)Mathf.RoundToInt(position.x * 2) / 2;
+    //         if (Mathf.Repeat(position.x, 0.5f) < gridDelta)
+    //         {
+    //             transform.position = new Vector2(alignedX, position.y);
+    //             lastMovementAxis = newMovementAxis;
+    //             return rawInput;
+    //         }
+    //         else
+    //         {
+    //             return new Vector2(Mathf.Abs(rawInput.y) * Mathf.Sign(alignedX - position.x), 0f);
+    //         }
+    //     }
+    //     else // vertical -> horizontal
+    //     {
+    //         float alignedY = (float)Mathf.RoundToInt(position.y * 2) / 2;
+    //         if (Mathf.Repeat(position.y, 0.5f) < gridDelta)
+    //         {
+    //             transform.position = new Vector2(position.x, alignedY);
+    //             lastMovementAxis = newMovementAxis;
+    //             return rawInput;
+    //         }
+    //         else
+    //         {
+    //             return new Vector2(0f, Mathf.Abs(rawInput.x) * Mathf.Sign(alignedY - position.y));
+    //         }
+    //     }
+    // }
 }
