@@ -1,13 +1,11 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 public class DefenceBuilding : MonoBehaviour
 {
     private VitalityController vitality;
-    private GameObject AttackRange, BaseCar;
+    private GameObject AttackRange, AttackRangeTransparent, BaseCar;
     Vector3 denfenceOriginScale;
     bool OnDrag = false;
     Vector3 bomb_pos;
@@ -37,6 +35,7 @@ public class DefenceBuilding : MonoBehaviour
     private void OnDestroy()
     {
         AttackRange.SetActive(false);
+        AttackRangeTransparent.SetActive(false);
         vitality.increaseVitalityGrowth(10);
         GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
         AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
@@ -45,7 +44,8 @@ public class DefenceBuilding : MonoBehaviour
 
     private void Update()
     {
-        Vector2 pos = new Vector2(0.0f, 0.0f);;
+        Vector2 pos = new Vector2(0.0f, 0.0f);
+        ;
         if (!isBuilderTutorialActive)
         {
             pos = new Vector2(BaseCar.transform.position.x, BaseCar.transform.position.y);
@@ -65,7 +65,8 @@ public class DefenceBuilding : MonoBehaviour
         }
 
         // float DefencecRangeFloat = (float)DefenceRange;
-        if ((Vector2.Distance(pos, new Vector2(transform.position.x, transform.position.y)) < (float)DefenceRange) && ready)
+        if ((Vector2.Distance(pos, new Vector2(transform.position.x, transform.position.y)) < (float)DefenceRange) &&
+            ready)
         {
             StartCoroutine(BombAnimate(pos));
         }
@@ -75,17 +76,19 @@ public class DefenceBuilding : MonoBehaviour
     {
         ready = false;
         yield return new WaitForSeconds(0.5f);
-        for (int i = 0; i < AutoEnemyControl.foundSnails.Count; i++)
+        foreach (GameObject snail in AutoEnemyControl.foundSnails)
         {
-            BombHit(AutoEnemyControl.foundSnails[i]);
+            BombHit(snail);
         }
 
-        for (int i = 0; i < AutoEnemyControl.autoSnails.Count; i++)
+        foreach (GameObject snail in AutoEnemyControl.autoSnails)
         {
-            BombHit(AutoEnemyControl.autoSnails[i]);
+            BombHit(snail);
         }
+
         BombHit(BaseCar);
-        GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), bomb_pos, Quaternion.identity);
+        GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), bomb_pos,
+            Quaternion.identity);
         yield return new WaitForSeconds(0.75f);
         Destroy(bomb);
         yield return new WaitForSeconds(0.5f);
@@ -94,7 +97,8 @@ public class DefenceBuilding : MonoBehaviour
 
     private void BombHit(GameObject target)
     {
-        if (!target.IsDestroyed() && Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.y), bomb_pos) <= 1)
+        if (!target.IsDestroyed() &&
+            Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.y), bomb_pos) <= 1)
         {
             target.GetComponentInChildren<HitHealth>().GetDamage(1);
         }
@@ -103,9 +107,14 @@ public class DefenceBuilding : MonoBehaviour
     public void SetPosition(Vector3 pos, int range)
     {
         DefenceRange = range;
-        AttackRange = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/RangeCircle"), pos, Quaternion.identity);
+        AttackRange = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/RangeCircle"), pos,
+            Quaternion.identity);
         AttackRange.SetActive(false);
         AttackRange.transform.localScale = AttackRange.transform.localScale * range;
+        AttackRangeTransparent = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/RangeCircleSnail"), pos,
+            Quaternion.identity);
+        AttackRangeTransparent.SetActive(true);
+        AttackRangeTransparent.transform.localScale = AttackRangeTransparent.transform.localScale * range;
     }
 
     private void OnMouseEnter()
@@ -118,5 +127,4 @@ public class DefenceBuilding : MonoBehaviour
     {
         AttackRange.SetActive(false);
     }
-
 }

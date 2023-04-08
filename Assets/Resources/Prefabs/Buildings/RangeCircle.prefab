@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2401124211024145336}
   - component: {fileID: 7896125089248009020}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RangeCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
