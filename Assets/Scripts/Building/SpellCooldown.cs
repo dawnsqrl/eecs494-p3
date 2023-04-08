@@ -23,6 +23,7 @@ public class SpellCooldown : MonoBehaviour
     private int vitality;
 
     int buildingNum, maxBuildingNum;
+    BuildingController buildingControl;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class SpellCooldown : MonoBehaviour
 
     private void Start()
     {
+        buildingControl = GameObject.Find("BuildingCanvas").GetComponent<BuildingController>();
         //textCooldown.gameObject.SetActive(false);
         //imageEdge.gameObject.SetActive(false);
         imageCooldown.fillAmount = 0;
@@ -43,8 +45,8 @@ public class SpellCooldown : MonoBehaviour
         
         if (GameProgressControl.isGameActive)
         {
-            buildingNum = GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().building_num;
-            maxBuildingNum = GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().max_building_num;
+            buildingNum = buildingControl.building_num;
+            maxBuildingNum = buildingControl.max_building_num;
 
             if ((buildingNum == maxBuildingNum && buildingType != 0 && buildingType != 4 && buildingType != 5) 
                 || (buildingType == 0 && vitality < 400) || (buildingType == 1 && vitality < 100) 

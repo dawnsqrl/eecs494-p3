@@ -8,17 +8,25 @@ public class SnailExpManager : MonoBehaviour
 {
     [SerializeField] private int nextLevelExp;
     [SerializeField] public int currentExp;
-    [SerializeField] private GameObject expBar;
+    [SerializeField] private GameObject expBar, flag;
     [SerializeField] private GameObject levelUpBanner;
     [SerializeField] private GameObject optionsBanner;
     [SerializeField] private GameObject mineIcon;
-    [SerializeField] private GameObject sprintIcon;
+    [SerializeField] private GameObject sprintIcon, skillsCanvas;
     private Controls _controls;
     private Controls.PlayerActions _playerActions;
     private int pendingLevelUps;
     private bool canSelect;
     private SnailSprintManager _snailSprintManager;
     private SnailWeapon _snailWeapon;
+
+    [SerializeField] private Transform[] routes;
+
+    private Vector2 objectPosition;
+    public GameObject title;
+
+    float tParam = 0f, speedModifier = 0.5f;
+    bool coroutineAllowed = true;
 
     private void Awake()
     {
@@ -33,12 +41,87 @@ public class SnailExpManager : MonoBehaviour
     {
         expBar.GetComponent<SpriteRenderer>().size =
             new Vector2((float)currentExp / (float)nextLevelExp * 10, expBar.GetComponent<SpriteRenderer>().size.y);
-        levelUpBanner.SetActive(false);
+        //levelUpBanner.SetActive(false);
         optionsBanner.SetActive(false);
         pendingLevelUps = 0;
         _controls = new Controls();
         _playerActions = _controls.Player;
         canSelect = false;
+
+        skillsCanvas.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            tParam = 0f;
+            speedModifier = 0.5f;
+            coroutineAllowed = true;
+            StartCoroutine(levelUpAnimation());
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            StartCoroutine(skillChooseAnimation());
+        }
+    }
+
+    IEnumerator skillChooseAnimation()
+    {
+        skillsCanvas.SetActive(true);
+        //yield return new WaitForSeconds(0.5f);
+        float progress = 0.0f;
+        float speed = 0.5f;
+        Vector3 initial_pos = flag.transform.position;
+        Vector3 dest_pos = transform.position;
+        
+
+        while (progress < 1)
+        {
+            progress += Time.deltaTime * speed;
+
+            //title.transform.position = objectPosition;
+            float scale = Mathf.Lerp(0.0f, 1.0f, progress);
+            skillsCanvas.transform.localScale = new Vector3(scale, scale, scale);
+
+            Vector3 new_position = Vector3.Lerp(initial_pos, dest_pos, progress);
+            skillsCanvas.transform.position = new_position;
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator levelUpAnimation()
+    {
+        yield return new WaitForSeconds(0.0f);
+        title.SetActive(true);
+        GetComponent<TextRevealer>().RevealText(title);
+        yield return new WaitForSeconds(4.0f);
+
+        coroutineAllowed = false;
+        Vector2 p0 = routes[0].position;
+        Vector2 p1 = routes[1].position;
+        Vector2 p2 = routes[2].position;
+        Vector2 p3 = routes[3].position;
+
+        while (tParam < 1)
+        {
+            if (tParam > 0.9)
+                flag.SetActive(true);
+            tParam += Time.deltaTime * speedModifier;
+
+            objectPosition = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
+
+            title.transform.position = objectPosition;
+            float scale = Mathf.Lerp(1.0f, 0.1f, tParam);
+            title.transform.localScale = new Vector3(scale, scale, scale); 
+            yield return new WaitForEndOfFrame();
+        }
+
+        tParam = 0f;
+
+        coroutineAllowed = true;
     }
 
     public void AddExpPoints(int exp)
