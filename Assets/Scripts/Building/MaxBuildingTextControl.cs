@@ -5,16 +5,18 @@ public class MaxBuildingTextControl : MonoBehaviour
 {
     private TextMeshProUGUI number;
     int buildingNum, maxBuildingNum;
+    BuildingController bc; 
 
     private void Awake()
     {
         number = GetComponent<TextMeshProUGUI>();
+        bc = GameObject.Find("BuildingCanvas").GetComponent<BuildingController>();
     }
 
     private void Update()
     {
-        buildingNum = GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().building_num;
-        maxBuildingNum = GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().max_building_num;
+        buildingNum = bc.building_num;
+        maxBuildingNum = bc.max_building_num;
         number.text = buildingNum.ToString() + "/" + maxBuildingNum.ToString();
     }
 }

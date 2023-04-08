@@ -63,11 +63,24 @@ public class GroundTileManager : MonoBehaviour
         // hyphae.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-10, 10));
         foreach (Transform small_hyphae in hyphae.transform)
         {
+            enableAnimator(small_hyphae.gameObject);
             small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");
+            StartCoroutine(disableAnimator(small_hyphae.gameObject));
         }
         growthed = true;
     }
-    
+
+    IEnumerator disableAnimator(GameObject hyphae)
+    {
+        yield return new WaitForSeconds(1.0f);
+        hyphae.GetComponent<Animator>().enabled = false;
+    }
+
+    void enableAnimator(GameObject hyphae)
+    {
+        hyphae.GetComponent<Animator>().enabled = true;
+    }
+
     public void SetMucus()
     {
         GameObject mucus = transform.parent.gameObject.transform.Find("Mucus").gameObject;
@@ -75,7 +88,9 @@ public class GroundTileManager : MonoBehaviour
         // mucus.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-10, 10));
         foreach (Transform small_hyphae in mucus.transform)
         {
+            enableAnimator(small_hyphae.gameObject);
             small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");
+            disableAnimator(small_hyphae.gameObject);
         }
         mucused = true;
     }
