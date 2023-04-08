@@ -57,7 +57,7 @@ public class NewBuilderTutorialController : MonoBehaviour
         {
             EventBus.Publish(new OpenZoomEvent());
             EventBus.Publish(new DisplayHintEvent(0,
-                "Use the mouse wheel to zoom the screen."
+                "Scroll <b>mouse wheel</b> to zoom the screen."
             ));
             if (maxzoom)
             {
@@ -71,7 +71,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             if (!firstcall)
             {
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "You find the snail. [Lclick]"
+                    "You found the snail. <b>[Lclick]</b>"
                 ));
                 firstcall = true;
             }
@@ -89,8 +89,8 @@ public class NewBuilderTutorialController : MonoBehaviour
             if (!firstcall)
             {
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "Mushrooms have periodically expanding mycelium.\n" +
-                    "Snail movement leaves mucus. [Lclick]"
+                    "Mushroom's mycelium expands periodically.\n" +
+                    "Snail movement leaves behind a trail of mucus. <b>[Lclick]</b>"
                 ));
                 firstcall = true;
             }
@@ -136,7 +136,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             if (!firstcall)
             {
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "You can move the mouse to the edge of the screen to move the view. " +
+                    "You can <b>move mouse</b> to the edge of the screen to move the view. " +
                     "Try to find the snail!", 575
                 ));
                 firstcall = true;
@@ -158,8 +158,8 @@ public class NewBuilderTutorialController : MonoBehaviour
             {
                 StartCoroutine(vitality_change());
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "At the top of the screen is the vitality bar. " +
-                    "Vitality controls how fast you can expand and construct. [Lclick]"
+                    "At the top of the screen is the <b>vitality bar</b>. " +
+                    "Vitality controls how fast the mycelium can grow. <b>[Lclick]</b>"
                 ));
                 firstcall = true;
                 lockClick = false;
@@ -190,8 +190,8 @@ public class NewBuilderTutorialController : MonoBehaviour
 
                 BuilderCamera.transform.position = new Vector3(10.0f, 30.0f, -10.0f);
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "Drag and Drop buildings on your mycelium.\n" +
-                    "Hover your mouse over the building icon for more information.", 575
+                    "<b>Drag and drop</b> buildings onto your mycelium.\n" +
+                    "Hover mouse over the building icons for more information.", 575
                 ));
                 firstcall = true;
                 Position2GroundManager(5, 31).SetGrowthed();
@@ -233,8 +233,9 @@ public class NewBuilderTutorialController : MonoBehaviour
             if (!firstcall)
             {
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "[LDrag] to select mushroom citizens. [RClick] lead them to a point.\n" +
-                    "Guide your citizens to attack the Snail!", 575
+                    "<b>[LDrag]</b> to select mushroom soldiers. " +
+                    "<b>[RClick]</b> to lead them to a point.\n" +
+                    "Guide your soldiers to attack the snail!", 575
                 ));
                 firstcall = true;
                 Instantiate(Resources.Load<GameObject>("Prefabs/BuilderTutorial/TCitizen"),
@@ -267,8 +268,8 @@ public class NewBuilderTutorialController : MonoBehaviour
                 EventBus.Publish(new StartBuilderTutorialEvent());
 
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "Unlike the previous buildings, the Spread Building is the source of new mycelium, " +
-                    "so it should be placed outside the mycelium. Drag and drop a new mycelium source.", 575
+                    "Unlike all other buildings, the <b>growth source</b> should be placed off the mycelium, " +
+                    "which will become a new origin of mycelium spread. Drag and drop a new source somewhere.", 575
                 ));
                 firstcall = true;
             }
@@ -287,7 +288,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             if (!firstcall)
             {
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "The new source of mycelium will gradually grow up.", 575
+                    "This new source of mycelium takes some time to mature.", 575
                 ));
                 firstcall = true;
                 StartCoroutine(waitForGrowth());
@@ -317,8 +318,8 @@ public class NewBuilderTutorialController : MonoBehaviour
                 BuilderCamera.transform.position = new Vector3(30.0f, 27.5f, -10.0f);
 
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "As the mucus approaches your mycelium, you can spend vitality to decay the mucus. " +
-                    "Try to decay the mucus on the screen."
+                    "If mucus surrounds your mycelium, you can spend some vitality to destroy them. " +
+                    "Try to decay the mucus in the middle of your view."
                 ));
                 firstcall = true;
 
@@ -363,8 +364,8 @@ public class NewBuilderTutorialController : MonoBehaviour
 
                 EventBus.Publish(new StartBuilderTutorialEvent());
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "Note that you have a max number of building. " +
-                    "You can increase the limit by adding more spread source. [Lclick]"
+                    "You have an <b>upper limit</b> of how many buildings you can place. " +
+                    "You can increase the limit by adding more spread source. <b>[Lclick]</b>"
                 ));
                 firstcall = true;
             }
@@ -389,8 +390,8 @@ public class NewBuilderTutorialController : MonoBehaviour
 
                 EventBus.Publish(new StartBuilderTutorialEvent());
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "Please note that the Snail may hide in the grass, " +
-                    "while small snails will come out of the cave to follow the big snail. [Lclick]"
+                    "The snail may hide in the grass, and small snails will emerge from the cave to follow the big snail. " +
+                    "You can destroy both by growing mycelium over them. <b>[Lclick]</b>"
                 ));
                 firstcall = true;
             }

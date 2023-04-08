@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c31490a46c4f6b8ad2a3b54f3c0ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  msg: A snail regenerates health faster and becomes invisible to mushrooms in bushes.
+  msg: Snail regenerates health and becomes invisible to mushrooms inside bushes.
 --- !u!1 &972103697
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,8 +420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c31490a46c4f6b8ad2a3b54f3c0ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  msg: This is a wild snail nest. Green snails are drawn out of their nest to help
-    with mushroom hunt.
+  msg: This is a <b>snail nest</b>. Small snails can be drawn out of their nest to
+    help with the mushroom hunt.
 --- !u!1 &1144692322
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c31490a46c4f6b8ad2a3b54f3c0ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  msg: Large mushrooms are all a snail can dream of. Go get'em!
+  msg: Big mushrooms are all that a snail can dream of. Go get'em!
 --- !u!1 &1655935139
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c31490a46c4f6b8ad2a3b54f3c0ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  msg: Hyphae kills bushes and snail nests. Protect them with slime!
+  msg: Mycelium destroys bushes and snail nests. Protect them with your mucus trail!
 --- !u!1 &1996659151
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,8 +907,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c31490a46c4f6b8ad2a3b54f3c0ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  msg: Consuming a block of hyphae grants a snail exp points. A snail gains new skills
-    / resources when the exp bar is filled.
+  msg: Consuming mycelium adds to the snail's <b>experience points</b>. It gains
+    new skills or resources when the experience bar fills up.
 --- !u!1 &1745094842904242053
 GameObject:
   m_ObjectHideFlags: 0
