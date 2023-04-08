@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HitHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth;
+    [SerializeField] public int maxHealth;
     [SerializeField] public int health;
     // [SerializeField] private string enemyTag;
     [SerializeField] private SpriteRenderer healthBar;
