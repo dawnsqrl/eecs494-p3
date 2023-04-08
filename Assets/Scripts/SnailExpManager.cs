@@ -104,7 +104,10 @@ public class SnailExpManager : MonoBehaviour
                 _snailSprintManager.AddSprintSpeed(2);
             }
         }
-
+        // add more health and eat speed
+        GetComponent<HitHealth>().health += 5;
+        GetComponent<HitHealth>().maxHealth += 5;
+        GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f;
         optionsBanner.SetActive(false);
     }
 

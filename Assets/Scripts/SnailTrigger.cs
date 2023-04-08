@@ -3,20 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SnailTrigger : MonoBehaviour
 {
     private float collisionTime;
-    private float time_eat_hyphae = 3f;
+    public float time_eat_hyphae = 3f;
     private SnailExpManager _snailExpManager;
 
     [SerializeField] private GameObject eatEffect;
     [SerializeField] private GameObject restoreEffect;
     [SerializeField] private HitHealth _hitHealth;
+    [SerializeField] private Image eatIndicator;
+    private Coroutine eatIndicatorCoroutine;
 
     private void Start()
     {
         _snailExpManager = GetComponent<SnailExpManager>();
+        eatIndicator.fillAmount = 0;
     }
 
     private void OnTriggerStay(Collider other)
@@ -44,6 +48,7 @@ public class SnailTrigger : MonoBehaviour
         {
             eatEffect.SetActive(true);
             collisionTime = Time.time;
+            eatIndicatorCoroutine = StartCoroutine(StartEatIndicator());
         }
     }
     
@@ -53,6 +58,8 @@ public class SnailTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Hyphae"))
         {
             eatEffect.SetActive(false);
+            StopCoroutine(eatIndicatorCoroutine);
+            eatIndicator.fillAmount = 0;
         }
         else if (other.gameObject.CompareTag("GrassHide"))
         {
@@ -61,6 +68,17 @@ public class SnailTrigger : MonoBehaviour
         }
     }
 
+    private IEnumerator StartEatIndicator()
+    {
+        float progress = time_eat_hyphae;
+        eatIndicator.fillAmount = 1;
 
+        while (progress > 0)
+        {
+            progress -= Time.deltaTime;
+            eatIndicator.fillAmount = progress / time_eat_hyphae;
+            yield return null;
+        }
+    } 
 
 }
