@@ -25,7 +25,8 @@ public class HitHealth : MonoBehaviour
     bool hitlock;
 
     private GameObject currentOpponent;
-    
+    [SerializeField] private GameObject lowHealthEffect;
+
 
     private void Start()
     {
@@ -60,6 +61,9 @@ public class HitHealth : MonoBehaviour
             canGetHit = false;
             StartCoroutine(HitEffect(1));
         }
+
+
+        
         if (health == 0)
         {
             EventBus.Publish(new TBaseCarDestroy());
@@ -102,6 +106,16 @@ public class HitHealth : MonoBehaviour
         if (CompareTag("Citizen") || CompareTag("LittleSnail"))
         {
             return;
+        }
+        
+        if (lowHealthEffect != null && health >= maxHealth * 0.25f && lowHealthEffect.activeSelf)
+        {
+            lowHealthEffect.SetActive(false);
+        }
+
+        if (lowHealthEffect != null && health < maxHealth * 0.25f && !lowHealthEffect.activeSelf)
+        {
+            lowHealthEffect.SetActive(true);
         }
         RecoverHealth();
     }
