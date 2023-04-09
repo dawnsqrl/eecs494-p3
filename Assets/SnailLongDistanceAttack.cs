@@ -45,8 +45,12 @@ public class SnailLongDistanceAttack : MonoBehaviour
             progress += Time.deltaTime * speed;
 
             Vector3 new_position = Vector3.Lerp(init_pos, dest_pos, progress);
-            longRangeMucus.transform.position = new_position;
-
+            if (new_position.x > 49.0f || new_position.y > 49.0f || new_position.x < 0.0f || new_position.y < 0.0f)
+                progress = 1.1f;
+            else
+            {
+                longRangeMucus.transform.position = new_position;
+            }
             yield return new WaitForEndOfFrame();
 
             GameObject target = findTarget(longRangeMucus.transform.position);
@@ -61,11 +65,10 @@ public class SnailLongDistanceAttack : MonoBehaviour
 
         if (!attacked)
         {
+            Destroy(longRangeMucus);
             Vector2 pos = new Vector2(Mathf.FloorToInt(dest_pos.x), Mathf.CeilToInt(dest_pos.y)); // may be uncorrect
             gridManager.GetTileAtPosition(pos).GetComponentInChildren<GroundTileManager>().SetMucus();
             gridManager.GetTileAtPosition(pos).GetComponentInChildren<GroundTileManager>().RemoveGrowthed();
-
-            Destroy(longRangeMucus);
         }
     }
 

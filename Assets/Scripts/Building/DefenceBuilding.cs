@@ -45,7 +45,7 @@ public class DefenceBuilding : MonoBehaviour
     private void Update()
     {
         Vector2 pos = new Vector2(0.0f, 0.0f);
-        ;
+        
         if (!isBuilderTutorialActive)
         {
             pos = new Vector2(BaseCar.transform.position.x, BaseCar.transform.position.y);

@@ -8,11 +8,11 @@ public class SnailExpManager : MonoBehaviour
 {
     [SerializeField] private int nextLevelExp;
     [SerializeField] public int currentExp;
-    [SerializeField] private GameObject expBar, flag;
+    [SerializeField] private GameObject expBar, upgradeIcon;
     [SerializeField] private GameObject levelUpBanner;
     [SerializeField] private GameObject optionsBanner;
     [SerializeField] private GameObject mineIcon;
-    [SerializeField] private GameObject sprintIcon, skillsCanvas;
+    [SerializeField] private GameObject sprintIcon, skillsChooseCanvas;
     [SerializeField] private GameObject sheild;
     private Controls _controls;
     private Controls.PlayerActions _playerActions;
@@ -50,7 +50,7 @@ public class SnailExpManager : MonoBehaviour
         canSelect = false;
         sheild = transform.parent.gameObject.transform.Find("Shield").gameObject;
 
-        skillsCanvas.SetActive(false);
+        skillsChooseCanvas.SetActive(false);
     }
 
     private void Update()
@@ -71,11 +71,11 @@ public class SnailExpManager : MonoBehaviour
 
     IEnumerator skillChooseAnimation()
     {
-        skillsCanvas.SetActive(true);
+        skillsChooseCanvas.SetActive(true);
         //yield return new WaitForSeconds(0.5f);
         float progress = 0.0f;
         float speed = 0.5f;
-        Vector3 initial_pos = flag.transform.position;
+        Vector3 initial_pos = upgradeIcon.transform.position;
         Vector3 dest_pos = transform.position;
         
 
@@ -85,10 +85,10 @@ public class SnailExpManager : MonoBehaviour
 
             //title.transform.position = objectPosition;
             float scale = Mathf.Lerp(0.0f, 1.0f, progress);
-            skillsCanvas.transform.localScale = new Vector3(scale, scale, scale);
+            skillsChooseCanvas.transform.localScale = new Vector3(scale, scale, scale);
 
             Vector3 new_position = Vector3.Lerp(initial_pos, dest_pos, progress);
-            skillsCanvas.transform.position = new_position;
+            skillsChooseCanvas.transform.position = new_position;
 
             yield return new WaitForEndOfFrame();
         }
@@ -110,7 +110,7 @@ public class SnailExpManager : MonoBehaviour
         while (tParam < 1)
         {
             if (tParam > 0.9)
-                flag.SetActive(true);
+                upgradeIcon.SetActive(true);
             tParam += Time.deltaTime * speedModifier;
 
             objectPosition = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
