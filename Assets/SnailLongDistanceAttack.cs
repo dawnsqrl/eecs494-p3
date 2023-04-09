@@ -11,6 +11,8 @@ public class SnailLongDistanceAttack : MonoBehaviour
     bool canSpit = false;
     int damage = 1;
 
+    bool attacklock = false;
+
     private void Awake()
     {
         EventBus.Subscribe<BaseCarDirectionEvent>(e => baseCarDirection = e.direction);
@@ -39,7 +41,7 @@ public class SnailLongDistanceAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha8) && canSpit)
+        if (Input.GetKeyDown(KeyCode.Alpha8) && canSpit && !attacklock)
         {
             StartCoroutine(StartAttack());
         }
@@ -47,6 +49,7 @@ public class SnailLongDistanceAttack : MonoBehaviour
 
     IEnumerator StartAttack()
     {
+        attacklock = true;
         float progress = 0.0f;
         float speed = 0.5f;
         bool attacked = false;
@@ -88,6 +91,8 @@ public class SnailLongDistanceAttack : MonoBehaviour
             gridManager.GetTileAtPosition(pos).GetComponentInChildren<GroundTileManager>().SetMucus();
             gridManager.GetTileAtPosition(pos).GetComponentInChildren<GroundTileManager>().RemoveGrowthed();
         }
+
+        attacklock = false;
     }
 
     private GameObject findTarget(Vector3 pos)
