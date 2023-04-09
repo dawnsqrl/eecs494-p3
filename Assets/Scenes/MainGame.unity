@@ -2909,6 +2909,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8600309828609052623, guid: ecd1d59253eb69645bb104b13d22c944, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecd1d59253eb69645bb104b13d22c944, type: 3}
 --- !u!4 &963572288 stripped
@@ -7780,6 +7784,10 @@ PrefabInstance:
       propertyPath: vd
       value: 
       objectReference: {fileID: 819354649}
+    - target: {fileID: 1118048889, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 800486421, guid: eccb2e5beb53848209cea3e932b7681c, type: 3}
     - target: {fileID: 1118048891, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: gridManager
       value: 
@@ -7792,6 +7800,10 @@ PrefabInstance:
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
+    - target: {fileID: 1118048891, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
+      propertyPath: buildingTexture
+      value: 
+      objectReference: {fileID: 1288014809, guid: eccb2e5beb53848209cea3e932b7681c, type: 3}
     - target: {fileID: 1195475749, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: gridManager
       value: 
