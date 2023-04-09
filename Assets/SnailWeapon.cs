@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,20 +13,23 @@ public class SnailWeapon : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _mesh;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        EventBus.Subscribe<SnailBombEvent>(_ => UseMine());
+    }
+
     void Start()
     {
         current_mines = 0;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void UseMine()
     {
-        if (Keyboard.current.kKey.wasPressedThisFrame) {
-            if (current_mines > 0) {
-                Instantiate(mines,transform.position,Quaternion.identity);
-                current_mines -= 1;
-                _mesh.text = current_mines.ToString();
-            }
+        if (current_mines > 0) {
+            Instantiate(mines,transform.position,Quaternion.identity);
+            current_mines -= 1;
+            _mesh.text = current_mines.ToString();
         }
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +14,17 @@ public class ShieldBehavior : MonoBehaviour
     bool canShield = false, activated = false;
 
     // Update is called once per frame
+    private void Awake()
+    {
+        EventBus.Subscribe<SnailShieldEvent>(_ => Shield());
+    }
+
     private void Start()
     {
         HP = max_HP;
         renderer = GetComponent<SpriteRenderer>();
-        EventBus.Subscribe<SnailShieldEvent>(_ => Shield());
     }
+
     void Update()
     {
         if (canShield && activated)

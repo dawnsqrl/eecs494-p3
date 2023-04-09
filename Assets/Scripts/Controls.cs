@@ -109,9 +109,45 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""LevelUpOption3"",
+                    ""type"": ""Button"",
+                    ""id"": ""8fb4e4e3-a252-412e-a921-44d06aa5c3f2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""fe2b3957-07b2-4ce4-841c-57ace975558a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spit"",
+                    ""type"": ""Button"",
+                    ""id"": ""48db073d-81de-4343-84ea-2f13ccdc45b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shield"",
+                    ""type"": ""Button"",
+                    ""id"": ""ab7e949f-fe40-498e-84c2-5b6ee33e7b09"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Bomb"",
+                    ""type"": ""Button"",
+                    ""id"": ""7572e8a6-2b38-474d-b3ea-432927e3767a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -325,6 +361,50 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c78fdd2-485e-4e7a-83a3-912f75041460"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""556acc5c-d236-499a-8e41-ad47cb39cb72"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""100f3585-31ad-4171-a5db-329ac6122d01"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LevelUpOption3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fdec9db4-5b07-4ac4-9e34-aaecf4e2c279"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Bomb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -666,7 +746,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_SnailLevelUpBegins = m_Player.FindAction("SnailLevelUpBegins", throwIfNotFound: true);
         m_Player_LevelUpOption1 = m_Player.FindAction("LevelUpOption1", throwIfNotFound: true);
         m_Player_LevelUpOption2 = m_Player.FindAction("LevelUpOption2", throwIfNotFound: true);
+        m_Player_LevelUpOption3 = m_Player.FindAction("LevelUpOption3", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_Spit = m_Player.FindAction("Spit", throwIfNotFound: true);
+        m_Player_Shield = m_Player.FindAction("Shield", throwIfNotFound: true);
+        m_Player_Bomb = m_Player.FindAction("Bomb", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -748,7 +832,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SnailLevelUpBegins;
     private readonly InputAction m_Player_LevelUpOption1;
     private readonly InputAction m_Player_LevelUpOption2;
+    private readonly InputAction m_Player_LevelUpOption3;
     private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_Spit;
+    private readonly InputAction m_Player_Shield;
+    private readonly InputAction m_Player_Bomb;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -762,7 +850,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @SnailLevelUpBegins => m_Wrapper.m_Player_SnailLevelUpBegins;
         public InputAction @LevelUpOption1 => m_Wrapper.m_Player_LevelUpOption1;
         public InputAction @LevelUpOption2 => m_Wrapper.m_Player_LevelUpOption2;
+        public InputAction @LevelUpOption3 => m_Wrapper.m_Player_LevelUpOption3;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @Spit => m_Wrapper.m_Player_Spit;
+        public InputAction @Shield => m_Wrapper.m_Player_Shield;
+        public InputAction @Bomb => m_Wrapper.m_Player_Bomb;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -799,9 +891,21 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @LevelUpOption2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelUpOption2;
                 @LevelUpOption2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelUpOption2;
                 @LevelUpOption2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelUpOption2;
+                @LevelUpOption3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelUpOption3;
+                @LevelUpOption3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelUpOption3;
+                @LevelUpOption3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelUpOption3;
                 @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Spit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpit;
+                @Spit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpit;
+                @Spit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpit;
+                @Shield.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShield;
+                @Shield.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShield;
+                @Shield.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShield;
+                @Bomb.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBomb;
+                @Bomb.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBomb;
+                @Bomb.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBomb;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -833,9 +937,21 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @LevelUpOption2.started += instance.OnLevelUpOption2;
                 @LevelUpOption2.performed += instance.OnLevelUpOption2;
                 @LevelUpOption2.canceled += instance.OnLevelUpOption2;
+                @LevelUpOption3.started += instance.OnLevelUpOption3;
+                @LevelUpOption3.performed += instance.OnLevelUpOption3;
+                @LevelUpOption3.canceled += instance.OnLevelUpOption3;
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @Spit.started += instance.OnSpit;
+                @Spit.performed += instance.OnSpit;
+                @Spit.canceled += instance.OnSpit;
+                @Shield.started += instance.OnShield;
+                @Shield.performed += instance.OnShield;
+                @Shield.canceled += instance.OnShield;
+                @Bomb.started += instance.OnBomb;
+                @Bomb.performed += instance.OnBomb;
+                @Bomb.canceled += instance.OnBomb;
             }
         }
     }
@@ -973,7 +1089,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnSnailLevelUpBegins(InputAction.CallbackContext context);
         void OnLevelUpOption1(InputAction.CallbackContext context);
         void OnLevelUpOption2(InputAction.CallbackContext context);
+        void OnLevelUpOption3(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnSpit(InputAction.CallbackContext context);
+        void OnShield(InputAction.CallbackContext context);
+        void OnBomb(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

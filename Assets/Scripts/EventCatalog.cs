@@ -287,6 +287,10 @@ public class SnailSprintEvent
 {
 }
 
+public class SnailBombEvent
+{
+}
+
 public class SnailSpitEvent
 {
 }
