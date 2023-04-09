@@ -46,18 +46,22 @@ public class MineBehavior : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Finding buildings");
+
         GameObject nearestBuilding = BuildingController.NearestBuilding(transform.position);
         while (nearestBuilding != null && Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(nearestBuilding.transform.position.x, nearestBuilding.transform.position.y))<damage_radius) {
-            Debug.Log("stucked");
+            if (nearestBuilding.CompareTag("Mushroom"))
+            {
+               continue;
+            }
             Destroy(nearestBuilding);
+            yield return null;
             nearestBuilding= BuildingController.NearestBuilding(transform.position);
         }
         List<Vector2> tile_list = Get_tiles_in_range(new Vector2(transform.position.x, transform.position.y), damage_radius);
         foreach (Vector2 pos in tile_list) {
             if (GridManager._tiles.ContainsKey(pos)) {
                 GridManager._tiles[pos].GetComponentInChildren<GroundTileManager>().SetMucus();
-                GridManager._tiles[pos].GetComponentInChildren<GroundTileManager>().growthed = false;
+                GridManager._tiles[pos].GetComponentInChildren<GroundTileManager>().RemoveGrowthed();
             }
         }
         yield return new WaitForSeconds(0.4f);

@@ -6366,6 +6366,10 @@ PrefabInstance:
       propertyPath: _mesh
       value: 
       objectReference: {fileID: 1907975228}
+    - target: {fileID: 7265589556658211210, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
+      propertyPath: current_mines
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8305987452694465226, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: mineIcon
       value: 
