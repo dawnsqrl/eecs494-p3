@@ -12,15 +12,17 @@ public class SnailTrigger : MonoBehaviour
     private SnailExpManager _snailExpManager;
 
     [SerializeField] private GameObject eatEffect;
-    [SerializeField] private GameObject restoreEffect;
+    [SerializeField] public GameObject restoreEffect;
     [SerializeField] private HitHealth _hitHealth;
     [SerializeField] private Image eatIndicator;
     private Coroutine eatIndicatorCoroutine;
+    public GameObject currentGrass;
 
     private void Start()
     {
         _snailExpManager = GetComponent<SnailExpManager>();
         eatIndicator.fillAmount = 0;
+        currentGrass = null;
     }
 
     private void OnTriggerStay(Collider other)
@@ -51,6 +53,7 @@ public class SnailTrigger : MonoBehaviour
         {
             GetComponent<HitHealth>().SetHealthRestoreRate(0.7f);
             restoreEffect.SetActive(true);
+            currentGrass = other.gameObject;
         }
        
     }
@@ -85,6 +88,7 @@ public class SnailTrigger : MonoBehaviour
         {
             GetComponent<HitHealth>().SetHealthRestoreRate(0.1f);
             restoreEffect.SetActive(false);
+            currentGrass = null;
         }
     }
 

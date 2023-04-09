@@ -8,7 +8,7 @@ public class DefenceBuilding : MonoBehaviour
     private GameObject AttackRange, AttackRangeTransparent, BaseCar;
     Vector3 denfenceOriginScale;
     bool OnDrag = false;
-    Vector3 bomb_pos;
+    // Vector3 bomb_pos;
 
     bool ready = true;
 
@@ -78,15 +78,15 @@ public class DefenceBuilding : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         foreach (GameObject snail in AutoEnemyControl.foundSnails)
         {
-            BombHit(snail);
+            BombHit(snail, bomb_pos);
         }
 
         foreach (GameObject snail in AutoEnemyControl.autoSnails)
         {
-            BombHit(snail);
+            BombHit(snail, bomb_pos);
         }
 
-        BombHit(BaseCar);
+        BombHit(BaseCar, bomb_pos);
         GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), bomb_pos,
             Quaternion.identity);
         yield return new WaitForSeconds(0.75f);
@@ -95,7 +95,7 @@ public class DefenceBuilding : MonoBehaviour
         ready = true;
     }
 
-    private void BombHit(GameObject target)
+    private void BombHit(GameObject target, Vector2 bomb_pos)
     {
         if (!target.IsDestroyed() &&
             Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.y), bomb_pos) <= 1)

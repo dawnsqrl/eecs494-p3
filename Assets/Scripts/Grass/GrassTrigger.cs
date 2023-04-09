@@ -68,6 +68,13 @@ public class GrassTrigger : MonoBehaviour
         yield return new WaitForSeconds(1);
         AudioClip clip = Resources.Load<AudioClip>("Audio/BushDies");
         AudioSource.PlayClipAtPoint(clip, transform.position);
+        GameObject snail = GameObject.Find("Basecar").gameObject;
+        if ( snail.GetComponentInChildren<SnailTrigger>().currentGrass == _gameObject)
+        {
+            snail.GetComponentInChildren<HitHealth>().SetHealthRestoreRate(0.1f);
+            snail.GetComponentInChildren<SnailTrigger>().restoreEffect.SetActive(false);
+            snail.GetComponentInChildren<SnailTrigger>().currentGrass = null;
+        }
         Destroy(_gameObject);
     }
 }
