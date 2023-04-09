@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class TutorialTrapManager : MonoBehaviour
 {
+    private bool set = false;
     [SerializeField] private List<GroundTileManager> _tiles;
     private void OnTriggerEnter(Collider other)
     {
-        foreach (var _tile in _tiles)
+        if (!set && other.CompareTag("BaseCar"))
         {
-            _tile.SetGrowthed();
+            set = true;
+            foreach (var _tile in _tiles)
+            {
+                _tile.SetGrowthed();
+            }
         }
     }
 }

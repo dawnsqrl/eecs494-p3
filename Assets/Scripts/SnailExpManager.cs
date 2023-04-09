@@ -61,6 +61,7 @@ public class SnailExpManager : MonoBehaviour
         shield = transform.parent.gameObject.transform.Find("Shield").gameObject;
 
         skillsChooseCanvas.SetActive(false);
+        currentExp = 0;
     }
 
     public void AddExpPoints(int exp)
