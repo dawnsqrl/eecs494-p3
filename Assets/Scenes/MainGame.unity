@@ -13210,10 +13210,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 560697544}
     m_Modifications:
-    - target: {fileID: 2190625779292678577, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 80
-      objectReference: {fileID: 0}
     - target: {fileID: 2190625779402717392, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
       propertyPath: m_Name
       value: VitalityCanvas
@@ -13313,18 +13309,6 @@ PrefabInstance:
     - target: {fileID: 2190625780281914839, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6777137679077778789, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 355.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6777137679077778789, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 79.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6777137679077778789, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 368
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
