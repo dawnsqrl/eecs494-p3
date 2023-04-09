@@ -35,10 +35,11 @@ public class SnailLongDistanceAttack : MonoBehaviour
         bool attacked = false;
 
         yield return null;
-        GameObject longRangeMucus = Instantiate(Resources.Load<GameObject>("Prefabs/Mucus"), transform.position,
+        GameObject longRangeMucus = Instantiate(Resources.Load<GameObject>("Prefabs/Flag"), transform.position,
             Quaternion.identity);
         Vector3 init_pos = transform.position;
-        Vector3 dest_pos = transform.position + baseCarDirection.normalized * attackRange; // set main direction?
+        Vector3 dest_pos = transform.position + baseCarDirection.normalized * attackRange;
+        print(dest_pos);
         while (progress < 1)
         {
             progress += Time.deltaTime * speed;
@@ -58,21 +59,58 @@ public class SnailLongDistanceAttack : MonoBehaviour
             }   
         }
 
-        if (attacked)
+        if (!attacked)
         {
             Vector2 pos = new Vector2(Mathf.FloorToInt(dest_pos.x), Mathf.CeilToInt(dest_pos.y)); // may be uncorrect
             gridManager.GetTileAtPosition(pos).GetComponentInChildren<GroundTileManager>().SetMucus();
             gridManager.GetTileAtPosition(pos).GetComponentInChildren<GroundTileManager>().RemoveGrowthed();
+
+            Destroy(longRangeMucus);
         }
     }
 
     private GameObject findTarget(Vector3 pos)
     {
+        print("tagpos");
+        print(pos);
+        float detect_dis = 2.0f;
         GameObject nearestBuilding = BuildingController.NearestBuilding(pos);
-        float building_dis = Vector3.Distance(new Vector3(pos.x, pos.y, -2.0f), nearestBuilding.transform.position);
+        float building_dis;
 
-        //GameObject nearestCitizen = CitizenControl.NearestCitizen(pos);
+        if (nearestBuilding == null)
+            building_dis = 100.0f;
+        else
+        {
+            if(nearestBuilding.name == "Mushroom")
+                building_dis = Vector3.Distance(new Vector3(pos.x, pos.y, 0.0f), nearestBuilding.transform.position);
+            else
+                building_dis = Vector3.Distance(new Vector3(pos.x, pos.y, -2.0f), nearestBuilding.transform.position);
+        }
+            
 
-        return null;    
+        //print(nearestBuilding.transform.position);
+
+        GameObject nearestCitizen = CitizenControl.NearestCitizen(pos);
+        float citizen_dis;
+
+        if (nearestCitizen == null)
+            citizen_dis = 100.0f;
+        else
+            citizen_dis = Vector3.Distance(new Vector3(pos.x, pos.y, -2.0f), nearestCitizen.transform.position);
+
+        if (building_dis < citizen_dis)
+        {
+            if (building_dis < detect_dis)
+                return nearestBuilding;
+            else
+                return null;
+        }
+        else
+        {
+            if (citizen_dis < detect_dis)
+                return nearestCitizen;
+            else
+                return null;
+        } 
     }
 }
