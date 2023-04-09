@@ -43,25 +43,30 @@ public class InputInterface : MonoBehaviour
             EventBus.Publish(new SnailLevelupOptionEvent_2());
         }
 
-        //if (playerActions.LevelUpOption3.WasPressedThisFrame()) // press 3 to choose skill
-        //{
-        //    EventBus.Publish(new SnailLevelupOptionEvent_3());
-        //}
+        if (playerActions.LevelUpOption3.WasPressedThisFrame()) // press 3 to choose skill
+        {
+            EventBus.Publish(new SnailLevelupOptionEvent_3());
+        }
 
         if (playerActions.Sprint.WasPressedThisFrame())
         {
             EventBus.Publish(new SnailSprintEvent());
         }
 
-        //if (playerActions.Spit.WasPressedThisFrame())
-        //{
-        //    EventBus.Publish(new SnailSpitEvent());
-        //}
+        if (playerActions.Spit.WasPressedThisFrame())
+        {
+            EventBus.Publish(new SnailSpitEvent());
+        }
 
-        //if (playerActions.Shield.WasPressedThisFrame())
-        //{
-        //    EventBus.Publish(new SnailShieldEvent());
-        //}
+        if (playerActions.Shield.WasPressedThisFrame())
+        {
+            EventBus.Publish(new SnailShieldEvent());
+        }
+
+        if (playerActions.Bomb.WasPressedThisFrame())
+        {
+            EventBus.Publish(new SnailBombEvent());
+        }
 
         // if (playerActions.GenerateDialog.WasPressedThisFrame())
         // {
