@@ -67,6 +67,7 @@ public class BasecarController : MonoBehaviour
         {
             // Move the player in the direction of the input
             direction = playerActions.MoveBaseCar.ReadValue<Vector2>();
+            EventBus.Publish(new BaseCarDirectionEvent(direction));
             _animator.SetFloat("dir_x", direction.x);
             if (direction.magnitude > 0)
             {

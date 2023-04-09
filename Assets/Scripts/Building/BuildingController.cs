@@ -70,7 +70,6 @@ public class BuildingController : MonoBehaviour
         {
             buildings.Remove(item.Key);
         }
-
     }
 
     public static GameObject NearestBuilding(Vector3 pos)

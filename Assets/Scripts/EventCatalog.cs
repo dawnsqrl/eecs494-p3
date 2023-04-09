@@ -308,3 +308,13 @@ public class CloseZoomEvent
 public class TBaseCarDestroy
 {
 }
+
+public class BaseCarDirectionEvent
+{
+    public Vector3 direction;
+
+    public BaseCarDirectionEvent(Vector3 _direction)
+    {
+        direction = _direction;
+    }
+}
