@@ -287,6 +287,14 @@ public class SnailSprintEvent
 {
 }
 
+public class SnailSpitEvent
+{
+}
+
+public class SnailShieldEvent
+{
+}
+
 
 // builder Tutorial
 public class OpenZoomEvent
