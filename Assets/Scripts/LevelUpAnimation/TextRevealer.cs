@@ -105,8 +105,8 @@ public class TextRevealer : MonoBehaviour
 											maxIndex: paragraphEnd,
 											fadeLength: numCharactersFade);
 
-			tt.SetActive(true);
 
+			tt.SetActive(true);
 			yield return null;
 		}
 

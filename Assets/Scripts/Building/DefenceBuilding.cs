@@ -15,6 +15,10 @@ public class DefenceBuilding : MonoBehaviour
     int DefenceRange;
     bool isBuilderTutorialActive = false;
 
+    [SerializeField] private Transform[] routes;
+
+    Vector2 p0, p1, p2, p3;
+
     private void Awake()
     {
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => isBuilderTutorialActive = true);
@@ -72,25 +76,73 @@ public class DefenceBuilding : MonoBehaviour
         }
     }
 
-    IEnumerator BombAnimate(Vector3 bomb_pos)
+    IEnumerator BombAnimate(Vector3 explode_pos)
     {
+        float tParam = 0.0f;
+        float speedModifier = 0.5f;
         ready = false;
         yield return new WaitForSeconds(0.5f);
+
+        while (tParam < 1)
+        {
+            tParam += Time.deltaTime * speedModifier;
+
+            float scale = Mathf.Lerp(1.0f, 0.67f, tParam);
+            transform.localScale = new Vector3(1.0f, scale, 1.0f);
+
+            float ymove = Mathf.Lerp(0.0f, 0.67f, tParam);
+            transform.position = new Vector3(transform.position.x, transform.position.y - ymove, transform.position.z);
+            yield return null;// new WaitForEndOfFrame();
+        }
+
+        tParam = 0.0f;
+        while (tParam < 1)
+        {
+            tParam += Time.deltaTime * speedModifier;
+
+            float scale = Mathf.Lerp(0.67f, 1.0f, tParam);
+            transform.localScale = new Vector3(1.0f, scale, 1.0f);
+
+            float ymove = Mathf.Lerp(0.0f, 0.67f, tParam);
+            transform.position = new Vector3(transform.position.x, transform.position.y + ymove, transform.position.z);
+            yield return null;// new WaitForEndOfFrame();
+        }
+
+        GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), routes[0].position,
+            Quaternion.identity);
+
+        tParam = 0.0f;
+        while (tParam < 1)
+        {
+            tParam += Time.deltaTime * speedModifier;
+
+            p0 = routes[0].position;
+            p1 = routes[1].position;
+            p2 = new Vector2(explode_pos.x, explode_pos.y + 3.0f);
+            p3 = explode_pos;
+            Vector2 objectPosition = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
+
+            bomb.transform.position = new Vector3(objectPosition.x, objectPosition.y, 0.0f);// - cameraPos + cameraOldPos;
+            yield return null;// new WaitForEndOfFrame();
+        }
+
+        Destroy(bomb);
+
         foreach (GameObject snail in AutoEnemyControl.foundSnails)
         {
-            BombHit(snail, bomb_pos);
+            BombHit(snail, explode_pos);
         }
 
         foreach (GameObject snail in AutoEnemyControl.autoSnails)
         {
-            BombHit(snail, bomb_pos);
+            BombHit(snail, explode_pos);
         }
 
-        BombHit(BaseCar, bomb_pos);
-        GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), bomb_pos,
+        BombHit(BaseCar, explode_pos);
+        GameObject explode = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/explode"), explode_pos,
             Quaternion.identity);
         yield return new WaitForSeconds(0.75f);
-        Destroy(bomb);
+        Destroy(explode);
         yield return new WaitForSeconds(0.5f);
         ready = true;
     }
