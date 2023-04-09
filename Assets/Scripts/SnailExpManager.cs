@@ -12,7 +12,7 @@ public class SnailExpManager : MonoBehaviour
     [SerializeField] private GameObject levelUpBanner;
     [SerializeField] private GameObject optionsBanner;
     [SerializeField] private GameObject mineIcon;
-    [SerializeField] private GameObject sprintIcon;
+    [SerializeField] private GameObject sprintIcon, skillsCanvas;
     [SerializeField] private GameObject sheild;
     private Controls _controls;
     private Controls.PlayerActions _playerActions;
