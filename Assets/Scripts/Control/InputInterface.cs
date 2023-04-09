@@ -42,7 +42,12 @@ public class InputInterface : MonoBehaviour
         {
             EventBus.Publish(new SnailLevelupOptionEvent_2());
         }
-        
+
+        //if (playerActions.LevelUpOption3.WasPressedThisFrame())
+        //{
+        //    EventBus.Publish(new SnailLevelupOptionEvent_3());
+        //}
+
         if (playerActions.Sprint.WasPressedThisFrame())
         {
             EventBus.Publish(new SnailSprintEvent());

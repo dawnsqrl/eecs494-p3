@@ -279,6 +279,10 @@ public class SnailLevelupOptionEvent_2
 {
 }
 
+public class SnailLevelupOptionEvent_3
+{
+}
+
 public class SnailSprintEvent
 {
 }

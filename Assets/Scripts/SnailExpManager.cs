@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SnailExpManager : MonoBehaviour
 {
@@ -11,17 +12,21 @@ public class SnailExpManager : MonoBehaviour
     [SerializeField] private GameObject expBar, upgradeIcon;
     [SerializeField] private GameObject levelUpBanner;
     [SerializeField] private GameObject optionsBanner;
-    [SerializeField] private GameObject mineIcon;
-    [SerializeField] private GameObject sprintIcon, skillsChooseCanvas;
-    [SerializeField] private GameObject sheild;
+    [SerializeField] private GameObject option1Object, option2Object, option3Object;
+    [SerializeField] private GameObject mineIcon, spitIcon, sprintIcon, shieldIcon;
+    [SerializeField] private GameObject skillsChooseCanvas, title_pointer;
+    [SerializeField] private Sprite mineSprite, spitSprite, sprintSprite, shieldSprite;
+    private GameObject shield;
     private Controls _controls;
     private Controls.PlayerActions _playerActions;
     private int pendingLevelUps;
-    private bool canSelect;
+    private bool canSelect, levelUpAnimationAllowed = true;
     private SnailSprintManager _snailSprintManager;
+    private SnailLongDistanceAttack _snailSpitManager;
     private SnailWeapon _snailWeapon;
 
     [SerializeField] private Transform[] routes;
+    [SerializeField] private Camera basecarCamera;
 
     private Vector2 objectPosition;
     public GameObject title;
@@ -29,12 +34,17 @@ public class SnailExpManager : MonoBehaviour
     float tParam = 0f, speedModifier = 0.5f;
     bool coroutineAllowed = true;
 
+    // option: 1 -> sprint, 2 -> mine, 3 -> shield, 4 -> spit
+    private int randomOption1 = 0, randomOption2 = 0, randomOption3 = 0;
+
     private void Awake()
     {
         EventBus.Subscribe<SnailLevelUpEvent>(_ => LevelUp());
         EventBus.Subscribe<SnailLevelupOptionEvent_1>(_ => OptionSelect(1));
         EventBus.Subscribe<SnailLevelupOptionEvent_2>(_ => OptionSelect(2));
+        EventBus.Subscribe<SnailLevelupOptionEvent_3>(_ => OptionSelect(3));
         _snailSprintManager = transform.parent.gameObject.GetComponent<SnailSprintManager>();
+        _snailSpitManager = transform.parent.gameObject.GetComponent<SnailLongDistanceAttack>();
         _snailWeapon = transform.parent.gameObject.GetComponent<SnailWeapon>();
     }
 
@@ -48,82 +58,9 @@ public class SnailExpManager : MonoBehaviour
         _controls = new Controls();
         _playerActions = _controls.Player;
         canSelect = false;
-        sheild = transform.parent.gameObject.transform.Find("Shield").gameObject;
+        shield = transform.parent.gameObject.transform.Find("Shield").gameObject;
 
         skillsChooseCanvas.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            tParam = 0f;
-            speedModifier = 0.5f;
-            coroutineAllowed = true;
-            StartCoroutine(levelUpAnimation());
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            StartCoroutine(skillChooseAnimation());
-        }
-    }
-
-    IEnumerator skillChooseAnimation()
-    {
-        skillsChooseCanvas.SetActive(true);
-        //yield return new WaitForSeconds(0.5f);
-        float progress = 0.0f;
-        float speed = 0.5f;
-        Vector3 initial_pos = upgradeIcon.transform.position;
-        Vector3 dest_pos = transform.position;
-        
-
-        while (progress < 1)
-        {
-            progress += Time.deltaTime * speed;
-
-            //title.transform.position = objectPosition;
-            float scale = Mathf.Lerp(0.0f, 1.0f, progress);
-            skillsChooseCanvas.transform.localScale = new Vector3(scale, scale, scale);
-
-            Vector3 new_position = Vector3.Lerp(initial_pos, dest_pos, progress);
-            skillsChooseCanvas.transform.position = new_position;
-
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    IEnumerator levelUpAnimation()
-    {
-        yield return new WaitForSeconds(0.0f);
-        title.SetActive(true);
-        GetComponent<TextRevealer>().RevealText(title);
-        yield return new WaitForSeconds(4.0f);
-
-        coroutineAllowed = false;
-        Vector2 p0 = routes[0].position;
-        Vector2 p1 = routes[1].position;
-        Vector2 p2 = routes[2].position;
-        Vector2 p3 = routes[3].position;
-
-        while (tParam < 1)
-        {
-            if (tParam > 0.9)
-                upgradeIcon.SetActive(true);
-            tParam += Time.deltaTime * speedModifier;
-
-            objectPosition = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
-
-            title.transform.position = objectPosition;
-            float scale = Mathf.Lerp(1.0f, 0.1f, tParam);
-            title.transform.localScale = new Vector3(scale, scale, scale); 
-            yield return new WaitForEndOfFrame();
-        }
-
-        tParam = 0f;
-
-        coroutineAllowed = true;
     }
 
     public void AddExpPoints(int exp)
@@ -135,13 +72,15 @@ public class SnailExpManager : MonoBehaviour
             AudioSource.PlayClipAtPoint(clip, transform.position);
             pendingLevelUps++;
             currentExp = 0;
+            if (coroutineAllowed)
+                StartCoroutine(levelUpAnimation());
         }
         expBar.GetComponent<SpriteRenderer>().size =
             new Vector2((float)currentExp / (float)nextLevelExp * 10, expBar.GetComponent<SpriteRenderer>().size.y);
-        if (pendingLevelUps > 0 && !levelUpBanner.activeSelf)
-        {
-            levelUpBanner.SetActive(true);
-        }
+        //if (pendingLevelUps > 0 && !levelUpBanner.activeSelf)
+        //{
+        //    levelUpBanner.SetActive(true);
+        //}
     }
 
     public void LevelUp()
@@ -150,34 +89,147 @@ public class SnailExpManager : MonoBehaviour
         {
             // active selection menu
             // wait for input
-            optionsBanner.SetActive(true);
-            canSelect = true;
-            AudioClip clip = Resources.Load<AudioClip>("Audio/SnailLevelUp");
-            AudioSource.PlayClipAtPoint(clip, transform.position);
-            pendingLevelUps--;
+            //optionsBanner.SetActive(true);
+            if (levelUpAnimationAllowed)
+            {
+                StartCoroutine(skillChooseAnimation());
+                AudioClip clip = Resources.Load<AudioClip>("Audio/SnailLevelUp");
+                AudioSource.PlayClipAtPoint(clip, transform.position);
+            }
         }
-        if (pendingLevelUps <= 0 && levelUpBanner.activeSelf)
+        if (pendingLevelUps <= 0)
         {
-            levelUpBanner.SetActive(false);
+            upgradeIcon.SetActive(false);
+            title.SetActive(false);
         }
     }
 
-    public void OptionSelect(int option)
+    IEnumerator skillChooseAnimation()
+    {
+        print("startChoose");
+        levelUpAnimationAllowed = false;
+        canSelect = false;
+        skillsChooseCanvas.SetActive(true);
+        //yield return new WaitForSeconds(0.5f);
+        float progress = 0.0f;
+        float speed = 0.5f;
+        Vector3 initial_pos = upgradeIcon.transform.position;
+        Vector3 dest_pos = transform.position;
+
+        generate_random_skill_choose();
+        
+        while (progress < 1)
+        {
+            progress += Time.deltaTime * speed;
+
+            //title.transform.position = objectPosition;
+            float scale = Mathf.Lerp(0.0f, 1.0f, progress);
+            skillsChooseCanvas.transform.localScale = new Vector3(scale, scale, scale);
+
+            initial_pos = upgradeIcon.transform.position;
+            dest_pos = transform.position;
+
+            Vector3 new_position = Vector3.Lerp(new Vector3(initial_pos.x, initial_pos.y, -2.0f), new Vector3(dest_pos.x, dest_pos.y, -2.0f), progress);
+            skillsChooseCanvas.transform.position = new_position;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        canSelect = true;
+        levelUpAnimationAllowed = true;
+    }
+
+    IEnumerator levelUpAnimation()
+    {
+        tParam = 0f;
+        speedModifier = 0.5f;
+
+        //Vector3 title_ini_pos = title.transform.position;
+        GetComponent<TextRevealer>().RevealText(title);
+        yield return new WaitForSeconds(4.0f);
+
+        coroutineAllowed = false;
+        Vector2 p0 = routes[0].position;
+        Vector2 p1 = routes[1].position;
+        Vector2 p2 = routes[2].position;
+        Vector2 p3 = routes[3].position;
+
+        Vector3 cameraPos, cameraOldPos;
+
+        cameraOldPos = basecarCamera.transform.position;
+        while (tParam < 1)
+        {
+            cameraPos = basecarCamera.transform.position;
+            if (tParam > 0.9 && !upgradeIcon.activeSelf)
+                upgradeIcon.SetActive(true);
+            tParam += Time.deltaTime * speedModifier;
+
+            p0 = routes[0].position;
+            p1 = routes[1].position;
+            p2 = routes[2].position;
+            p3 = routes[3].position;
+            objectPosition = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
+
+            title.transform.position = new Vector3(objectPosition.x, objectPosition.y, 0.0f);// - cameraPos + cameraOldPos;
+            cameraOldPos = cameraPos;
+            float scale = Mathf.Lerp(1.0f, 0.1f, tParam);
+            title.transform.localScale = new Vector3(scale, scale, scale);
+            yield return null;// new WaitForEndOfFrame();
+        }
+
+        tParam = 0f;
+
+        coroutineAllowed = true;
+        title.SetActive(false);
+        title.transform.position = title_pointer.transform.position;
+        title.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        title.GetComponent<TMPro.TextMeshProUGUI>().text = "Level up!";
+    }
+
+    public void OptionSelect(int selectedOptionButton)
     {
         if (!canSelect)
         {
             return;
         }
         canSelect = false;
-        if (option == 1)
+        Upgrade_or_Activate(selectedOptionButton);
+
+        // add more health and eat speed
+        GetComponent<HitHealth>().health += 5;
+        GetComponent<HitHealth>().maxHealth += 5;
+        GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f;
+        //optionsBanner.SetActive(false);
+        skillsChooseCanvas.SetActive(false);
+
+        pendingLevelUps--;
+        if (pendingLevelUps <= 0)
         {
-            if (!mineIcon.activeSelf)
-            {
-                mineIcon.SetActive(true);
-            }
-            _snailWeapon.AddMine(3);
+            upgradeIcon.SetActive(false);
+            title.SetActive(false);
         }
-        else if (option == 2)
+    }
+
+    private void Upgrade_or_Activate(int selectedOptionButton)
+    {
+        if (selectedOptionButton == 1)
+        {
+            processRealOption(randomOption1);
+        }
+        else if (selectedOptionButton == 2)
+        {
+            processRealOption(randomOption2);
+        }
+        else if (selectedOptionButton == 3)
+        {
+            processRealOption(randomOption3);
+        }
+    }
+
+    private void processRealOption(int realOption)
+    {
+        // option: 1 -> sprint, 2 -> mine, 3 -> shield, 4 -> spit
+        if (realOption == 1)
         {
             if (!_snailSprintManager.CanSprint())
             {
@@ -188,19 +240,116 @@ public class SnailExpManager : MonoBehaviour
             {
                 _snailSprintManager.AddSprintSpeed(2);
             }
-        }else if (option == 3) {
-            if (!sheild.activeSelf) {
-                sheild.SetActive(true);
+        }
+        else if (realOption == 2)
+        {
+            if (!mineIcon.activeSelf)
+            {
+                mineIcon.SetActive(true);
             }
-            else {
-                sheild.GetComponent<ShieldBehavior>().GetFullHP();
+            _snailWeapon.AddMine(3);
+        }
+        else if (realOption == 3) // input & upgrade function
+        {
+            if (!shieldIcon.activeSelf)
+            {
+                shieldIcon.SetActive(true);
+            }
+            else
+            {
+                shield.GetComponent<ShieldBehavior>().GetFullHP();
             }
         }
-        // add more health and eat speed
-        GetComponent<HitHealth>().health += 5;
-        GetComponent<HitHealth>().maxHealth += 5;
-        GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f;
-        optionsBanner.SetActive(false);
+        else if (realOption == 4)
+        {
+            if (!spitIcon.activeSelf)
+            {
+                spitIcon.SetActive(true);
+                _snailSpitManager.EnableSpit();
+            }
+            else
+            {
+                _snailSpitManager.setDamage(_snailSpitManager.getDamage() + 1);
+            }
+        }
     }
 
+    private void generate_random_skill_choose()
+    {
+        randomOption1 = UnityEngine.Random.Range(1, 5);
+        while(true)
+        {
+            randomOption2 = UnityEngine.Random.Range(1, 5);
+            if (randomOption2 != randomOption1)
+                break;
+        }
+        while (true)
+        {
+            randomOption3 = UnityEngine.Random.Range(1, 5);
+            if (randomOption3 != randomOption1 && randomOption2 != randomOption3)
+                break;
+        }
+
+        set_option_canvas(option1Object, randomOption1);
+        set_option_canvas(option2Object, randomOption2);
+        set_option_canvas(option3Object, randomOption3);
+    }
+
+    private void set_option_canvas(GameObject optionObject, int option)
+    {
+        // option: 1 -> sprint, 2 -> mine, 3 -> shield, 4 -> spit
+        if (option == 1)
+        {
+            setImage(optionObject, sprintSprite);
+            setName(optionObject, "Sprint");
+            if (!sprintIcon.activeSelf)
+                setFunction(optionObject, "Activate");
+            else
+                setFunction(optionObject, "Upgrade");
+        }
+        else if (option == 2)
+        {
+            setImage(optionObject, mineSprite);
+            setName(optionObject, "Mine");
+            if (!mineIcon.activeSelf)
+                setFunction(optionObject, "Activate");
+            else
+                setFunction(optionObject, "Upgrade");
+        }
+        else if (option == 3)
+        {
+            setImage(optionObject, shieldSprite);
+            setName(optionObject, "Shield");
+            if (!shieldIcon.activeSelf)
+                setFunction(optionObject, "Activate");
+            else
+                setFunction(optionObject, "Upgrade");
+        }
+        else if (option == 4)
+        {
+            setImage(optionObject, spitSprite);
+            setName(optionObject, "Spit");
+            if (!spitIcon.activeSelf)
+                setFunction(optionObject, "Activate");
+            else
+                setFunction(optionObject, "Upgrade");
+        }
+    }
+
+    private void setImage(GameObject optionObject, Sprite _image)
+    {
+        optionObject.transform.Find("optionIconHolder").transform.Find("optionImage").gameObject.GetComponent<Image>().sprite = _image;
+    }
+    private void setName(GameObject optionObject, String nameStr)
+    {
+        optionObject.transform.Find("name").gameObject.transform.Find("Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = nameStr;
+    }
+    private void setKey(GameObject optionObject, String keyStr)
+    {
+        optionObject.transform.Find("Key").gameObject.transform.Find("Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = keyStr;
+    }
+    private void setFunction(GameObject optionObject, String function)
+    {
+        optionObject.transform.Find("function").gameObject.transform.Find("Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = function;
+    }
 }

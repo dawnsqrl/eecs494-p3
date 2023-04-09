@@ -8,6 +8,8 @@ public class SnailLongDistanceAttack : MonoBehaviour
     public GridManager gridManager;
 
     float attackRange = 5.0f;
+    bool canSpit = false;
+    int damage = 1;
 
     private void Awake()
     {
@@ -19,10 +21,25 @@ public class SnailLongDistanceAttack : MonoBehaviour
 
     }
 
+    public void EnableSpit()
+    {
+        canSpit = true;
+    }
+
+    public void setDamage(int _damage)
+    {
+        damage = _damage;
+    }
+
+    public int getDamage()
+    {
+        return damage;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha8))
+        if (Input.GetKeyDown(KeyCode.Alpha8) && canSpit)
         {
             StartCoroutine(StartAttack());
         }
@@ -35,8 +52,9 @@ public class SnailLongDistanceAttack : MonoBehaviour
         bool attacked = false;
 
         yield return null;
-        GameObject longRangeMucus = Instantiate(Resources.Load<GameObject>("Prefabs/Flag"), transform.position,
+        GameObject longRangeMucus = Instantiate(Resources.Load<GameObject>("Prefabs/Spit"), transform.position,
             Quaternion.identity);
+        longRangeMucus.transform.eulerAngles = new Vector3(0.0f, 0.0f, setRotation(baseCarDirection.normalized.x, baseCarDirection.normalized.y));
         Vector3 init_pos = transform.position;
         Vector3 dest_pos = transform.position + baseCarDirection.normalized * attackRange;
         print(dest_pos);
@@ -56,7 +74,7 @@ public class SnailLongDistanceAttack : MonoBehaviour
             GameObject target = findTarget(longRangeMucus.transform.position);
             if (target != null)
             {
-                target.GetComponentInChildren<HitHealth>().GetDamage(1);
+                target.GetComponentInChildren<HitHealth>().GetDamage(damage);
                 progress = 1.1f;
                 Destroy(longRangeMucus);
                 attacked = true;
@@ -115,5 +133,15 @@ public class SnailLongDistanceAttack : MonoBehaviour
             else
                 return null;
         } 
+    }
+
+    private float setRotation(float x, float y)
+    {
+        if (x == 0) { return y * 90.0f; }
+        else if (y == 0) { if (x < 0) { return 180.0f; } }
+        else if (x * y > 0) { return x > 0 ? 45.0f : -135.0f; }
+        else { return x > 0 ? -45.0f : 135.0f; }
+
+        return 0.0f;
     }
 }

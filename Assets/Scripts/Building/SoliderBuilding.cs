@@ -86,8 +86,6 @@ public class SoliderBuilding : MonoBehaviour
                 break;
             }
         }
-        print(new_res1);
-        print(new_res2);
         return new Vector3(new_res1, new_res2, 0.0f);
     }
 

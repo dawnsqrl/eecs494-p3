@@ -23,13 +23,15 @@ public class TextRevealer : MonoBehaviour
 
 	public bool IsRevealing { get { return isRevealing; } }
 
+	GameObject tt;
+
 
 	public void RestartWithText(string strText)
 	{
-		print(strText);
 		nRevealedCharacters = 0;
 		originalString = strText;
 		text.text = BuildPartiallyRevealedString(originalString, keyCharIndex: -1, minIndex: 0, maxIndex: 0, fadeLength: 1);
+		//tt.SetActive(true);
 	}
 
 	public void ShowEverythingWithoutAnimation()
@@ -103,6 +105,8 @@ public class TextRevealer : MonoBehaviour
 											maxIndex: paragraphEnd,
 											fadeLength: numCharactersFade);
 
+			tt.SetActive(true);
+
 			yield return null;
 		}
 
@@ -149,7 +153,6 @@ public class TextRevealer : MonoBehaviour
 			var originalColorRGB = ColorUtility.ToHtmlStringRGB(text.color);
 			var alpha = Mathf.RoundToInt(255 * (keyCharIndex - i) / (float)fadeLength);
 			sb.AppendFormat("<color=#{0}{1:X2}>{2}</color>", originalColorRGB, (byte)alpha, c);
-			print(i);
 		}
 
 
@@ -160,12 +163,15 @@ public class TextRevealer : MonoBehaviour
 
 	public void RevealText(GameObject text_object)//, GameObject my_name, GameObject by)
 	{
+		tt = text_object;
 		text = text_object.GetComponent<TMPro.TextMeshProUGUI>();
+		string oroginText = text.text;
 		//if (string.IsNullOrEmpty(originalString))
 		RestartWithText(text.text);
 
 		RevealNextParagraphAsync();//my_name, by);
-		
+
+		text.text = oroginText;
 	}
 
 }

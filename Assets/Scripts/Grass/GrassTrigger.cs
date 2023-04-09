@@ -22,7 +22,6 @@ public class GrassTrigger : MonoBehaviour
         _spriteRenderer_mask.sprite = grass_sprite;
         _spriteRenderer_trans.sprite = grass_sprite;
         deadAnimBegan = false;
-
     }
 
     private void Update()
