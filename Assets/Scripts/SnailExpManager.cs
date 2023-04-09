@@ -13,6 +13,7 @@ public class SnailExpManager : MonoBehaviour
     [SerializeField] private GameObject optionsBanner;
     [SerializeField] private GameObject mineIcon;
     [SerializeField] private GameObject sprintIcon, skillsCanvas;
+    [SerializeField] private GameObject sheild;
     private Controls _controls;
     private Controls.PlayerActions _playerActions;
     private int pendingLevelUps;
@@ -47,6 +48,7 @@ public class SnailExpManager : MonoBehaviour
         _controls = new Controls();
         _playerActions = _controls.Player;
         canSelect = false;
+        sheild = transform.parent.gameObject.transform.Find("Shield").gameObject;
 
         skillsCanvas.SetActive(false);
     }
@@ -185,6 +187,13 @@ public class SnailExpManager : MonoBehaviour
             else
             {
                 _snailSprintManager.AddSprintSpeed(2);
+            }
+        }else if (option == 3) {
+            if (!sheild.activeSelf) {
+                sheild.SetActive(true);
+            }
+            else {
+                sheild.GetComponent<ShieldBehavior>().GetFullHP();
             }
         }
         // add more health and eat speed
