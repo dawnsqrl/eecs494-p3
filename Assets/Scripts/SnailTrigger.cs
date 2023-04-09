@@ -25,13 +25,27 @@ public class SnailTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Hyphae") && Time.time - collisionTime > time_eat_hyphae) {
-            AudioClip clip = Resources.Load<AudioClip>("Audio/Bite");
-            AudioSource.PlayClipAtPoint(clip, transform.position);
-            _snailExpManager.AddExpPoints(1);
-            other.gameObject.SetActive(false);
-            other.transform.parent.GetComponentInChildren<GroundTileManager>().growthed = false;
-            eatEffect.SetActive(false);
+        if (other.gameObject.CompareTag("Hyphae") && other.transform.parent.GetComponentInChildren<GroundTileManager>().growthed) {
+            if (Time.time - collisionTime > time_eat_hyphae)
+            {
+                AudioClip clip = Resources.Load<AudioClip>("Audio/Bite");
+                AudioSource.PlayClipAtPoint(clip, transform.position);
+                _snailExpManager.AddExpPoints(1);
+                // other.gameObject.SetActive(false);
+                // other.transform.parent.GetComponentInChildren<GroundTileManager>().growthed = false;
+                other.transform.parent.GetComponentInChildren<GroundTileManager>().RemoveGrowthed();
+                eatEffect.SetActive(false);
+            }
+            else
+            {
+                foreach (Transform small_hyphae in other.transform)
+                {
+                    Color tmp = small_hyphae.gameObject.GetComponent<SpriteRenderer>().color;
+                    tmp.a = (time_eat_hyphae - (Time.time - collisionTime)) / time_eat_hyphae;
+                    small_hyphae.gameObject.GetComponent<SpriteRenderer>().color = tmp;
+                }
+            }
+            
         } 
         else if (other.gameObject.CompareTag("GrassHide"))
         {
@@ -57,6 +71,12 @@ public class SnailTrigger : MonoBehaviour
 
         if (other.gameObject.CompareTag("Hyphae"))
         {
+            foreach (Transform small_hyphae in other.transform)
+            {
+                Color tmp = small_hyphae.gameObject.GetComponent<SpriteRenderer>().color;
+                tmp.a = 1;
+                small_hyphae.gameObject.GetComponent<SpriteRenderer>().color = tmp;
+            }
             eatEffect.SetActive(false);
             StopCoroutine(eatIndicatorCoroutine);
             eatIndicator.fillAmount = 0;
