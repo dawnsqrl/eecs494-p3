@@ -4778,6 +4778,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777477795}
   m_CullTransparentMesh: 1
+--- !u!114 &778817353 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1440504375437920530, guid: 4088740ac04c94acaba1d07d10ba973c, type: 3}
+  m_PrefabInstance: {fileID: 2097569557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf19a34f606c4fff9575e64991db959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &782691531
 GameObject:
   m_ObjectHideFlags: 0
@@ -10966,6 +10977,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 903305718}
     - target: {fileID: 8305987452694465226, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
+      propertyPath: skillCanvas
+      value: 
+      objectReference: {fileID: 8301121977638564233}
+    - target: {fileID: 8305987452694465226, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: upgradeIcon
       value: 
       objectReference: {fileID: 964623173}
@@ -11013,6 +11028,10 @@ PrefabInstance:
       propertyPath: skillsChooseCanvas
       value: 
       objectReference: {fileID: 1647739286}
+    - target: {fileID: 8305987452694465226, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
+      propertyPath: _snailShieldManager
+      value: 
+      objectReference: {fileID: 778817353}
     - target: {fileID: 8305987452694465226, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: routes.Array.data[0]
       value: 

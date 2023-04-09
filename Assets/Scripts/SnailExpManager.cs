@@ -14,7 +14,7 @@ public class SnailExpManager : MonoBehaviour
     [SerializeField] private GameObject optionsBanner;
     [SerializeField] private GameObject option1Object, option2Object, option3Object;
     [SerializeField] private GameObject mineIcon, spitIcon, sprintIcon, shieldIcon;
-    [SerializeField] private GameObject skillsChooseCanvas, title_pointer;
+    [SerializeField] private GameObject skillsChooseCanvas, title_pointer, skillCanvas;
     [SerializeField] private Sprite mineSprite, spitSprite, sprintSprite, shieldSprite;
     private GameObject shield;
     private Controls _controls;
@@ -23,10 +23,13 @@ public class SnailExpManager : MonoBehaviour
     private bool canSelect, levelUpAnimationAllowed = true;
     private SnailSprintManager _snailSprintManager;
     private SnailLongDistanceAttack _snailSpitManager;
+    public ShieldBehavior _snailShieldManager;
     private SnailWeapon _snailWeapon;
 
     [SerializeField] private Transform[] routes;
     [SerializeField] private Camera basecarCamera;
+
+    private int skillCounter = 0;
 
     private Vector2 objectPosition;
     public GameObject title;
@@ -236,6 +239,7 @@ public class SnailExpManager : MonoBehaviour
             {
                 _snailSprintManager.EnableSprint();
                 sprintIcon.SetActive(true);
+                set_icon_position(realOption);
             }
             else
             {
@@ -247,14 +251,17 @@ public class SnailExpManager : MonoBehaviour
             if (!mineIcon.activeSelf)
             {
                 mineIcon.SetActive(true);
+                set_icon_position(realOption);
             }
             _snailWeapon.AddMine(3);
         }
-        else if (realOption == 3) // input & upgrade function
+        else if (realOption == 3)
         {
             if (!shieldIcon.activeSelf)
             {
                 shieldIcon.SetActive(true);
+                _snailShieldManager.EnableShield();
+                set_icon_position(realOption);
             }
             else
             {
@@ -267,6 +274,7 @@ public class SnailExpManager : MonoBehaviour
             {
                 spitIcon.SetActive(true);
                 _snailSpitManager.EnableSpit();
+                set_icon_position(realOption);
             }
             else
             {
@@ -274,6 +282,45 @@ public class SnailExpManager : MonoBehaviour
             }
         }
     }
+
+    // option: 1 -> sprint, 2 -> mine, 3 -> shield, 4 -> spit
+    private void set_icon_position(int option)
+    {
+        GameObject aim = null;
+        List<Vector2> pos = new List<Vector2>();
+
+        pos.Add(skillCanvas.transform.GetChild(0).position);
+        pos.Add(skillCanvas.transform.GetChild(1).position);
+        pos.Add(skillCanvas.transform.GetChild(2).position);
+        pos.Add(skillCanvas.transform.GetChild(3).position);
+
+        if (option == 1)
+        {
+            aim = skillCanvas.transform.Find("Sprint").gameObject;
+        }
+        else if (option == 2)
+        {
+            aim = skillCanvas.transform.Find("Mine").gameObject;
+        }
+        else if (option == 3)
+        {
+            aim = skillCanvas.transform.Find("Shield").gameObject;
+        }
+        else if (option == 4)
+        {
+            aim = skillCanvas.transform.Find("Spit").gameObject;
+        }
+
+        aim.transform.SetSiblingIndex(skillCounter);
+
+        for (int i = 0; i < skillCanvas.transform.childCount; i++)
+        {
+            skillCanvas.transform.GetChild(i).position = pos[i];
+        }
+
+        skillCounter++;
+    }
+
 
     private void generate_random_skill_choose()
     {

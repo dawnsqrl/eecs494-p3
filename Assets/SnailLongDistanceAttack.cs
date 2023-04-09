@@ -16,6 +16,7 @@ public class SnailLongDistanceAttack : MonoBehaviour
     private void Awake()
     {
         EventBus.Subscribe<BaseCarDirectionEvent>(e => baseCarDirection = e.direction);
+        EventBus.Subscribe<SnailSpitEvent>(_ => Spit());
     }
     // Start is called before the first frame update
     void Start()
@@ -38,20 +39,19 @@ public class SnailLongDistanceAttack : MonoBehaviour
         return damage;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Spit()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha8) && canSpit && !attacklock)
+        if (canSpit && !attacklock)
         {
             StartCoroutine(StartAttack());
         }
-    } 
+    }
 
     IEnumerator StartAttack()
     {
         attacklock = true;
         float progress = 0.0f;
-        float speed = 0.5f;
+        float speed = 5.0f;
         bool attacked = false;
 
         yield return null;
