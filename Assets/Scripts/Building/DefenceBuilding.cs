@@ -79,38 +79,40 @@ public class DefenceBuilding : MonoBehaviour
     IEnumerator BombAnimate(Vector3 explode_pos)
     {
         float tParam = 0.0f;
-        float speedModifier = 0.5f;
+        float speedModifier = 4.0f;
         ready = false;
         yield return new WaitForSeconds(0.5f);
 
         float y = transform.position.y;
 
-        while (tParam < 1)
-        {
-            tParam += Time.deltaTime * speedModifier;
+        GetComponent<Animator>().SetTrigger("fire");
+        yield return new WaitForSeconds(0.5f);
+        //while (tParam < 1)
+        //{
+        //    tParam += Time.deltaTime * speedModifier;
 
-            float ymove = Mathf.Lerp(0.0f, 0.67f, tParam);
-            transform.position = new Vector3(transform.position.x, y - ymove, transform.position.z);
+        //    float ymove = Mathf.Lerp(0.0f, 0.67f, tParam);
+        //    transform.position = new Vector3(transform.position.x, y - ymove, transform.position.z);
 
-            float scale = Mathf.Lerp(1.0f, 0.67f, tParam);
-            transform.localScale = new Vector3(1.0f, scale, 1.0f);
-            print(transform.localScale);
-            yield return null;// new WaitForEndOfFrame();
-        }
+        //    float scale = Mathf.Lerp(1.0f, 0.67f, tParam);
+        //    transform.localScale = new Vector3(1.0f, 0.1f, 1.0f);
+        //    print(transform.localScale);
+        //    yield return null;// new WaitForEndOfFrame();
+        //}
 
-        tParam = 0.0f;
-        y = transform.position.y;
-        while (tParam < 1)
-        {
-            tParam += Time.deltaTime * speedModifier;
+        //tParam = 0.0f;
+        //y = transform.position.y;
+        //while (tParam < 1)
+        //{
+        //    tParam += Time.deltaTime * speedModifier;
 
-            float ymove = Mathf.Lerp(0.0f, 0.67f, tParam);
-            transform.position = new Vector3(transform.position.x, y + ymove, transform.position.z);
+        //    float ymove = Mathf.Lerp(0.0f, 0.67f, tParam);
+        //    transform.position = new Vector3(transform.position.x, y + ymove, transform.position.z);
 
-            float scale = Mathf.Lerp(0.67f, 1.0f, tParam);
-            transform.localScale = new Vector3(1.0f, scale, 1.0f);
-            yield return null;// new WaitForEndOfFrame();
-        }
+        //    float scale = Mathf.Lerp(0.67f, 1.0f, tParam);
+        //    transform.localScale = new Vector3(1.0f, scale, 1.0f);
+        //    yield return null;// new WaitForEndOfFrame();
+        //}
 
         GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), routes[0].position,
             Quaternion.identity);
