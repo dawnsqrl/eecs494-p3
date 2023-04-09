@@ -5,6 +5,9 @@ using UnityEngine;
 public class SnailLongDistanceAttack : MonoBehaviour
 {
     Vector3 baseCarDirection;
+    public GridManager gridManager;
+
+    float attackRange = 5.0f;
 
     private void Awake()
     {
@@ -28,7 +31,6 @@ public class SnailLongDistanceAttack : MonoBehaviour
     IEnumerator StartAttack()
     {
         float progress = 0.0f;
-        float attackRange = 5.0f;
         float speed = 0.5f;
         bool attacked = false;
 
@@ -46,20 +48,31 @@ public class SnailLongDistanceAttack : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
 
-            //GameObject target = findTarget(longRangeMucus.transform.position);
-            //if (target != null)
-            //{
-            //    target.GetComponentInChildren<HitHealth>().GetDamage(1);
-            //    progress = 1.1f;
-            //    Destroy(longRangeMucus);
-            //    attacked = true;
-            //}   
+            GameObject target = findTarget(longRangeMucus.transform.position);
+            if (target != null)
+            {
+                target.GetComponentInChildren<HitHealth>().GetDamage(1);
+                progress = 1.1f;
+                Destroy(longRangeMucus);
+                attacked = true;
+            }   
         }
 
         if (attacked)
         {
-            //GridManager._tiles[pos].GetComponentInChildren<GroundTileManager>().SetMucus();
-            //GridManager._tiles[pos].GetComponentInChildren<GroundTileManager>().RemoveGrowthed();
+            Vector2 pos = new Vector2(Mathf.FloorToInt(dest_pos.x), Mathf.CeilToInt(dest_pos.y)); // may be uncorrect
+            gridManager.GetTileAtPosition(pos).GetComponentInChildren<GroundTileManager>().SetMucus();
+            gridManager.GetTileAtPosition(pos).GetComponentInChildren<GroundTileManager>().RemoveGrowthed();
         }
+    }
+
+    private GameObject findTarget(Vector3 pos)
+    {
+        GameObject nearestBuilding = BuildingController.NearestBuilding(pos);
+        float building_dis = Vector3.Distance(new Vector3(pos.x, pos.y, -2.0f), nearestBuilding.transform.position);
+
+        //GameObject nearestCitizen = CitizenControl.NearestCitizen(pos);
+
+        return null;    
     }
 }
