@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TutorialNoteManager : MonoBehaviour
@@ -23,7 +24,14 @@ public class TutorialNoteManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("BaseCar"))
         {
-            EventBus.Publish(new DismissHintEvent(1));
+            StartCoroutine(DeactivateNote());
         }
+    }
+
+    private IEnumerator DeactivateNote()
+    {
+        EventBus.Publish(new DismissHintEvent(1));
+        yield return new WaitForSeconds(1);
+        EventBus.Publish(new DismissHintEvent(1));
     }
 }
