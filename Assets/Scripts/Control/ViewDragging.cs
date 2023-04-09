@@ -67,22 +67,40 @@ public class ViewDragging : MonoBehaviour
             float zoomDelta = scroll * zoomSpeed;
             size = Mathf.Clamp(size - zoomDelta, zoomMin, zoomMax);
 
-            if (size >= 9.0f)
+            if (size >= 7.0f || size < 2.0f)
+            {
                 EventBus.Publish(new ZoomMaxEvent());
+            }
+                
             // Set the camera size to the new value
             builderCam.orthographicSize = size;
         }
+    }
+
+    public void setSize(float size)
+    {
+        builderCam.orthographicSize = size;
     }
 
     private void Update()
     {
         if ((isDraggingEnabled && GameProgressControl.isGameActive) || isBuilderTutorialActive)
         {
-            
-            if (openZoom || GameProgressControl.isGameActive)
-                Zoom();
-            if (openDrag || GameProgressControl.isGameActive)
+            if (isBuilderTutorialActive)
             {
+                if (openZoom)
+                    Zoom();
+                if (openDrag)
+                {
+                    DragCamera();
+                    //UpdateCameraPosition();
+                    CheckMouseAtScreenEdge();
+                    UpdateCameraPosition();
+                }
+            }
+            else if (GameProgressControl.isGameActive)
+            {
+                Zoom();
                 DragCamera();
                 //UpdateCameraPosition();
                 CheckMouseAtScreenEdge();

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MushroomControl : MonoBehaviour
 {
-    [SerializeField] private Camera targetCamera;
+    //[SerializeField] private Camera targetCamera;
     [SerializeField] bool isChosen = false;
     [SerializeField] GameObject BuildingCanvas;
     private GameObject buildingController;

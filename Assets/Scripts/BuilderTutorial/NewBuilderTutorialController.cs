@@ -5,16 +5,17 @@ using UnityEngine.InputSystem;
 public class NewBuilderTutorialController : MonoBehaviour
 {
     [SerializeField] private Camera BuilderCamera;
-    [SerializeField] private GameObject vitalityBar, Mushroom, miniMap, snail, VitalityBar, maxBuilding, grass, cave;
+    [SerializeField] private GameObject vitalityBar, Mushroom, snail, VitalityBar, maxBuilding, grass, cave;
     [SerializeField] private GameObject arrow, arrow2;
     [SerializeField] private GridManager _gridManager;
 
     [SerializeField]
-    private GameObject building1, fog1, building2, fog2, building3, fog3, building4, fog4, building0, fog0;
+    private GameObject building1, fog1, building2, fog2, building3, fog3, building4, fog4, building0, fog0, destroyBuilding, fogDestroy;
 
-    [SerializeField] private SpellCooldown cool1, cool2, cool3, cool4, cool0;
+    [SerializeField] private SpellCooldown cool1, cool2, cool3, cool4, cool0, coolDestroy;
+    [SerializeField] private ViewDragging vd;
 
-    bool finishGrowth = false;
+    bool finishGrowth = false, readyToDetectClick = true;
 
     private int STEP_NUM = 0;
     // step 0 -> mushroom and snail 
@@ -44,8 +45,16 @@ public class NewBuilderTutorialController : MonoBehaviour
         buildingCount += 1;
     }
 
+    IEnumerator ClickCoolDown()
+    {
+        readyToDetectClick = false;
+        yield return new WaitForSeconds(2.0f);
+        readyToDetectClick = true;
+    }
+
     private void Start()
     {
+        //vd.enabled = false;
         EventBus.Publish(new StartBuilderTutorialEvent());
         Mushroom.transform.position = new Vector3(25.0f, 15.0f, -2.0f);
         BuilderCamera.transform.position = new Vector3(25.0f, 15.0f, -10.0f);
@@ -53,6 +62,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
     private void Update()
     {
+        //print(GameProgressControl.isGameActive);
         if (STEP_NUM == 0)
         {
             EventBus.Publish(new OpenZoomEvent());
@@ -74,10 +84,13 @@ public class NewBuilderTutorialController : MonoBehaviour
                     "You found the snail. <b>[Lclick]</b>"
                 ));
                 firstcall = true;
+                EventBus.Publish(new CloseZoomEvent());
+                vd.setSize(9.0f);
             }
 
             if (clicked)
             {
+                StartCoroutine(ClickCoolDown());
                 clicked = false;
                 STEP_NUM = 2;
                 firstcall = false;
@@ -121,6 +134,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
             if (clicked)
             {
+                StartCoroutine(ClickCoolDown());
                 clicked = false;
                 STEP_NUM = 3;
                 firstcall = false;
@@ -132,9 +146,10 @@ public class NewBuilderTutorialController : MonoBehaviour
             lockClick = true;
             snail.transform.position = new Vector3(10.0f, 25.0f, 0.0f);
             EventBus.Publish(new OpenDragEvent());
-            miniMap.SetActive(true);
+            //miniMap.SetActive(true);
             if (!firstcall)
             {
+                //vd.enabled = true;
                 EventBus.Publish(new UpdateHintEvent(0,
                     "You can <b>move mouse</b> to the edge of the screen to move the view. " +
                     "Try to find the snail!", 575
@@ -146,13 +161,15 @@ public class NewBuilderTutorialController : MonoBehaviour
             {
                 STEP_NUM = 4;
                 firstcall = false;
-                miniMap.SetActive(false);
+                //vd.enabled = false;
+                //miniMap.SetActive(false);
             }
         }
 
         if (STEP_NUM == 4)
         {
-            miniMap.SetActive(false);
+            EventBus.Publish(new CloseDragEvent());
+            //miniMap.SetActive(false);
             VitalityBar.SetActive(true);
             if (!firstcall)
             {
@@ -167,6 +184,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
             if (clicked)
             {
+                StartCoroutine(ClickCoolDown());
                 clicked = false;
                 STEP_NUM = 5;
                 firstcall = false;
@@ -372,6 +390,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
             if (clicked)
             {
+                StartCoroutine(ClickCoolDown());
                 clicked = false;
                 STEP_NUM = 11;
                 firstcall = false;
@@ -398,6 +417,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
             if (clicked)
             {
+                StartCoroutine(ClickCoolDown());
                 clicked = false;
                 STEP_NUM = 12;
                 firstcall = false;
@@ -418,8 +438,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             EventBus.Publish(new EndBuilderTutorialEvent());
         }
 
-
-        if (Mouse.current.leftButton.wasPressedThisFrame && !lockClick)
+        if (Mouse.current.leftButton.wasPressedThisFrame && !lockClick && readyToDetectClick)
         {
             clicked = true;
         }
@@ -437,7 +456,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
     IEnumerator waitForGrowth()
     {
-        yield return new WaitForSeconds(6.0f);
+        yield return new WaitForSeconds(8.0f);
         finishGrowth = true;
     }
 

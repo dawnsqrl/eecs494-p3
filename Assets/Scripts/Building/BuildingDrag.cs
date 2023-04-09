@@ -10,7 +10,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private Sprite buildingTexture;
     [SerializeField] private GameObject RTScontroller, SelectedArea, fog;
     [SerializeField] private GridManager gridManager;
-    [SerializeField] private BuilderGridManager TgridManager;
+    //[SerializeField] private BuilderGridManager TgridManager;
     private ViewDragging vd;
     private int defenceRange = 4;
 
