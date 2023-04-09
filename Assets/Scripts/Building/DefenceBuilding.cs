@@ -83,28 +83,32 @@ public class DefenceBuilding : MonoBehaviour
         ready = false;
         yield return new WaitForSeconds(0.5f);
 
+        float y = transform.position.y;
+
         while (tParam < 1)
         {
             tParam += Time.deltaTime * speedModifier;
 
+            float ymove = Mathf.Lerp(0.0f, 0.67f, tParam);
+            transform.position = new Vector3(transform.position.x, y - ymove, transform.position.z);
+
             float scale = Mathf.Lerp(1.0f, 0.67f, tParam);
             transform.localScale = new Vector3(1.0f, scale, 1.0f);
-
-            float ymove = Mathf.Lerp(0.0f, 0.67f, tParam);
-            transform.position = new Vector3(transform.position.x, transform.position.y - ymove, transform.position.z);
+            print(transform.localScale);
             yield return null;// new WaitForEndOfFrame();
         }
 
         tParam = 0.0f;
+        y = transform.position.y;
         while (tParam < 1)
         {
             tParam += Time.deltaTime * speedModifier;
 
+            float ymove = Mathf.Lerp(0.0f, 0.67f, tParam);
+            transform.position = new Vector3(transform.position.x, y + ymove, transform.position.z);
+
             float scale = Mathf.Lerp(0.67f, 1.0f, tParam);
             transform.localScale = new Vector3(1.0f, scale, 1.0f);
-
-            float ymove = Mathf.Lerp(0.0f, 0.67f, tParam);
-            transform.position = new Vector3(transform.position.x, transform.position.y + ymove, transform.position.z);
             yield return null;// new WaitForEndOfFrame();
         }
 
