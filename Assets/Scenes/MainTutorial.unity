@@ -2181,6 +2181,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -9.81
       objectReference: {fileID: 0}
+    - target: {fileID: 1504905824, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
+      propertyPath: msg
+      value: 'Big mushrooms are all that a snail can dream of, and its ultiumate
+        goal of this experiment. '
+      objectReference: {fileID: 0}
     - target: {fileID: 1655935140, guid: 45b82e881ee2a45d5af118cd5f95d6fa, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.1
