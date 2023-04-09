@@ -15,6 +15,8 @@ public class GroundTileManager : MonoBehaviour
 
     private GameObject fog_builder;
     private GameObject fog_enemy;
+
+    [SerializeField] private Animator _animator;
     //private int blank_regrowth_rate = 10;
     // Start is called before the first frame update
     void Start()
@@ -124,4 +126,5 @@ public class GroundTileManager : MonoBehaviour
     {
         return transform.parent.GetComponent<TileManager>().builderFogLongTermDisabled;
     }
+
 }

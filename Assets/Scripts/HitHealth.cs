@@ -121,6 +121,8 @@ public class HitHealth : MonoBehaviour
     }
 
     public void ReduceHealth(int cnt){
+        //if the object is snail and has sheild
+       
         if(health-cnt>0){
             health -= cnt;
             healthBar.size =
@@ -151,33 +153,6 @@ public class HitHealth : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-
-    //    if (collision.gameObject.CompareTag(enemyTag))
-    //    {
-    //        Debug.Log("hit" + enemyTag);
-    //    }
-    //}
-
-    // private void OnTriggerStay(Collider other)
-    // {
-    //     if (other.gameObject.CompareTag("Hyphae"))
-    //     {
-    //         if (Time.time - collisionTime > time_eat_hyphae)
-    //         {
-    //             other.gameObject.SetActive(false);
-    //         }
-    //     }
-    // }
-    // private void OnCollisionStay(Collision collision)
-    // {
-    //     if(collision.gameObject.CompareTag("Hyphae")) {
-    //         if (Time.time - collisionTime > time_eat_hyphae) {
-    //             collision.gameObject.SetActive(false);
-    //         }
-    //     }
-    // }
 
     public void GetDamage(int damage) {
         // if (health > 0)
@@ -198,6 +173,13 @@ public class HitHealth : MonoBehaviour
         //     }
         //     
         // }
+        
+        
+        if (gameObject.tag == "BaseCar" && transform.parent.gameObject.transform.Find("Shield").gameObject.activeSelf)
+        {
+            transform.parent.gameObject.transform.Find("Shield").gameObject.GetComponent<ShieldBehavior>().ReduceHP(damage);
+            return;
+        }
         if (health > 0)
         {
             canGetHit = false;
@@ -242,13 +224,21 @@ public class HitHealth : MonoBehaviour
     private IEnumerator HitEffect(int damage)
     {
         if (!hitlock) {
+            if (gameObject.tag == "BaseCar" && transform.parent.gameObject.transform.Find("Shield").gameObject.activeSelf)
+            {
+                transform.parent.gameObject.transform.Find("Shield").gameObject.GetComponent<ShieldBehavior>().ReduceHP(damage);
+                yield return null;
+            }
+            if (gameObject.tag == "BaseCar") {
+                Debug.Log("basecar get damaged");
+            }
             hitlock = true;
             _spriteRenderer.color = new Color32(0xFF, 0x00, 0x00, 0xFF);
             health -= damage;
             healthBar.size =
                 new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
             // if (gameObject.CompareTag("BaseCar"))
-            // {
+            // {s
             //     GetComponent<BoxCollider>().enabled = false;
             // }
             yield return new WaitForSeconds(1f);
