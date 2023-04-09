@@ -226,29 +226,31 @@ public class HitHealth : MonoBehaviour
         if (!hitlock) {
             if (gameObject.tag == "BaseCar" && transform.parent.gameObject.transform.Find("Shield").gameObject.activeSelf)
             {
+                hitlock = true;
                 transform.parent.gameObject.transform.Find("Shield").gameObject.GetComponent<ShieldBehavior>().ReduceHP(damage);
-                yield return null;
+                yield return new WaitForSeconds(1f);
+                hitlock = false;
             }
-            if (gameObject.tag == "BaseCar") {
-                Debug.Log("basecar get damaged");
+            else
+            {
+                hitlock = true;
+                _spriteRenderer.color = new Color32(0xFF, 0x00, 0x00, 0xFF);
+                health -= damage;
+                healthBar.size =
+                    new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
+                // if (gameObject.CompareTag("BaseCar"))
+                // {s
+                //     GetComponent<BoxCollider>().enabled = false;
+                // }
+                yield return new WaitForSeconds(1f);
+                // if (gameObject.CompareTag("BaseCar"))
+                // {
+                //     GetComponent<BoxCollider>().enabled = true;
+                // }
+                canGetHit = true;
+                _spriteRenderer.color = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
+                hitlock = false;
             }
-            hitlock = true;
-            _spriteRenderer.color = new Color32(0xFF, 0x00, 0x00, 0xFF);
-            health -= damage;
-            healthBar.size =
-                new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
-            // if (gameObject.CompareTag("BaseCar"))
-            // {s
-            //     GetComponent<BoxCollider>().enabled = false;
-            // }
-            yield return new WaitForSeconds(1f);
-            // if (gameObject.CompareTag("BaseCar"))
-            // {
-            //     GetComponent<BoxCollider>().enabled = true;
-            // }
-            canGetHit = true;
-            _spriteRenderer.color = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
-            hitlock = false;
         }
         else {
             yield return null;
