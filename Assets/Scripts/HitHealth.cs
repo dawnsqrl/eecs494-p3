@@ -121,6 +121,12 @@ public class HitHealth : MonoBehaviour
     }
 
     public void ReduceHealth(int cnt){
+        //if the object is snail and has sheild
+        if (gameObject.tag == "BaseCar"&& transform.parent.gameObject.transform.Find("Shield").gameObject.activeSelf) {
+            transform.parent.gameObject.transform.Find("Shield").gameObject.GetComponent<ShieldBehavior>().ReduceHP(cnt);
+            return;
+        }
+
         if(health-cnt>0){
             health -= cnt;
             healthBar.size =
@@ -151,33 +157,6 @@ public class HitHealth : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-
-    //    if (collision.gameObject.CompareTag(enemyTag))
-    //    {
-    //        Debug.Log("hit" + enemyTag);
-    //    }
-    //}
-
-    // private void OnTriggerStay(Collider other)
-    // {
-    //     if (other.gameObject.CompareTag("Hyphae"))
-    //     {
-    //         if (Time.time - collisionTime > time_eat_hyphae)
-    //         {
-    //             other.gameObject.SetActive(false);
-    //         }
-    //     }
-    // }
-    // private void OnCollisionStay(Collision collision)
-    // {
-    //     if(collision.gameObject.CompareTag("Hyphae")) {
-    //         if (Time.time - collisionTime > time_eat_hyphae) {
-    //             collision.gameObject.SetActive(false);
-    //         }
-    //     }
-    // }
 
     public void GetDamage(int damage) {
         // if (health > 0)
