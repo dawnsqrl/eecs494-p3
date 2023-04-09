@@ -87,7 +87,7 @@ public class SnailLongDistanceAttack : MonoBehaviour
         if (!attacked)
         {
             Destroy(longRangeMucus);
-            Vector2 pos = new Vector2(Mathf.FloorToInt(dest_pos.x), Mathf.CeilToInt(dest_pos.y)); // may be uncorrect
+            Vector2 pos = new Vector2(Mathf.Clamp(Mathf.FloorToInt(dest_pos.x), 0, 49), Mathf.Clamp(Mathf.CeilToInt(dest_pos.y), 0, 49)); // may be uncorrect
             gridManager.GetTileAtPosition(pos).GetComponentInChildren<GroundTileManager>().SetMucus();
             gridManager.GetTileAtPosition(pos).GetComponentInChildren<GroundTileManager>().RemoveGrowthed();
         }
