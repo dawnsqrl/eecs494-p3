@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3406579744892136608
+--- !u!1 &889383028778281821
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5801647719276725054}
-  - component: {fileID: 2377066214466126515}
-  - component: {fileID: -5642367224891164899}
-  - component: {fileID: 4853992763997943591}
-  - component: {fileID: 4621988138849663086}
-  - component: {fileID: 4392860058098686365}
-  - component: {fileID: 3693018919771970806}
+  - component: {fileID: 2606963914918266460}
+  - component: {fileID: 4150182374090096730}
+  - component: {fileID: 2900096268039556347}
   m_Layer: 13
-  m_Name: Spread
-  m_TagString: Building
+  m_Name: Sprite
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5801647719276725054
+--- !u!4 &2606963914918266460
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3406579744892136608}
+  m_GameObject: {fileID: 889383028778281821}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.51, y: 3.45, z: 0}
-  m_LocalScale: {x: 0.22, y: 0.22, z: 1.2222222}
-  m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 3742933708838381220}
-  - {fileID: 8648423482955097078}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5801647719276725054}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2377066214466126515
+--- !u!212 &4150182374090096730
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3406579744892136608}
+  m_GameObject: {fileID: 889383028778281821}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -91,6 +85,64 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &2900096268039556347
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889383028778281821}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d6b6f5d919715460c884b094842f4966, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!1 &3406579744892136608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5801647719276725054}
+  - component: {fileID: -5642367224891164899}
+  - component: {fileID: 4853992763997943591}
+  - component: {fileID: 4621988138849663086}
+  - component: {fileID: 4392860058098686365}
+  m_Layer: 13
+  m_Name: Spread
+  m_TagString: Building
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5801647719276725054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406579744892136608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.51, y: 3.45, z: 0}
+  m_LocalScale: {x: 0.22, y: 0.22, z: 1.2222222}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 3742933708838381220}
+  - {fileID: 8648423482955097078}
+  - {fileID: 2606963914918266460}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-5642367224891164899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 5494913934378230204}
+  _animator: {fileID: 2900096268039556347}
 --- !u!114 &4853992763997943591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,13 +172,13 @@ MonoBehaviour:
   maxHealth: 15
   health: 15
   healthBar: {fileID: 555374501320172782}
-  _spriteRenderer: {fileID: 2377066214466126515}
+  _spriteRenderer: {fileID: 4150182374090096730}
   hit_cd_time: 0.5
   health_recover_rate: 0.1
   enemyTagList:
   - LittleSnail
   - BaseCar
-  _animator: {fileID: 3693018919771970806}
+  _animator: {fileID: 2900096268039556347}
   lowHealthEffect: {fileID: 0}
 --- !u!54 &4621988138849663086
 Rigidbody:
@@ -156,26 +209,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.12, y: 5.12, z: 0.19999997}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &3693018919771970806
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3406579744892136608}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 83bb654a808ce4de6bc77a8cff647c86, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!1001 &4420424059897604852
 PrefabInstance:
   m_ObjectHideFlags: 0

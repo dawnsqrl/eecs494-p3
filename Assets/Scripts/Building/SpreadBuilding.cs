@@ -21,7 +21,7 @@ public class SpreadBuilding : MonoBehaviour
 
     Vector2 pos;
     GameObject building;
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
 
     private void Awake()
     {
@@ -63,7 +63,6 @@ public class SpreadBuilding : MonoBehaviour
         StartCoroutine(StartSpread());
         AudioClip clip = Resources.Load<AudioClip>("Audio/PlaceSpore");
         AudioSource.PlayClipAtPoint(clip, transform.position);
-        _animator = GetComponent<Animator>();
     }
 
     private void Update()
