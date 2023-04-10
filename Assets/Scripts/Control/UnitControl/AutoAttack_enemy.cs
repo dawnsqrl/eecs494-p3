@@ -27,6 +27,7 @@ public class AutoAttack_enemy : MonoBehaviour
         _self_hitHealth = GetComponentInChildren<HitHealth>();
         _rts = GetComponent<UnitRTS>();
         movetoPosition = transform.position;
+        currentOpponent = null;
     }
 
     private void Update()
