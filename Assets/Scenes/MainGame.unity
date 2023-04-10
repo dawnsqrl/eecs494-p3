@@ -8856,6 +8856,14 @@ PrefabInstance:
       propertyPath: _mesh
       value: 
       objectReference: {fileID: 2190625779705927380}
+    - target: {fileID: 9168317154175586897, guid: 3d87b17e436fef544a9b0aa4a5f8ff78, type: 3}
+      propertyPath: init_vitality
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 9168317154175586897, guid: 3d87b17e436fef544a9b0aa4a5f8ff78, type: 3}
+      propertyPath: init_vitality_increase
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 9168317154175586898, guid: 3d87b17e436fef544a9b0aa4a5f8ff78, type: 3}
       propertyPath: m_RootOrder
       value: 10

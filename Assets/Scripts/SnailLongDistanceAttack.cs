@@ -8,7 +8,7 @@ public class SnailLongDistanceAttack : MonoBehaviour
     Vector3 baseCarDirection;
     public GridManager gridManager;
 
-    float attackRange = 5.0f;
+    float attackRange = 3.0f;
     bool canSpit = false;
     int damage = 1;
 
