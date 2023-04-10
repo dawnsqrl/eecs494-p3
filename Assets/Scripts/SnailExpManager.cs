@@ -109,6 +109,9 @@ public class SnailExpManager : MonoBehaviour
             if (levelUpAnimationAllowed)
             {
                 StartCoroutine(skillChooseAnimation());
+                // upgradeIcon.SetActive(false);
+                // skillsChooseCanvas.SetActive(true);
+                // generate_random_skill_choose();
                 AudioClip clip = Resources.Load<AudioClip>("Audio/SnailLevelUp");
                 AudioSource.PlayClipAtPoint(clip, transform.position);
             }
@@ -136,27 +139,28 @@ public class SnailExpManager : MonoBehaviour
 
         generate_random_skill_choose();
 
-        while (progress < 1)
-        {
-            progress += Time.deltaTime * speed;
-
-            //title.transform.position = objectPosition;
-            float scale = Mathf.Lerp(0.0f, 1.0f, progress);
-            skillsChooseCanvas.transform.localScale = new Vector3(scale, scale, scale);
-
-            initial_pos = upgradeIcon.transform.position;
-            dest_pos = transform.position;
-
-            Vector3 new_position = Vector3.Lerp(new Vector3(initial_pos.x, initial_pos.y, -2.0f),
-                new Vector3(dest_pos.x, dest_pos.y, -2.0f), progress);
-            skillsChooseCanvas.transform.position = new_position;
-
-            yield return new WaitForEndOfFrame();
-        }
+        // while (progress < 1)
+        // {
+        //     progress += Time.deltaTime * speed;
+        //
+        //     //title.transform.position = objectPosition;
+        //     float scale = Mathf.Lerp(0.0f, 1.0f, progress);
+        //     skillsChooseCanvas.transform.localScale = new Vector3(scale, scale, scale);
+        //
+        //     initial_pos = upgradeIcon.transform.position;
+        //     dest_pos = transform.position;
+        //
+        //     Vector3 new_position = Vector3.Lerp(new Vector3(initial_pos.x, initial_pos.y, -2.0f),
+        //         new Vector3(dest_pos.x, dest_pos.y, -2.0f), progress);
+        //     skillsChooseCanvas.transform.position = new_position;
+        //
+        //     yield return new WaitForEndOfFrame();
+        // }
 
         canSelect = true;
         levelUpAnimationAllowed = true;
         //upgradeIcon.SetActive(false);
+        yield return null;
     }
 
     IEnumerator levelUpAnimation()
