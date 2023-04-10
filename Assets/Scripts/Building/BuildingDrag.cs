@@ -154,12 +154,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (temp_pos1 is { x: >= 0 and < 50, y: >= 0 and < 50 })
             temp_pos_list.Add(temp_pos1);
 
-        bool avaCheckRes = true;
-        foreach (Vector2 oldPos in temp_pos_list)
-        {
-            if (!CheckAvai(oldPos))
-                avaCheckRes = false;
-        }
+        
 
         adv_ava_check = true;
         for (int i = 0; i < 2; i++)
@@ -172,6 +167,13 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
                 else
                     adv_ava_check = false;
             }
+        }
+
+        bool avaCheckRes = true;
+        foreach (Vector2 oldPos in temp_pos_list)
+        {
+            if (!CheckAvai(oldPos))
+                avaCheckRes = false;
         }
 
         if ((Worldpos is { x: >= 0 and < 50, y: >= 0 and < 50 }) //|| startTutorial)

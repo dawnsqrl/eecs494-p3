@@ -113,6 +113,7 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
             {
                 fog.SetActive(true);
             }
+            EventBus.Publish(new BuildingDestoryEvent());
         }
 
         setHighlight(oldPos1, false);
@@ -123,7 +124,7 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
         //vd.enabled = true;
 
         EventBus.Publish(new EndBuildingDragEvent());
-        EventBus.Publish(new BuildingDestoryEvent());
+        
     }
 
     private void removeMucus(Vector2 pos)
