@@ -2,7 +2,7 @@ Devlog 1 – Improving Experience of BIOLOGY 452
 
 [b]BIOLOGY 452: Field Ecology of Snail-Fungus Interaction[/b]
 
-[img width=512]?[/img]
+[img width=512]https://dawnsqrl.github.io/2cb416c75d1f9d14/assets/4_9_Screenshot.png[/img]
 
 The game is in its 5th week of development by a team of 4. In the past week we focused on quality-of-life features (A) and gameplay balancing (B).
 [A1] The attack range of Mushroom's defense tower is now always visible from the Snail's view (but at a lower opacity to avoid distraction). This makes it much easier for the Snail to notice the source of damage and consciously avoid it.
@@ -19,6 +19,6 @@ The game is in its 5th week of development by a team of 4. In the past week we f
 [B5] Snail can now choose to acquire the ability to dispense mucus when leveling up. The projectile can damage small mushrooms and buildings as well as convert mycelium into mucus. This enables Snail to perform ranged attack.
 [B6] Snail bomb can now completely destroy small mushrooms, buildings and mycelium in a 3×3 range.
 
-All new features should have been completed in this iteration. Next up, we will focus entirely on balancing adjustments and polish all UI elements.
+All new features should have been completed in this iteration. Next up, we will focus entirely on balancing adjustments and polishing all UI elements.
 
-Builds available for [url=?]Windows[/url] and [url=?]Mac[/url].
+Builds available for [url=https://github.com/dawnsqrl/2cb416c75d1f9d14/releases/download/v0-beta/WindowsBuild.zip]Windows[/url] and [url=https://github.com/dawnsqrl/2cb416c75d1f9d14/releases/download/v0-beta/MacBuild.zip]Mac[/url].
