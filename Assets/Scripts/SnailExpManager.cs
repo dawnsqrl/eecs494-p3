@@ -103,8 +103,7 @@ public class SnailExpManager : MonoBehaviour
             // optionsBanner.SetActive(true);
             // add more health and eat speed
             levelUpNoteAnimator.SetTrigger("LevelUp");
-            GetComponent<HitHealth>().health += 5;
-            GetComponent<HitHealth>().maxHealth += 5;
+            GetComponent<HitHealth>().AddSnailHealth(currentLevel);
             GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f;
             if (levelUpAnimationAllowed)
             {
