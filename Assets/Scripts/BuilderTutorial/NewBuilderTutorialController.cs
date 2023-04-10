@@ -6,7 +6,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 {
     [SerializeField] private Camera BuilderCamera;
     [SerializeField] private GameObject vitalityBar, Mushroom, snail, VitalityBar, maxBuilding, grass, cave;
-    [SerializeField] private GameObject arrow, arrow2;
+    [SerializeField] private GameObject arrow, arrow2, buildingCanvas;
     [SerializeField] private GridManager _gridManager;
 
     [SerializeField]
@@ -439,6 +439,34 @@ public class NewBuilderTutorialController : MonoBehaviour
                 EventBus.Publish(new UpdateHintEvent(0,
                     "The snail may hide in the grass, and small snails will emerge from the cave to follow the big snail. " +
                     "You can destroy both by growing mycelium over them. <b>[Lclick]</b>"
+                ));
+                firstcall = true;
+            }
+
+            if (clicked)
+            {
+                StartCoroutine(ClickCoolDown());
+                clicked = false;
+                STEP_NUM = 115;
+                firstcall = false;
+            }
+        }
+
+        if (STEP_NUM == 115)
+        {
+            if (!firstcall)
+            {
+
+                buildingCanvas.SetActive(false);
+
+                EventBus.Publish(new StartBuilderTutorialEvent());
+                EventBus.Publish(new UpdateHintEvent(0,
+                    "<b>Tips</b>\n" +
+                    "\n" +
+                    "<b>1.</b> Build some Vitality Generators to keep vitality growth." +
+                    "<b>2.</b> Only build Growth Source when you have enough vitality." +
+                    "<b>3.</b> Development means victory." +
+                    "<b>4.</b> Extension is your destiny.", 575
                 ));
                 firstcall = true;
             }

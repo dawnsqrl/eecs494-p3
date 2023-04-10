@@ -157,7 +157,7 @@ public class DefenceBuilding : MonoBehaviour
     private void BombHit(GameObject target, Vector2 bomb_pos)
     {
         if (!target.IsDestroyed() &&
-            Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.y), bomb_pos) <= 1)
+            Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.y), bomb_pos) <= 2.0f)
         {
             target.GetComponentInChildren<HitHealth>().GetDamage(1);
         }
