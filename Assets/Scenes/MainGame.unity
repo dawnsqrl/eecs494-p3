@@ -842,6 +842,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 560697544}
     m_Modifications:
+    - target: {fileID: 77836969039487494, guid: 690f35ce59b39483a98f4c4ac778a447, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 77836969039487494, guid: 690f35ce59b39483a98f4c4ac778a447, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3106481465522924570, guid: 690f35ce59b39483a98f4c4ac778a447, type: 3}
       propertyPath: m_Name
       value: LowHealthCanvas_Snail
@@ -940,6 +948,11 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4544795206116447011, guid: 690f35ce59b39483a98f4c4ac778a447, type: 3}
   m_PrefabInstance: {fileID: 323855526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &331138583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2579669622454164496, guid: 690f35ce59b39483a98f4c4ac778a447, type: 3}
+  m_PrefabInstance: {fileID: 852137772}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &366352623 stripped
 Transform:
@@ -1491,6 +1504,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 55, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &559060064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2579669622454164496, guid: 690f35ce59b39483a98f4c4ac778a447, type: 3}
+  m_PrefabInstance: {fileID: 323855526}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &560697543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,6 +2592,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 560697544}
     m_Modifications:
+    - target: {fileID: 77836969039487494, guid: 690f35ce59b39483a98f4c4ac778a447, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 77836969039487494, guid: 690f35ce59b39483a98f4c4ac778a447, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3106481465522924570, guid: 690f35ce59b39483a98f4c4ac778a447, type: 3}
       propertyPath: m_Name
       value: LowHealthCanvas_Mushroom
@@ -5129,6 +5155,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5462428841127503988, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
+      propertyPath: lowHealthEffect
+      value: 
+      objectReference: {fileID: 331138583}
     - target: {fileID: 6335837167040075763, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -6600,6 +6630,10 @@ PrefabInstance:
       propertyPath: _text
       value: 
       objectReference: {fileID: 104130009}
+    - target: {fileID: 7166689666919232521, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
+      propertyPath: lowHealthEffect
+      value: 
+      objectReference: {fileID: 559060064}
     - target: {fileID: 7265589556658211210, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: _mesh
       value: 
