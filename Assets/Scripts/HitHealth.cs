@@ -277,4 +277,10 @@ public class HitHealth : MonoBehaviour
         Destroy(_gameObject);
     }
 
+    public void AddSnailHealth(int curr_level)
+    {
+        maxHealth += Mathf.Clamp(curr_level + 2, 0, 5);
+        health += Mathf.Clamp(curr_level + 2, 0, 5);
+    }
+
 }
