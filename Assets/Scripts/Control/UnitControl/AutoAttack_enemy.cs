@@ -94,35 +94,46 @@ public class AutoAttack_enemy : MonoBehaviour
         //     print("code line is "+line);
         //     throw;
         // }
-        
+        print("5");
         if (currentOpponent.IsDestroyed())
         {
+            print("5.1");
             onAssult = false;
             currentOpponent = null;
         }
+        print("5.2");
         if (onAssult)
         {
             // continue chasing the current opponent
             // or change current opponent to the current collision
+            print("5.3");
             movetoPosition = currentOpponent.transform.position;
             _rts.MoveTo(movetoPosition);
             return;
         }
-        
+        print("5.4");
         // search for new enemy
         bool foundCitizen = false;
+        print("5.5");
         enemyList = new List<GameObject>(CitizenControl.citizenList);
+        print("5.6");
         if (enemyList.Count > 0)
         {
+            print("5.7");
             for (int i = 0; i < enemyList.Count; i++)
             {
+                print("5.8");
                 if (enemyList[i].IsDestroyed())
                 {
+                    print("5.9");
                     continue;
                 }
+                print("6.0");
                 GameObject opponent = enemyList[i];
+                print("6.1");
                 if ((opponent.transform.position - transform.position).magnitude < range)
                 {
+                    print("6.2");
                     movetoPosition = opponent.transform.position;
                     _self_hitHealth.SetCurrentOpponent(opponent);
                     currentOpponent = opponent;
@@ -132,7 +143,7 @@ public class AutoAttack_enemy : MonoBehaviour
                 }
             }
         }
-
+        print("6.3");
         if (!foundCitizen)
         {
             GameObject building = BuildingController.NearestBuilding(transform.position);

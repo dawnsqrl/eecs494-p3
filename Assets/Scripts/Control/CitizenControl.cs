@@ -17,7 +17,7 @@ public class CitizenControl : MonoBehaviour
 
     private void Start()
     {
-        citizenList = new List<GameObject>(presetCitizen);
+        citizenList = new List<GameObject>();
         // citizenList = GameObject.FindGameObjectsWithTag("Citizen").ToList();
     }
 
