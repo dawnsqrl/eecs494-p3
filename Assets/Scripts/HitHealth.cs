@@ -175,7 +175,7 @@ public class HitHealth : MonoBehaviour
         // }
         
         
-        if (gameObject.tag == "BaseCar" && transform.parent.gameObject.transform.Find("Shield").gameObject.activeSelf)
+        if (gameObject.tag == "BaseCar" && transform.parent.gameObject.transform.Find("Shield").transform.Find("ShieldObject").gameObject.activeSelf)
         {
             transform.parent.gameObject.transform.Find("Shield").gameObject.GetComponent<ShieldBehavior>().ReduceHP(damage);
             return;
