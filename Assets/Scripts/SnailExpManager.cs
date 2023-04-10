@@ -386,7 +386,7 @@ public class SnailExpManager : MonoBehaviour
         else if (option == 2)
         {
             setImage(optionObject, mineSprite);
-            setName(optionObject, "Mine");
+            setName(optionObject, "Bomb");
             if (!mineIcon.activeSelf)
                 setFunction(optionObject, acquireOption);
             else

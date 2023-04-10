@@ -100,7 +100,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
         //Vector2 pos3 = new Vector2(Mathf.FloorToInt(pos1.x + 1.1f), Mathf.CeilToInt(pos1.y - 1.1f));
         //Vector2 pos4 = new Vector2(Mathf.FloorToInt(pos1.x), Mathf.CeilToInt(pos1.y - 1.1f));
 
-        setHighlight(pos1, true, CheckAvai(pos1) ? white : blue);
+        setHighlight(pos1, true, CheckAvai(pos1) ? white : blue); 
         //setHighlight(pos2, true, CheckAvai(pos2) ? white : blue);
         //setHighlight(pos3, true, CheckAvai(pos3) ? white : blue);
         //setHighlight(pos4, true, CheckAvai(pos4) ? white : blue);

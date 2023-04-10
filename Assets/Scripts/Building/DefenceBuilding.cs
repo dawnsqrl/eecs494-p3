@@ -166,7 +166,7 @@ public class DefenceBuilding : MonoBehaviour
         if (!target.IsDestroyed() &&
             Vector2.Distance(new Vector2(target.transform.position.x, target.transform.position.y), bomb_pos) <= 2.0f)
         {
-            target.GetComponentInChildren<HitHealth>().GetDamage(1);
+            target.GetComponentInChildren<HitHealth>().GetDamage(2);
         }
     }
 
