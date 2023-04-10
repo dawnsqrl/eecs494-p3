@@ -67,7 +67,7 @@ public class HitHealth : MonoBehaviour
                 startSwitchOpponent = true;
                 GetComponent<HitHealth>().currentOpponent = other.transform.parent.gameObject;
                 print("Change opponent successful to " + other.transform.parent.gameObject);
-                // StartCoroutine(SwitchOpponentCoolDown(0.5f));
+                StartCoroutine(SwitchOpponentCoolDown(0.3f));
             }
                 
         }
