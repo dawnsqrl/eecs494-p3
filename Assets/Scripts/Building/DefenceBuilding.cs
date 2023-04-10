@@ -15,6 +15,9 @@ public class DefenceBuilding : MonoBehaviour
     int DefenceRange;
     bool isBuilderTutorialActive = false;
 
+    private GameObject bomb;
+    private GameObject explode;
+    
     [SerializeField] private Transform[] routes;
 
     Vector2 p0, p1, p2, p3;
@@ -38,6 +41,15 @@ public class DefenceBuilding : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (explode != null)
+        {
+            Destroy(explode);
+        }
+        if (bomb != null)
+        {
+            Destroy(bomb);
+        }
+        
         AttackRange.SetActive(false);
         AttackRangeTransparent.SetActive(false);
         vitality.increaseVitalityGrowth(10);
@@ -122,7 +134,7 @@ public class DefenceBuilding : MonoBehaviour
         //    yield return null;// new WaitForEndOfFrame();
         //}
 
-        GameObject bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), routes[0].position,
+        bomb = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/Bomb"), routes[0].position,
             Quaternion.identity);
 
         tParam = 0.0f;
@@ -153,7 +165,7 @@ public class DefenceBuilding : MonoBehaviour
         }
 
         BombHit(BaseCar, explode_pos);
-        GameObject explode = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/explode"), explode_pos,
+        explode = Instantiate(Resources.Load<GameObject>("Prefabs/Buildings/explode"), explode_pos,
             Quaternion.identity);
         yield return new WaitForSeconds(0.75f);
         Destroy(explode);
