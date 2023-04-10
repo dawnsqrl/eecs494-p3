@@ -255,6 +255,10 @@ public class BuildingEndDragEvent
 {
 }
 
+public class BuildingDestoryEvent
+{
+}
+
 public class BuilderTutorialSnailDeadEvent
 {
 }

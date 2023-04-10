@@ -100,7 +100,7 @@ public class SnailExpManager : MonoBehaviour
             nextLevelExp = 10 + 2 * currentLevel;
             // active selection menu
             // wait for input
-            //optionsBanner.SetActive(true);
+            // optionsBanner.SetActive(true);
             // add more health and eat speed
             levelUpNoteAnimator.SetTrigger("LevelUp");
             GetComponent<HitHealth>().health += 5;

@@ -27,7 +27,7 @@ public class NewBuilderTutorialController : MonoBehaviour
     // 6 -> enemy
 
     bool maxzoom = false, clicked = false, lockClick = false;
-    bool firstcall = false, win0 = false;
+    bool firstcall = false, win0 = false, destroyActivate = false;
     private int vitality;
     int buildingCount = 0, temp_count = 0;
 
@@ -38,6 +38,7 @@ public class NewBuilderTutorialController : MonoBehaviour
         EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
 
         EventBus.Subscribe<BuildingEndDragEvent>(_ => BuildingEndDrag());
+        EventBus.Subscribe<BuildingDestoryEvent>(_ => destroyActivate = true);
     }
 
     private void BuildingEndDrag()
@@ -205,11 +206,14 @@ public class NewBuilderTutorialController : MonoBehaviour
                 building3.SetActive(true);
                 cool3.enabled = false;
                 fog3.SetActive(false);
+                coolDestroy.enabled = false;
+                fogDestroy.SetActive(false);
 
                 BuilderCamera.transform.position = new Vector3(10.0f, 30.0f, -10.0f);
                 EventBus.Publish(new UpdateHintEvent(0,
                     "<b>Drag and drop</b> buildings onto your mycelium.\n" +
-                    "Hover mouse over the building icons for more information.", 575
+                    "Hover mouse over the building icons for more information.\n" +
+                    "Build buildings will cost vitality!", 575
                 ));
                 firstcall = true;
                 Position2GroundManager(5, 31).SetGrowthed();
@@ -264,6 +268,27 @@ public class NewBuilderTutorialController : MonoBehaviour
 
             if (win0)
             {
+                STEP_NUM = 65;
+                firstcall = false;
+                EventBus.Publish(new StartBuilderTutorialEvent());
+            }
+        }
+
+        if (STEP_NUM == 65)
+        {
+            destroyBuilding.SetActive(true);
+            EventBus.Publish(new StartBuilderTutorialEvent());
+            if (!firstcall)
+            {
+                EventBus.Publish(new UpdateHintEvent(0,
+                    "<b>Drag and drop</b> destroy icon onto your buildings.\n" +
+                    "Retrieve <b>half</b> of vitality cost.", 575
+                ));
+                firstcall = true;
+            }
+
+            if (destroyActivate)
+            {
                 STEP_NUM = 7;
                 firstcall = false;
                 EventBus.Publish(new StartBuilderTutorialEvent());
@@ -282,6 +307,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 building1.SetActive(false);
                 building2.SetActive(false);
                 building3.SetActive(false);
+                destroyBuilding.SetActive(false);
 
                 EventBus.Publish(new StartBuilderTutorialEvent());
 
