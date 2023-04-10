@@ -4,7 +4,7 @@ Devlog 1 – Improving Experience of BIOLOGY 452
 
 [img width=512]?[/img]
 
-The game is in its 5th week of development by a team of 4. In the past week we focused on small quality-of-life features (A) and gameplay balancing (B).
+The game is in its 5th week of development by a team of 4. In the past week we focused on quality-of-life features (A) and gameplay balancing (B).
 [A1] The attack range of Mushroom's defense tower is now always visible from the Snail's view (but at a lower opacity to avoid distraction). This makes it much easier for the Snail to notice the source of damage and consciously avoid it.
 [A2] The color of health and experience bars of all creatures and buildings have been made distinct. The colors are extracted from the corresponding sprite to make them more meaningful and visually consistent against each other.
 [A3] The get ready scene before tutorial now has visual feedback to acknowledge mouse click / key press. This prevents players from thinking that the game is not responding when their friend is not getting ready in time.
@@ -12,12 +12,13 @@ The game is in its 5th week of development by a team of 4. In the past week we f
 [A5] Mushroom's building buttons now always show cost values (in abbreviated form) even when not hovered over with mouse. This is expected to save new players time accessing the most important numbers (without having to move the mouse away from the screen center) once they know what the abbreviation means.
 [A6] Mycelium now has a breaking animation when Snail is eating it. This helps players gauge the time cost of destroying mycelium more precisely.
 [A7] The text banners in tutorial no longer blocks the part of UI that needs to be focused on or interacted with in the current step.
-[B1] Mushroom can now remove placed buildings and retrieve 50% of the original vitality cost and growth rate. This essentially gives Mushroom the ability to move an existing building somewhere else to counter snail's mobility.
+[B1] Mushroom can now remove placed buildings and retrieve 50% of the original vitality cost. This essentially gives Mushroom the ability to move an existing building somewhere else to counter snail's mobility.
 [B2] Small snails can now walk onto mycelium and attack small mushrooms and buildings automatically.
-[B3] ? bomb
-[B4] ? defense shell
-[B5] ? mushroom long distance attack
+[B3] Snail's level up options are now randomized. This adds more diversity to the Snail's strategy and forces them to improvise as they progress.
+[B4] Snail can now choose to obtain a shield when leveling up. It negates a certain amount of damage before breaking.
+[B5] Snail can now choose to acquire the ability to dispense mucus when leveling up. The projectile can damage small mushrooms and buildings as well as convert mycelium into mucus. This enables Snail to perform ranged attack.
+[B6] Snail bomb can now completely destroy small mushrooms, buildings and mycelium in a 3×3 range.
 
-In future iterations, balancing adjustments will remain the top priority of our development. As we get closer to finishing all planned new features, we will turn to finalizing the appearance of in-game UI elements.
+All new features should have been completed in this iteration. Next up, we will focus entirely on balancing adjustments and polish all UI elements.
 
-Builds available for [url=?]Windows[/url] and [url=?]Mac[/url]. The game supports one or two monitors, but playing in dual-display yields the best experience.
+Builds available for [url=?]Windows[/url] and [url=?]Mac[/url].
