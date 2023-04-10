@@ -106,11 +106,16 @@ public class SnailExpManager : MonoBehaviour
             upgradeIcon.SetActive(false);
             title.SetActive(false);
         }
+        else
+        {
+            upgradeIcon.SetActive(true);
+        }
     }
 
     IEnumerator skillChooseAnimation()
     {
         print("startChoose");
+        upgradeIcon.SetActive(false);
         levelUpAnimationAllowed = false;
         canSelect = false;
         skillsChooseCanvas.SetActive(true);
@@ -211,6 +216,10 @@ public class SnailExpManager : MonoBehaviour
         {
             upgradeIcon.SetActive(false);
             title.SetActive(false);
+        }
+        else
+        {
+            upgradeIcon.SetActive(true);
         }
     }
 
