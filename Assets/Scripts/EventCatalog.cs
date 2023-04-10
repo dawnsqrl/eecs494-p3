@@ -334,3 +334,13 @@ public class BaseCarDirectionEvent
         direction = _direction;
     }
 }
+
+public class AddExpEvent
+{
+    public int exp;
+
+    public AddExpEvent(int _exp)
+    {
+        exp = _exp;
+    }
+}

@@ -108,12 +108,12 @@ public class HitHealth : MonoBehaviour
             return;
         }
         
-        if (lowHealthEffect != null && health >= maxHealth * 0.25f && lowHealthEffect.activeSelf)
+        if (lowHealthEffect != null && health > maxHealth * 0.25f && lowHealthEffect.activeSelf)
         {
             lowHealthEffect.SetActive(false);
         }
 
-        if (lowHealthEffect != null && health < maxHealth * 0.25f && !lowHealthEffect.activeSelf)
+        if (lowHealthEffect != null && health <= maxHealth * 0.25f && !lowHealthEffect.activeSelf)
         {
             lowHealthEffect.SetActive(true);
         }

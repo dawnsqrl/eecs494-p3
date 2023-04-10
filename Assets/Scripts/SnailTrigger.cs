@@ -17,12 +17,24 @@ public class SnailTrigger : MonoBehaviour
     [SerializeField] private Image eatIndicator;
     private Coroutine eatIndicatorCoroutine;
     public GameObject currentGrass;
+    private Rigidbody _rigidbody;
 
     private void Start()
     {
         _snailExpManager = GetComponent<SnailExpManager>();
         eatIndicator.fillAmount = 0;
         currentGrass = null;
+        _rigidbody = transform.parent.gameObject.GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        if (_rigidbody.velocity.magnitude > 0 && eatIndicator.fillAmount > 0)
+        {
+            eatEffect.SetActive(false);
+            StopCoroutine(eatIndicatorCoroutine);
+            eatIndicator.fillAmount = 0;
+        }
     }
 
     private void OnTriggerStay(Collider other)

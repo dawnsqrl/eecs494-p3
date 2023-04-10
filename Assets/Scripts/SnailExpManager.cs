@@ -9,6 +9,7 @@ public class SnailExpManager : MonoBehaviour
 {
     [SerializeField] private int nextLevelExp;
     [SerializeField] public int currentExp;
+    [SerializeField] public int currentLevel;
     [SerializeField] private GameObject expBar, upgradeIcon;
     [SerializeField] private GameObject levelUpBanner;
     [SerializeField] private GameObject optionsBanner;
@@ -28,7 +29,7 @@ public class SnailExpManager : MonoBehaviour
 
     [SerializeField] private Transform[] routes;
     [SerializeField] private Camera basecarCamera;
-
+    [SerializeField] private Animator levelUpNoteAnimator;
     private int skillCounter = 0;
 
     private Vector2 objectPosition;
@@ -46,6 +47,7 @@ public class SnailExpManager : MonoBehaviour
         EventBus.Subscribe<SnailLevelupOptionEvent_1>(_ => OptionSelect(1));
         EventBus.Subscribe<SnailLevelupOptionEvent_2>(_ => OptionSelect(2));
         EventBus.Subscribe<SnailLevelupOptionEvent_3>(_ => OptionSelect(3));
+        EventBus.Subscribe<AddExpEvent>(e => AddExpPoints(e.exp));
         _snailSprintManager = transform.parent.gameObject.GetComponent<SnailSprintManager>();
         _snailSpitManager = transform.parent.gameObject.GetComponent<SnailLongDistanceAttack>();
         _snailWeapon = transform.parent.gameObject.GetComponent<SnailWeapon>();
@@ -56,7 +58,7 @@ public class SnailExpManager : MonoBehaviour
         expBar.GetComponent<SpriteRenderer>().size =
             new Vector2((float)currentExp / (float)nextLevelExp * 10, expBar.GetComponent<SpriteRenderer>().size.y);
         //levelUpBanner.SetActive(false);
-        optionsBanner.SetActive(false);
+        // optionsBanner.SetActive(false);
         pendingLevelUps = 0;
         _controls = new Controls();
         _playerActions = _controls.Player;
@@ -64,7 +66,8 @@ public class SnailExpManager : MonoBehaviour
         shield = transform.parent.gameObject.transform.Find("Shield").gameObject;
 
         skillsChooseCanvas.SetActive(false);
-        currentExp = 20;
+        currentExp = 0;
+        currentLevel = 0;
     }
 
     public void AddExpPoints(int exp)
@@ -91,9 +94,16 @@ public class SnailExpManager : MonoBehaviour
     {
         if (pendingLevelUps > 0)
         {
+            currentLevel++;
+            nextLevelExp = 10 + 2 * currentLevel;
             // active selection menu
             // wait for input
             //optionsBanner.SetActive(true);
+            // add more health and eat speed
+            levelUpNoteAnimator.SetTrigger("LevelUp");
+            GetComponent<HitHealth>().health += 5;
+            GetComponent<HitHealth>().maxHealth += 5;
+            GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f;
             if (levelUpAnimationAllowed)
             {
                 StartCoroutine(skillChooseAnimation());
@@ -201,13 +211,10 @@ public class SnailExpManager : MonoBehaviour
         {
             return;
         }
+        levelUpNoteAnimator.SetTrigger("LevelUpEnd");
         canSelect = false;
         Upgrade_or_Activate(selectedOptionButton);
-
-        // add more health and eat speed
-        GetComponent<HitHealth>().health += 5;
-        GetComponent<HitHealth>().maxHealth += 5;
-        GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f;
+        
         //optionsBanner.SetActive(false);
         skillsChooseCanvas.SetActive(false);
 
@@ -271,10 +278,11 @@ public class SnailExpManager : MonoBehaviour
                 shieldIcon.SetActive(true);
                 _snailShieldManager.EnableShield();
                 set_icon_position(realOption);
+                shield.GetComponent<ShieldBehavior>().AddShield();
             }
             else
             {
-                shield.GetComponent<ShieldBehavior>().GetFullHP();
+                shield.GetComponent<ShieldBehavior>().AddShield();
             }
         }
         else if (realOption == 4)
