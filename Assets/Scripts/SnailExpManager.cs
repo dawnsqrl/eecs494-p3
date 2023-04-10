@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -82,6 +81,7 @@ public class SnailExpManager : MonoBehaviour
             if (coroutineAllowed)
                 StartCoroutine(levelUpAnimation());
         }
+
         expBar.GetComponent<SpriteRenderer>().size =
             new Vector2((float)currentExp / (float)nextLevelExp * 10, expBar.GetComponent<SpriteRenderer>().size.y);
         //if (pendingLevelUps > 0 && !levelUpBanner.activeSelf)
@@ -111,6 +111,7 @@ public class SnailExpManager : MonoBehaviour
                 AudioSource.PlayClipAtPoint(clip, transform.position);
             }
         }
+
         if (pendingLevelUps <= 0)
         {
             upgradeIcon.SetActive(false);
@@ -132,7 +133,7 @@ public class SnailExpManager : MonoBehaviour
         Vector3 dest_pos = transform.position;
 
         generate_random_skill_choose();
-        
+
         while (progress < 1)
         {
             progress += Time.deltaTime * speed;
@@ -144,7 +145,8 @@ public class SnailExpManager : MonoBehaviour
             initial_pos = upgradeIcon.transform.position;
             dest_pos = transform.position;
 
-            Vector3 new_position = Vector3.Lerp(new Vector3(initial_pos.x, initial_pos.y, -2.0f), new Vector3(dest_pos.x, dest_pos.y, -2.0f), progress);
+            Vector3 new_position = Vector3.Lerp(new Vector3(initial_pos.x, initial_pos.y, -2.0f),
+                new Vector3(dest_pos.x, dest_pos.y, -2.0f), progress);
             skillsChooseCanvas.transform.position = new_position;
 
             yield return new WaitForEndOfFrame();
@@ -167,7 +169,9 @@ public class SnailExpManager : MonoBehaviour
         speedModifier = 0.5f;
 
         //Vector3 title_ini_pos = title.transform.position;
-        GetComponent<TextRevealer>().RevealText(title);
+        // GetComponent<TextRevealer>().RevealText(title);
+        title.SetActive(true);
+        upgradeIcon.SetActive(true);
         yield return new WaitForSeconds(4.0f);
 
         coroutineAllowed = false;
@@ -179,28 +183,28 @@ public class SnailExpManager : MonoBehaviour
         Vector3 cameraPos, cameraOldPos;
 
         cameraOldPos = basecarCamera.transform.position;
-        while (tParam < 1)
-        {
-            cameraPos = basecarCamera.transform.position;
-            if (tParam > 0.9 && !upgradeIcon.activeSelf)
-                upgradeIcon.SetActive(true);
-            tParam += Time.deltaTime * speedModifier;
-
-            p0 = routes[0].position;
-            p1 = routes[1].position;
-            p2 = routes[2].position;
-            p3 = routes[3].position;
-            objectPosition = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
-
-            title.transform.position = new Vector3(objectPosition.x, objectPosition.y, 0.0f);// - cameraPos + cameraOldPos;
-            cameraOldPos = cameraPos;
-            float scale = Mathf.Lerp(1.0f, 0.1f, tParam);
-            title.transform.localScale = new Vector3(scale, scale, scale);
-            yield return null;// new WaitForEndOfFrame();
-        }
+        // while (tParam < 1)
+        // {
+        //     cameraPos = basecarCamera.transform.position;
+        //     if (tParam > 0.9 && !upgradeIcon.activeSelf)
+        //         upgradeIcon.SetActive(true);
+        //     tParam += Time.deltaTime * speedModifier;
+        //
+        //     p0 = routes[0].position;
+        //     p1 = routes[1].position;
+        //     p2 = routes[2].position;
+        //     p3 = routes[3].position;
+        //     objectPosition = Mathf.Pow(1 - tParam, 3) * p0 + 3 * Mathf.Pow(1 - tParam, 2) * tParam * p1 + 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 + Mathf.Pow(tParam, 3) * p3;
+        //
+        //     title.transform.position = new Vector3(objectPosition.x, objectPosition.y, 0.0f);// - cameraPos + cameraOldPos;
+        //     cameraOldPos = cameraPos;
+        //     float scale = Mathf.Lerp(1.0f, 0.1f, tParam);
+        //     title.transform.localScale = new Vector3(scale, scale, scale);
+        //     yield return null;// new WaitForEndOfFrame();
+        // }
 
         tParam = 0f;
-
+        // upgradeIcon.SetActive(true);
         coroutineAllowed = true;
         title.SetActive(false);
         title.transform.position = title_pointer.transform.position;
@@ -214,10 +218,11 @@ public class SnailExpManager : MonoBehaviour
         {
             return;
         }
+
         levelUpNoteAnimator.SetTrigger("LevelUpEnd");
         canSelect = false;
         Upgrade_or_Activate(selectedOptionButton);
-        
+
         //optionsBanner.SetActive(false);
         skillsChooseCanvas.SetActive(false);
 
@@ -268,6 +273,7 @@ public class SnailExpManager : MonoBehaviour
                 mineIcon.SetActive(true);
                 set_icon_position(realOption);
             }
+
             _snailWeapon.AddMine(3);
         }
         else if (realOption == 3)
@@ -341,12 +347,13 @@ public class SnailExpManager : MonoBehaviour
     private void generate_random_skill_choose()
     {
         randomOption1 = UnityEngine.Random.Range(1, 5);
-        while(true)
+        while (true)
         {
             randomOption2 = UnityEngine.Random.Range(1, 5);
             if (randomOption2 != randomOption1)
                 break;
         }
+
         while (true)
         {
             randomOption3 = UnityEngine.Random.Range(1, 5);
@@ -361,59 +368,68 @@ public class SnailExpManager : MonoBehaviour
 
     private void set_option_canvas(GameObject optionObject, int option)
     {
+        string acquireOption = "Acquire!";
+        string upgradeOption = "Upgrade!";
         // option: 1 -> sprint, 2 -> mine, 3 -> shield, 4 -> spit
         if (option == 1)
         {
             setImage(optionObject, sprintSprite);
             setName(optionObject, "Sprint");
             if (!sprintIcon.activeSelf)
-                setFunction(optionObject, "Activate");
+                setFunction(optionObject, acquireOption);
             else
-                setFunction(optionObject, "Upgrade");
+                setFunction(optionObject, upgradeOption);
         }
         else if (option == 2)
         {
             setImage(optionObject, mineSprite);
             setName(optionObject, "Mine");
             if (!mineIcon.activeSelf)
-                setFunction(optionObject, "Activate");
+                setFunction(optionObject, acquireOption);
             else
-                setFunction(optionObject, "Upgrade");
+                setFunction(optionObject, upgradeOption);
         }
         else if (option == 3)
         {
             setImage(optionObject, shieldSprite);
             setName(optionObject, "Shield");
             if (!shieldIcon.activeSelf)
-                setFunction(optionObject, "Activate");
+                setFunction(optionObject, acquireOption);
             else
-                setFunction(optionObject, "Upgrade");
+                setFunction(optionObject, upgradeOption);
         }
         else if (option == 4)
         {
             setImage(optionObject, spitSprite);
             setName(optionObject, "Spit");
             if (!spitIcon.activeSelf)
-                setFunction(optionObject, "Activate");
+                setFunction(optionObject, acquireOption);
             else
-                setFunction(optionObject, "Upgrade");
+                setFunction(optionObject, upgradeOption);
         }
     }
 
     private void setImage(GameObject optionObject, Sprite _image)
     {
-        optionObject.transform.Find("optionIconHolder").transform.Find("optionImage").gameObject.GetComponent<Image>().sprite = _image;
+        optionObject.transform.Find("optionIconHolder").transform.Find("optionImage").gameObject.GetComponent<Image>()
+            .sprite = _image;
     }
+
     private void setName(GameObject optionObject, String nameStr)
     {
-        optionObject.transform.Find("name").gameObject.transform.Find("Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = nameStr;
+        optionObject.transform.Find("name").gameObject.transform.Find("Text").gameObject
+            .GetComponent<TMPro.TextMeshProUGUI>().text = nameStr;
     }
+
     private void setKey(GameObject optionObject, String keyStr)
     {
-        optionObject.transform.Find("Key").gameObject.transform.Find("Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = keyStr;
+        optionObject.transform.Find("Key").gameObject.transform.Find("Text").gameObject
+            .GetComponent<TMPro.TextMeshProUGUI>().text = keyStr;
     }
+
     private void setFunction(GameObject optionObject, String function)
     {
-        optionObject.transform.Find("function").gameObject.transform.Find("Text").gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = function;
+        optionObject.transform.Find("function").gameObject.transform.Find("Text").gameObject
+            .GetComponent<TMPro.TextMeshProUGUI>().text = function;
     }
 }
