@@ -11,7 +11,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private GameObject RTScontroller, SelectedArea, fog;
     [SerializeField] private GridManager gridManager;
     //[SerializeField] private BuilderGridManager TgridManager;
-    private ViewDragging vd;
+    //private ViewDragging vd;
     private int defenceRange = 4;
 
     private Transform parentAfterDrag;
@@ -25,7 +25,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     private GameObject AttackRange;
     private Vector3 denfenceOriginScale;
-    private List<Vector2> pos_list, oldPos_list;
+    private List<Vector2> pos_list, oldPos_list, temp_pos_list;
 
     private bool adv_ava_check = true;
     private bool isBuilderTutorialActive = false;
@@ -37,6 +37,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
         pos_list = new List<Vector2>();
         oldPos_list = new List<Vector2>();
+        temp_pos_list = new List<Vector2>();
         EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
         buildingController = GameObject.Find("BuildingCanvas");
         //growthDemo = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
@@ -51,7 +52,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     private void Start()
     {
-        vd = Camera.main.gameObject.GetComponent<ViewDragging>();
+        //vd = Camera.main.gameObject.GetComponent<ViewDragging>();
         // buildingTexture.Reinitialize(100, 100);
         isDialogBlocking = false;
         EventBus.Publish(new UpdateCursorEvent(null));
@@ -83,7 +84,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             return;
         }
 
-        vd.enabled = false;
+        //vd.enabled = false;
         Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
         Color blue = new Color(1.0f, 0.0f, 0.0f, 58.0f / 255.0f);
 
@@ -148,11 +149,29 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         //{
         //    Worldpos = new Vector3(Worldpos.x - 70.0f, Worldpos.y - 70.0f, Worldpos.z);
         //}
+        temp_pos_list.Clear();
+        Vector2 temp_pos1 = new Vector2(Mathf.FloorToInt(Worldpos.x), Mathf.CeilToInt(Worldpos.y));
+        if (temp_pos1 is { x: >= 0 and < 50, y: >= 0 and < 50 })
+            temp_pos_list.Add(temp_pos1);
+
         bool avaCheckRes = true;
-        foreach (Vector2 oldPos in oldPos_list)
+        foreach (Vector2 oldPos in temp_pos_list)
         {
             if (!CheckAvai(oldPos))
                 avaCheckRes = false;
+        }
+
+        adv_ava_check = true;
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                Vector2 p = new Vector2(Mathf.FloorToInt(temp_pos1.x + (float)i), Mathf.CeilToInt(temp_pos1.y - (float)j));
+                if (p is { x: >= 0 and < 50, y: >= 0 and < 50 })
+                    continue;
+                else
+                    adv_ava_check = false;
+            }
         }
 
         if ((Worldpos is { x: >= 0 and < 50, y: >= 0 and < 50 }) //|| startTutorial)
@@ -221,9 +240,10 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         }
 
         transform.SetParent(parentAfterDrag);
+        transform.position = transform.parent.position;
         transform.localScale = new Vector2(1, 1);
         RTScontroller.SetActive(true);
-        vd.enabled = true;
+        //vd.enabled = true;
 
         EventBus.Publish(new EndBuildingDragEvent());
     }

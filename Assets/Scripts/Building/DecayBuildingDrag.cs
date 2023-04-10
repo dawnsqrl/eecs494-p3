@@ -15,7 +15,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
     [SerializeField] private GridManager gridManager;
 
     //[SerializeField] private BuilderGridManager TgridManager;
-    private ViewDragging vd;
+    //private ViewDragging vd;
     //private int defenceRange = 3;
 
     private Transform parentAfterDrag;
@@ -43,7 +43,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private void Start()
     {
-        vd = Camera.main.gameObject.GetComponent<ViewDragging>();
+        //vd = Camera.main.gameObject.GetComponent<ViewDragging>();
         // buildingTexture.Reinitialize(100, 100);
         isDialogBlocking = false;
         EventBus.Publish(new UpdateCursorEvent(null));
@@ -75,7 +75,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
             return;
         }
 
-        vd.enabled = false;
+        //vd.enabled = false;
         Color white = new Color(1.0f, 1.0f, 1.0f, 58.0f / 255.0f);
         Color blue = new Color(1.0f, 0.0f, 0.0f, 58.0f / 255.0f);
 
@@ -205,9 +205,10 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
             setHighlight(oldPos, false, white);
 
         transform.SetParent(parentAfterDrag);
+        transform.position = transform.parent.position;
         transform.localScale = new Vector2(1, 1);
         RTScontroller.SetActive(true);
-        vd.enabled = true;
+        //vd.enabled = true;
 
         EventBus.Publish(new EndBuildingDragEvent());
     }

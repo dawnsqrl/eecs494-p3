@@ -14,7 +14,7 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
     [SerializeField] private GridManager gridManager;
 
     //[SerializeField] private BuilderGridManager TgridManager;
-    private ViewDragging vd;
+    //private ViewDragging vd;
     //private int defenceRange = 3;
 
     private Transform parentAfterDrag;
@@ -44,7 +44,7 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     private void Start()
     {
-        vd = Camera.main.gameObject.GetComponent<ViewDragging>();
+        //vd = Camera.main.gameObject.GetComponent<ViewDragging>();
         // buildingTexture.Reinitialize(100, 100);
         isDialogBlocking = false;
         EventBus.Publish(new UpdateCursorEvent(null));
@@ -76,7 +76,7 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
             return;
         }
 
-        vd.enabled = false;
+        //vd.enabled = false;
         setHighlight(oldPos1, false);
 
         Vector3 Worldpos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
@@ -117,9 +117,10 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
 
         setHighlight(oldPos1, false);
         transform.SetParent(parentAfterDrag);
+        transform.position = transform.parent.position;
         transform.localScale = new Vector2(1, 1);
         RTScontroller.SetActive(true);
-        vd.enabled = true;
+        //vd.enabled = true;
 
         EventBus.Publish(new EndBuildingDragEvent());
     }

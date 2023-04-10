@@ -125,8 +125,18 @@ public class BuildingController : MonoBehaviour
         Color red = new Color(1.0f, 0.0f, 0.0f, 58.0f / 255.0f);
 
         if(status)
-            buildings[pos].gameObject.GetComponent<SpriteRenderer>().color = red;
+        {
+            if (buildings[pos].gameObject.name[2] == 'r')
+                buildings[pos].gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = red;
+            else
+                buildings[pos].gameObject.GetComponent<SpriteRenderer>().color = red;
+        } 
         else
-            buildings[pos].gameObject.GetComponent<SpriteRenderer>().color = origin;
+        {
+            if (buildings[pos].gameObject.name[2] == 'r')
+                buildings[pos].gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>().color = origin;
+            else
+                buildings[pos].gameObject.GetComponent<SpriteRenderer>().color = origin;
+        }
     }
 }
