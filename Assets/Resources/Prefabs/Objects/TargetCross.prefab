@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 512139228058749269}
   - component: {fileID: 2147338548110803722}
-  m_Layer: 17
+  m_Layer: 19
   m_Name: TargetCross
   m_TagString: TargetCross
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 512139229507615602}
   - component: {fileID: 512139229507615597}
-  m_Layer: 17
+  m_Layer: 19
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}

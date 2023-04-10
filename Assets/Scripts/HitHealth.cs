@@ -224,7 +224,7 @@ public class HitHealth : MonoBehaviour
     private IEnumerator HitEffect(int damage)
     {
         if (!hitlock) {
-            if (gameObject.tag == "BaseCar" && transform.parent.gameObject.transform.Find("Shield") != null && transform.parent.gameObject.transform.Find("Shield").gameObject.activeSelf)
+            if (gameObject.tag == "BaseCar" && transform.parent.gameObject.transform.Find("Shield").gameObject.transform.Find("ShieldObject").gameObject.activeSelf)
             {
                 hitlock = true;
                 transform.parent.gameObject.transform.Find("Shield").gameObject.GetComponent<ShieldBehavior>().ReduceHP(damage);
