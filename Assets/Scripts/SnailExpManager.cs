@@ -47,6 +47,7 @@ public class SnailExpManager : MonoBehaviour
         EventBus.Subscribe<SnailLevelupOptionEvent_1>(_ => OptionSelect(1));
         EventBus.Subscribe<SnailLevelupOptionEvent_2>(_ => OptionSelect(2));
         EventBus.Subscribe<SnailLevelupOptionEvent_3>(_ => OptionSelect(3));
+        EventBus.Subscribe<AddExpEvent>(e => AddExpPoints(e.exp));
         _snailSprintManager = transform.parent.gameObject.GetComponent<SnailSprintManager>();
         _snailSpitManager = transform.parent.gameObject.GetComponent<SnailLongDistanceAttack>();
         _snailWeapon = transform.parent.gameObject.GetComponent<SnailWeapon>();

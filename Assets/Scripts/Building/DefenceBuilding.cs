@@ -44,6 +44,7 @@ public class DefenceBuilding : MonoBehaviour
         GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
         AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
         AudioSource.PlayClipAtPoint(clip, transform.position);
+        EventBus.Publish(new AddExpEvent(5));
     }
 
     private void Update()

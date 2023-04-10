@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -90,6 +91,7 @@ public class SpreadBuilding : MonoBehaviour
         GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
         AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
         AudioSource.PlayClipAtPoint(clip, transform.position);
+        EventBus.Publish(new AddExpEvent(5));
     }
 
     IEnumerator StartSpread()
