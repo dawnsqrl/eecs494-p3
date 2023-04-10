@@ -29,6 +29,7 @@ public class SnailExpManager : MonoBehaviour
     [SerializeField] private Transform[] routes;
     [SerializeField] private Camera basecarCamera;
     [SerializeField] private Animator levelUpNoteAnimator;
+    [SerializeField] private Animator addExpNoteAnimator;
     private int skillCounter = 0;
 
     private Vector2 objectPosition;
@@ -72,6 +73,7 @@ public class SnailExpManager : MonoBehaviour
     public void AddExpPoints(int exp)
     {
         currentExp += exp;
+        addExpNoteAnimator.SetTrigger("AddExp");
         if (currentExp >= nextLevelExp)
         {
             AudioClip clip = Resources.Load<AudioClip>("Audio/SnailLevelUp");
