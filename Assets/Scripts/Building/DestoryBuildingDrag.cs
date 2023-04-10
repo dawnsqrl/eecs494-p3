@@ -13,6 +13,8 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     [SerializeField] private GridManager gridManager;
 
+    public static bool selfDestory = false;
+
     //[SerializeField] private BuilderGridManager TgridManager;
     //private ViewDragging vd;
     //private int defenceRange = 3;
@@ -114,6 +116,7 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
                 fog.SetActive(true);
             }
             EventBus.Publish(new BuildingDestoryEvent());
+            selfDestory = true;
         }
 
         setHighlight(oldPos1, false);
