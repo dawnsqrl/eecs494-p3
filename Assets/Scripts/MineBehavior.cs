@@ -35,29 +35,32 @@ public class MineBehavior : MonoBehaviour
 
     IEnumerator DestoryAll(GameObject gameObject) {
         yield return new WaitForSeconds(0.4f);
-        print("step 1");
+        //print("step 1");
         if (CitizenControl.citizenList != null)
         {
+            //print("step 1.5");
             foreach (var citizen in CitizenControl.citizenList)
             {
-                Debug.Log(citizen.name);
+                //print("step 1.6");
                 if (citizen != null)
                 {
+                    //print("step 1.7");
                     if (Vector3.Distance(citizen.transform.position, transform.position) < damage_radius)
                     {
+                        //print("step 1.8");
                         citizen.GetComponentInChildren<HitHealth>().GetDamage(damage);
                     }
                 }
             }
         }
-        print("step 2");
+        //print("step 2");
         GameObject nearestBuilding = BuildingController.NearestBuilding(transform.position, false);
         while (nearestBuilding != null && Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(nearestBuilding.transform.position.x, nearestBuilding.transform.position.y))<damage_radius) {
             Destroy(nearestBuilding);
             yield return null;
             nearestBuilding= BuildingController.NearestBuilding(transform.position, false);
         }
-        print("step 3");
+        //print("step 3");
         List<Vector2> tile_list = Get_tiles_in_range(new Vector2(transform.position.x, transform.position.y), damage_radius);
         foreach (Vector2 pos in tile_list) {
             if (GridManager._tiles.ContainsKey(pos)) {
@@ -65,7 +68,7 @@ public class MineBehavior : MonoBehaviour
                 GridManager._tiles[pos].GetComponentInChildren<GroundTileManager>().RemoveGrowthed();
             }
         }
-        print("step 4");
+        //print("step 4");
         yield return new WaitForSeconds(0.4f);
         Destroy(gameObject);
     }
