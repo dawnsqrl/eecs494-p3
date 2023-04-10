@@ -25,16 +25,17 @@ public class SnailTrigger : MonoBehaviour
         eatIndicator.fillAmount = 0;
         currentGrass = null;
         _rigidbody = transform.parent.gameObject.GetComponent<Rigidbody>();
+        eatIndicatorCoroutine = null;
     }
 
     private void Update()
     {
-        if (_rigidbody.velocity.magnitude > 0 && eatIndicator.fillAmount > 0)
-        {
-            eatEffect.SetActive(false);
-            StopCoroutine(eatIndicatorCoroutine);
-            eatIndicator.fillAmount = 0;
-        }
+        // if (_rigidbody.velocity.magnitude > 1 && eatIndicator.fillAmount > 0)
+        // {
+        //     eatEffect.SetActive(false);
+        //     StopCoroutine(eatIndicatorCoroutine);
+        //     eatIndicator.fillAmount = 0;
+        // }
     }
 
     private void OnTriggerStay(Collider other)
