@@ -72,14 +72,14 @@ public class BuildingController : MonoBehaviour
         }
     }
 
-    public static GameObject NearestBuilding(Vector3 pos)
+    public static GameObject NearestBuilding(Vector3 pos, bool includeMushroom = true)
     {
         float leastDistance = 999;
         GameObject res = null;
         for (int i = 0; i < buildings.Count; i++)
         {
             KeyValuePair<Vector2, GameObject> building = buildings.ElementAt(i);
-            if (building.Value.IsDestroyed())
+            if (building.Value.IsDestroyed() || (!includeMushroom && building.Value.CompareTag("Mushroom")))
             {
                 continue;
             }
