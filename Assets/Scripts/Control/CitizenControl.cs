@@ -35,8 +35,10 @@ public class CitizenControl : MonoBehaviour
         GameObject res = null;
         for (int i = 0; i < citizenList.Count; i++)
         {
+            print(citizenList[i]);
             if (citizenList[i].IsDestroyed())
             {
+                citizenList.RemoveAt(i);
                 continue;
             }
 

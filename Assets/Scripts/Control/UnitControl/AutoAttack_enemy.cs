@@ -30,51 +30,61 @@ public class AutoAttack_enemy : MonoBehaviour
 
     private void Update()
     {
-        if (currentOpponent.IsDestroyed())
+        try
         {
-            onAssult = false;
-            currentOpponent = null;
-        }
-        if (onAssult)
-        {
-            movetoPosition = currentOpponent.transform.position;
-            _rts.MoveTo(movetoPosition);
-            return;
-        }
-        // movetoPosition = gameObject.transform.position;
-        enemyList = new List<GameObject>(CitizenControl.citizenList);
-        // enemyList.Add(mushroom);
-        if (enemyList.Count > 0)
-        {
-            for (int i = 0; i < enemyList.Count; i++)
+            print(currentOpponent);
+            if (currentOpponent == null || currentOpponent.IsDestroyed())
             {
-                if (enemyList[i].IsDestroyed())
+                onAssult = false;
+                currentOpponent = null;
+            }
+            if (onAssult && currentOpponent != null && !currentOpponent.IsDestroyed())
+            {
+                movetoPosition = currentOpponent.transform.position;
+                _rts.MoveTo(movetoPosition);
+                return;
+            }
+            // movetoPosition = gameObject.transform.position;
+            enemyList = new List<GameObject>(CitizenControl.citizenList);
+            print(enemyList);
+            // enemyList.Add(mushroom);
+            if (enemyList.Count > 0)
+            {
+                for (int i = 0; i < enemyList.Count; i++)
                 {
-                    continue;
-                }
-                GameObject opponent = enemyList[i];
-                if ((opponent.transform.position - transform.position).magnitude < range)
-                {
-                    movetoPosition = opponent.transform.position;
-                    onAssult = true;
-                    _self_hitHealth.SetCurrentOpponent(opponent);
-                    currentOpponent = opponent;
-                    break;
+                    if (enemyList[i].IsDestroyed())
+                    {
+                        continue;
+                    }
+                    GameObject opponent = enemyList[i];
+                    if (!opponent.IsDestroyed() && (opponent.transform.position - transform.position).magnitude < range)
+                    {
+                        movetoPosition = opponent.transform.position;
+                        onAssult = true;
+                        _self_hitHealth.SetCurrentOpponent(opponent);
+                        currentOpponent = opponent;
+                        break;
+                    }
                 }
             }
-        }
 
-        // if no small citizen on sight
-        if (currentOpponent == null)
-        {
-            GameObject building = BuildingController.NearestBuilding(transform.position);
-            if (building != null && (building.transform.position - transform.position).magnitude < range)
+            // if no small citizen on sight
+            if (currentOpponent == null)
             {
-                movetoPosition = building.transform.position;
-                onAssult = true;
-                _self_hitHealth.SetCurrentOpponent(building);
-                currentOpponent = building;
+                GameObject building = BuildingController.NearestBuilding(transform.position);
+                if (building != null && (building.transform.position - transform.position).magnitude < range)
+                {
+                    movetoPosition = building.transform.position;
+                    onAssult = true;
+                    _self_hitHealth.SetCurrentOpponent(building);
+                    currentOpponent = building;
+                }
             }
+        }
+        catch (NullReferenceException e)
+        {
+            print(e);
+            throw;
         }
     }
 
