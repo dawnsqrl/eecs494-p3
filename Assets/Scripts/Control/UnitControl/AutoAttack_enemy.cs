@@ -110,7 +110,7 @@ public class AutoAttack_enemy : MonoBehaviour
         }
         
         // search for new enemy
-
+        bool foundCitizen = false;
         enemyList = new List<GameObject>(CitizenControl.citizenList);
         if (enemyList.Count > 0)
         {
@@ -127,20 +127,22 @@ public class AutoAttack_enemy : MonoBehaviour
                     _self_hitHealth.SetCurrentOpponent(opponent);
                     currentOpponent = opponent;
                     onAssult = true;
+                    foundCitizen = true;
                     break;
                 }
             }
         }
-        else
+
+        if (!foundCitizen)
         {
             GameObject building = BuildingController.NearestBuilding(transform.position);
-                if (building != null && (building.transform.position - transform.position).magnitude < range)
-                {
-                    movetoPosition = building.transform.position;
-                    onAssult = true;
-                    _self_hitHealth.SetCurrentOpponent(building);
-                    currentOpponent = building;
-                }
+            if (building != null && (building.transform.position - transform.position).magnitude < range)
+            {
+                movetoPosition = building.transform.position;
+                onAssult = true;
+                _self_hitHealth.SetCurrentOpponent(building);
+                currentOpponent = building;
+            }
         }
     }
 

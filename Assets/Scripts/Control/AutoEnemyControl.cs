@@ -55,7 +55,7 @@ public class AutoEnemyControl : MonoBehaviour
         }
         autoSnails_queue.Clear();
         List<Vector3> targetPositionList =
-            GetPositionListAround(transform.position - _basecarController.forwardDirection.normalized * 2, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
+            GetPositionListAround(transform.position + _basecarController.forwardDirection.normalized * 2, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
         int targetPositionListIndex = 0;
         for (int i = 0; i < foundSnails.Count; i++)
         {

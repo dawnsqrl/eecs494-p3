@@ -46,13 +46,7 @@ public class AutoAttack_citizen : MonoBehaviour
         // search for new enemy
 
         enemyList = new List<GameObject>(AutoEnemyControl.foundSnails);
-        if ((basecar.transform.position - transform.position).magnitude < range) {
-            movetoPosition = basecar.transform.position;
-            _self_hitHealth.SetCurrentOpponent(basecar);
-            currentOpponent = basecar;
-            onAssult = true;
-        }
-        else if (enemyList.Count > 0)
+        if (enemyList.Count > 0)
         {
             for (int i = 0; i < enemyList.Count; i++)
             {
@@ -70,7 +64,12 @@ public class AutoAttack_citizen : MonoBehaviour
                     break;
                 }
             }
-        }
+        } else if ((basecar.transform.position - transform.position).magnitude < range) {
+            movetoPosition = basecar.transform.position;
+            _self_hitHealth.SetCurrentOpponent(basecar);
+            currentOpponent = basecar;
+            onAssult = true;
+        } 
     }
 
     private void OnDestroy()
