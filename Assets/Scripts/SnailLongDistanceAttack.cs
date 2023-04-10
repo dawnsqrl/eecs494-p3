@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SnailLongDistanceAttack : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class SnailLongDistanceAttack : MonoBehaviour
     int damage = 1;
 
     bool attacklock = false;
+    private float maxCoolDownTime;
+    private float remainCoolDownTime;
+    [SerializeField] private Image coolDownFog;
 
     private void Awake()
     {
@@ -21,7 +25,9 @@ public class SnailLongDistanceAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        coolDownFog.fillAmount = 0;
+        maxCoolDownTime = 1;
+        remainCoolDownTime = 0;
     }
 
     public void EnableSpit()
@@ -44,6 +50,7 @@ public class SnailLongDistanceAttack : MonoBehaviour
         if (canSpit && !attacklock)
         {
             StartCoroutine(StartAttack());
+            StartCoroutine(CoolDown());
         }
     }
 
@@ -91,8 +98,6 @@ public class SnailLongDistanceAttack : MonoBehaviour
             gridManager.GetTileAtPosition(pos).GetComponentInChildren<GroundTileManager>().SetMucus();
             gridManager.GetTileAtPosition(pos).GetComponentInChildren<GroundTileManager>().RemoveGrowthed();
         }
-
-        attacklock = false;
     }
 
     private GameObject findTarget(Vector3 pos)
@@ -148,5 +153,20 @@ public class SnailLongDistanceAttack : MonoBehaviour
         else { return x > 0 ? -45.0f : 135.0f; }
 
         return 0.0f;
+    }
+
+    private IEnumerator CoolDown()
+    {
+        remainCoolDownTime = maxCoolDownTime;
+        while (remainCoolDownTime > 0)
+        {
+            remainCoolDownTime -= Time.deltaTime;
+            coolDownFog.fillAmount = remainCoolDownTime / maxCoolDownTime;
+            yield return null;
+        }
+        
+        attacklock = false;
+        coolDownFog.fillAmount = 0;
+        remainCoolDownTime = 0;
     }
 }
