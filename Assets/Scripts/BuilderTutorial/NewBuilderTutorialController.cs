@@ -398,11 +398,13 @@ public class NewBuilderTutorialController : MonoBehaviour
                 building2.SetActive(true);
                 building3.SetActive(true);
                 building4.SetActive(true);
+                destroyBuilding.SetActive(true);
                 fog0.SetActive(true);
                 fog1.SetActive(true);
                 fog2.SetActive(true);
                 fog3.SetActive(true);
                 fog4.SetActive(true);
+                fogDestroy.SetActive(true);
 
                 //miniMap.SetActive(true);
 
