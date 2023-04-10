@@ -56,18 +56,20 @@ public class HitHealth : MonoBehaviour
             {
                 return;
             }
-            if (transform.parent != null && currentOpponent != other.transform.parent.gameObject)
+        }
+        
+        if (transform.parent != null && GetComponent<HitHealth>().currentOpponent != other.transform.parent.gameObject)
+        {
+            // if this opponent is not a building, and the other's current opponent is not self
+            // make this a current opponent
+            if (!startSwitchOpponent)
             {
-                // if this opponent is not a building, and the other's current opponent is not self
-                // make this a current opponent
-                if (!startSwitchOpponent)
-                {
-                    startSwitchOpponent = true;
-                    GetComponent<HitHealth>().currentOpponent = other.transform.parent.gameObject;
-                    StartCoroutine(SwitchOpponentCoolDown(0.5f));
-                }
-                
+                startSwitchOpponent = true;
+                GetComponent<HitHealth>().currentOpponent = other.transform.parent.gameObject;
+                print("Change opponent successful to " + other.transform.parent.gameObject);
+                // StartCoroutine(SwitchOpponentCoolDown(0.5f));
             }
+                
         }
         
         if (health > 0)
