@@ -463,10 +463,11 @@ public class NewBuilderTutorialController : MonoBehaviour
                 EventBus.Publish(new UpdateHintEvent(0,
                     "<b>Tips</b>\n" +
                     "\n" +
-                    "<b>1.</b> Build some Vitality Generators to keep vitality growth." +
-                    "<b>2.</b> Only build Growth Source when you have enough vitality." +
-                    "<b>3.</b> Development means victory." +
-                    "<b>4.</b> Extension is your destiny.", 575
+                    "<b>1.</b> Build some Vitality Generators to keep vitality growth.\n" +
+                    "<b>2.</b> Only build Growth Source when you have enough vitality.\n" +
+                    "<b>3.</b> Development means victory.\n" +
+                    "<b>4.</b> Extension is your destiny.\n" +
+                    "<b>[Lclick]</b>", 575
                 ));
                 firstcall = true;
             }
