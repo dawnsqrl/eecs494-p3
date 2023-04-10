@@ -83,6 +83,12 @@ public class GameRTSControl : MonoBehaviour
         if (Mouse.current.rightButton.wasReleasedThisFrame && !isDialogBlocking)
         {
             Vector3 movetoPosition = UtilsClass.GetMouseWorldPosition();
+            if (GameObject.FindGameObjectWithTag("TargetCross") != null)
+            {
+                Destroy(GameObject.FindGameObjectWithTag("TargetCross"));
+            }
+            Instantiate(Resources.Load<GameObject>("Prefabs/Objects/TargetCross"), movetoPosition,
+                Quaternion.identity);
             List<Vector3> targetPositionList =
                 GetPositionListAround(movetoPosition, new float[] { 1f, 2f, 3f }, new int[] { 5, 10, 20 });
             int targetPositionListIndex = 0;

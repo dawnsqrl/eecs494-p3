@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ShieldBehavior : MonoBehaviour
 {
@@ -11,7 +13,11 @@ public class ShieldBehavior : MonoBehaviour
     SpriteRenderer renderer;
     bool render_lock = false;
 
+    public int numShield;
+
     bool canShield = false, activated = false;
+    [SerializeField] private GameObject shieldGameObject;
+    [SerializeField] private TextMeshProUGUI _text;
 
     // Update is called once per frame
     private void Awake()
@@ -23,6 +29,9 @@ public class ShieldBehavior : MonoBehaviour
     {
         HP = max_HP;
         renderer = GetComponent<SpriteRenderer>();
+        shieldGameObject.SetActive(false);
+        numShield = 0;
+        _text.text = numShield.ToString();
     }
 
     void Update()
@@ -32,8 +41,7 @@ public class ShieldBehavior : MonoBehaviour
             renderer.color = new Color(1, 1, 1, (80 * Mathf.Sin(2 * Mathf.PI * Time.time / cycle) + 160) / 255);
             if (HP < 0)
             {
-                HP = max_HP;
-                gameObject.SetActive(false);
+                shieldGameObject.SetActive(false);
                 activated = false;
             }
         }
@@ -46,8 +54,14 @@ public class ShieldBehavior : MonoBehaviour
 
     private void Shield()
     {
-        activated = true;
-        gameObject.SetActive(true);
+        if (numShield > 0)
+        {
+            numShield--;
+            _text.text = numShield.ToString();
+            activated = true;
+            shieldGameObject.SetActive(true);
+            HP = max_HP;
+        }
     }
 
     public void ReduceHP(float cnt) {
@@ -55,20 +69,9 @@ public class ShieldBehavior : MonoBehaviour
             HP -= cnt;
     }
 
-    public void GetFullHP() {
-        if (canShield)
-            HP = max_HP;
+    public void AddShield()
+    {
+        numShield++;
+        _text.text = numShield.ToString();
     }
-
-    //IEnumerator BlinkAnimation() {
-    //    if (!render_lock) {
-    //        render_lock = true;
-    //        renderer.color=new Color(255,255,255, 52 * Mathf.Sin(2 * Mathf.PI * Time.time / cycle) + 151);
-    //        yield return nu
-    //        render_lock = false;
-    //    }
-    //    else {
-    //        yield return null;
-    //    }
-    //}
 }
