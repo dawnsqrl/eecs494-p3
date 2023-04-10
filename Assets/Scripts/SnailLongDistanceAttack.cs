@@ -121,8 +121,8 @@ public class SnailLongDistanceAttack : MonoBehaviour
 
         //print(nearestBuilding.transform.position);
 
-        //GameObject nearestCitizen = CitizenControl.NearestCitizen(pos);
-        GameObject nearestCitizen = null;
+        GameObject nearestCitizen = CitizenControl.NearestCitizen(pos);
+        //GameObject nearestCitizen = null;
         float citizen_dis;
 
         if (nearestCitizen == null)
