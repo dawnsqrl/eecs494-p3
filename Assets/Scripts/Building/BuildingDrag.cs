@@ -154,8 +154,6 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (temp_pos1 is { x: >= 0 and < 50, y: >= 0 and < 50 })
             temp_pos_list.Add(temp_pos1);
 
-        
-
         adv_ava_check = true;
         for (int i = 0; i < 2; i++)
         {
@@ -163,7 +161,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             {
                 Vector2 p = new Vector2(Mathf.FloorToInt(temp_pos1.x + (float)i), Mathf.CeilToInt(temp_pos1.y - (float)j));
                 if (p is { x: >= 0 and < 50, y: >= 0 and < 50 })
-                    continue;
+                    temp_pos_list.Add(p);
                 else
                     adv_ava_check = false;
             }
