@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoliderBuilding : MonoBehaviour
 {
-    private int maxSolider = 3;
+    private int maxSolider = 2;
     private List<GameObject> autoSoliders;
     private float last_res = 0.0f;
 

@@ -76,7 +76,7 @@ public class HitHealth : MonoBehaviour
             StartCoroutine(HitEffect(1));
         }
         
-        if (health == 0)
+        if (health <= 0)
         {
             EventBus.Publish(new TBaseCarDestroy());
             //EventBus.Publish(new BuilderTutorialSnailDeadEvent());
@@ -197,7 +197,7 @@ public class HitHealth : MonoBehaviour
             canGetHit = false;
             StartCoroutine(HitEffect(damage));
         }
-        if (health == 0)
+        if (health <= 0)
         {
             //EventBus.Publish(new BuilderTutorialSnailDeadEvent());
             if (gameObject.tag == "Building")
