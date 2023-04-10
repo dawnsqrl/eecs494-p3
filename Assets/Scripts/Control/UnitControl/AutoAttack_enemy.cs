@@ -32,48 +32,108 @@ public class AutoAttack_enemy : MonoBehaviour
 
     private void Update()
     {
-        try
+        // try
+        // {
+        //     print("current opponent is "+currentOpponent);
+        //     if (currentOpponent == null || currentOpponent.IsDestroyed())
+        //     {
+        //         onAssult = false;
+        //         currentOpponent = null;
+        //     }
+        //     if (onAssult && currentOpponent != null && !currentOpponent.IsDestroyed())
+        //     {
+        //         movetoPosition = currentOpponent.transform.position;
+        //         _rts.MoveTo(movetoPosition);
+        //         return;
+        //     }
+        //     // movetoPosition = gameObject.transform.position;
+        //     enemyList = new List<GameObject>(CitizenControl.citizenList);
+        //     print("current enemy is "+enemyList);
+        //     // enemyList.Add(mushroom);
+        //     if (enemyList.Count > 0)
+        //     {
+        //         for (int i = 0; i < enemyList.Count; i++)
+        //         {
+        //             if (enemyList[i].IsDestroyed())
+        //             {
+        //                 continue;
+        //             }
+        //             GameObject opponent = enemyList[i];
+        //             if (!opponent.IsDestroyed() && (opponent.transform.position - transform.position).magnitude < range)
+        //             {
+        //                 movetoPosition = opponent.transform.position;
+        //                 onAssult = true;
+        //                 _self_hitHealth.SetCurrentOpponent(opponent);
+        //                 currentOpponent = opponent;
+        //                 break;
+        //             }
+        //         }
+        //     }
+        //
+        //     // if no small citizen on sight
+        //     if (currentOpponent == null)
+        //     {
+        //         GameObject building = BuildingController.NearestBuilding(transform.position);
+        //         if (building != null && (building.transform.position - transform.position).magnitude < range)
+        //         {
+        //             movetoPosition = building.transform.position;
+        //             onAssult = true;
+        //             _self_hitHealth.SetCurrentOpponent(building);
+        //             currentOpponent = building;
+        //         }
+        //     }
+        // }
+        // catch (NullReferenceException e)
+        // {
+        //     // Get stack trace for the exception with source file information
+        //     var st = new StackTrace(e, true);
+        //     // Get the top stack frame
+        //     var frame = st.GetFrame(0);
+        //     // Get the line number from the stack frame
+        //     var line = frame.GetFileLineNumber();
+        //     print("code line is "+line);
+        //     throw;
+        // }
+        
+        if (currentOpponent.IsDestroyed())
         {
-            print("current opponent is "+currentOpponent);
-            if (currentOpponent == null || currentOpponent.IsDestroyed())
+            onAssult = false;
+            currentOpponent = null;
+        }
+        if (onAssult)
+        {
+            // continue chasing the current opponent
+            // or change current opponent to the current collision
+            movetoPosition = currentOpponent.transform.position;
+            _rts.MoveTo(movetoPosition);
+            return;
+        }
+        
+        // search for new enemy
+
+        enemyList = new List<GameObject>(CitizenControl.citizenList);
+        if (enemyList.Count > 0)
+        {
+            for (int i = 0; i < enemyList.Count; i++)
             {
-                onAssult = false;
-                currentOpponent = null;
-            }
-            if (onAssult && currentOpponent != null && !currentOpponent.IsDestroyed())
-            {
-                movetoPosition = currentOpponent.transform.position;
-                _rts.MoveTo(movetoPosition);
-                return;
-            }
-            // movetoPosition = gameObject.transform.position;
-            enemyList = new List<GameObject>(CitizenControl.citizenList);
-            print("current enemy is "+enemyList);
-            // enemyList.Add(mushroom);
-            if (enemyList.Count > 0)
-            {
-                for (int i = 0; i < enemyList.Count; i++)
+                if (enemyList[i].IsDestroyed())
                 {
-                    if (enemyList[i].IsDestroyed())
-                    {
-                        continue;
-                    }
-                    GameObject opponent = enemyList[i];
-                    if (!opponent.IsDestroyed() && (opponent.transform.position - transform.position).magnitude < range)
-                    {
-                        movetoPosition = opponent.transform.position;
-                        onAssult = true;
-                        _self_hitHealth.SetCurrentOpponent(opponent);
-                        currentOpponent = opponent;
-                        break;
-                    }
+                    continue;
+                }
+                GameObject opponent = enemyList[i];
+                if ((opponent.transform.position - transform.position).magnitude < range)
+                {
+                    movetoPosition = opponent.transform.position;
+                    _self_hitHealth.SetCurrentOpponent(opponent);
+                    currentOpponent = opponent;
+                    onAssult = true;
+                    break;
                 }
             }
-
-            // if no small citizen on sight
-            if (currentOpponent == null)
-            {
-                GameObject building = BuildingController.NearestBuilding(transform.position);
+        }
+        else
+        {
+            GameObject building = BuildingController.NearestBuilding(transform.position);
                 if (building != null && (building.transform.position - transform.position).magnitude < range)
                 {
                     movetoPosition = building.transform.position;
@@ -81,18 +141,6 @@ public class AutoAttack_enemy : MonoBehaviour
                     _self_hitHealth.SetCurrentOpponent(building);
                     currentOpponent = building;
                 }
-            }
-        }
-        catch (NullReferenceException e)
-        {
-            // Get stack trace for the exception with source file information
-            var st = new StackTrace(e, true);
-            // Get the top stack frame
-            var frame = st.GetFrame(0);
-            // Get the line number from the stack frame
-            var line = frame.GetFileLineNumber();
-            print("code line is "+line);
-            throw;
         }
     }
 
