@@ -26,8 +26,9 @@ public class HitHealth : MonoBehaviour
 
     private GameObject currentOpponent;
     [SerializeField] private GameObject lowHealthEffect;
-
-
+    private bool canSwitchOpponent;
+    private bool startSwitchOpponent;
+    
     private void Start()
     {
         hitlock = false;
@@ -36,6 +37,8 @@ public class HitHealth : MonoBehaviour
         healthBar.size =
             new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
         deadAnimBegan = false;
+        startSwitchOpponent = false;
+        canSwitchOpponent = true;
     }
 
     private void OnTriggerStay(Collider other)
@@ -48,11 +51,22 @@ public class HitHealth : MonoBehaviour
 
         if (other.gameObject.GetComponent<HitHealth>().currentOpponent != null)
         {
-            if (transform.parent != null && other.gameObject.GetComponent<HitHealth>().currentOpponent != transform.parent.gameObject)
+            if (transform.parent != null && other.gameObject.GetComponent<HitHealth>().currentOpponent !=
+                transform.parent.gameObject)
+            {
+                return;
+            }
+            if (transform.parent != null && currentOpponent != other.transform.parent.gameObject)
             {
                 // if this opponent is not a building, and the other's current opponent is not self
                 // make this a current opponent
-                GetComponent<HitHealth>().currentOpponent = other.transform.parent.gameObject;
+                if (!startSwitchOpponent)
+                {
+                    startSwitchOpponent = true;
+                    GetComponent<HitHealth>().currentOpponent = other.transform.parent.gameObject;
+                    StartCoroutine(SwitchOpponentCoolDown(0.5f));
+                }
+                
             }
         }
         
@@ -61,8 +75,6 @@ public class HitHealth : MonoBehaviour
             canGetHit = false;
             StartCoroutine(HitEffect(1));
         }
-
-
         
         if (health == 0)
         {
@@ -281,6 +293,12 @@ public class HitHealth : MonoBehaviour
     {
         maxHealth += Mathf.Clamp(curr_level + 2, 0, 5);
         health += Mathf.Clamp(curr_level + 2, 0, 5);
+    }
+
+    private IEnumerator SwitchOpponentCoolDown(float time)
+    {
+        yield return new WaitForSeconds(time);
+        startSwitchOpponent = false;
     }
 
 }
