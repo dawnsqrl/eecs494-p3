@@ -155,12 +155,6 @@ public class SnailExpManager : MonoBehaviour
         canSelect = true;
         levelUpAnimationAllowed = true;
         //upgradeIcon.SetActive(false);
-
-        if (pendingLevelUps > 0)
-        {
-            upgradeIcon.SetActive(true);
-            //title.SetActive(false);
-        }
     }
 
     IEnumerator levelUpAnimation()
@@ -231,6 +225,10 @@ public class SnailExpManager : MonoBehaviour
         {
             upgradeIcon.SetActive(false);
             title.SetActive(false);
+        }
+        else
+        {
+            upgradeIcon.SetActive(true);
         }
     }
 
