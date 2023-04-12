@@ -82,8 +82,10 @@ public class AutoAttack_citizen : MonoBehaviour
         onAssult = flag;
     }
 
-    // public IEnumerator CloseAutoAttackForTime()
-    // {
-    //     
-    // }
+    public IEnumerator CloseAutoAttackForTime(float _time)
+    {
+        range = -1;
+        yield return new WaitForSeconds(_time);
+        range = 5;
+    }
 }

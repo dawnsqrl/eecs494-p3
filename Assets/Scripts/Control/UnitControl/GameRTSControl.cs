@@ -98,6 +98,7 @@ public class GameRTSControl : MonoBehaviour
                 {
                     unitRTS.gameObject.GetComponent<AutoAttack_citizen>().onAssult = false;
                 }
+                StartCoroutine(unitRTS.gameObject.GetComponent<AutoAttack_citizen>().CloseAutoAttackForTime(3f));
                 unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
                 targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
             }
