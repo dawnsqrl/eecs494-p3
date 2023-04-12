@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: db52a2664f752420884520693ca42e74
+guid: 83eef4beb6e4b447abe83f93911858bc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,13 +42,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 28, y: 45, z: 25, w: 45}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -115,18 +115,150 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: ArrowCursor_0
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 1111
+        width: 259
+        height: 366
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4a205628443347278d3a1a31aa5de61
+      internalID: -1215525373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrowCursor_1
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 793
+        width: 367
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 943d8c23884474ba2ba5bb94373e742f
+      internalID: -144954532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrowCursor_2
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 740
+        width: 344
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f29daef0799be45aca57db70197372ad
+      internalID: 1079041593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrowCursor_3
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 398
+        width: 258
+        height: 367
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be72274570554bb4a2ab698a53559d1
+      internalID: 1999283008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrowCursor_4
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 13
+        width: 258
+        height: 365
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b5573f0e70744a9b9f7b6357e098bb9
+      internalID: -1934847803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArrowCursor_5
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 24
+        width: 346
+        height: 346
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f8919bf983fb43f29731baef9262773
+      internalID: 483156513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ArrowCursor_0: -1215525373
+      ArrowCursor_1: -144954532
+      ArrowCursor_2: 1079041593
+      ArrowCursor_4: -1934847803
+      ArrowCursor_3: 1999283008
+      ArrowCursor_5: 483156513
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

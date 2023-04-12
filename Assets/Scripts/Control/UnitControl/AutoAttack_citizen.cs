@@ -81,4 +81,9 @@ public class AutoAttack_citizen : MonoBehaviour
     {
         onAssult = flag;
     }
+
+    // public IEnumerator CloseAutoAttackForTime()
+    // {
+    //     
+    // }
 }
