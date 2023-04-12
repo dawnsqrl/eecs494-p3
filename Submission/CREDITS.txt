@@ -1,0 +1,33 @@
+[1]	Modular Character System in Unity (Move, Attack, AI, Pathfinding). Video tutorial by Code Monkey.
+	https://www.youtube.com/watch?v=mJRc9kLxFSk
+
+[2] Code Monkey Utilities package. Unity package by Code Monkey.
+	https://unitycodemonkey.com/utils.php
+
+[3] Bacteria sprite.
+	https://pngtree.com/freepng/blue-cartoon-bacterial-cell_4733697.html
+
+[4] Grass patch interaction sound effect.
+	https://elements.envato.com/tall-grass-hit-slow-moving-UZQHE4P
+
+[5] Spring Snowstorm. Font by Misti Hammers.
+	https://mistifonts.com/spring-snowstorm/
+
+[6] Music by DOVA-SYNDROME.
+	https://dova-s.jp/bgm/play17329.html
+
+[7] Sound effects by Envato Elements.
+	https://elements.envato.com/hammer-hit-shield-metal-6B3SLXA
+	https://elements.envato.com/plant-growing-NGLV599
+	https://elements.envato.com/sword-in-YS95QGJ
+	https://elements.envato.com/egyptian-gong-alert-H3QSFBN
+	https://elements.envato.com/notebook-turn-page-10351-VB4LG2L
+	https://elements.envato.com/bite-11652-6JNMRZ7
+	https://elements.envato.com/wood-crashes-5SLVTUH
+	https://elements.envato.com/bomb-explosion-4990-ATSXC27
+	https://elements.envato.com/puzzle-game-drop-bubble-05-4WNY74X
+	https://elements.envato.com/powerful-dash-2-F3H68XS
+	https://elements.envato.com/message-pop-up-59XKCY2
+	https://elements.envato.com/pop-up-descend-AJGKYUA
+	https://elements.envato.com/game-level-up-8DCSBDC
+	https://elements.envato.com/tree-fall-JCX5KMC
