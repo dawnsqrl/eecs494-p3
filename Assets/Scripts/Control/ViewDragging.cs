@@ -3,6 +3,12 @@ using UnityEngine.InputSystem;
 
 public class ViewDragging : MonoBehaviour
 {
+    public Texture2D original_cursor;
+    public Texture2D up_edge_cursor;
+    public Texture2D down_edge_cursor;
+    public Texture2D left_edge_cursor;
+    public Texture2D right_edge_cursor;
+
     //private CameraControls cameraActions;
     private InputAction movement;
     private Transform cameraTransform;
@@ -157,16 +163,24 @@ public class ViewDragging : MonoBehaviour
         }
 
         //horizontal scrolling
-        if (mousePosition.x < edgeTolerance * detectionWidth)
+        if (mousePosition.x < edgeTolerance * detectionWidth) {
             moveDirection += -GetCameraRight();
-        else if (mousePosition.x > (1f - edgeTolerance) * detectionWidth)
+        }
+            
+        else if (mousePosition.x > (1f - edgeTolerance) * detectionWidth) {
             moveDirection += GetCameraRight();
-
+        }
+            
         //vertical scrolling
         if (mousePosition.y < edgeTolerance * Screen.height)
+        {
             moveDirection += -GetCameraForward();
-        else if (mousePosition.y > (1f - edgeTolerance) * Screen.height)
+        }
+            
+        else if (mousePosition.y > (1f - edgeTolerance) * Screen.height) {
             moveDirection += GetCameraForward();
+        }
+            
 
         targetPosition += moveDirection;
     }
