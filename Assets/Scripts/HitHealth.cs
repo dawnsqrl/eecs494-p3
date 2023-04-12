@@ -292,10 +292,10 @@ public class HitHealth : MonoBehaviour
         Destroy(_gameObject);
     }
 
-    public void AddSnailHealth(int curr_level)
+    public void AddSnailHealth(int curr_level, int max_health)
     {
-        maxHealth = math.min(20, maxHealth += Mathf.Clamp(curr_level + 1, 0, 5));
-        health = math.min(20, health += Mathf.Clamp(curr_level + 1, 0, 5));
+        maxHealth = math.min(max_health, maxHealth += Mathf.Clamp(curr_level + 1, 0, 5));
+        health = math.min(max_health, health += Mathf.Clamp(curr_level + 1, 0, 5));
     }
 
     private IEnumerator SwitchOpponentCoolDown(float time)
@@ -303,5 +303,11 @@ public class HitHealth : MonoBehaviour
         yield return new WaitForSeconds(time);
         startSwitchOpponent = false;
     }
+
+    public int get_max_health()
+    {
+        return maxHealth;
+    }
+
 
 }
