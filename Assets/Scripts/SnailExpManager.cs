@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -104,7 +105,7 @@ public class SnailExpManager : MonoBehaviour
             // add more health and eat speed
             levelUpNoteAnimator.SetTrigger("LevelUp");
             GetComponent<HitHealth>().AddSnailHealth(currentLevel);
-            GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f;
+            GetComponent<SnailTrigger>().time_eat_hyphae = math.max(1, GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f);
             if (levelUpAnimationAllowed)
             {
                 StartCoroutine(skillChooseAnimation());
@@ -303,7 +304,7 @@ public class SnailExpManager : MonoBehaviour
             }
             else
             {
-                _snailSpitManager.setDamage(_snailSpitManager.getDamage() + 1);
+                _snailSpitManager.setDamage(math.min(3, _snailSpitManager.getDamage() + 1));
             }
         }
     }
@@ -349,17 +350,22 @@ public class SnailExpManager : MonoBehaviour
 
     private void generate_random_skill_choose()
     {
-        randomOption1 = UnityEngine.Random.Range(1, 5);
+        int maxRand = 5;
+        if (_snailSpitManager.getDamage() == 3)
+        {
+            maxRand = 4;
+        }
+        randomOption1 = UnityEngine.Random.Range(1, maxRand);
         while (true)
         {
-            randomOption2 = UnityEngine.Random.Range(1, 5);
+            randomOption2 = UnityEngine.Random.Range(1, maxRand);
             if (randomOption2 != randomOption1)
                 break;
         }
 
         while (true)
         {
-            randomOption3 = UnityEngine.Random.Range(1, 5);
+            randomOption3 = UnityEngine.Random.Range(1, maxRand);
             if (randomOption3 != randomOption1 && randomOption2 != randomOption3)
                 break;
         }

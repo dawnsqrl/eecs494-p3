@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MineBehavior : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class MineBehavior : MonoBehaviour
     float delay_time = 3f;
     float start_time;
 
-   
+
     private void Start()
     {
         animator = GetComponent<Animator>();

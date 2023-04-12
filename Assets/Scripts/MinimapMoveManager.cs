@@ -4,14 +4,13 @@ using UnityEngine;
 public class MinimapMoveManager : MonoBehaviour
 {
     private Camera _camera;
-    private GameObject _main_camera;
+    [SerializeField] private GameObject _main_camera;
     private Coroutine camMovePos;
 
     // Start is called before the first frame update
     void Start()
     {
         _camera = GetComponent<Camera>();
-        _main_camera = transform.parent.gameObject;
     }
 
     // Update is called once per frame

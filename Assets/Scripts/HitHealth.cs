@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class HitHealth : MonoBehaviour
@@ -293,8 +294,8 @@ public class HitHealth : MonoBehaviour
 
     public void AddSnailHealth(int curr_level)
     {
-        maxHealth += Mathf.Clamp(curr_level + 2, 0, 5);
-        health += Mathf.Clamp(curr_level + 2, 0, 5);
+        maxHealth = math.min(20, maxHealth += Mathf.Clamp(curr_level + 1, 0, 5));
+        health = math.min(20, health += Mathf.Clamp(curr_level + 1, 0, 5));
     }
 
     private IEnumerator SwitchOpponentCoolDown(float time)
