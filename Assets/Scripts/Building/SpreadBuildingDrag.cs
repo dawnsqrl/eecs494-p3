@@ -131,7 +131,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
         //    Worldpos = new Vector3(Worldpos.x - 70.0f, Worldpos.y - 70.0f, Worldpos.z);
         //}
         if ((Worldpos is { x: >= 0 and <= 50, y: >= 0 and <= 50 }) //|| startTutorial)
-            && CheckAvai(oldPos1) && CheckAvai(oldPos2) && CheckAvai(oldPos3) && CheckAvai(oldPos4))
+           && CheckAvai(oldPos1) && CheckAvai(oldPos2) && CheckAvai(oldPos3) && CheckAvai(oldPos4))
         {
             //Vector2 pos = new Vector2(Mathf.FloorToInt(Worldpos.x + 0.5f), Mathf.FloorToInt(Worldpos.y - 0.5f));
 
@@ -187,7 +187,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (!startTutorial)
         {
             GrowthDemo gd = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
-            if (!gd.Position2Growthed(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
+            if (buildingController.GetComponent<BuildingController>().check_avai(pos))
                 return true;
             return false;
         }
@@ -195,7 +195,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
         {
             NewBuilderTutorialController gd = GameObject.Find("BuilderTutorial")
                 .GetComponent<NewBuilderTutorialController>();
-            if (!gd.Position2Growthed(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
+            if (buildingController.GetComponent<BuildingController>().check_avai(pos))
                 return true;
             return false;
         }
