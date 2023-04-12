@@ -123,7 +123,7 @@ public class AutoAttack_enemy : MonoBehaviour
             for (int i = 0; i < enemyList.Count; i++)
             {
                 // print("5.8");
-                if (enemyList[i].IsDestroyed())
+                if (enemyList[i] == null || enemyList[i].IsDestroyed())
                 {
                     // print("5.9");
                     continue;
