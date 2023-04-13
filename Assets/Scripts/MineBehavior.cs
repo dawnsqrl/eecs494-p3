@@ -13,15 +13,17 @@ public class MineBehavior : MonoBehaviour
     float delay_time = 3f;
     float start_time;
 
-
+    AudioSource audioSource;
     private void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         start_time = Time.time;
     }
 
     private void Update()
     {
+        audioSource.Play();
         if (Time.time - start_time > delay_time) {
             if (!explode_lock) {
                 explode_lock = true;
