@@ -40,7 +40,7 @@ public class SnailExpManager : MonoBehaviour
     bool coroutineAllowed = true;
 
     private float max_time_eat_hyphae = 1.0f;
-    private int snail_max_health;
+    private int snail_max_health = 20;
 
     // option: 1 -> sprint, 2 -> mine, 3 -> shield, 4 -> spit
     private int randomOption1 = 0, randomOption2 = 0, randomOption3 = 0;
