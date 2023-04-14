@@ -9,8 +9,18 @@ public class NewBuilderTutorialController : MonoBehaviour
     [SerializeField] private GameObject arrow, arrow2, buildingCanvas;
     [SerializeField] private GridManager _gridManager;
 
-    [SerializeField]
-    private GameObject building1, fog1, building2, fog2, building3, fog3, building4, fog4, building0, fog0, destroyBuilding, fogDestroy;
+    [SerializeField] private GameObject building1,
+        fog1,
+        building2,
+        fog2,
+        building3,
+        fog3,
+        building4,
+        fog4,
+        building0,
+        fog0,
+        destroyBuilding,
+        fogDestroy;
 
     [SerializeField] private SpellCooldown cool1, cool2, cool3, cool4, cool0, coolDestroy;
     [SerializeField] private ViewDragging vd;
@@ -153,7 +163,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 //vd.enabled = true;
                 EventBus.Publish(new UpdateHintEvent(0,
                     "You can <b>move mouse</b> to the edge of the screen to move the view. " +
-                    "Try to find the snail!", 575
+                    "Try to find the snail!"
                 ));
                 firstcall = true;
             }
@@ -456,15 +466,14 @@ public class NewBuilderTutorialController : MonoBehaviour
         {
             if (!firstcall)
             {
-
                 buildingCanvas.SetActive(false);
 
                 EventBus.Publish(new StartBuilderTutorialEvent());
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "<b>Tips</b>\n" +
-                    "<b>1.</b> Build some Vitality Generators to keep vitality growth.\n" +
-                    "<b>2.</b> Only build Growth Source when you have enough vitality.\n" +
-                    "<b>3.</b> Extension is your destiny.<b>[Lclick]</b>\n", 575
+                    "<b>Keep in mind:</b> " +
+                    "(1) Build <b>vitality generators</b> to keep you vitality high. " +
+                    "(2) Only consider <b>growth sources</b> when you have enough vitality. " +
+                    "(3) <b>Expansion</b> is your way to success. <b>[Lclick]</b>", 575
                 ));
                 firstcall = true;
             }
