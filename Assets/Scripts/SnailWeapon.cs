@@ -29,14 +29,14 @@ public class SnailWeapon : MonoBehaviour
         current_mines = 0;
         attacklock = false;
     }
-    
+
     public void UseMine()
     {
         if (current_mines > 0 && !attacklock)
         {
             attacklock = true;
             StartCoroutine(CoolDown());
-            Instantiate(mines,transform.position,Quaternion.identity);
+            Instantiate(mines, transform.position, Quaternion.identity);
             current_mines -= 1;
             _mesh.text = current_mines.ToString();
         }
@@ -47,7 +47,7 @@ public class SnailWeapon : MonoBehaviour
         current_mines += num;
         _mesh.text = current_mines.ToString();
     }
-    
+
     private IEnumerator CoolDown()
     {
         remainCoolDownTime = maxCoolDownTime;
@@ -57,7 +57,7 @@ public class SnailWeapon : MonoBehaviour
             mineCoolDownFog.fillAmount = remainCoolDownTime / maxCoolDownTime;
             yield return null;
         }
-        
+
         attacklock = false;
         mineCoolDownFog.fillAmount = 0;
         remainCoolDownTime = 0;
