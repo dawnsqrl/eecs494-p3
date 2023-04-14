@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using Random = System.Random;
+
 [SelectionBase]
 public class GroundTileManager : MonoBehaviour
 {
@@ -25,7 +22,7 @@ public class GroundTileManager : MonoBehaviour
         // fog_builder = transform.parent.gameObject.transform.Find("Tile_fog_builder").gameObject;
         // fog_enemy = transform.parent.gameObject.transform.Find("Tile_fog_enemy").gameObject;
     }
-    
+
     private void set_blank()
     {
         if (UnityEngine.Random.Range(0, 101) < blank_rate)
@@ -43,9 +40,9 @@ public class GroundTileManager : MonoBehaviour
             {
                 fog.SetActive(visible);
             }
-        }     
+        }
     }
-    
+
     public void SetFogVisible_LongTerm(bool visible)
     {
         if (!blank_tile)
@@ -55,7 +52,7 @@ public class GroundTileManager : MonoBehaviour
                 fog_builder.SetActive(visible);
                 transform.parent.GetComponent<TileManager>().builderFogLongTermDisabled = true;
             }
-        }     
+        }
     }
 
     public void SetGrowthed()
@@ -69,6 +66,12 @@ public class GroundTileManager : MonoBehaviour
             small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");
             StartCoroutine(disableAnimator(small_hyphae.gameObject));
         }
+
+        if (!growthed)
+        {
+            GameState.myceliumProduced++;
+        }
+
         growthed = true;
     }
 
@@ -94,20 +97,35 @@ public class GroundTileManager : MonoBehaviour
             small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");
             disableAnimator(small_hyphae.gameObject);
         }
+
+        if (!mucused)
+        {
+            GameState.mucusProduced++;
+        }
+
         mucused = true;
     }
-    
+
     public void RemoveMucus()
     {
         GameObject mucus = transform.parent.gameObject.transform.Find("Mucus").gameObject;
+        if (mucused)
+        {
+            GameState.mucusDestroyed++;
+        }
+
         mucused = false;
         mucus.SetActive(false);
-        
     }
-    
+
     public void RemoveGrowthed()
     {
         GameObject hyphae = transform.parent.gameObject.transform.Find("Hyphae").gameObject;
+        if (growthed)
+        {
+            GameState.myceliumDestroyed++;
+        }
+
         growthed = false;
         hyphae.SetActive(false);
     }
@@ -126,5 +144,4 @@ public class GroundTileManager : MonoBehaviour
     {
         return transform.parent.GetComponent<TileManager>().builderFogLongTermDisabled;
     }
-
 }

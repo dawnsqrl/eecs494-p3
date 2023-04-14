@@ -1,17 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class HitHealth : MonoBehaviour
 {
     [SerializeField] public int maxHealth;
+
     [SerializeField] public int health;
+
     // [SerializeField] private string enemyTag;
     [SerializeField] private SpriteRenderer healthBar;
+
     [SerializeField] private SpriteRenderer _spriteRenderer;
+
     // [SerializeField] private float time_eat_hyphae = 1f;
     [SerializeField] private float hit_cd_time = 0.5f;
     [SerializeField] private float health_recover_rate = 0.1f; //10 s one health
@@ -29,7 +32,7 @@ public class HitHealth : MonoBehaviour
     [SerializeField] private GameObject lowHealthEffect;
     private bool canSwitchOpponent;
     private bool startSwitchOpponent;
-    
+
     private void Start()
     {
         hitlock = false;
@@ -58,7 +61,7 @@ public class HitHealth : MonoBehaviour
                 return;
             }
         }
-        
+
         if (transform.parent != null && GetComponent<HitHealth>().currentOpponent != other.transform.parent.gameObject)
         {
             // if this opponent is not a building, and the other's current opponent is not self
@@ -70,15 +73,14 @@ public class HitHealth : MonoBehaviour
                 print("Change opponent successful to " + other.transform.parent.gameObject);
                 StartCoroutine(SwitchOpponentCoolDown(0.3f));
             }
-                
         }
-        
+
         if (health > 0)
         {
             canGetHit = false;
             StartCoroutine(HitEffect(1));
         }
-        
+
         if (health <= 0)
         {
             EventBus.Publish(new TBaseCarDestroy());
@@ -91,14 +93,15 @@ public class HitHealth : MonoBehaviour
                     StartCoroutine(DestroyWithAnim(gameObject));
                     // Destroy(gameObject);
                 }
-            }  
-            else 
+            }
+            else
             {
                 Transform parent = transform.parent;
                 if (parent.GetComponent<SpriteRenderer>() != null)
                 {
                     parent.GetComponent<SpriteRenderer>().color = Color.red;
                 }
+
                 if (parent.GetComponent<GameEndTrigger>() != null)
                 {
                     parent.GetComponent<GameEndTrigger>().TriggerDeath();
@@ -122,7 +125,7 @@ public class HitHealth : MonoBehaviour
         {
             return;
         }
-        
+
         if (lowHealthEffect != null && health > maxHealth * 0.25f && lowHealthEffect.activeSelf)
         {
             lowHealthEffect.SetActive(false);
@@ -132,17 +135,22 @@ public class HitHealth : MonoBehaviour
         {
             lowHealthEffect.SetActive(true);
         }
+
         RecoverHealth();
     }
 
-    public void ReduceHealth(int cnt){
+    public void ReduceHealth(int cnt)
+    {
         //if the object is snail and has sheild
-       
-        if(health-cnt>0){
+
+        if (health - cnt > 0)
+        {
             health -= cnt;
             healthBar.size =
                 new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
-        }else{
+        }
+        else
+        {
             if (!deadAnimBegan)
             {
                 deadAnimBegan = true;
@@ -150,26 +158,31 @@ public class HitHealth : MonoBehaviour
                 // Destroy(transform.parent.gameObject);
             }
         }
-        
     }
 
 
-    void RecoverHealth() {
-        if (deltaHP > 1) {
-            if (health + 1 <= maxHealth) {
+    void RecoverHealth()
+    {
+        if (deltaHP > 1)
+        {
+            if (health + 1 <= maxHealth)
+            {
                 health += 1;
             }
+
             deltaHP = 0;
             healthBar.size =
-                    new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
+                new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
         }
-        else {
+        else
+        {
             deltaHP += health_recover_rate * Time.deltaTime;
         }
     }
 
 
-    public void GetDamage(int damage) {
+    public void GetDamage(int damage)
+    {
         // if (health > 0)
         // {
         //     canGetHit = false;
@@ -188,18 +201,22 @@ public class HitHealth : MonoBehaviour
         //     }
         //     
         // }
-        
-        
-        if (gameObject.tag == "BaseCar" && transform.parent.gameObject.transform.Find("Shield").transform.Find("ShieldObject").gameObject.activeSelf)
+
+
+        if (gameObject.tag == "BaseCar" && transform.parent.gameObject.transform.Find("Shield").transform
+                .Find("ShieldObject").gameObject.activeSelf)
         {
-            transform.parent.gameObject.transform.Find("Shield").gameObject.GetComponent<ShieldBehavior>().ReduceHP(damage);
+            transform.parent.gameObject.transform.Find("Shield").gameObject.GetComponent<ShieldBehavior>()
+                .ReduceHP(damage);
             return;
         }
+
         if (health > 0)
         {
             canGetHit = false;
             StartCoroutine(HitEffect(damage));
         }
+
         if (health <= 0)
         {
             //EventBus.Publish(new BuilderTutorialSnailDeadEvent());
@@ -211,7 +228,7 @@ public class HitHealth : MonoBehaviour
                     StartCoroutine(DestroyWithAnim(gameObject));
                     // Destroy(gameObject);
                 }
-            }  
+            }
             else
             {
                 Transform parent = transform.parent;
@@ -219,6 +236,7 @@ public class HitHealth : MonoBehaviour
                 {
                     parent.GetComponent<SpriteRenderer>().color = Color.red;
                 }
+
                 if (parent.GetComponent<GameEndTrigger>() != null)
                 {
                     parent.GetComponent<GameEndTrigger>().TriggerDeath();
@@ -234,15 +252,18 @@ public class HitHealth : MonoBehaviour
                 }
             }
         }
-
     }
+
     private IEnumerator HitEffect(int damage)
     {
-        if (!hitlock) {
-            if (gameObject.tag == "BaseCar" && transform.parent.gameObject.transform.Find("Shield").gameObject.transform.Find("ShieldObject").gameObject.activeSelf)
+        if (!hitlock)
+        {
+            if (gameObject.tag == "BaseCar" && transform.parent.gameObject.transform.Find("Shield").gameObject.transform
+                    .Find("ShieldObject").gameObject.activeSelf)
             {
                 hitlock = true;
-                transform.parent.gameObject.transform.Find("Shield").gameObject.GetComponent<ShieldBehavior>().ReduceHP(damage);
+                transform.parent.gameObject.transform.Find("Shield").gameObject.GetComponent<ShieldBehavior>()
+                    .ReduceHP(damage);
                 yield return new WaitForSeconds(1f);
                 hitlock = false;
             }
@@ -267,7 +288,8 @@ public class HitHealth : MonoBehaviour
                 hitlock = false;
             }
         }
-        else {
+        else
+        {
             yield return null;
         }
     }
@@ -289,6 +311,19 @@ public class HitHealth : MonoBehaviour
         Debug.Log("wait");
         yield return new WaitForSeconds(1);
         Debug.Log("wait end");
+        if (_gameObject.CompareTag("Citizen"))
+        {
+            GameState.smallMushroomKilled++;
+        }
+        else if (_gameObject.CompareTag("LittleSnail"))
+        {
+            GameState.smallSnailKilled++;
+        }
+        else if (_gameObject.CompareTag("Building"))
+        {
+            GameState.buildingDestroyed++;
+        }
+
         Destroy(_gameObject);
     }
 
@@ -308,6 +343,4 @@ public class HitHealth : MonoBehaviour
     {
         return maxHealth;
     }
-
-
 }

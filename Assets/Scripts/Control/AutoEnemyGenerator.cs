@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using CodeMonkey.Utils;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,6 +13,7 @@ public class AutoEnemyGenerator : MonoBehaviour
     private bool canGenerate;
     private Animator _animator;
     private bool deadAnimBegan;
+
     private void Start()
     {
         unitList = new List<GameObject>();
@@ -55,12 +53,12 @@ public class AutoEnemyGenerator : MonoBehaviour
                 _mesh.text = (maxUnit - onGenerationSnailNUm).ToString();
             }
         }
-        
+
         bool isDead = false;
         Vector2 loc = new Vector2((int)transform.position.x, (int)transform.position.y);
         if (BasecarController.is_tutorial)
         {
-            loc = new Vector2((int)transform.position.x+ 60, (int)transform.position.y);
+            loc = new Vector2((int)transform.position.x + 60, (int)transform.position.y);
             isDead = CaveGridManager._tiles.ContainsKey(loc) &&
                      CaveGridManager._tiles[loc].GetComponentInChildren<GroundTileManager>().growthed;
         }
@@ -69,7 +67,7 @@ public class AutoEnemyGenerator : MonoBehaviour
             isDead = GridManager._tiles.ContainsKey(loc) &&
                      GridManager._tiles[loc].GetComponentInChildren<GroundTileManager>().growthed;
         }
-        
+
         if (isDead)
         {
             if (!deadAnimBegan)
@@ -83,8 +81,10 @@ public class AutoEnemyGenerator : MonoBehaviour
 
     private IEnumerator GenerateNewUnit()
     {
-        GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/LittleSnail"), transform.position, Quaternion.identity);
+        GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/LittleSnail"), transform.position,
+            Quaternion.identity);
         enemy.GetComponent<UnitRTS>().MoveTo(transform.position);
+        GameState.smallSnailFound++;
         AutoEnemyControl.autoSnails_queue.Add(enemy);
         unitList.Add(enemy);
         onGenerationSnailNUm++;
@@ -93,7 +93,7 @@ public class AutoEnemyGenerator : MonoBehaviour
         canGenerate = true;
         yield return null;
     }
-    
+
     private IEnumerator DestroyWithAnim(GameObject _gameObject)
     {
         _animator.SetTrigger("destroy");
@@ -102,6 +102,7 @@ public class AutoEnemyGenerator : MonoBehaviour
         Debug.Log("wait end");
         AudioClip clip = Resources.Load<AudioClip>("Audio/BushDies");
         AudioSource.PlayClipAtPoint(clip, transform.position);
+        GameState.nestDestroyed++;
         Destroy(_gameObject);
     }
 }

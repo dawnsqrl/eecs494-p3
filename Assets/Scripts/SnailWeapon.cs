@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class SnailWeapon : MonoBehaviour
@@ -13,6 +10,7 @@ public class SnailWeapon : MonoBehaviour
     [SerializeField] GameObject mines;
 
     [SerializeField] private TextMeshProUGUI _mesh;
+
     // Start is called before the first frame update
     private float remainCoolDownTime = 0;
     private float maxCoolDownTime = 1;
@@ -38,6 +36,7 @@ public class SnailWeapon : MonoBehaviour
             StartCoroutine(CoolDown());
             Instantiate(mines, transform.position, Quaternion.identity);
             current_mines -= 1;
+            GameState.bombUsed++;
             _mesh.text = current_mines.ToString();
         }
     }

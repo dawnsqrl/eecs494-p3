@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputInterface : MonoBehaviour
 {
@@ -32,12 +33,12 @@ public class InputInterface : MonoBehaviour
         {
             EventBus.Publish(new SnailLevelUpEvent());
         }
-        
+
         if (playerActions.LevelUpOption1.WasPressedThisFrame())
         {
             EventBus.Publish(new SnailLevelupOptionEvent_1());
         }
-        
+
         if (playerActions.LevelUpOption2.WasPressedThisFrame())
         {
             EventBus.Publish(new SnailLevelupOptionEvent_2());
@@ -66,6 +67,16 @@ public class InputInterface : MonoBehaviour
         if (playerActions.Bomb.WasPressedThisFrame())
         {
             EventBus.Publish(new SnailBombEvent());
+        }
+
+        if (Keyboard.current.commaKey.wasPressedThisFrame)
+        {
+            EventBus.Publish(new GameEndEvent(true));
+        }
+
+        if (Keyboard.current.periodKey.wasPressedThisFrame)
+        {
+            EventBus.Publish(new GameEndEvent(false));
         }
 
         // if (playerActions.GenerateDialog.WasPressedThisFrame())

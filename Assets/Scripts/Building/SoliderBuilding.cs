@@ -43,7 +43,8 @@ public class SoliderBuilding : MonoBehaviour
                         transform.position, Quaternion.identity);
                 else
                     solider = Instantiate(Resources.Load<GameObject>("Prefabs/BuilderTutorial/TCitizen"),
-                    transform.position, Quaternion.identity);
+                        transform.position, Quaternion.identity);
+                GameState.smallMushroomProduced++;
                 Vector2 newPos = transform.position + generateRandomVector();
                 print(newPos);
                 solider.GetComponent<UnitRTS>().MoveTo(newPos);
@@ -94,6 +95,7 @@ public class SoliderBuilding : MonoBehaviour
                 break;
             }
         }
+
         return new Vector3(new_res1, new_res2, 0.0f);
     }
 

@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ShieldBehavior : MonoBehaviour
 {
@@ -45,7 +41,6 @@ public class ShieldBehavior : MonoBehaviour
         renderer.color = new Color(1, 1, 1, (80 * Mathf.Sin(2 * Mathf.PI * Time.time / cycle) + 160) / 255);
         if (canShield && activated)
         {
-            
             if (HP < 0)
             {
                 shieldGameObject.SetActive(false);
@@ -64,6 +59,7 @@ public class ShieldBehavior : MonoBehaviour
         if (numShield > 0)
         {
             numShield--;
+            GameState.shieldUsed++;
             _text.text = numShield.ToString();
             activated = true;
             shieldGameObject.SetActive(true);
@@ -73,13 +69,14 @@ public class ShieldBehavior : MonoBehaviour
         }
     }
 
-    public void ReduceHP(float cnt) {
-        if (canShield) {
+    public void ReduceHP(float cnt)
+    {
+        if (canShield)
+        {
             HP -= cnt;
             healthBar.size =
                 new Vector2((float)HP / (float)max_HP * original_bar_length, healthBar.size.y);
         }
-            
     }
 
     public void AddShield()

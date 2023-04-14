@@ -100,7 +100,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
         //Vector2 pos3 = new Vector2(Mathf.FloorToInt(pos1.x + 1.1f), Mathf.CeilToInt(pos1.y - 1.1f));
         //Vector2 pos4 = new Vector2(Mathf.FloorToInt(pos1.x), Mathf.CeilToInt(pos1.y - 1.1f));
 
-        setHighlight(pos1, true, CheckAvai(pos1) ? white : blue); 
+        setHighlight(pos1, true, CheckAvai(pos1) ? white : blue);
         //setHighlight(pos2, true, CheckAvai(pos2) ? white : blue);
         //setHighlight(pos3, true, CheckAvai(pos3) ? white : blue);
         //setHighlight(pos4, true, CheckAvai(pos4) ? white : blue);
@@ -131,12 +131,12 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
         //    Worldpos = new Vector3(Worldpos.x - 70.0f, Worldpos.y - 70.0f, Worldpos.z);
         //}
         if ((Worldpos is { x: >= 0 and <= 50, y: >= 0 and <= 50 }) //|| startTutorial)
-           && CheckAvai(oldPos1) && CheckAvai(oldPos2) && CheckAvai(oldPos3) && CheckAvai(oldPos4))
+            && CheckAvai(oldPos1) && CheckAvai(oldPos2) && CheckAvai(oldPos3) && CheckAvai(oldPos4))
         {
             //Vector2 pos = new Vector2(Mathf.FloorToInt(Worldpos.x + 0.5f), Mathf.FloorToInt(Worldpos.y - 0.5f));
 
             new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x, oldPos1.y, -2.0f), Quaternion.identity);
-
+            GameState.buildingPlaced++;
 
             setHighlight(oldPos1, false, white);
             //setHighlight(oldPos2, false, white);

@@ -9,7 +9,9 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] private GameObject gamePrefab;
     [SerializeField] private Sprite buildingTexture;
     [SerializeField] private GameObject RTScontroller, SelectedArea, fog;
+
     [SerializeField] private GridManager gridManager;
+
     //[SerializeField] private BuilderGridManager TgridManager;
     //private ViewDragging vd;
     private int defenceRange = 4;
@@ -159,7 +161,8 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             for (int j = 0; j < 2; j++)
             {
-                Vector2 p = new Vector2(Mathf.FloorToInt(temp_pos1.x + (float)i), Mathf.CeilToInt(temp_pos1.y - (float)j));
+                Vector2 p = new Vector2(Mathf.FloorToInt(temp_pos1.x + (float)i),
+                    Mathf.CeilToInt(temp_pos1.y - (float)j));
                 if (p is { x: >= 0 and < 50, y: >= 0 and < 50 })
                     temp_pos_list.Add(p);
                 else
@@ -199,6 +202,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             oldPos1 = new Vector2(Mathf.FloorToInt(Worldpos.x), Mathf.CeilToInt(Worldpos.y));
             new_building = Instantiate(gamePrefab, new Vector3(oldPos1.x + 0.5f, oldPos1.y - 0.5f, -2.0f),
                 Quaternion.identity);
+            GameState.buildingPlaced++;
             if (gameObject.name == "Defence")
             {
                 //new_building.transform.localScale = new Vector2(0.5f, 0.5f);

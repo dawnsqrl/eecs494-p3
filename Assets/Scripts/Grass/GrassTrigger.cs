@@ -1,17 +1,18 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GrassTrigger : MonoBehaviour
 {
     private Animator _animator;
     private Transform _audioListenerTransform;
+
     private AudioClip _grassSuound;
+
     // Start is called before the first frame update
     [SerializeField] private SpriteRenderer _spriteRenderer_mask;
     [SerializeField] private SpriteRenderer _spriteRenderer_trans;
     private bool deadAnimBegan;
+
     void Start()
     {
         _animator = transform.Find("Height").GetComponent<Animator>();
@@ -30,7 +31,7 @@ public class GrassTrigger : MonoBehaviour
         Vector2 loc = new Vector2((int)transform.position.x, (int)transform.position.y);
         if (BasecarController.is_tutorial)
         {
-            loc = new Vector2((int)transform.position.x+ 60, (int)transform.position.y);
+            loc = new Vector2((int)transform.position.x + 60, (int)transform.position.y);
             isDead = CaveGridManager._tiles.ContainsKey(loc) &&
                      CaveGridManager._tiles[loc].GetComponentInChildren<GroundTileManager>().growthed;
         }
@@ -40,7 +41,7 @@ public class GrassTrigger : MonoBehaviour
                      GridManager._tiles[loc].GetComponentInChildren<GroundTileManager>().growthed;
         }
         // if this grid is marked
-        
+
         if (isDead)
         {
             if (!deadAnimBegan)
@@ -60,7 +61,7 @@ public class GrassTrigger : MonoBehaviour
             AudioSource.PlayClipAtPoint(_grassSuound, _audioListenerTransform.position);
         }
     }
-    
+
     private IEnumerator DestroyWithAnim(GameObject _gameObject)
     {
         _animator.SetTrigger("destroy");
@@ -68,12 +69,14 @@ public class GrassTrigger : MonoBehaviour
         AudioClip clip = Resources.Load<AudioClip>("Audio/BushDies");
         AudioSource.PlayClipAtPoint(clip, transform.position);
         GameObject snail = GameObject.Find("BaseCar").gameObject;
-        if ( snail.GetComponentInChildren<SnailTrigger>().currentGrass == _gameObject)
+        if (snail.GetComponentInChildren<SnailTrigger>().currentGrass == _gameObject)
         {
             snail.GetComponentInChildren<HitHealth>().SetHealthRestoreRate(0.1f);
             snail.GetComponentInChildren<SnailTrigger>().restoreEffect.SetActive(false);
             snail.GetComponentInChildren<SnailTrigger>().currentGrass = null;
         }
+
+        GameState.grassDestroyed++;
         Destroy(_gameObject);
     }
 }

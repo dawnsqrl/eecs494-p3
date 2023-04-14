@@ -43,4 +43,20 @@ public class ButtonAction : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void OnClickReturn()
+    {
+        SceneState.SetTransition(
+            1, 2, "MainMenu", mouseGameImage, keyboardGameImage
+        );
+        EventBus.Publish(new TransitSceneEvent());
+    }
+
+    public void OnClickRestart()
+    {
+        SceneState.SetTransition(
+            1, 0, "MainGame", mouseGameImage, keyboardGameImage
+        );
+        EventBus.Publish(new TransitSceneEvent());
+    }
 }
