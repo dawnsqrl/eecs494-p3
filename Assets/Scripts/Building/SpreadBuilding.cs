@@ -8,7 +8,7 @@ public class SpreadBuilding : MonoBehaviour
     SpreadBuildingDrag spreadBuilding;
 
     float spread_time = 0.0f;
-    bool finishSpread = false, isBuilderTutorialActive = false;
+    bool finishSpread = false, isBuilderTutorialActive = false, total = false;
     float cooldownTimer = 0;
 
     private GameObject buildingController;
@@ -82,7 +82,7 @@ public class SpreadBuilding : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (finishSpread)
+        if (total)
             buildingController.GetComponent<BuildingController>().deregister_one_building();
         vitality.increaseVitalityGrowth(15);
         GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
@@ -110,6 +110,7 @@ public class SpreadBuilding : MonoBehaviour
         gameObject.transform.Find("SpreadBar").gameObject.SetActive(false);
         _animator.SetBool("SpreadBuildingEstablished", true);
         finishSpread = true;
+        total = true;
     }
 
     private float calculateSpreadTime(Vector2 pos1, Vector2 pos2)
