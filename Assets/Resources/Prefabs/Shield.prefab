@@ -137,6 +137,7 @@ MonoBehaviour:
   numShield: 0
   shieldGameObject: {fileID: 861075660}
   _text: {fileID: 0}
+  healthBar: {fileID: 3349531018326911109}
 --- !u!212 &1440504375437920529
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -277,5 +278,10 @@ PrefabInstance:
 --- !u!4 &1891345803933199055 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1056395531341581392, guid: efdbd088127f04d679fc99053485471e, type: 3}
+  m_PrefabInstance: {fileID: 1483508227159221919}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &3349531018326911109 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4246215403723214362, guid: efdbd088127f04d679fc99053485471e, type: 3}
   m_PrefabInstance: {fileID: 1483508227159221919}
   m_PrefabAsset: {fileID: 0}
