@@ -39,6 +39,9 @@ public class SnailExpManager : MonoBehaviour
     float tParam = 0f, speedModifier = 0.5f;
     bool coroutineAllowed = true;
 
+    private float max_time_eat_hyphae = 1.0f;
+    private int snail_max_health;
+
     // option: 1 -> sprint, 2 -> mine, 3 -> shield, 4 -> spit
     private int randomOption1 = 0, randomOption2 = 0, randomOption3 = 0;
 
@@ -103,9 +106,20 @@ public class SnailExpManager : MonoBehaviour
             // wait for input
             // optionsBanner.SetActive(true);
             // add more health and eat speed
+
+            GetComponent<HitHealth>().AddSnailHealth(currentLevel, snail_max_health);
+            GetComponent<SnailTrigger>().time_eat_hyphae = math.max(max_time_eat_hyphae, GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f);
+
+            if (GetComponent<SnailTrigger>().time_eat_hyphae ==  max_time_eat_hyphae)
+                levelUpNoteAnimator.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Max Health +5";
+            if (GetComponent<HitHealth>().get_max_health() == snail_max_health)
+                levelUpNoteAnimator.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Eat Speed +20%";
+
+            if (GetComponent<SnailTrigger>().time_eat_hyphae == max_time_eat_hyphae && GetComponent<HitHealth>().get_max_health() == snail_max_health)
+                levelUpNoteAnimator.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "";
+
             levelUpNoteAnimator.SetTrigger("LevelUp");
-            GetComponent<HitHealth>().AddSnailHealth(currentLevel);
-            GetComponent<SnailTrigger>().time_eat_hyphae = math.max(1, GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f);
+
             if (levelUpAnimationAllowed)
             {
                 StartCoroutine(skillChooseAnimation());
@@ -158,7 +172,7 @@ public class SnailExpManager : MonoBehaviour
         // }
 
         canSelect = true;
-        levelUpAnimationAllowed = true;
+        
         //upgradeIcon.SetActive(false);
         yield return null;
     }
@@ -236,6 +250,7 @@ public class SnailExpManager : MonoBehaviour
         {
             upgradeIcon.SetActive(true);
         }
+        levelUpAnimationAllowed = true;
     }
 
     private void Upgrade_or_Activate(int selectedOptionButton)
