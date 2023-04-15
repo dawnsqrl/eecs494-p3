@@ -5387,6 +5387,7 @@ GameObject:
   - component: {fileID: 5283728248466986162}
   - component: {fileID: 8305987452694465226}
   - component: {fileID: 993464509}
+  - component: {fileID: 5172582272369617982}
   m_Layer: 8
   m_Name: BaseCarCollider
   m_TagString: BaseCar
@@ -5434,12 +5435,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134423d73171d43c6bd7de912cbf02a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 4
-  health: 4
+  maxHealth: 5
+  health: 5
   healthBar: {fileID: 6017083662407680138}
   _spriteRenderer: {fileID: 5260701631150855687}
   hit_cd_time: 0.5
-  health_recover_rate: 0.1
+  health_recover_rate: 0
   enemyTagList:
   - Citizen
   _animator: {fileID: 4047923559195802300}
@@ -5529,8 +5530,27 @@ MonoBehaviour:
   - {fileID: 0}
   basecarCamera: {fileID: 4898678668236388899}
   levelUpNoteAnimator: {fileID: 0}
+  addExpNoteAnimator: {fileID: 0}
   title: {fileID: 0}
 --- !u!114 &993464509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516242957097626159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01c9eeded9775d45a515e606871590c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numCharactersFade: 8
+  charsPerSecond: 18
+  smoothSeconds: 0.8
+  allRevealed:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5172582272369617982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5728,6 +5748,7 @@ MonoBehaviour:
   current_mines: 0
   mines: {fileID: 6029114985109348048, guid: 0d1d5116dbc2741d09656f1e0a67b26f, type: 3}
   _mesh: {fileID: 0}
+  mineCoolDownFog: {fileID: 0}
 --- !u!114 &2929099172006440559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5753,6 +5774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridManager: {fileID: 0}
+  coolDownFog: {fileID: 0}
 --- !u!1001 &252897676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5810,7 +5832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1440504375437920527, guid: 4088740ac04c94acaba1d07d10ba973c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1440504375437920530, guid: 4088740ac04c94acaba1d07d10ba973c, type: 3}
       propertyPath: HP

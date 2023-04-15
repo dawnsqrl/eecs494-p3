@@ -3410,29 +3410,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 991557504, guid: 2158d513058ff4b8b914856fe5d7f6d4, type: 3}
   m_PrefabInstance: {fileID: 1868556508}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &993464501 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7516242957097626159, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
-  m_PrefabInstance: {fileID: 1913960089}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &993464509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993464501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a01c9eeded9775d45a515e606871590c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numCharactersFade: 8
-  charsPerSecond: 18
-  smoothSeconds: 0.8
-  allRevealed:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1000408936
 GameObject:
   m_ObjectHideFlags: 0
@@ -6744,22 +6721,10 @@ PrefabInstance:
       propertyPath: gridManager
       value: 
       objectReference: {fileID: 1755112723}
-    - target: {fileID: 1440504375319289987, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1440504375319290014, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: _text
       value: 
       objectReference: {fileID: 104130009}
-    - target: {fileID: 7166689666919232521, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
-      propertyPath: health
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7166689666919232521, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
-      propertyPath: maxHealth
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7166689666919232521, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: lowHealthEffect
       value: 
@@ -6768,10 +6733,6 @@ PrefabInstance:
       propertyPath: _mesh
       value: 
       objectReference: {fileID: 7954362607193022917}
-    - target: {fileID: 7265589556658211210, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
-      propertyPath: coolDownFog
-      value: 
-      objectReference: {fileID: 1337507482}
     - target: {fileID: 7265589556658211210, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: mineCoolDownFog
       value: 
