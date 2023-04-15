@@ -85,7 +85,8 @@ public class SpreadBuilding : MonoBehaviour
         if (total)
             buildingController.GetComponent<BuildingController>().deregister_one_building();
         vitality.increaseVitalityGrowth(15);
-        GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
+        if (GameObject.Find("BuildingCanvas") != null)
+            GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
         AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
         AudioSource.PlayClipAtPoint(clip, transform.position);
         if (!DestoryBuildingDrag.selfDestory)

@@ -60,7 +60,8 @@ public class SoliderBuilding : MonoBehaviour
     private void OnDestroy()
     {
         vitalityController.increaseVitalityGrowth(5);
-        GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
+        if (GameObject.Find("BuildingCanvas") != null)
+            GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
         AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
         AudioSource.PlayClipAtPoint(clip, transform.position);
         if (!DestoryBuildingDrag.selfDestory)
