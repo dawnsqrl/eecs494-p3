@@ -182,6 +182,8 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     bool CheckAvai(Vector2 pos)
     {
+        if (pos.x < 0 || pos.x > 49 || pos.y < 0 || pos.y > 49)
+            return false;
         //if (startTutorial)
         //    return buildingController.GetComponent<BuildingController>().check_avai(pos);
         if (!startTutorial)
