@@ -55,9 +55,14 @@ public class BuildingController : MonoBehaviour
         buildings.Add(pos, building);
     }
 
-    public void deregister_one_building()
+    public void deregister_one_building(GameObject building)
     {
         max_building_num -= 5;
+        var toRemove = buildings.Where(kvp => kvp.Value == building).ToList();
+        foreach (var item in toRemove)
+        {
+            buildings.Remove(item.Key);
+        }
     }
 
     public void unregister_building(GameObject building)

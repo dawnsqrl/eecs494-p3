@@ -82,13 +82,11 @@ public class SpreadBuilding : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (total && buildingController != null)
-            buildingController.GetComponent<BuildingController>().deregister_one_building();
         if (vitality != null)
             vitality.increaseVitalityGrowth(15);
         if (GameObject.Find("BuildingCanvas") != null)
-            GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
-        
+            GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().deregister_one_building(gameObject);
+
         if (!DestoryBuildingDrag.selfDestory)
         {
             EventBus.Publish(new AddExpEvent(5));
