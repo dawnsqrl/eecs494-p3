@@ -217,6 +217,8 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     private void removeMucus(Vector2 pos)
     {
+        if (pos.x < 0 || pos.x > 49 || pos.y < 0 || pos.y > 49)
+            return;
         gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).GetComponent<GroundTileManager>()
             .RemoveMucus();
         gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).GetComponent<GroundTileManager>()
