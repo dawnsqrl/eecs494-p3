@@ -6,13 +6,14 @@ using UnityEngine;
 
 public class AutoEnemyGenerator : MonoBehaviour
 {
-    [SerializeField] private int maxUnit = 1;
+    [SerializeField] private int maxUnit;
     private List<GameObject> unitList;
     private int onGenerationSnailNUm;
     private TextMeshPro _mesh;
     private bool canGenerate;
     private Animator _animator;
     private bool deadAnimBegan;
+    [SerializeField] private SnailExpManager _snailExpManager;
 
     private void Start()
     {
@@ -44,6 +45,14 @@ public class AutoEnemyGenerator : MonoBehaviour
 
     private void Update()
     {
+        if (_snailExpManager.currentLevel >= 4 && maxUnit < 2)
+        {
+            maxUnit = 2;
+        }
+        else if (_snailExpManager.currentLevel >= 10 && maxUnit < 3)
+        {
+            maxUnit = 3;
+        }
         for (int i = 0; i < unitList.Count; i++)
         {
             if (unitList[i].IsDestroyed())

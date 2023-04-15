@@ -5444,6 +5444,7 @@ MonoBehaviour:
   enemyTagList:
   - Citizen
   _animator: {fileID: 4047923559195802300}
+  canRegenerate: 0
   lowHealthEffect: {fileID: 0}
 --- !u!114 &716249461
 MonoBehaviour:
@@ -5761,6 +5762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4a9fe6135941f5874c2c4f968a92ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coolDownFog: {fileID: 0}
 --- !u!114 &1913960091
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4096,6 +4096,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 55, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1325723682 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8305987452694465226, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
+  m_PrefabInstance: {fileID: 1913960089}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca4f20d90d8848eaab5598a035bbb898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1333792117
 GameObject:
   m_ObjectHideFlags: 0
@@ -5010,6 +5021,10 @@ PrefabInstance:
     - target: {fileID: 8164501410388183937, guid: d9c60a805e0d448e19075e00d8786d14, type: 3}
       propertyPath: m_Name
       value: EatIndicatorCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164501410388183937, guid: d9c60a805e0d448e19075e00d8786d14, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9c60a805e0d448e19075e00d8786d14, type: 3}
@@ -5987,14 +6002,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 560697544}
     m_Modifications:
-    - target: {fileID: 458381693215974669, guid: 2158d513058ff4b8b914856fe5d7f6d4, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -300
-      objectReference: {fileID: 0}
-    - target: {fileID: 588782990629266288, guid: 2158d513058ff4b8b914856fe5d7f6d4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4034701124882229233, guid: 2158d513058ff4b8b914856fe5d7f6d4, type: 3}
       propertyPath: m_Camera
       value: 
@@ -6104,6 +6111,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 588782990629266288, guid: 2158d513058ff4b8b914856fe5d7f6d4, type: 3}
   m_PrefabInstance: {fileID: 1868556508}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1868556512 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7238380653289428946, guid: 2158d513058ff4b8b914856fe5d7f6d4, type: 3}
+  m_PrefabInstance: {fileID: 1868556508}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &1868556515 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1868556515, guid: 2158d513058ff4b8b914856fe5d7f6d4, type: 3}
@@ -6269,6 +6287,10 @@ PrefabInstance:
       propertyPath: spitIcon
       value: 
       objectReference: {fileID: 1185802914}
+    - target: {fileID: 8305987452694465226, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
+      propertyPath: levelValue
+      value: 
+      objectReference: {fileID: 1868556512}
     - target: {fileID: 8305987452694465226, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: shieldIcon
       value: 
@@ -7907,60 +7929,116 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1614122819528920402, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1614122819528920402, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 1614122819706283079, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1614122819706283079, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 1614122819723829552, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1614122819723829552, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 1614122819983971466, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1614122819983971466, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 1614122820031529819, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614122820031529819, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
+    - target: {fileID: 1614122820250116370, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: maxUnit
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1614122820250116370, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
+    - target: {fileID: 1614122820374189853, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1614122820374189853, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
-      propertyPath: maxUnit
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 1614122820381686906, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1614122820381686906, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 1614122820841835455, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1614122820841835455, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 1614122820940969559, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1614122820940969559, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 1614122820966646743, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1614122820966646743, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 1614122821301699430, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1614122821301699430, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 1614122821304498012, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1614122821304498012, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 1614122821618111307, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1614122821618111307, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: _snailExpManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 3214459210536445666, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: m_RootOrder
       value: 17

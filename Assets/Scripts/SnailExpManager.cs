@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,6 +43,8 @@ public class SnailExpManager : MonoBehaviour
     private float max_time_eat_hyphae = 1.0f;
     private int snail_max_health = 20;
 
+    [SerializeField] private TextMeshProUGUI levelValue;
+
     // option: 1 -> sprint, 2 -> mine, 3 -> shield, 4 -> spit
     private int randomOption1 = 0, randomOption2 = 0, randomOption3 = 0;
 
@@ -72,6 +75,11 @@ public class SnailExpManager : MonoBehaviour
         skillsChooseCanvas.SetActive(false);
         currentExp = 0;
         currentLevel = 0;
+    }
+
+    private void Update()
+    {
+        levelValue.text = $"Lv.{currentLevel}";
     }
 
     public void AddExpPoints(int exp)
