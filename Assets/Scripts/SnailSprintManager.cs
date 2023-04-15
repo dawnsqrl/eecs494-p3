@@ -31,6 +31,7 @@ public class SnailSprintManager : MonoBehaviour
         sprintTime = 0.3f;
         maxCoolDownTime = 5;
         remainCoolDownTime = 0;
+        coolDownFog.fillAmount = 0;
     }
     public bool CanSprint()
     {
