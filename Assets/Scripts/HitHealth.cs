@@ -176,7 +176,7 @@ public class HitHealth : MonoBehaviour
             healthBar.size =
                 new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
         }
-        else if (canRegenerate)
+        else if (canRegenerate || health_recover_rate == 0.7f)
         {
             deltaHP += health_recover_rate * Time.deltaTime;
         }
