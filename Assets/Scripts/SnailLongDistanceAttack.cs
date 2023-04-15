@@ -26,7 +26,7 @@ public class SnailLongDistanceAttack : MonoBehaviour
     void Start()
     {
         coolDownFog.fillAmount = 0;
-        maxCoolDownTime = 1;
+        maxCoolDownTime = 3;
         remainCoolDownTime = 0;
     }
 
@@ -102,8 +102,6 @@ public class SnailLongDistanceAttack : MonoBehaviour
 
     private GameObject findTarget(Vector3 pos)
     {
-        print("tagpos");
-        print(pos);
         float detect_dis = 2.0f;
         GameObject nearestBuilding = BuildingController.NearestBuilding(pos);
         float building_dis;

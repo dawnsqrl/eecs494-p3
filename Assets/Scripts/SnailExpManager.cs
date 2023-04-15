@@ -282,7 +282,7 @@ public class SnailExpManager : MonoBehaviour
             }
             else
             {
-                _snailSprintManager.AddSprintSpeed(2);
+                _snailSprintManager.SprintLevelUp(0.5f);
             }
         }
         else if (realOption == 2)
