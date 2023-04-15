@@ -10,7 +10,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
     //[SerializeField] private GameObject gamePrefab;
     [SerializeField] private Sprite buildingTexture;
-    [SerializeField] private GameObject RTScontroller, SelectedArea, fog;
+    [SerializeField] private GameObject RTScontroller, growthDemo, SelectedArea, fog;
 
     [SerializeField] private GridManager gridManager;
 
@@ -194,7 +194,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
             foreach (Vector2 oldPos in oldPos_list)
             {
-                if (gameObject.GetComponent<GrowthDemo>().Position2Mucused(oldPos))
+                if (growthDemo.GetComponent<GrowthDemo>().Position2Mucused(oldPos))
                     removeMucus(oldPos);
             }
             EventBus.Publish(new BuildingEndDragEvent());
