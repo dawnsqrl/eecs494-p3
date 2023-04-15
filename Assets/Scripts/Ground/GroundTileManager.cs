@@ -63,6 +63,9 @@ public class GroundTileManager : MonoBehaviour
         foreach (Transform small_hyphae in hyphae.transform)
         {
             small_hyphae.gameObject.SetActive(true);
+            Color tmp = small_hyphae.gameObject.GetComponent<SpriteRenderer>().color;
+            tmp.a = 1;
+            small_hyphae.gameObject.GetComponent<SpriteRenderer>().color = tmp;
             enableAnimator(small_hyphae.gameObject);
             small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");
             //StartCoroutine(disableAnimator(small_hyphae.gameObject));
@@ -94,9 +97,6 @@ public class GroundTileManager : MonoBehaviour
         // mucus.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-10, 10));
         foreach (Transform small_hyphae in mucus.transform)
         {
-            Color tmp = small_hyphae.gameObject.GetComponent<SpriteRenderer>().color;
-            tmp.a = 1;
-            small_hyphae.gameObject.GetComponent<SpriteRenderer>().color = tmp;
             enableAnimator(small_hyphae.gameObject);
             small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");
             disableAnimator(small_hyphae.gameObject);
