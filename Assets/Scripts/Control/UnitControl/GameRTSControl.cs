@@ -13,11 +13,14 @@ public class GameRTSControl : MonoBehaviour
     private bool isBoxSelecting;
     private bool isDialogBlocking;
 
+    bool startTutorial = false;
+
     private void Awake()
     {
         EventBus.Subscribe<DialogBlockingEvent>(e => isDialogBlocking = e.status);
         selectedUnitRTSList = new List<UnitRTS>();
         selectedAreaTransform.gameObject.SetActive(false);
+        EventBus.Subscribe<StartBuilderTutorialEvent>(_ => startTutorial = true);
     }
 
     private void Start()
@@ -97,10 +100,11 @@ public class GameRTSControl : MonoBehaviour
                 if (unitRTS != null && unitRTS.gameObject.TryGetComponent(out AutoAttack_citizen useless))
                 {
                     unitRTS.gameObject.GetComponent<AutoAttack_citizen>().onAssult = false;
+                    StartCoroutine(unitRTS.gameObject.GetComponent<AutoAttack_citizen>().CloseAutoAttackForTime(3f));
                 }
-                else
+                else if (!startTutorial)
                     continue;
-                StartCoroutine(unitRTS.gameObject.GetComponent<AutoAttack_citizen>().CloseAutoAttackForTime(3f));
+                
                 unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
                 targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
             }
