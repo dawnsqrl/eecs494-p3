@@ -7,7 +7,7 @@ public class MineBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
     float damage_radius = 2.0f;
-    int damage = 3;
+    int damage = 5;
     Animator animator;
     bool explode_lock = false;
     float delay_time = 3f;
@@ -55,6 +55,14 @@ public class MineBehavior : MonoBehaviour
                     }
                 }
             }
+            
+        }
+        //*****
+        GameObject nearestCitizen = CitizenControl.NearestCitizen(transform.position);
+        while(nearestCitizen!=null && Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(nearestCitizen.transform.position.x, nearestCitizen.transform.position.y)) < damage_radius) {
+            nearestCitizen.GetComponentInChildren<HitHealth>().GetDamage(damage);
+            Destroy(nearestCitizen);
+            nearestCitizen = CitizenControl.NearestCitizen(transform.position);
         }
 
         //print("step 2");
