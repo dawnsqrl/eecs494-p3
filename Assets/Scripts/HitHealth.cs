@@ -83,7 +83,8 @@ public class HitHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            EventBus.Publish(new TBaseCarDestroy());
+            if (gameObject.CompareTag("BaseCar"))
+                EventBus.Publish(new TBaseCarDestroy());
             //EventBus.Publish(new BuilderTutorialSnailDeadEvent());
             if (gameObject.tag == "Building")
             {

@@ -80,7 +80,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             EventBus.Publish(new DisplayHintEvent(0,
                 "Scroll <b>mouse wheel</b> to zoom the screen."
             ));
-            if (maxzoom)
+            if (maxzoom && STEP_NUM == 0)
             {
                 EventBus.Publish(new CloseZoomEvent());
                 STEP_NUM = 1;
@@ -99,7 +99,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 vd.setSize(9.0f);
             }
 
-            if (clicked)
+            if (clicked && STEP_NUM == 1)
             {
                 StartCoroutine(ClickCoolDown());
                 clicked = false;
@@ -143,7 +143,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             for (int i = 26; i < 32; i++)
                 Position2GroundManager(i, 11).SetMucus();
 
-            if (clicked)
+            if (clicked && STEP_NUM == 2)
             {
                 StartCoroutine(ClickCoolDown());
                 clicked = false;
@@ -168,7 +168,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 firstcall = true;
             }
 
-            if (BuilderCamera.transform.position is { x: < 17.0f, y: > 15.0f })
+            if (BuilderCamera.transform.position is { x: < 17.0f, y: > 15.0f } && STEP_NUM == 3)
             {
                 STEP_NUM = 4;
                 firstcall = false;
@@ -193,7 +193,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 lockClick = false;
             }
 
-            if (clicked)
+            if (clicked && STEP_NUM == 4)
             {
                 StartCoroutine(ClickCoolDown());
                 clicked = false;
@@ -242,7 +242,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 Position2GroundManager(16, 30).SetGrowthed();
             }
 
-            if (temp_count < 2)
+            if (temp_count < 2 && STEP_NUM == 5)
             {
                 BuilderCamera.transform.position = new Vector3(10.0f, 30.0f, -10.0f);
                 temp_count += 1;
@@ -276,7 +276,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                     new Vector3(11.0f, 28.0f), Quaternion.identity);
             }
 
-            if (win0)
+            if (win0 && STEP_NUM == 6)
             {
                 STEP_NUM = 65;
                 firstcall = false;
@@ -297,7 +297,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 firstcall = true;
             }
 
-            if (destroyActivate)
+            if (destroyActivate && STEP_NUM == 65)
             {
                 STEP_NUM = 7;
                 firstcall = false;
@@ -328,7 +328,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 firstcall = true;
             }
 
-            if (buildingCount == 4)
+            if (buildingCount == 4 && STEP_NUM == 7)
             {
                 STEP_NUM = 8;
                 firstcall = false;
@@ -348,7 +348,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 StartCoroutine(waitForGrowth());
             }
 
-            if (finishGrowth)
+            if (finishGrowth && STEP_NUM == 8)
             {
                 STEP_NUM = 9;
                 firstcall = false;
@@ -387,7 +387,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             if (!(Position2GroundManager(30, 27).CheckMucused()
                   && Position2GroundManager(30, 26).CheckMucused()
                   && Position2GroundManager(31, 27).CheckMucused()
-                  && Position2GroundManager(31, 26).CheckMucused()))
+                  && Position2GroundManager(31, 26).CheckMucused()) && STEP_NUM == 9)
             {
                 clicked = false;
                 STEP_NUM = 10;
@@ -426,7 +426,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 firstcall = true;
             }
 
-            if (clicked)
+            if (clicked && STEP_NUM == 10)
             {
                 StartCoroutine(ClickCoolDown());
                 clicked = false;
@@ -453,7 +453,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 firstcall = true;
             }
 
-            if (clicked)
+            if (clicked && STEP_NUM == 11)
             {
                 StartCoroutine(ClickCoolDown());
                 clicked = false;
@@ -478,7 +478,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 firstcall = true;
             }
 
-            if (clicked)
+            if (clicked && STEP_NUM == 115)
             {
                 StartCoroutine(ClickCoolDown());
                 clicked = false;

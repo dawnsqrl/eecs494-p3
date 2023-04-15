@@ -16,7 +16,8 @@ public class ResourceBuilding : MonoBehaviour
     private void OnDestroy()
     {
         vitality.decreaseVitalityGrowth(20);
-        GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
+        if (GameObject.Find("BuildingCanvas") != null)
+            GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
         AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
         AudioSource.PlayClipAtPoint(clip, transform.position);
         if (!DestoryBuildingDrag.selfDestory)
