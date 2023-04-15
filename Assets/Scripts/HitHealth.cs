@@ -128,12 +128,12 @@ public class HitHealth : MonoBehaviour
             return;
         }
 
-        if (lowHealthEffect != null && health > maxHealth * 0.25f && lowHealthEffect.activeSelf)
+        if ((CompareTag("Mushroom") || CompareTag("BaseCar")) && lowHealthEffect != null && health > maxHealth * 0.25f && lowHealthEffect.activeSelf)
         {
             lowHealthEffect.SetActive(false);
         }
 
-        if (lowHealthEffect != null && health <= maxHealth * 0.25f && !lowHealthEffect.activeSelf)
+        if ((CompareTag("Mushroom") || CompareTag("BaseCar")) && lowHealthEffect != null && health <= maxHealth * 0.25f && !lowHealthEffect.activeSelf)
         {
             lowHealthEffect.SetActive(true);
         }
