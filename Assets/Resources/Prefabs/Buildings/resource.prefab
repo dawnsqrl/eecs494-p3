@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134423d73171d43c6bd7de912cbf02a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
-  health: 15
+  maxHealth: 5
+  health: 5
   healthBar: {fileID: 3386630405993689761}
   _spriteRenderer: {fileID: 1480908842962784054}
   hit_cd_time: 0.5
@@ -153,6 +153,8 @@ MonoBehaviour:
   - BaseCar
   - LittleSnail
   _animator: {fileID: 4017795613422312020}
+  canRegenerate: 0
+  lowHealthEffect: {fileID: 0}
 --- !u!95 &4017795613422312020
 Animator:
   serializedVersion: 5

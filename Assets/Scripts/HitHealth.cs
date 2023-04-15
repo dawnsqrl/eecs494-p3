@@ -21,6 +21,7 @@ public class HitHealth : MonoBehaviour
     [SerializeField] private List<String> enemyTagList;
     [SerializeField] private Animator _animator;
     private bool deadAnimBegan;
+    public bool canRegenerate;
 
     private bool canGetHit;
     private float deltaHP = 0;
@@ -175,7 +176,7 @@ public class HitHealth : MonoBehaviour
             healthBar.size =
                 new Vector2((float)health / (float)maxHealth * original_bar_length, healthBar.size.y);
         }
-        else
+        else if (canRegenerate)
         {
             deltaHP += health_recover_rate * Time.deltaTime;
         }
