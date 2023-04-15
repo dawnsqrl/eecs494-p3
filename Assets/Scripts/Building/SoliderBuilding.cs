@@ -37,13 +37,19 @@ public class SoliderBuilding : MonoBehaviour
             if (autoSoliders.Count < maxSolider)
             {
                 GameObject solider;
-                yield return new WaitForSeconds(3.0f);
+                
                 if (!isBuilderTutorialActive)
+                {
+                    yield return new WaitForSeconds(6.0f);
                     solider = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Citizen"),
-                        transform.position, Quaternion.identity);
+                            transform.position, Quaternion.identity);
+                }
                 else
+                {
+                    yield return new WaitForSeconds(3.0f);
                     solider = Instantiate(Resources.Load<GameObject>("Prefabs/BuilderTutorial/TCitizen"),
                         transform.position, Quaternion.identity);
+                }  
                 GameState.smallMushroomProduced++;
                 Vector2 newPos = transform.position + generateRandomVector();
                 print(newPos);
