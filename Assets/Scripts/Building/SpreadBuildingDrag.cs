@@ -23,7 +23,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
     private bool startTutorial = false;
     private bool isDialogBlocking;
 
-    Vector2 oldPos1 = Vector2.zero;;
+    Vector2 oldPos1 = Vector2.zero;
 
     GameObject new_building;
     Vector2 posForBuilding;
