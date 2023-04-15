@@ -127,6 +127,29 @@ public class BasecarController : MonoBehaviour
         if (y < 0) {
             y = 0;
         }
+
+        if (is_tutorial)
+        {
+            if (y > 19)
+            {
+                y = 19;
+            }
+            if (x > 39)
+            {
+                x = 39;
+            }
+        }
+        else
+        {
+            if (y > 49)
+            {
+                y = 49;
+            }
+            if (x > 49)
+            {
+                x = 49;
+            }
+        }
         
         return new Vector2(Mathf.RoundToInt(x), Mathf.RoundToInt(y));
     }
