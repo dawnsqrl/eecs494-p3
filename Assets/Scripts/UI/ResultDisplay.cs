@@ -1,29 +1,45 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResultDisplay : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI result;
-    [SerializeField] TextMeshProUGUI timePlayed;
-    [SerializeField] TextMeshProUGUI smallMushroomProduced;
-    [SerializeField] TextMeshProUGUI smallSnailKilled;
-    [SerializeField] TextMeshProUGUI myceliumProduced;
-    [SerializeField] TextMeshProUGUI mucusDestroyed;
-    [SerializeField] TextMeshProUGUI buildingPlaced;
-    [SerializeField] TextMeshProUGUI nestDestroyed;
-    [SerializeField] TextMeshProUGUI grassDestroyed;
-    [SerializeField] TextMeshProUGUI smallSnailFound;
-    [SerializeField] TextMeshProUGUI smallMushroomKilled;
-    [SerializeField] TextMeshProUGUI mucusProduced;
-    [SerializeField] TextMeshProUGUI myceliumDestroyed;
-    [SerializeField] TextMeshProUGUI buildingDestroyed;
-    [SerializeField] TextMeshProUGUI shieldUsed;
-    [SerializeField] TextMeshProUGUI bombUsed;
+    [SerializeField] private Image mushroomMedal;
+    [SerializeField] private Image snailMedal;
+    [SerializeField] private TextMeshProUGUI result;
+    [SerializeField] private TextMeshProUGUI timePlayed;
+    [SerializeField] private TextMeshProUGUI smallMushroomProduced;
+    [SerializeField] private TextMeshProUGUI smallSnailKilled;
+    [SerializeField] private TextMeshProUGUI myceliumProduced;
+    [SerializeField] private TextMeshProUGUI mucusDestroyed;
+    [SerializeField] private TextMeshProUGUI buildingPlaced;
+    [SerializeField] private TextMeshProUGUI nestDestroyed;
+    [SerializeField] private TextMeshProUGUI grassDestroyed;
+    [SerializeField] private TextMeshProUGUI smallSnailFound;
+    [SerializeField] private TextMeshProUGUI smallMushroomKilled;
+    [SerializeField] private TextMeshProUGUI mucusProduced;
+    [SerializeField] private TextMeshProUGUI myceliumDestroyed;
+    [SerializeField] private TextMeshProUGUI buildingDestroyed;
+    [SerializeField] private TextMeshProUGUI shieldUsed;
+    [SerializeField] private TextMeshProUGUI bombUsed;
+
+    private readonly Color winColor = new Color(1, 0.8f, 0, 0.95f);
+    private readonly Color loseColor = new Color(0.8f, 0.8f, 0.8f, 0.95f);
 
     private void Start()
     {
-        string winnerTag = GameState.result ? "Mushroom" : "Snail";
-        result.text = $"{winnerTag} wins!";
+        if (GameState.result)
+        {
+            result.text = "Mushroom wins!";
+            mushroomMedal.color = winColor;
+            snailMedal.color = loseColor;
+        }
+        else
+        {
+            result.text = "Snail wins!";
+            mushroomMedal.color = loseColor;
+            snailMedal.color = winColor;
+        }
 
         float timePlayedValue = GameState.timePlayed;
         int minutes = Mathf.FloorToInt(timePlayedValue / 60);
