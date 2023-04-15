@@ -21,7 +21,7 @@ public class CitizenBuildingControl : MonoBehaviour
 
     public void remove_from_list()
     {
-        if (is_building_citizen)
+        if (is_building_citizen && building != null)
             building.GetComponent<SoliderBuilding>().removeCitizen(gameObject);
     }
 
