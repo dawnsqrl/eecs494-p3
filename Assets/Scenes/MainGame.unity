@@ -598,7 +598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1488462979304578594, guid: 013260105d0fb4266b900736b6a2ff0d, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 66135
+      value: 1114711
       objectReference: {fileID: 0}
     - target: {fileID: 1488462979304578597, guid: 013260105d0fb4266b900736b6a2ff0d, type: 3}
       propertyPath: m_RootOrder
@@ -4870,6 +4870,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom
       objectReference: {fileID: 0}
+    - target: {fileID: 8517514632246193935, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
 --- !u!1001 &1577067821
@@ -6217,10 +6221,18 @@ PrefabInstance:
       propertyPath: _text
       value: 
       objectReference: {fileID: 104130009}
+    - target: {fileID: 2921986876640676511, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 2929099172006440559, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: coolDownFog
       value: 
       objectReference: {fileID: 1363264453}
+    - target: {fileID: 6981919616456309639, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 2166359
+      objectReference: {fileID: 0}
     - target: {fileID: 7166689666919232521, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: lowHealthEffect
       value: 
