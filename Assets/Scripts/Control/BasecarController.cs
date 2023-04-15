@@ -8,7 +8,7 @@ public class BasecarController : MonoBehaviour
     [SerializeField] private bool isChosen = false;
     [SerializeField] private Vector3 tutorialInitPos;
     private Vector3 gameInitPos;
-    public float speed = 2f;
+    public float speed = 1.8f;
     [SerializeField] private Animator _animator;
     [SerializeField] private HitHealth _snailHealth;
 
