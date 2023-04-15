@@ -187,7 +187,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (!startTutorial)
         {
             GrowthDemo gd = GameObject.Find("GrowthDemoController").GetComponent<GrowthDemo>();
-            if (!gd.Position2Mucused(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
+            if (!gd.Position2Growthed(pos) && !gd.Position2Mucused(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
                 return true;
             return false;
         }
@@ -195,7 +195,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
         {
             NewBuilderTutorialController gd = GameObject.Find("BuilderTutorial")
                 .GetComponent<NewBuilderTutorialController>();
-            if (!gd.Position2Mucused(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
+            if (!gd.Position2Growthed(pos) && !gd.Position2Mucused(pos) && buildingController.GetComponent<BuildingController>().check_avai(pos))
                 return true;
             return false;
         }
