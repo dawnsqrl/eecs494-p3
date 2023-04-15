@@ -193,8 +193,10 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
             AudioSource.PlayClipAtPoint(clip, transform.position);
 
             foreach (Vector2 oldPos in oldPos_list)
-                removeMucus(oldPos);
-
+            {
+                if (gameObject.GetComponent<GrowthDemo>().Position2Mucused(oldPos))
+                    removeMucus(oldPos);
+            }
             EventBus.Publish(new BuildingEndDragEvent());
 
             holder.GetComponent<SpellCooldown>().reStart();
@@ -217,6 +219,8 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
     {
         gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).GetComponent<GroundTileManager>()
             .RemoveMucus();
+        gridManager.GetTileGroundAtPosition(gridManager.GetTileAtPosition(pos)).GetComponent<GroundTileManager>()
+            .RemoveGrowthed();
     }
 
     bool CheckAvai(Vector2 pos)

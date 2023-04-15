@@ -62,9 +62,10 @@ public class GroundTileManager : MonoBehaviour
         // hyphae.transform.Rotate (Vector3.forward * UnityEngine.Random.Range(-10, 10));
         foreach (Transform small_hyphae in hyphae.transform)
         {
+            small_hyphae.gameObject.SetActive(true);
             enableAnimator(small_hyphae.gameObject);
             small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");
-            StartCoroutine(disableAnimator(small_hyphae.gameObject));
+            //StartCoroutine(disableAnimator(small_hyphae.gameObject));
         }
 
         if (!growthed)
