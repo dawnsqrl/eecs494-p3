@@ -66,6 +66,7 @@ public class SnailSprintManager : MonoBehaviour
         _basecarController.speed = sprintSpeed;
         yield return new WaitForSeconds(sprintTime);
         _basecarController.speed = _basecarController.normalSpeed;
+        _basecarController.is_sprint = false;
         canSprint = true;
     }
     
