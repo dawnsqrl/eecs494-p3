@@ -66,6 +66,8 @@ public class MushroomControl : MonoBehaviour
     {
         BuildingCanvas.GetComponent<BuildingController>().unregister_building(gameObject);
         CitizenControl.citizenList.Remove(gameObject);
-        Destroy(GameObject.Find("GrowthDemoController"));
+        if (GameObject.Find("WhateverItsCalled") != null)
+            Destroy(GameObject.Find("WhateverItsCalled"));
+        
     }
 }
