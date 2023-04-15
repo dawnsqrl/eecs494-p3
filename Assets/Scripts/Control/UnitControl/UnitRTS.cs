@@ -63,6 +63,10 @@ public class UnitRTS : MonoBehaviour
     
     private void Update()
     {
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            MoveTo(transform.position + new Vector3(-32.0f, 18.0f, 0.0f));
+        }
         if (!startMove || (targetPosition - transform.position).magnitude < 0.3f)
         {
             _rigidbody.velocity = Vector3.zero;

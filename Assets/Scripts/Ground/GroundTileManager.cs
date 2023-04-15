@@ -68,7 +68,7 @@ public class GroundTileManager : MonoBehaviour
             small_hyphae.gameObject.GetComponent<SpriteRenderer>().color = tmp;
             enableAnimator(small_hyphae.gameObject);
             small_hyphae.gameObject.GetComponent<Animator>().SetTrigger("appear");
-            //StartCoroutine(disableAnimator(small_hyphae.gameObject));
+            StartCoroutine(disableAnimator(small_hyphae.gameObject));
         }
 
         if (!growthed)

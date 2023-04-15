@@ -14,7 +14,7 @@ public class BuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     //[SerializeField] private BuilderGridManager TgridManager;
     //private ViewDragging vd;
-    private int defenceRange = 4;
+    private int defenceRange = 2;
 
     private Transform parentAfterDrag;
 
