@@ -57,7 +57,7 @@ public class GameRTSControl : MonoBehaviour
             Collider2D[] collider2DArray = Physics2D.OverlapAreaAll(startPosition, UtilsClass.GetMouseWorldPosition());
             foreach (var unitRTS in selectedUnitRTSList)
             {
-                if (!unitRTS.IsDestroyed() && unitRTS.gameObject.CompareTag("Citizen"))
+                if (unitRTS != null && !unitRTS.IsDestroyed() && unitRTS.gameObject.CompareTag("Citizen"))
                 {
                     unitRTS.SetSelectedActive(false);
                 }
@@ -94,10 +94,12 @@ public class GameRTSControl : MonoBehaviour
             int targetPositionListIndex = 0;
             foreach (UnitRTS unitRTS in selectedUnitRTSList)
             {
-                if (unitRTS.gameObject.TryGetComponent<AutoAttack_citizen>(out AutoAttack_citizen useless))
+                if (unitRTS != null && unitRTS.gameObject.TryGetComponent(out AutoAttack_citizen useless))
                 {
                     unitRTS.gameObject.GetComponent<AutoAttack_citizen>().onAssult = false;
                 }
+                else
+                    continue;
                 StartCoroutine(unitRTS.gameObject.GetComponent<AutoAttack_citizen>().CloseAutoAttackForTime(3f));
                 unitRTS.MoveTo(targetPositionList[targetPositionListIndex]);
                 targetPositionListIndex = (targetPositionListIndex + 1) % targetPositionList.Count;
