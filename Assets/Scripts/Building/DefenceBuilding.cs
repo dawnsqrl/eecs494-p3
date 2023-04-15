@@ -55,8 +55,7 @@ public class DefenceBuilding : MonoBehaviour
         vitality.increaseVitalityGrowth(10);
         if (GameObject.Find("BuildingCanvas") != null)
             GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
-        AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
-        AudioSource.PlayClipAtPoint(clip, transform.position);
+        
         if (!DestoryBuildingDrag.selfDestory)
         {
             EventBus.Publish(new AddExpEvent(5));

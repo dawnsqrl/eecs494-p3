@@ -322,7 +322,11 @@ public class HitHealth : MonoBehaviour
         }
         else if (_gameObject.CompareTag("Building"))
         {
+            AudioClip clip;
             GameState.buildingDestroyed++;
+
+            clip = Resources.Load<AudioClip>("Audio/BuildingDown");
+            AudioSource.PlayClipAtPoint(clip, transform.position);
         }
 
         Destroy(_gameObject);

@@ -113,10 +113,14 @@ public class BuildingController : MonoBehaviour
             default:
                 break;
         }
+        AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
+        AudioSource.PlayClipAtPoint(clip, transform.position);
         Destroy(buildings[pos].gameObject);
     }
 
-    public void setBuildingHighlight(Vector2 pos, bool status)
+    
+
+public void setBuildingHighlight(Vector2 pos, bool status)
     {
         if (check_avai(pos))
             return;
