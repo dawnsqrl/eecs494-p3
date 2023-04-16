@@ -19,7 +19,7 @@ public class VitalityController : MonoBehaviour
     private void Update()
     {
         _mesh.text = $"{vitality_increase * 1.5f}% / min";
-        if (vitality_increase > 0)
+        if (vitality_increase >= 0)
         {
             _mesh.text = "+" + _mesh.text;
         }
