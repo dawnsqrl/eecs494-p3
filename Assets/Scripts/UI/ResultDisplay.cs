@@ -41,7 +41,9 @@ public class ResultDisplay : MonoBehaviour
             snailMedal.color = winColor;
         }
 
-        float timePlayedValue = GameState.timePlayed;
+        Debug.Log(GameState.timePlayed);
+        float timePlayedValue = (float) GameState.timePlayed / 1.2f;
+        Debug.Log(timePlayedValue);
         int minutes = Mathf.FloorToInt(timePlayedValue / 60);
         int seconds = Mathf.FloorToInt(timePlayedValue % 60);
         timePlayed.text = $"You played for {minutes}:{seconds:D2}.";
