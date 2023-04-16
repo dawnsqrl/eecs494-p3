@@ -87,11 +87,6 @@ public class BuildingController : MonoBehaviour
         for (int i = 0; i < buildings.Count; i++)
         {
             KeyValuePair<Vector2, GameObject> building = buildings.ElementAt(i);
-            if (building.Value.IsDestroyed() || (!includeMushroom && building.Value.CompareTag("Mushroom")))
-            {
-                continue;
-            }
-
             float distance = Vector3.Distance(pos, building.Value.transform.position);
             if (distance < leastDistance)
             {

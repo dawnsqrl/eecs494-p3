@@ -302,7 +302,20 @@ public class SnailExpManager : MonoBehaviour
                 set_icon_position(realOption);
             }
 
-            _snailWeapon.AddMine(Mathf.Min(3, currentLevel));
+            int mineAddition = 0;
+            if (currentLevel < 8)
+            {
+                mineAddition = Mathf.Min(3, currentLevel);
+            }
+            else if (currentLevel < 15)
+            {
+                mineAddition = 4;
+            }
+            else
+            {
+                mineAddition = 5;
+            }
+            _snailWeapon.AddMine(mineAddition);
         }
         else if (realOption == 3)
         {
