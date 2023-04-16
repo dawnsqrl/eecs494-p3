@@ -413,7 +413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1488462979304578594, guid: 013260105d0fb4266b900736b6a2ff0d, type: 3}
       propertyPath: orthographic size
-      value: 26
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 1488462979304578594, guid: 013260105d0fb4266b900736b6a2ff0d, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -4269,6 +4269,30 @@ PrefabInstance:
     - target: {fileID: 9045933214369958103, guid: 3919f8bb687564062ab8ddd4dc759a7e, type: 3}
       propertyPath: m_Name
       value: MinimapCanvas_builder
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045933215153309301, guid: 3919f8bb687564062ab8ddd4dc759a7e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045933215153309301, guid: 3919f8bb687564062ab8ddd4dc759a7e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045933215153309301, guid: 3919f8bb687564062ab8ddd4dc759a7e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045933215153309301, guid: 3919f8bb687564062ab8ddd4dc759a7e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045933215153309301, guid: 3919f8bb687564062ab8ddd4dc759a7e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045933215153309301, guid: 3919f8bb687564062ab8ddd4dc759a7e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3919f8bb687564062ab8ddd4dc759a7e, type: 3}
