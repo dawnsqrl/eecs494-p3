@@ -301,7 +301,7 @@ public class SnailExpManager : MonoBehaviour
                 set_icon_position(realOption);
             }
 
-            _snailWeapon.AddMine(3);
+            _snailWeapon.AddMine(Mathf.Min(3, currentLevel));
         }
         else if (realOption == 3)
         {

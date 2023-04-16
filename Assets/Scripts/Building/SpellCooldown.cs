@@ -49,9 +49,9 @@ public class SpellCooldown : MonoBehaviour
             maxBuildingNum = buildingControl.max_building_num;
 
             if ((buildingNum >= maxBuildingNum && buildingType != 0 && buildingType != 4 && buildingType != 5) 
-                || (buildingType == 0 && vitality < 400) || (buildingType == 1 && vitality < 100) 
-                || (buildingType == 2 && vitality < 200) || (buildingType == 3 && vitality < 300) 
-                || (buildingType == 4 && vitality < 100))
+                || (buildingType == 0 && vitality < 500) || (buildingType == 1 && vitality < 200) 
+                || (buildingType == 2 && vitality < 300) || (buildingType == 3 && vitality < 300) 
+                || (buildingType == 4 && vitality < 150))
             {
                 if (!isCoolDown)
                 {
@@ -116,7 +116,7 @@ public class SpellCooldown : MonoBehaviour
         cooldownTimer -= SimulationSpeedControl.GetSimulationSpeed() * Time.deltaTime;
         if (cooldownTimer < 0)
         {
-            if ((buildingNum == maxBuildingNum && buildingType != 0 && buildingType != 4) || (buildingType == 0 && vitality < 400) || (buildingType == 1 && vitality < 100) || (buildingType == 2 && vitality < 200) || (buildingType == 3 && vitality < 300) || (buildingType == 4 && vitality < 100))
+            if ((buildingNum == maxBuildingNum && buildingType != 0 && buildingType != 4) || (buildingType == 0 && vitality < 500) || (buildingType == 1 && vitality < 200) || (buildingType == 2 && vitality < 300) || (buildingType == 3 && vitality < 300) || (buildingType == 4 && vitality < 150))
             {
                 //textCooldown.gameObject.SetActive(false);
                 imageCooldown.fillAmount = 1.0f;

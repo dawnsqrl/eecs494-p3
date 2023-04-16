@@ -104,7 +104,7 @@ public class BuildingController : MonoBehaviour
         switch(buildings[pos].gameObject.name[2])
         {
             case 'f':
-                vitality.increaseVitality(200);
+                vitality.increaseVitality(150);
                 break;
             case 's':
                 vitality.increaseVitality(100);
