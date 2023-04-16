@@ -4510,6 +4510,10 @@ PrefabInstance:
       propertyPath: _text
       value: 
       objectReference: {fileID: 104130009}
+    - target: {fileID: 1440504375319290014, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
+      propertyPath: expManager
+      value: 
+      objectReference: {fileID: 1325723682}
     - target: {fileID: 2921986876640676511, guid: ac5d8315aa87a45049be836bf31e8ce0, type: 3}
       propertyPath: m_Layer
       value: 21
