@@ -147,6 +147,10 @@ public class AutoAttack_enemy : MonoBehaviour
         if (!foundCitizen)
         {
             GameObject building = BuildingController.NearestBuilding(transform.position);
+            if (building.CompareTag("Mushroom"))
+            {
+                return;
+            }
             if (building != null && (building.transform.position - transform.position).magnitude < range)
             {
                 movetoPosition = building.transform.position;

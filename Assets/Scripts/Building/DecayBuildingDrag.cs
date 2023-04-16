@@ -194,8 +194,16 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
             foreach (Vector2 oldPos in oldPos_list)
             {
-                if (growthDemo.GetComponent<GrowthDemo>().Position2Mucused(oldPos))
-                    removeMucus(oldPos);
+                if (isBuilderTutorialActive)
+                {
+                    if (GameObject.Find("BuilderTutorial").GetComponent<NewBuilderTutorialController>().Position2Mucused(oldPos))
+                        removeMucus(oldPos);
+                }
+                else
+                {
+                    if (growthDemo.GetComponent<GrowthDemo>().Position2Mucused(oldPos))
+                        removeMucus(oldPos);
+                }
             }
             EventBus.Publish(new BuildingEndDragEvent());
 
