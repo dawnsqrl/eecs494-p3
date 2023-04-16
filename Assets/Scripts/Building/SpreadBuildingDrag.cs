@@ -156,6 +156,7 @@ public class SpreadBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler
 
             holder.GetComponent<SpellCooldown>().reStart();
             EventBus.Publish(new BuildingEndDragEvent());
+            print("I am here");
 
             if (startTutorial)
             {
