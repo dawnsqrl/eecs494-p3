@@ -29,7 +29,7 @@ public class AutoAttack_citizen : MonoBehaviour
 
     private void Update()
     {
-        if (currentOpponent.IsDestroyed())
+        if (currentOpponent != null && currentOpponent.IsDestroyed())
         {
             onAssult = false;
             currentOpponent = null;
@@ -38,15 +38,18 @@ public class AutoAttack_citizen : MonoBehaviour
         {
             // continue chasing the current opponent
             // or change current opponent to the current collision
-            movetoPosition = currentOpponent.transform.position;
-            _rts.MoveTo(movetoPosition);
-            return;
+            if (currentOpponent != null)
+            {
+                movetoPosition = currentOpponent.transform.position;
+                _rts.MoveTo(movetoPosition);
+                return;
+            }
         }
         
         // search for new enemy
-
-        enemyList = new List<GameObject>(AutoEnemyControl.foundSnails);
-        if (enemyList.Count > 0)
+        if (AutoEnemyControl.foundSnails != null)
+            enemyList = new List<GameObject>(AutoEnemyControl.foundSnails);
+        if (enemyList != null && enemyList.Count > 0)
         {
             for (int i = 0; i < enemyList.Count; i++)
             {
@@ -58,15 +61,17 @@ public class AutoAttack_citizen : MonoBehaviour
                 if (opponent != null && (opponent.transform.position - transform.position).magnitude < range)
                 {
                     movetoPosition = opponent.transform.position;
-                    _self_hitHealth.SetCurrentOpponent(opponent);
+                    if (_self_hitHealth != null)
+                        _self_hitHealth.SetCurrentOpponent(opponent);
                     currentOpponent = opponent;
                     onAssult = true;
                     break;
                 }
             }
-        } else if ((basecar.transform.position - transform.position).magnitude < range) {
+        } else if (basecar != null && (basecar.transform.position - transform.position).magnitude < range) {
             movetoPosition = basecar.transform.position;
-            _self_hitHealth.SetCurrentOpponent(basecar);
+            if (_self_hitHealth != null)
+                _self_hitHealth.SetCurrentOpponent(basecar);
             currentOpponent = basecar;
             onAssult = true;
         } 

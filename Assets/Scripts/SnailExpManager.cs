@@ -43,6 +43,8 @@ public class SnailExpManager : MonoBehaviour
     private float max_time_eat_hyphae = 1.0f;
     private int snail_max_health = 20;
 
+    bool levelUpLock = false;
+
     [SerializeField] private TextMeshProUGUI levelValue;
 
     // option: 1 -> sprint, 2 -> mine, 3 -> shield, 4 -> spit
@@ -107,49 +109,54 @@ public class SnailExpManager : MonoBehaviour
 
     public void LevelUp()
     {
-        if (pendingLevelUps > 0)
+        if(!levelUpLock)
         {
-            currentLevel++;
-            nextLevelExp = 10 + 2 * currentLevel;
-            // active selection menu
-            // wait for input
-            // optionsBanner.SetActive(true);
-            // add more health and eat speed
-
-            GetComponent<HitHealth>().AddSnailHealth(currentLevel, snail_max_health);
-            GetComponent<SnailTrigger>().time_eat_hyphae = math.max(max_time_eat_hyphae, GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f);
-
-            if (GetComponent<SnailTrigger>().time_eat_hyphae ==  max_time_eat_hyphae)
-                levelUpNoteAnimator.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Max Health +5";
-            if (GetComponent<HitHealth>().get_max_health() == snail_max_health)
-                levelUpNoteAnimator.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Eat Speed +20%";
-
-            if (GetComponent<SnailTrigger>().time_eat_hyphae == max_time_eat_hyphae && GetComponent<HitHealth>().get_max_health() == snail_max_health)
-                levelUpNoteAnimator.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "";
-
-            levelUpNoteAnimator.SetTrigger("LevelUp");
-
-            if (levelUpAnimationAllowed)
+            levelUpLock = true;
+            if (pendingLevelUps > 0)
             {
-                StartCoroutine(skillChooseAnimation());
-                // upgradeIcon.SetActive(false);
-                // skillsChooseCanvas.SetActive(true);
-                // generate_random_skill_choose();
-                AudioClip clip = Resources.Load<AudioClip>("Audio/SnailLevelUp");
-                AudioSource.PlayClipAtPoint(clip, transform.position);
+                currentLevel++;
+                nextLevelExp = 10 + 2 * currentLevel;
+                // active selection menu
+                // wait for input
+                // optionsBanner.SetActive(true);
+                // add more health and eat speed
+
+                GetComponent<HitHealth>().AddSnailHealth(currentLevel, snail_max_health);
+                GetComponent<SnailTrigger>().time_eat_hyphae = math.max(max_time_eat_hyphae, GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f);
+
+                if (GetComponent<SnailTrigger>().time_eat_hyphae == max_time_eat_hyphae)
+                    levelUpNoteAnimator.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Max Health +5";
+                if (GetComponent<HitHealth>().get_max_health() == snail_max_health)
+                    levelUpNoteAnimator.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Eat Speed +20%";
+
+                if (GetComponent<SnailTrigger>().time_eat_hyphae == max_time_eat_hyphae && GetComponent<HitHealth>().get_max_health() == snail_max_health)
+                    levelUpNoteAnimator.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "";
+
+                levelUpNoteAnimator.SetTrigger("LevelUp");
+
+                if (levelUpAnimationAllowed)
+                {
+                    StartCoroutine(skillChooseAnimation());
+                    // upgradeIcon.SetActive(false);
+                    // skillsChooseCanvas.SetActive(true);
+                    // generate_random_skill_choose();
+                    AudioClip clip = Resources.Load<AudioClip>("Audio/SnailLevelUp");
+                    AudioSource.PlayClipAtPoint(clip, transform.position);
+                }
+            }
+
+            if (pendingLevelUps <= 0)
+            {
+                levelUpLock = false;
+                upgradeIcon.SetActive(false);
+                title.SetActive(false);
             }
         }
-
-        if (pendingLevelUps <= 0)
-        {
-            upgradeIcon.SetActive(false);
-            title.SetActive(false);
-        }
+        
     }
 
     IEnumerator skillChooseAnimation()
     {
-        print("startChoose");
         upgradeIcon.SetActive(false);
         levelUpAnimationAllowed = false;
         canSelect = false;
@@ -248,6 +255,7 @@ public class SnailExpManager : MonoBehaviour
 
         //optionsBanner.SetActive(false);
         skillsChooseCanvas.SetActive(false);
+        levelUpLock = false;
 
         pendingLevelUps--;
         if (pendingLevelUps <= 0)
