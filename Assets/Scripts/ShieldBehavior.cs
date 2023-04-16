@@ -16,7 +16,9 @@ public class ShieldBehavior : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private SpriteRenderer healthBar;
 
+    public SnailExpManager expManager;
     private float original_bar_length;
+    int lv;
 
     // Update is called once per frame
     private void Awake()
@@ -34,6 +36,7 @@ public class ShieldBehavior : MonoBehaviour
         original_bar_length = healthBar.size.x;
         healthBar.size =
             new Vector2((float)HP / (float)max_HP * original_bar_length, healthBar.size.y);
+        lv = expManager.currentLevel;
     }
 
     void Update()
@@ -46,6 +49,10 @@ public class ShieldBehavior : MonoBehaviour
                 shieldGameObject.SetActive(false);
                 activated = false;
             }
+        }
+        if (expManager.currentLevel != lv) {
+            lv = expManager.currentLevel;
+            max_HP = Mathf.Min(25, 5 + 3 * lv);
         }
     }
 
