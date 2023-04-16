@@ -42,7 +42,7 @@ public class SpreadBuilding : MonoBehaviour
         }
 
         vitality = GameObject.Find("VitalityController").GetComponent<VitalityController>();
-        vitality.decreaseVitality(400);
+        vitality.decreaseVitality(500);
         vitality.decreaseVitalityGrowth(15);
 
         pos = spreadBuilding.getPos();

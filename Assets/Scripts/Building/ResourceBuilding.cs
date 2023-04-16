@@ -7,15 +7,15 @@ public class ResourceBuilding : MonoBehaviour
     private void Start()
     {
         vitality = GameObject.Find("VitalityController").GetComponent<VitalityController>();
-        vitality.decreaseVitality(100);
-        vitality.increaseVitalityGrowth(20);
+        vitality.decreaseVitality(200);
+        vitality.increaseVitalityGrowth(15);
         AudioClip clip = Resources.Load<AudioClip>("Audio/VitalityBuilding");
         AudioSource.PlayClipAtPoint(clip, transform.position);
     }
 
     private void OnDestroy()
     {
-        vitality.decreaseVitalityGrowth(20);
+        vitality.decreaseVitalityGrowth(15);
         if (GameObject.Find("BuildingCanvas") != null)
             GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().unregister_building(gameObject);
         

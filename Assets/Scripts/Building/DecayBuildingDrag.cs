@@ -200,7 +200,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
             EventBus.Publish(new BuildingEndDragEvent());
 
             holder.GetComponent<SpellCooldown>().reStart();
-            GameObject.Find("VitalityController").GetComponent<VitalityController>().decreaseVitality(100);
+            GameObject.Find("VitalityController").GetComponent<VitalityController>().decreaseVitality(150);
         }
 
         foreach (Vector2 oldPos in oldPos_list)
