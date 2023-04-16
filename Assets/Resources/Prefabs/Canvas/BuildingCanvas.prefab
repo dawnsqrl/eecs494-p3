@@ -92,6 +92,7 @@ MonoBehaviour:
   holder: {fileID: 970278061}
   buildingTexture: {fileID: 21300000, guid: c2b1d06cc3a512348a8ac93331c70529, type: 3}
   RTScontroller: {fileID: 0}
+  growthDemo: {fileID: 0}
   SelectedArea: {fileID: 0}
   fog: {fileID: 1186330243}
   gridManager: {fileID: 0}
@@ -1326,7 +1327,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<b>Decay Mucus</b>
 
-    Cost: <b>10%</b> vitality'
+    Cost: <b>15%</b> vitality'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
   m_sharedMaterial: {fileID: 4119859082983581503, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
@@ -2000,7 +2001,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "$40%\n\u201322.5%"
+  m_text: "$50%\n\u201322.5%"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
   m_sharedMaterial: {fileID: 4119859082983581503, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
@@ -2135,7 +2136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>Soldier Factory</b> (2x spawn)\nCost: <b>20%</b> vitality\n<b>\u20137.5%</b>
+  m_text: "<b>Soldier Factory</b> (2x spawn)\nCost: <b>30%</b> vitality\n<b>\u201315%</b>
     vitality / minute"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
@@ -2361,9 +2362,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '$10%
+  m_text: '$20%
 
-    +30%'
+    +22.5%'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
   m_sharedMaterial: {fileID: 4119859082983581503, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
@@ -2590,9 +2591,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<b>Vitality Generator</b>
 
-    Cost: <b>10%</b> vitality
+    Cost: <b>20%</b> vitality
 
-    <b>+30%</b>
+    <b>+22.5%</b>
     vitality / minute'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
@@ -2992,7 +2993,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>Defense Unit</b>\nCost: <b>30%</b> vitality\n<b>\u201315%</b> vitality
+  m_text: "<b>Defense Unit</b>\nCost: <b>40%</b> vitality\n<b>\u201315%</b> vitality
     / minute"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
@@ -3370,7 +3371,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 145, y: 135}
+  m_SizeDelta: {x: 190, y: 135}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &4043823139716356286
 CanvasRenderer:
@@ -3649,7 +3650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>Growth Source</b>\nCost: <b>40%</b> vitality\n<b>\u201322.5%</b> vitality
+  m_text: "<b>Growth Source</b>\nCost: <b>50%</b> vitality\n<b>\u201322.5%</b> vitality
     / minute"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
@@ -3785,7 +3786,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "$30%\n\u201315%"
+  m_text: "$40%\n\u201315%"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
   m_sharedMaterial: {fileID: 4119859082983581503, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
@@ -4055,7 +4056,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "$20%\n\u20137.5%"
+  m_text: "$30%\n\u201315%"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
   m_sharedMaterial: {fileID: 4119859082983581503, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
@@ -6001,7 +6002,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 440, y: 180}
+  m_SizeDelta: {x: 485, y: 180}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &7367148529942749101
 CanvasRenderer:
@@ -6180,7 +6181,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 135}
+  m_SizeDelta: {x: 155, y: 135}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &348382610699454907
 CanvasRenderer:
@@ -6298,7 +6299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $10%
+  m_text: $15%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}
   m_sharedMaterial: {fileID: 4119859082983581503, guid: a9ec2e05a34d70f4d8729afa4fb9f458, type: 2}

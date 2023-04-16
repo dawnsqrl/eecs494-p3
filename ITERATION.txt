@@ -8,14 +8,19 @@ The game is in its 6th week of development by a team of 4. In the past week we f
 
 [A1] Added cooldown for Snail's sprint and spit. Spamming these skills had been observed to completely ruin Mushroom's gameplay experience and make it virtually impossible to win.
 [A2] Snail now has an upper limit for health and mycelium eating speed. This prevents snail from playing passively-defensively and continuously stack its health and speed attributes through leveling up.
-[A3] There are now less grass bushes and they have become more scattered. This adds more challenge to Snail's maneuvering when they are looking for a place to regenerate health.
-[A4] Snail's natural health regeneration (while not in a grass bush) has been removed. It can now only regain health when hiding in grass bushes.
-[A5] Mushroom's minimap now covers the entire map range. This is to balance the immobility of Mushroom and enables it to make more informed expansion decisions.
+[A3] Snail's natural health regeneration (while not in a grass bush) has been removed. It can now only regain health when staying in grass bushes.
+[A4] There are now less grass bushes and they have become more scattered. This adds more challenge to Snail's maneuvering as they look for a place to regenerate health.
+[A5] Mushroom's minimap now always shows the entire map. This is to balance the immobility of Mushroom and make it easier for it to expand or defend effectively.
+[A6] Snail can now see its current level next to the experience bar.
+[A7] Nests can now contain a random number of little mushrooms between 1 and 3 (used to be always 1), and they replenish slightly faster than before. This makes it easier for Snail to recover lost units.
 
-[B1] Mushroom's growth source can now no longer be placed on mucus tiles. Since mucus prevents mycelium growth, this source would become practically useless if we don't prevent this.
-[B2] Fixed some internal synchronization bugs in the tutorial scene that (1) makes pausing unresponsive at the beginning and (2) makes it impossible to guide little mushrooms with right click.
+[B1] Mushroom's growth source can now no longer be placed on mucus tiles. Since mucus prevents mycelium growth, this source would become practically useless otherwise.
+[B2] Fixed several internal synchronization bugs in the tutorial scene that makes it impossible to (1) access pause menu in the beginning and (2) guide little mushroom attacks with right click.
+[B3] Bombs can now properly deal damage to little mushrooms.
+[B4] Fixed a bug in tile coverage detection that prevents growth source placement anywhere on the map.
+[B5] Optimized performance by reducing animator and alpha updates on mycelium and mucus tiles.
 
-In addition, a new game result screen has been added that displays, in addition to the winning side and total play time, a variety of statistics about the match. This includes (but is not limited to) the number of {little snails / little mushrooms / mycelium tiles / mucus tiles / buildings} that are {generated / destroyed}.
+In addition, a new game result scene has been added. The screen displays, in addition to the winning side and total play time, a variety of detailed statistics about the previous match. This includes (and is not limited to) the number of {little snails / little mushrooms / mycelium tiles / mucus tiles / buildings} that are {generated / destroyed}.
 
 In the coming week, this game will be presented during an open playtesting session where we receive live feedback from participating audiences.
 

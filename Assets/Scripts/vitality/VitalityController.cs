@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -19,8 +18,11 @@ public class VitalityController : MonoBehaviour
 
     private void Update()
     {
-        String note = vitality_increase > 0 ? "+" : "-";
-        _mesh.text = $"{note}{vitality_increase * 1.5f}% / min";
+        _mesh.text = $"{vitality_increase * 1.5f}% / min";
+        if (vitality_increase > 0)
+        {
+            _mesh.text = "+" + _mesh.text;
+        }
     }
 
     private void Start()

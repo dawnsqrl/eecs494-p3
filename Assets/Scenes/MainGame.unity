@@ -6742,53 +6742,10 @@ PrefabInstance:
       propertyPath: mushroom
       value: 
       objectReference: {fileID: 1010284209}
-    - target: {fileID: 1624851104, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_text
-      value: '<b>Decay Mucus</b>
-
-        Cost: <b>15%</b> vitality'
-      objectReference: {fileID: 0}
     - target: {fileID: 1420149010509160373, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: vd
       value: 
       objectReference: {fileID: 819354649}
-    - target: {fileID: 1727876732193657020, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_text
-      value: "$50%\n\u201322.5%"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2371010517113234836, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_text
-      value: "<b>Growth Source</b>\nCost: <b>50%</b> vitality\n<b>\u201322.5%</b>
-        vitality / minute"
-      objectReference: {fileID: 0}
-    - target: {fileID: 2779891644458789717, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_text
-      value: '$20%
-
-        +22.5%'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709092390113757886, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_text
-      value: $15%
-      objectReference: {fileID: 0}
-    - target: {fileID: 4445035441179901181, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_text
-      value: '<b>Vitality Generator</b>
-
-        Cost: <b>20%</b> vitality
-
-        <b>+22.5%</b>
-        vitality / minute'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7539408310546712593, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_text
-      value: "<b>Defense Unit</b>\nCost: <b>40%</b> vitality\n<b>\u201315%</b> vitality
-        / minute"
-      objectReference: {fileID: 0}
-    - target: {fileID: 7822931057442345944, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_text
-      value: "$40%\n\u201315%"
-      objectReference: {fileID: 0}
     - target: {fileID: 8304448893459253556, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: m_Name
       value: BuildingCanvas
@@ -6941,15 +6898,6 @@ PrefabInstance:
       propertyPath: vd
       value: 
       objectReference: {fileID: 819354649}
-    - target: {fileID: 8416124310237611530, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_text
-      value: "<b>Soldier Factory</b> (2x spawn)\nCost: <b>30%</b> vitality\n<b>\u201315%</b>
-        vitality / minute"
-      objectReference: {fileID: 0}
-    - target: {fileID: 9101871678966774817, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_text
-      value: "$30%\n\u201315%"
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
 --- !u!1001 &9168317154744518616

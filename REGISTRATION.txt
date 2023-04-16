@@ -1,1 +1,7 @@
+Defined Studio
+BIOLOGY 452: Field Ecology of Snail-Fungus Interaction
 In this two-player asymmetric RTS game, players control Mushroom and Snail as two opposing species that aim to destroy each other in an enclosed natural environment with limited resources. Each side has unique abilities and tools to help it achieve dominance over the other.
+https://dawnsqrl.itch.io/bio452
+https://gamejolt.com/games/bio452/801100
+https://dawnsqrl.github.io/2cb416c75d1f9d14/assets/Thumbnail.gif
+?
