@@ -77,12 +77,25 @@ public class GroundTileManager : MonoBehaviour
         }
 
         growthed = true;
+        StartCoroutine(disableSmallHyphaeAndEnableWholeSprite());
     }
 
     IEnumerator disableAnimator(GameObject hyphae)
     {
         yield return new WaitForSeconds(1.0f);
         hyphae.GetComponent<Animator>().enabled = false;
+    }
+
+    IEnumerator disableSmallHyphaeAndEnableWholeSprite()
+    {
+        yield return new WaitForSeconds(1.0f);
+        GameObject hyphae = transform.parent.gameObject.transform.Find("Hyphae").gameObject;
+        hyphae.SetActive(false);
+        GameObject hyphae_whole = transform.parent.gameObject.transform.Find("Hyphae_whole").gameObject;
+        hyphae_whole.SetActive(true);
+        Color tmp = hyphae_whole.gameObject.GetComponent<SpriteRenderer>().color;
+        tmp.a = 1;
+        hyphae_whole.gameObject.GetComponent<SpriteRenderer>().color = tmp;
     }
 
     void enableAnimator(GameObject hyphae)
@@ -124,7 +137,7 @@ public class GroundTileManager : MonoBehaviour
 
     public void RemoveGrowthed()
     {
-        GameObject hyphae = transform.parent.gameObject.transform.Find("Hyphae").gameObject;
+        GameObject hyphae = transform.parent.gameObject.transform.Find("Hyphae_whole").gameObject;
         if (growthed)
         {
             GameState.myceliumDestroyed++;
