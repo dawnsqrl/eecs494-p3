@@ -34,7 +34,7 @@ public class DefenceBuilding : MonoBehaviour
     private void Start()
     {
         vitality = GameObject.Find("VitalityController").GetComponent<VitalityController>();
-        vitality.decreaseVitality(400);
+        vitality.decreaseVitality(300);
         vitality.decreaseVitalityGrowth(10);
         BaseCar = GameObject.Find("BaseCar");
     }
