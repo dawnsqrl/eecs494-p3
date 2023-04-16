@@ -336,7 +336,7 @@ public class HitHealth : MonoBehaviour
     public void AddSnailHealth(int curr_level, int max_health)
     {
         maxHealth = math.min(max_health, maxHealth += Mathf.Clamp(curr_level + 1, 0, 5));
-        health = math.min(health, health += Mathf.Clamp(curr_level + 1, 0, 5));
+        health = math.min(max_health, health += Mathf.Clamp(curr_level + 1, 0, 5));
     }
 
     private IEnumerator SwitchOpponentCoolDown(float time)

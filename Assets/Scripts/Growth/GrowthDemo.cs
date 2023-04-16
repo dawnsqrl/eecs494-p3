@@ -105,7 +105,11 @@ public class GrowthDemo : MonoBehaviour
 
         float count;
 
-        print("startDemo");
+        // print("startDemo");
+        //
+        // for (int i = 0; i < 50; i++)
+        //     for (int j = 0; j < 50; j++)
+        //         Position2GroundManager(i, j).SetGrowthed();
 
         // RemoveFogFromTile(init_x, init_y, 1);
         Position2GroundManager(init_x, init_y).SetGrowthed();
