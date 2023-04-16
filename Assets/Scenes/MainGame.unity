@@ -3615,21 +3615,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5462428841127503988, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
-      propertyPath: health
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5462428841127503988, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
-      propertyPath: canRegenerate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5462428841127503988, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
       propertyPath: lowHealthEffect
       value: 
       objectReference: {fileID: 331138583}
-    - target: {fileID: 5462428841127503988, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
-      propertyPath: health_recover_rate
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 6335837167040075763, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -3675,20 +3663,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7143367619112505346, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
-      propertyPath: targetCamera
-      value: 
-      objectReference: {fileID: 819354647}
-    - target: {fileID: 7143367619112505346, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
       propertyPath: BuildingCanvas
       value: 
       objectReference: {fileID: 424501791}
     - target: {fileID: 8292571836482282040, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
       propertyPath: m_Name
       value: Mushroom
-      objectReference: {fileID: 0}
-    - target: {fileID: 8517514632246193935, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e38a15d0674ca4d53b35f15583e73930, type: 3}

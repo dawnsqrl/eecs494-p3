@@ -66,18 +66,22 @@ public class MineBehavior : MonoBehaviour
         //}
 
         //print("step 2");
-        GameObject nearestBuilding = BuildingController.NearestBuilding(transform.position, false);
+        bool foundMushroom = false;
+        GameObject nearestBuilding = BuildingController.NearestBuilding(transform.position, !foundMushroom);
         while (nearestBuilding != null && Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(nearestBuilding.transform.position.x, nearestBuilding.transform.position.y))<damage_radius) {
             if (nearestBuilding.CompareTag("Mushroom"))
             {
                 nearestBuilding.GetComponentInChildren<HitHealth>().GetDamage(2);
-                continue;
+                foundMushroom = true;
             }
-            Destroy(nearestBuilding);
-            AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
-            AudioSource.PlayClipAtPoint(clip, transform.position);
-            yield return null;
-            nearestBuilding= BuildingController.NearestBuilding(transform.position, false);
+            else
+            {
+                Destroy(nearestBuilding);
+                AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
+                AudioSource.PlayClipAtPoint(clip, transform.position);
+                yield return null;
+            }
+            nearestBuilding = BuildingController.NearestBuilding(transform.position, !foundMushroom);
         }
         //print("step 3");
         List<Vector2> tile_list = Get_tiles_in_range(new Vector2(transform.position.x, transform.position.y), damage_radius);

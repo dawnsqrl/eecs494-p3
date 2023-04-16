@@ -159,16 +159,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134423d73171d43c6bd7de912cbf02a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  health: 17
+  maxHealth: 15
+  health: 15
   healthBar: {fileID: 1279075981514118406}
   _spriteRenderer: {fileID: 2901319194757307674}
   hit_cd_time: 0.5
-  health_recover_rate: 0.1
+  health_recover_rate: 0.15
   enemyTagList:
   - Enemy
   - LittleSnail
   _animator: {fileID: 5164460816530346031}
+  canRegenerate: 1
+  lowHealthEffect: {fileID: 0}
 --- !u!1 &7702931926530142126
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc350d1c3d4b427eacb889b2f91d2a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetCamera: {fileID: 0}
   isChosen: 0
   BuildingCanvas: {fileID: 0}
 --- !u!65 &2882440405491587286
@@ -370,7 +371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7786601349327816783
 Transform:
   m_ObjectHideFlags: 0
