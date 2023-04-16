@@ -4088,6 +4088,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 819354647}
+    - target: {fileID: 9045933214369958091, guid: 3919f8bb687564062ab8ddd4dc759a7e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 9045933214369958102, guid: 3919f8bb687564062ab8ddd4dc759a7e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6082,6 +6086,14 @@ PrefabInstance:
       propertyPath: _snailExpManager
       value: 
       objectReference: {fileID: 1325723682}
+    - target: {fileID: 1614122819983971465, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614122819983971465, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 20.7
+      objectReference: {fileID: 0}
     - target: {fileID: 1614122819983971466, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
       value: 1
@@ -6098,9 +6110,13 @@ PrefabInstance:
       propertyPath: _snailExpManager
       value: 
       objectReference: {fileID: 1325723682}
+    - target: {fileID: 1614122820250116368, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1614122820250116370, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1614122820250116370, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: _snailExpManager
@@ -6140,7 +6156,7 @@ PrefabInstance:
       objectReference: {fileID: 1325723682}
     - target: {fileID: 1614122820966646743, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: maxUnit
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1614122820966646743, guid: d3d76e5d09cfb73438ebc1d99872d73b, type: 3}
       propertyPath: _snailExpManager

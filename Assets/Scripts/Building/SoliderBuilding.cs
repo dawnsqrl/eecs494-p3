@@ -40,7 +40,7 @@ public class SoliderBuilding : MonoBehaviour
                 
                 if (!isBuilderTutorialActive)
                 {
-                    yield return new WaitForSeconds(6.0f);
+                    yield return new WaitForSeconds(4.5f);
                     solider = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/Citizen"),
                             transform.position, Quaternion.identity);
                 }
