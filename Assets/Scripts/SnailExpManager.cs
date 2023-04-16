@@ -79,7 +79,8 @@ public class SnailExpManager : MonoBehaviour
 
     private void Update()
     {
-        levelValue.text = $"Lv.{currentLevel}";
+        if (levelValue != null)
+            levelValue.text = $"Lv.{currentLevel}";
     }
 
     public void AddExpPoints(int exp)

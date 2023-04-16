@@ -36,7 +36,9 @@ public class ShieldBehavior : MonoBehaviour
         original_bar_length = healthBar.size.x;
         healthBar.size =
             new Vector2((float)HP / (float)max_HP * original_bar_length, healthBar.size.y);
-        lv = expManager.currentLevel;
+
+        if (expManager != null)
+            lv = expManager.currentLevel;
     }
 
     void Update()
@@ -50,7 +52,7 @@ public class ShieldBehavior : MonoBehaviour
                 activated = false;
             }
         }
-        if (expManager.currentLevel != lv) {
+        if (expManager != null && expManager.currentLevel != lv) {
             lv = expManager.currentLevel;
             max_HP = Mathf.Min(25, 5 + 3 * lv);
         }

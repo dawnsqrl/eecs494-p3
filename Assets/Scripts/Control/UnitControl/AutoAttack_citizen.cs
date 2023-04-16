@@ -55,7 +55,7 @@ public class AutoAttack_citizen : MonoBehaviour
                     continue;
                 }
                 GameObject opponent = enemyList[i];
-                if ((opponent.transform.position - transform.position).magnitude < range)
+                if (opponent != null && (opponent.transform.position - transform.position).magnitude < range)
                 {
                     movetoPosition = opponent.transform.position;
                     _self_hitHealth.SetCurrentOpponent(opponent);

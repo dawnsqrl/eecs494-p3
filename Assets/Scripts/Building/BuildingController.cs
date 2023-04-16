@@ -43,6 +43,9 @@ public class BuildingController : MonoBehaviour
         if (building != mushroom)
             building_num += 1;
 
+        if (building_num >= 50)
+            EventBus.Publish(new GameEndEvent(true));
+
         buildings.Add(pos, building);
         buildings.Add(new Vector2(pos.x + 1, pos.y), building);
         buildings.Add(new Vector2(pos.x + 1, pos.y - 1), building);
