@@ -6,7 +6,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 {
     [SerializeField] private Camera BuilderCamera;
     [SerializeField] private GameObject vitalityBar, Mushroom, snail, VitalityBar, maxBuilding, grass, cave;
-    [SerializeField] private GameObject arrow, arrow2, buildingCanvas;
+    [SerializeField] private GameObject arrow, arrow2, buildingCanvas, arrow3;
     [SerializeField] private GridManager _gridManager;
 
     [SerializeField] private GameObject building1,
@@ -25,7 +25,7 @@ public class NewBuilderTutorialController : MonoBehaviour
     [SerializeField] private SpellCooldown cool1, cool2, cool3, cool4, cool0, coolDestroy;
     [SerializeField] private ViewDragging vd;
 
-    bool finishGrowth = false, readyToDetectClick = true;
+    bool finishGrowth = false, readyToDetectClick = true, newLock = false;
 
     private int STEP_NUM = 0;
     // step 0 -> mushroom and snail 
@@ -92,7 +92,7 @@ public class NewBuilderTutorialController : MonoBehaviour
             if (!firstcall)
             {
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "You found the snail. <b>[Lclick]</b>"
+                    "You found the snail. The snail is your enemy. <b>[Lclick]</b>"
                 ));
                 firstcall = true;
                 EventBus.Publish(new CloseZoomEvent());
@@ -156,6 +156,7 @@ public class NewBuilderTutorialController : MonoBehaviour
         {
             lockClick = true;
             snail.transform.position = new Vector3(10.0f, 25.0f, 0.0f);
+            arrow3.SetActive(true);
             EventBus.Publish(new OpenDragEvent());
             //miniMap.SetActive(true);
             if (!firstcall)
@@ -163,7 +164,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 //vd.enabled = true;
                 EventBus.Publish(new UpdateHintEvent(0,
                     "You can <b>move mouse</b> to the edge of the screen to move the view. " +
-                    "Try to find the snail!"
+                    "Try to find the snail! (Top-Left)"
                 ));
                 firstcall = true;
             }
@@ -179,6 +180,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
         if (STEP_NUM == 4)
         {
+            arrow3.SetActive(false);
             EventBus.Publish(new CloseDragEvent());
             //miniMap.SetActive(false);
             VitalityBar.SetActive(true);
@@ -327,17 +329,15 @@ public class NewBuilderTutorialController : MonoBehaviour
                 ));
                 firstcall = true;
             }
-
-            if (buildingCount == 4 && STEP_NUM == 7)
+            if (buildingCount == 5 && STEP_NUM == 7)
             {
-                STEP_NUM = 8;
-                firstcall = false;
-                EventBus.Publish(new StartBuilderTutorialEvent());
+                StartCoroutine(waitForStep8());
             }
         }
 
         if (STEP_NUM == 8)
         {
+            building0.SetActive(false);
             EventBus.Publish(new StartBuilderTutorialEvent());
             if (!firstcall)
             {
@@ -421,7 +421,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 EventBus.Publish(new StartBuilderTutorialEvent());
                 EventBus.Publish(new UpdateHintEvent(0,
                     "You have an <b>upper limit</b> of how many buildings you can place. " +
-                    "You can increase the limit by adding more spread source. <b>[Lclick]</b>"
+                    "You can increase the limit by adding more growth source. <b>[Lclick]</b>"
                 ));
                 firstcall = true;
             }
@@ -439,6 +439,7 @@ public class NewBuilderTutorialController : MonoBehaviour
         {
             if (!firstcall)
             {
+                buildingCanvas.SetActive(false);
                 maxBuilding.SetActive(true);
                 arrow.SetActive(false);
 
@@ -507,6 +508,20 @@ public class NewBuilderTutorialController : MonoBehaviour
         }
     }
 
+    IEnumerator waitForStep8()
+    {
+        if(!newLock)
+        {
+            newLock = true;
+            yield return new WaitForSeconds(3.0f);
+            STEP_NUM = 8;
+            firstcall = false;
+            EventBus.Publish(new StartBuilderTutorialEvent());
+            newLock = false;
+        }
+        
+    }
+
     IEnumerator vitality_change()
     {
         while (true)
@@ -519,7 +534,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
     IEnumerator waitForGrowth()
     {
-        yield return new WaitForSeconds(8.0f);
+        yield return new WaitForSeconds(9.0f);
         finishGrowth = true;
     }
 
