@@ -129,5 +129,14 @@ public class StartupSequence : MonoBehaviour
         EventBus.Publish(new UpdateDialogEvent(null, "Start!", null));
         yield return new WaitForSeconds(0.5f);
         EventBus.Publish(new DismissDialogEvent());
+        EventBus.Publish(new DisplayHintEvent(0,
+            "<size=+8><b>Kill the big snail, or reach 50 buildings before you get eaten!"
+        ));
+        EventBus.Publish(new DisplayHintEvent(1,
+            "<size=+8><b>Consume the central big mushroom and as many buildings as you can!"
+        ));
+        yield return new WaitForSeconds(8);
+        EventBus.Publish(new DismissHintEvent(0));
+        EventBus.Publish(new DismissHintEvent(1));
     }
 }
