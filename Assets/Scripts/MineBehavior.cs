@@ -68,6 +68,11 @@ public class MineBehavior : MonoBehaviour
         //print("step 2");
         GameObject nearestBuilding = BuildingController.NearestBuilding(transform.position, false);
         while (nearestBuilding != null && Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(nearestBuilding.transform.position.x, nearestBuilding.transform.position.y))<damage_radius) {
+            if (nearestBuilding.CompareTag("Mushroom"))
+            {
+                nearestBuilding.GetComponentInChildren<HitHealth>().GetDamage(2);
+                continue;
+            }
             Destroy(nearestBuilding);
             AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
             AudioSource.PlayClipAtPoint(clip, transform.position);
