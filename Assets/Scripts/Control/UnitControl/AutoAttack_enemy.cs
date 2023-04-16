@@ -95,14 +95,14 @@ public class AutoAttack_enemy : MonoBehaviour
         //     throw;
         // }
         // print("5");
-        if (currentOpponent.IsDestroyed())
+        if (currentOpponent != null && currentOpponent.IsDestroyed())
         {
             // print("5.1");
             onAssult = false;
             currentOpponent = null;
         }
         // print("5.2");
-        if (onAssult)
+        if (onAssult && currentOpponent != null)
         {
             // continue chasing the current opponent
             // or change current opponent to the current collision
@@ -115,9 +115,10 @@ public class AutoAttack_enemy : MonoBehaviour
         // search for new enemy
         bool foundCitizen = false;
         // print("5.5");
-        enemyList = new List<GameObject>(CitizenControl.citizenList);
+        if (CitizenControl.citizenList != null)
+            enemyList = new List<GameObject>(CitizenControl.citizenList);
         // print("5.6");
-        if (enemyList.Count > 0)
+        if (enemyList != null && enemyList.Count > 0)
         {
             // print("5.7");
             for (int i = 0; i < enemyList.Count; i++)
@@ -131,11 +132,12 @@ public class AutoAttack_enemy : MonoBehaviour
                 // print("6.0");
                 GameObject opponent = enemyList[i];
                 // print("6.1");
-                if ((opponent.transform.position - transform.position).magnitude < range)
+                if (opponent != null && (opponent.transform.position - transform.position).magnitude < range)
                 {
                     // print("6.2");
                     movetoPosition = opponent.transform.position;
-                    _self_hitHealth.SetCurrentOpponent(opponent);
+                    if (_self_hitHealth != null)
+                        _self_hitHealth.SetCurrentOpponent(opponent);
                     currentOpponent = opponent;
                     onAssult = true;
                     foundCitizen = true;
@@ -147,7 +149,7 @@ public class AutoAttack_enemy : MonoBehaviour
         if (!foundCitizen)
         {
             GameObject building = BuildingController.NearestBuilding(transform.position);
-            if (building.CompareTag("Mushroom"))
+            if (building != null && building.CompareTag("Mushroom"))
             {
                 return;
             }
@@ -155,7 +157,8 @@ public class AutoAttack_enemy : MonoBehaviour
             {
                 movetoPosition = building.transform.position;
                 onAssult = true;
-                _self_hitHealth.SetCurrentOpponent(building);
+                if (_self_hitHealth != null)
+                    _self_hitHealth.SetCurrentOpponent(building);
                 currentOpponent = building;
             }
         }
