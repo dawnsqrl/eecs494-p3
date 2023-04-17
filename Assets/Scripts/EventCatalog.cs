@@ -24,10 +24,12 @@ public class GameStartEvent
 public class GameEndEvent
 {
     public readonly bool status; // builder = true, enemy = false
+    public readonly bool isDraw;
 
-    public GameEndEvent(bool _status)
+    public GameEndEvent(bool _status, bool _isDraw = false)
     {
         status = _status;
+        isDraw = _isDraw;
     }
 }
 

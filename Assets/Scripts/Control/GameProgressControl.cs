@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameProgressControl : MonoBehaviour
 {
     public static bool isGameActive;
+    public readonly static float maxMinutesElapsed = 20;
 
     public float timeElapsed;
 
@@ -10,8 +11,9 @@ public class GameProgressControl : MonoBehaviour
     private Sprite keyboardGameImage;
     private bool isGamePaused;
     private bool isGameStarted;
-
     private bool isGameEnded;
+
+    private float maxTimeElapsed;
 
     // private bool isEndDialogShown;
     private Vector3[] originalPos;
@@ -28,6 +30,7 @@ public class GameProgressControl : MonoBehaviour
         EventBus.Subscribe<GameEndEvent>(e =>
         {
             GameState.result = e.status;
+            GameState.isDraw = e.isDraw;
             GameState.timePlayed = timeElapsed;
             SceneState.SetTransition(
                 1, 2, StringPool.mainResultScene, mouseGameImage, keyboardGameImage
@@ -58,6 +61,7 @@ public class GameProgressControl : MonoBehaviour
         isGamePaused = false;
         isGameStarted = false;
         isGameEnded = false;
+        maxTimeElapsed = maxMinutesElapsed * 60;
         // isEndDialogShown = false;
         // StartCoroutine(StartInitialCountDown());
     }
@@ -73,6 +77,11 @@ public class GameProgressControl : MonoBehaviour
         if (!isGamePaused)
         {
             timeElapsed += Time.deltaTime * SimulationSpeedControl.GetSimulationSpeed();
+        }
+
+        if (timeElapsed > maxTimeElapsed)
+        {
+            EventBus.Publish(new GameEndEvent(false, true));
         }
     }
 }
