@@ -53,7 +53,7 @@ public class GrowthDemo : MonoBehaviour
                 GameObject.Find("Mushroom").transform.position.x + 0.5f,
                 GameObject.Find("Mushroom").transform.position.y, GameObject.Find("Mushroom").transform.position.z);
 
-            if (!grassManager.CheckRange(new Vector2(init_x, init_y), 5))
+            if (!grassManager.CheckRange(new Vector2(init_x, init_y), 10))
                 break;
         }
 
