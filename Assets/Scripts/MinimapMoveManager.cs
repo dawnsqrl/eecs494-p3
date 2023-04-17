@@ -6,25 +6,28 @@ public class MinimapMoveManager : MonoBehaviour
     private Camera _camera;
     [SerializeField] private GameObject _main_camera;
     private Coroutine camMovePos;
+    float x;
 
     // Start is called before the first frame update
     void Start()
     {
         _camera = GetComponent<Camera>();
-        float x = (float) Screen.currentResolution.height / 1960 * _camera.pixelRect.width;
-        _camera.pixelRect  = new Rect(_camera.pixelRect.x, _camera.pixelRect.y, x, x);
+        x = ((float)Screen.currentResolution.width) / 1920.0f * 450.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
         //Rect r = _camera.pixelRect * 10;
-        if (Input.GetMouseButtonDown(0) && _camera.pixelRect.Contains(Input.mousePosition))
+        if (Input.GetMouseButtonDown(0) && new Rect(_camera.pixelRect.x, _camera.pixelRect.y, x, x).Contains(Input.mousePosition))
         {
-            print(_camera.pixelRect);
-            print(Screen.currentResolution);
-            Vector3 correctedPos = _camera.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 targetPos = new Vector3(correctedPos.x, correctedPos.y, correctedPos.z);
+            print(x);
+            print(Input.mousePosition);
+            //print(_camera.pixelRect);
+            //print(Screen.currentResolution);
+            //Vector3 correctedPos = _camera.ScreenToWorldPoint(Input.mousePosition);
+            //Vector3 temp = Camera.main.WorldToScreenPoint(new Vector3(1.0f, 1.0f, 0.0f)); // 1 -> 0.1
+            Vector3 targetPos = new Vector3(Input.mousePosition.x / x * 50, Input.mousePosition.y / x * 50, -10.0f);
             if (camMovePos != null)
             {
                 StopCoroutine(camMovePos);

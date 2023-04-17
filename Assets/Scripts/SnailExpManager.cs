@@ -384,7 +384,7 @@ public class SnailExpManager : MonoBehaviour
 
         aim.transform.SetSiblingIndex(skillCounter);
 
-        for (int i = 0; i < skillCanvas.transform.childCount; i++)
+        for (int i = 0; i < 4; i++)
         {
             skillCanvas.transform.GetChild(i).position = pos[i];
         }
