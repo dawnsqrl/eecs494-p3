@@ -1,6 +1,7 @@
 public static class GameState
 {
     public static bool result; // builder = true, enemy = false
+    public static bool isDraw;
     public static float timePlayed;
 
     // Mushroom
@@ -24,6 +25,7 @@ public static class GameState
     public static void ResetState()
     {
         result = false;
+        isDraw = false;
         timePlayed = 0;
         smallMushroomProduced = 0;
         smallMushroomKilled = 0;

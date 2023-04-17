@@ -36,25 +36,35 @@ public class ResultDisplay : MonoBehaviour
 
     private void Start()
     {
-        if (GameState.result)
+        if (GameState.isDraw)
         {
-            result.text = "Mushroom wins!";
-            mushroomMedal.color = winColor;
+            result.text = "It's a draw!";
+            mushroomMedal.color = loseColor;
             snailMedal.color = loseColor;
+            timePlayed.text = $"{GameProgressControl.maxMinutesElapsed} minutes' up!";
         }
         else
         {
-            result.text = "Snail wins!";
-            mushroomMedal.color = loseColor;
-            snailMedal.color = winColor;
-        }
+            if (GameState.result)
+            {
+                result.text = "Mushroom wins!";
+                mushroomMedal.color = winColor;
+                snailMedal.color = loseColor;
+            }
+            else
+            {
+                result.text = "Snail wins!";
+                mushroomMedal.color = loseColor;
+                snailMedal.color = winColor;
+            }
 
-        Debug.Log(GameState.timePlayed);
-        float timePlayedValue = GameState.timePlayed / 1.2f;
-        Debug.Log(timePlayedValue);
-        int minutes = Mathf.FloorToInt(timePlayedValue / 60);
-        int seconds = Mathf.FloorToInt(timePlayedValue % 60);
-        timePlayed.text = $"You played for {minutes}:{seconds:D2}.";
+            Debug.Log(GameState.timePlayed);
+            float timePlayedValue = GameState.timePlayed / 1.2f;
+            Debug.Log(timePlayedValue);
+            int minutes = Mathf.FloorToInt(timePlayedValue / 60);
+            int seconds = Mathf.FloorToInt(timePlayedValue % 60);
+            timePlayed.text = $"You played for {minutes}:{seconds:D2}.";
+        }
 
         smallMushroomProduced.text = GameState.smallMushroomProduced.ToString();
         smallSnailKilled.text = GameState.smallSnailKilled.ToString();
@@ -77,6 +87,6 @@ public class ResultDisplay : MonoBehaviour
     private IEnumerator DelayPlay()
     {
         yield return new WaitForSeconds(0.5f);
-        AudioSource.PlayClipAtPoint(resultAudio, AudioListenerManager.audioListenerPos);
+        AudioSource.PlayClipAtPoint(resultAudio, AudioListenerManager.audioListenerPos, 0.7f);
     }
 }
