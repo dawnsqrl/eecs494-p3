@@ -16,8 +16,11 @@ public class MinimapMoveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Rect r = _camera.pixelRect * 10;
         if (Input.GetMouseButtonDown(0) && _camera.pixelRect.Contains(Input.mousePosition))
         {
+            print(_camera.pixelRect);
+            print(Screen.currentResolution);
             Vector3 correctedPos = _camera.ScreenToWorldPoint(Input.mousePosition);
             Vector3 targetPos = new Vector3(correctedPos.x, correctedPos.y, correctedPos.z);
             if (camMovePos != null)
