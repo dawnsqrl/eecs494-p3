@@ -115,7 +115,7 @@ public class SnailExpManager : MonoBehaviour
             if (pendingLevelUps > 0)
             {
                 currentLevel++;
-                nextLevelExp = 10 + 2 * currentLevel;
+                nextLevelExp = 8 + 3 * currentLevel;
                 // active selection menu
                 // wait for input
                 // optionsBanner.SetActive(true);
