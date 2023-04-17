@@ -2,14 +2,14 @@ Devlog 2 – Finalizing Experience of BIOLOGY 452
 
 [b]BIOLOGY 452: Field Ecology of Snail-Fungus Interaction[/b]
 
-[img width=512]https://dawnsqrl.github.io/2cb416c75d1f9d14/assets/?[/img]
+[img width=512]https://dawnsqrl.github.io/2cb416c75d1f9d14/assets/5.mp4_20230415_214116.750.png[/img]
 
 The game is in its 6th week of development by a team of 4. In the past week we focused on gameplay balancing (A) and bugfixes (B).
 
 [A1] Added cooldown for Snail's sprint and spit. Spamming these skills had been observed to completely ruin Mushroom's gameplay experience and make it virtually impossible to win.
 [A2] Snail now has an upper limit for health and mycelium eating speed. This prevents snail from playing passively-defensively and continuously stack its health and speed attributes through leveling up.
 [A3] Snail's natural health regeneration (while not in a grass bush) has been removed. It can now only regain health when staying in grass bushes.
-[A4] There are now less grass bushes and they have become more scattered. This adds more challenge to Snail's maneuvering as they look for a place to regenerate health.
+[A4] There are now less grass bushes. This adds more challenge to Snail's maneuvering as they look for a place to regenerate health.
 [A5] Mushroom's minimap now always shows the entire map. This is to balance the immobility of Mushroom and make it easier for it to expand or defend effectively.
 [A6] Snail can now see its current level next to the experience bar.
 [A7] Nests can now contain a random number of little mushrooms between 1 and 3 (used to be always 1), and they replenish slightly faster than before. This makes it easier for Snail to recover lost units.
@@ -25,4 +25,4 @@ In addition, a new game result scene has been added. The screen displays, in add
 
 In the coming week, this game will be presented during an open playtesting session where we receive live feedback from participating audiences.
 
-Builds available for [url=?]Windows[/url] and [url=?]Mac[/url].
+Builds available for [url=https://github.com/dawnsqrl/2cb416c75d1f9d14/releases/download/v0-au/WindowsBuild.zip]Windows[/url] and [url=https://github.com/dawnsqrl/2cb416c75d1f9d14/releases/download/v0-au/MacBuild.zip]Mac[/url].
