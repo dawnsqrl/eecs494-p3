@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,8 +24,15 @@ public class ResultDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI shieldUsed;
     [SerializeField] private TextMeshProUGUI bombUsed;
 
+    private AudioClip resultAudio;
+
     private readonly Color winColor = new Color(1, 0.8f, 0, 0.95f);
     private readonly Color loseColor = new Color(0.8f, 0.8f, 0.8f, 0.95f);
+
+    private void Awake()
+    {
+        resultAudio = Resources.Load<AudioClip>("Audio/GameEnd");
+    }
 
     private void Start()
     {
@@ -42,7 +50,7 @@ public class ResultDisplay : MonoBehaviour
         }
 
         Debug.Log(GameState.timePlayed);
-        float timePlayedValue = (float) GameState.timePlayed / 1.2f;
+        float timePlayedValue = GameState.timePlayed / 1.2f;
         Debug.Log(timePlayedValue);
         int minutes = Mathf.FloorToInt(timePlayedValue / 60);
         int seconds = Mathf.FloorToInt(timePlayedValue % 60);
@@ -62,5 +70,13 @@ public class ResultDisplay : MonoBehaviour
         buildingDestroyed.text = GameState.buildingDestroyed.ToString();
         shieldUsed.text = GameState.shieldUsed.ToString();
         bombUsed.text = GameState.bombUsed.ToString();
+
+        StartCoroutine(DelayPlay());
+    }
+
+    private IEnumerator DelayPlay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        AudioSource.PlayClipAtPoint(resultAudio, AudioListenerManager.audioListenerPos);
     }
 }
