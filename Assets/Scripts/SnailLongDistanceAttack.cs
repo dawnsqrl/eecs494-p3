@@ -64,6 +64,8 @@ public class SnailLongDistanceAttack : MonoBehaviour
         yield return null;
         GameObject longRangeMucus = Instantiate(Resources.Load<GameObject>("Prefabs/Spit"), transform.position,
             Quaternion.identity);
+        AudioClip clip = Resources.Load<AudioClip>("Audio/Spit");
+        AudioSource.PlayClipAtPoint(clip, AudioListenerManager.audioListenerPos);
         longRangeMucus.transform.eulerAngles = new Vector3(0.0f, 0.0f, setRotation(baseCarDirection.normalized.x, baseCarDirection.normalized.y));
         Vector3 init_pos = transform.position;
         Vector3 dest_pos = transform.position + baseCarDirection.normalized * attackRange;
