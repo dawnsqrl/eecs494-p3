@@ -21,8 +21,6 @@ public class MinimapMoveManager : MonoBehaviour
         //Rect r = _camera.pixelRect * 10;
         if (Input.GetMouseButtonDown(0) && new Rect(_camera.pixelRect.x, _camera.pixelRect.y, x, x).Contains(Input.mousePosition))
         {
-            //print(x);
-            //print(Input.mousePosition);
             //print(_camera.pixelRect);
             //print(Screen.currentResolution);
             //Vector3 correctedPos = _camera.ScreenToWorldPoint(Input.mousePosition);

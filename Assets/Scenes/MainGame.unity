@@ -5521,18 +5521,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 560697544}
     m_Modifications:
-    - target: {fileID: 1126768865597385036, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
-      propertyPath: m_margin.x
-      value: -57.371124
-      objectReference: {fileID: 0}
-    - target: {fileID: 1126768865597385036, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
-      propertyPath: m_margin.z
-      value: -49.48285
-      objectReference: {fileID: 0}
-    - target: {fileID: 2190625779292678577, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 2190625779402717392, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
       propertyPath: m_Name
       value: VitalityCanvas
@@ -5632,10 +5620,6 @@ PrefabInstance:
     - target: {fileID: 2190625780281914839, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6777137679077778789, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 336
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80ea821009a5d3148bbf0c3e83e2988c, type: 3}
@@ -6821,10 +6805,6 @@ PrefabInstance:
       propertyPath: RTScontroller
       value: 
       objectReference: {fileID: 1470659569}
-    - target: {fileID: 655210542, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 127
-      objectReference: {fileID: 0}
     - target: {fileID: 961836633, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: vd
       value: 
@@ -6865,15 +6845,6 @@ PrefabInstance:
       propertyPath: vd
       value: 
       objectReference: {fileID: 819354649}
-    - target: {fileID: 7539408310546712593, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_text
-      value: "<b>Defense Unit</b>\nCost: <b>30%</b> vitality\n<b>\u201315%</b> vitality
-        / minute"
-      objectReference: {fileID: 0}
-    - target: {fileID: 7822931057442345944, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
-      propertyPath: m_text
-      value: "$30%\n\u201315%"
-      objectReference: {fileID: 0}
     - target: {fileID: 8304448893459253556, guid: 9a8432a79b6cbbb43bdbe1c3bfd6ebb2, type: 3}
       propertyPath: m_Name
       value: BuildingCanvas

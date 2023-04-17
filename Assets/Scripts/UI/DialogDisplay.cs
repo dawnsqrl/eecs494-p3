@@ -11,6 +11,7 @@ public class DialogDisplay : MonoBehaviour
     [SerializeField] private bool isReadOnly;
 
     private RectTransform rectTransform;
+    private AudioClip pageAudio;
     private float initialHeight;
     private Queue<DisplayDialogEvent> dialogQueue;
     private AnimationCurve dialogCurve;
@@ -29,6 +30,7 @@ public class DialogDisplay : MonoBehaviour
         {
             if (isDialogVisible)
             {
+                // AudioSource.PlayClipAtPoint(pageAudio, GameProgressControl.audioListenerPos, 0.5f);
                 SetContent(e);
             }
         });
@@ -40,6 +42,7 @@ public class DialogDisplay : MonoBehaviour
             }
         });
         rectTransform = GetComponent<RectTransform>();
+        pageAudio = Resources.Load<AudioClip>("Audio/NotePressed");
         dialogQueue = new Queue<DisplayDialogEvent>();
         dialogCurve = Resources.Load<AnimationCurveAsset>("Curves/DialogCurve");
         dialogTitle = GetComponentInChildren<DialogTitle>();
@@ -121,6 +124,7 @@ public class DialogDisplay : MonoBehaviour
 
     private IEnumerator DisplayDialog()
     {
+        AudioSource.PlayClipAtPoint(pageAudio, GameProgressControl.audioListenerPos, 0.5f);
         isDialogLerping = true;
         float progress = 0;
         while (progress < 1)
@@ -140,6 +144,7 @@ public class DialogDisplay : MonoBehaviour
 
     private IEnumerator DismissDialog()
     {
+        AudioSource.PlayClipAtPoint(pageAudio, GameProgressControl.audioListenerPos, 0.5f);
         isDialogLerping = true;
         doDismissDialog = false;
         float progress = 1;

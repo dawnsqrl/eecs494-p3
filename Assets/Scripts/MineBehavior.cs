@@ -23,13 +23,12 @@ public class MineBehavior : MonoBehaviour
 
     private void Update()
     {
-        audioSource.Play();
         if (Time.time - start_time > delay_time) {
             if (!explode_lock) {
                 explode_lock = true;
                 animator.SetTrigger("explode");
                 AudioClip clip = Resources.Load<AudioClip>("Audio/Explosion");
-                AudioSource.PlayClipAtPoint(clip, transform.position);
+                AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos, 0.7f);
                 StartCoroutine(DestoryAll(gameObject));
             }
         }
@@ -78,7 +77,7 @@ public class MineBehavior : MonoBehaviour
             {
                 Destroy(nearestBuilding);
                 AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
-                AudioSource.PlayClipAtPoint(clip, transform.position);
+                AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos, 0.7f);
                 yield return null;
             }
             nearestBuilding = BuildingController.NearestBuilding(transform.position, !foundMushroom);

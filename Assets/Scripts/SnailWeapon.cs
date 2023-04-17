@@ -33,6 +33,8 @@ public class SnailWeapon : MonoBehaviour
         if (current_mines > 0 && !attacklock)
         {
             attacklock = true;
+            AudioClip clip_beep = Resources.Load<AudioClip>("Audio/Beep");
+            AudioSource.PlayClipAtPoint(clip_beep, GameProgressControl.audioListenerPos, 0.7f);
             StartCoroutine(CoolDown());
             Instantiate(mines, transform.position, Quaternion.identity);
             current_mines -= 1;

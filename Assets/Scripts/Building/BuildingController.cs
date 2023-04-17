@@ -122,7 +122,7 @@ public class BuildingController : MonoBehaviour
                 break;
         }
         AudioClip clip = Resources.Load<AudioClip>("Audio/BuildingDown");
-        AudioSource.PlayClipAtPoint(clip, transform.position);
+        AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos, 0.7f);
         Destroy(buildings[pos].gameObject);
     }
 
