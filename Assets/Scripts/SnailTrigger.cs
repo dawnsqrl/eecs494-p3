@@ -44,7 +44,7 @@ public class SnailTrigger : MonoBehaviour
             if (Time.time - collisionTime > time_eat_hyphae)
             {
                 AudioClip clip = Resources.Load<AudioClip>("Audio/Bite");
-                AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos);
+                AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos, 0.5f);
                 _snailExpManager.AddExpPoints(1);
                 // other.gameObject.SetActive(false);
                 // other.transform.parent.GetComponentInChildren<GroundTileManager>().growthed = false;

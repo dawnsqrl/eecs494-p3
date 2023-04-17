@@ -190,7 +190,7 @@ public class DecayBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandler,
             }
 
             AudioClip clip = Resources.Load<AudioClip>("Audio/Shovel");
-            AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos);
+            AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos, 0.7f);
 
             foreach (Vector2 oldPos in oldPos_list)
             {

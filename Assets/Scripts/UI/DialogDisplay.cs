@@ -30,7 +30,7 @@ public class DialogDisplay : MonoBehaviour
         {
             if (isDialogVisible)
             {
-                AudioSource.PlayClipAtPoint(pageAudio, transform.position);
+                // AudioSource.PlayClipAtPoint(pageAudio, GameProgressControl.audioListenerPos, 0.5f);
                 SetContent(e);
             }
         });
@@ -124,7 +124,7 @@ public class DialogDisplay : MonoBehaviour
 
     private IEnumerator DisplayDialog()
     {
-        AudioSource.PlayClipAtPoint(pageAudio, transform.position);
+        AudioSource.PlayClipAtPoint(pageAudio, GameProgressControl.audioListenerPos, 0.5f);
         isDialogLerping = true;
         float progress = 0;
         while (progress < 1)
@@ -144,7 +144,7 @@ public class DialogDisplay : MonoBehaviour
 
     private IEnumerator DismissDialog()
     {
-        AudioSource.PlayClipAtPoint(pageAudio, transform.position);
+        AudioSource.PlayClipAtPoint(pageAudio, GameProgressControl.audioListenerPos, 0.5f);
         isDialogLerping = true;
         doDismissDialog = false;
         float progress = 1;

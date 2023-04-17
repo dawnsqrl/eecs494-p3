@@ -59,7 +59,7 @@ public class SpreadBuilding : MonoBehaviour
 
         StartCoroutine(StartSpread());
         AudioClip clip = Resources.Load<AudioClip>("Audio/PlaceSpore");
-        AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos);
+        AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos, 0.7f);
     }
 
     private void Update()

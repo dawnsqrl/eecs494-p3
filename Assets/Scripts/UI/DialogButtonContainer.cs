@@ -50,7 +50,7 @@ public class DialogButtonContainer : MonoBehaviour
                 );
                 thisButton.GetComponentInChildren<TextMeshProUGUI>().text = button.Key;
                 Button.ButtonClickedEvent buttonClickedEvent = thisButton.GetComponent<Button>().onClick;
-                buttonClickedEvent.AddListener(() => AudioSource.PlayClipAtPoint(buttonAudio, transform.position));
+                buttonClickedEvent.AddListener(() => AudioSource.PlayClipAtPoint(buttonAudio, GameProgressControl.audioListenerPos, 0.5f));
                 if (button.Value is not null)
                 {
                     if (button.Value.Item1 is not null)

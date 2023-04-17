@@ -109,7 +109,7 @@ public class HintDisplay : MonoBehaviour
 
     private IEnumerator DisplayHint(float newMarginWidth)
     {
-        AudioSource.PlayClipAtPoint(pageAudio, transform.position);
+        AudioSource.PlayClipAtPoint(pageAudio, GameProgressControl.audioListenerPos, 0.5f);
         isHintLerping = true;
         float initialHeight = -rectTransform.rect.height;
         float progress = 0;
@@ -129,7 +129,7 @@ public class HintDisplay : MonoBehaviour
 
     private IEnumerator UpdateHint(string text)
     {
-        AudioSource.PlayClipAtPoint(pageAudio, transform.position);
+        // AudioSource.PlayClipAtPoint(pageAudio, GameProgressControl.audioListenerPos, 0.5f);
         isHintLerping = true;
         float progress = 0;
         while (progress < 1)
@@ -155,7 +155,7 @@ public class HintDisplay : MonoBehaviour
 
     private IEnumerator DisplaceHint(string text, float newMarginWidth)
     {
-        AudioSource.PlayClipAtPoint(pageAudio, transform.position);
+        // AudioSource.PlayClipAtPoint(pageAudio, GameProgressControl.audioListenerPos, 0.5f);
         isHintLerping = true;
         Color originalColor = image.color;
         Color transitionColor = originalColor;
@@ -191,7 +191,7 @@ public class HintDisplay : MonoBehaviour
 
     private IEnumerator DismissHint()
     {
-        AudioSource.PlayClipAtPoint(pageAudio, transform.position);
+        AudioSource.PlayClipAtPoint(pageAudio, GameProgressControl.audioListenerPos, 0.5f);
         isHintLerping = true;
         doDismissHint = false;
         float initialHeight = -rectTransform.rect.height;

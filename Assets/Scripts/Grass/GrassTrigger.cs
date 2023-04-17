@@ -58,7 +58,7 @@ public class GrassTrigger : MonoBehaviour
         if (other.CompareTag("BaseCar"))
         {
             _animator.SetTrigger("SnailEnter");
-            AudioSource.PlayClipAtPoint(_grassSuound, GameProgressControl.audioListenerPos);
+            AudioSource.PlayClipAtPoint(_grassSuound, GameProgressControl.audioListenerPos, 0.7f);
         }
     }
 
@@ -67,7 +67,7 @@ public class GrassTrigger : MonoBehaviour
         _animator.SetTrigger("destroy");
         yield return new WaitForSeconds(1);
         AudioClip clip = Resources.Load<AudioClip>("Audio/BushDies");
-        AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos);
+        AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos, 0.7f);
         GameObject snail = GameObject.Find("BaseCar").gameObject;
         if (snail.GetComponentInChildren<SnailTrigger>().currentGrass == _gameObject)
         {

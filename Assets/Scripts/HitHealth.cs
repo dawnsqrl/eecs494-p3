@@ -327,7 +327,7 @@ public class HitHealth : MonoBehaviour
             GameState.buildingDestroyed++;
 
             clip = Resources.Load<AudioClip>("Audio/BuildingDown");
-            AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos);
+            AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos, 0.7f);
         }
 
         Destroy(_gameObject);
