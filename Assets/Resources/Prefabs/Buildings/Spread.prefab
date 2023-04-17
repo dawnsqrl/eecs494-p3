@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134423d73171d43c6bd7de912cbf02a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  health: 30
+  maxHealth: 20
+  health: 20
   healthBar: {fileID: 555374501320172782}
   _spriteRenderer: {fileID: 4150182374090096730}
   hit_cd_time: 0.5
