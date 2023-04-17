@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -33,35 +34,46 @@ public class TutorialEndSequence : MonoBehaviour
             isEndDialogShown = true;
             EventBus.Publish(new EndAllTutorialEvent());
             EventBus.Publish(new DisplayDialogEvent(
-                "Tutorial completed!", "Make your choice.",
+                "Tutorial completed!", "Game will start soon.",
                 new Dictionary<string, Tuple<UnityAction, bool>>()
                 {
-                    {
-                        "Return", new Tuple<UnityAction, bool>(
-                            () =>
-                            {
-                                SceneState.SetTransition(
-                                    1, 2, "MainMenu", mouseGameImage, keyboardGameImage
-                                );
-                                EventBus.Publish(new TransitSceneEvent());
-                            }, true
-                        )
-                    },
-                    {
-                        "Start", new Tuple<UnityAction, bool>(
-                            () =>
-                            {
-                                SceneState.SetTransition(
-                                    1, 0, "MainGame", mouseGameImage, keyboardGameImage
-                                );
-                                EventBus.Publish(new TransitSceneEvent());
-                            }, true
-                        )
-                    }
+                    // {
+                    //     "Return", new Tuple<UnityAction, bool>(
+                    //         () =>
+                    //         {
+                    //             SceneState.SetTransition(
+                    //                 1, 2, StringPool.mainMenuScene, mouseGameImage, keyboardGameImage
+                    //             );
+                    //             EventBus.Publish(new TransitSceneEvent());
+                    //         }, true
+                    //     )
+                    // },
+                    // {
+                    //     "Start", new Tuple<UnityAction, bool>(
+                    //         () =>
+                    //         {
+                    //             SceneState.SetTransition(
+                    //                 1, 0, StringPool.mainGameScene, mouseGameImage, keyboardGameImage
+                    //             );
+                    //             EventBus.Publish(new TransitSceneEvent());
+                    //         }, true
+                    //     )
+                    // }
                 }
             ));
-            EventBus.Publish(new DismissHintEvent(0));
-            EventBus.Publish(new DismissHintEvent(1));
+            StartCoroutine(DelayStart());
         }
+    }
+
+    private IEnumerator DelayStart()
+    {
+        yield return new WaitForSeconds(0.5f);
+        EventBus.Publish(new DismissHintEvent(0));
+        EventBus.Publish(new DismissHintEvent(1));
+        yield return new WaitForSeconds(2.5f);
+        SceneState.SetTransition(
+            1, 0, StringPool.mainGameScene, mouseGameImage, keyboardGameImage
+        );
+        EventBus.Publish(new TransitSceneEvent());
     }
 }

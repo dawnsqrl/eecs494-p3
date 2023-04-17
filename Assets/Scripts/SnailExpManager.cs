@@ -40,7 +40,7 @@ public class SnailExpManager : MonoBehaviour
     float tParam = 0f, speedModifier = 0.5f;
     bool coroutineAllowed = true;
 
-    private float max_time_eat_hyphae = 1.0f;
+    private float max_time_eat_hyphae = 1.5f;
     private int snail_max_health = 20;
 
     bool levelUpLock = false;
@@ -122,7 +122,7 @@ public class SnailExpManager : MonoBehaviour
                 // add more health and eat speed
 
                 GetComponent<HitHealth>().AddSnailHealth(currentLevel, snail_max_health);
-                GetComponent<SnailTrigger>().time_eat_hyphae = math.max(max_time_eat_hyphae, GetComponent<SnailTrigger>().time_eat_hyphae *= 0.8f);
+                GetComponent<SnailTrigger>().time_eat_hyphae = math.max(max_time_eat_hyphae, GetComponent<SnailTrigger>().time_eat_hyphae *= 0.9f);
 
                 if (GetComponent<SnailTrigger>().time_eat_hyphae == max_time_eat_hyphae)
                     levelUpNoteAnimator.gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Max Health +5";
@@ -311,11 +311,11 @@ public class SnailExpManager : MonoBehaviour
             }
 
             int mineAddition = 0;
-            if (currentLevel < 8)
+            if (currentLevel < 10)
             {
                 mineAddition = Mathf.Min(3, currentLevel);
             }
-            else if (currentLevel < 15)
+            else if (currentLevel < 20)
             {
                 mineAddition = 4;
             }

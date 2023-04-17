@@ -30,7 +30,7 @@ public class GameProgressControl : MonoBehaviour
             GameState.result = e.status;
             GameState.timePlayed = timeElapsed;
             SceneState.SetTransition(
-                1, 2, "MainResult", mouseGameImage, keyboardGameImage
+                1, 2, StringPool.mainResultScene, mouseGameImage, keyboardGameImage
             );
             EventBus.Publish(new TransitSceneEvent());
         });
@@ -38,52 +38,6 @@ public class GameProgressControl : MonoBehaviour
         mouseGameImage = Resources.Load<Sprite>("Sprites/Background/MouseGame");
         keyboardGameImage = Resources.Load<Sprite>("Sprites/Background/KeyboardGame");
     }
-
-    // private void _OnGameEnd(GameEndEvent e)
-    // {
-    //     if (isGameEnded)
-    //     {
-    //         return;
-    //     }
-    //
-    //     isGameEnded = true;
-    //     if (!isEndDialogShown)
-    //     {
-    //         isEndDialogShown = true;
-    //         string winnerTag = e.status ? "Mushroom" : "Snail";
-    //         int minutes = Mathf.FloorToInt(timeElapsed / 60);
-    //         int seconds = Mathf.FloorToInt(timeElapsed % 60);
-    //         EventBus.Publish(new DisplayDialogEvent(
-    //             "Game ended!",
-    //             $"{winnerTag} wins!\nYou played for {minutes}:{seconds:D2}.",
-    //             new Dictionary<string, Tuple<UnityAction, bool>>()
-    //             {
-    //                 {
-    //                     "Return", new Tuple<UnityAction, bool>(
-    //                         () =>
-    //                         {
-    //                             SceneState.SetTransition(
-    //                                 1, 2, "MainMenu", mouseGameImage, keyboardGameImage
-    //                             );
-    //                             EventBus.Publish(new TransitSceneEvent());
-    //                         }, true
-    //                     )
-    //                 },
-    //                 {
-    //                     "Restart", new Tuple<UnityAction, bool>(
-    //                         () =>
-    //                         {
-    //                             SceneState.SetTransition(
-    //                                 1, 0, "MainGame", mouseGameImage, keyboardGameImage
-    //                             );
-    //                             EventBus.Publish(new TransitSceneEvent());
-    //                         }, true
-    //                     )
-    //                 }
-    //             }
-    //         ));
-    //     }
-    // }
 
     private void _OnTutorialEnd(EndAllTutorialEvent e)
     {
@@ -121,11 +75,4 @@ public class GameProgressControl : MonoBehaviour
             timeElapsed += Time.deltaTime * SimulationSpeedControl.GetSimulationSpeed();
         }
     }
-
-    // private IEnumerator StartInitialCountDown()
-    // {
-    //     // used for get-ready countdown before actual game starts
-    //     isGameStarted = true;
-    //     yield return null;
-    // }
 }

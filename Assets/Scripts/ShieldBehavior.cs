@@ -54,7 +54,7 @@ public class ShieldBehavior : MonoBehaviour
         }
         if (expManager != null && expManager.currentLevel != lv) {
             lv = expManager.currentLevel;
-            max_HP = Mathf.Min(25, 5 + 3 * lv);
+            max_HP = Mathf.Min(20, 5 + 2 * lv);
         }
     }
 

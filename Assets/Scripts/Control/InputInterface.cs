@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class InputInterface : MonoBehaviour
 {
@@ -69,15 +68,15 @@ public class InputInterface : MonoBehaviour
             EventBus.Publish(new SnailBombEvent());
         }
 
-        if (Keyboard.current.commaKey.wasPressedThisFrame)
-        {
-            EventBus.Publish(new GameEndEvent(true));
-        }
+        // if (Keyboard.current.commaKey.wasPressedThisFrame)
+        // {
+        //     EventBus.Publish(new GameEndEvent(true));
+        // }
 
-        if (Keyboard.current.periodKey.wasPressedThisFrame)
-        {
-            EventBus.Publish(new GameEndEvent(false));
-        }
+        // if (Keyboard.current.periodKey.wasPressedThisFrame)
+        // {
+        //     EventBus.Publish(new GameEndEvent(false));
+        // }
 
         // if (playerActions.GenerateDialog.WasPressedThisFrame())
         // {

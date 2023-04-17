@@ -103,6 +103,6 @@ public class FadeManager : MonoBehaviour
         }
 
         image.color = endColor;
-        SceneManager.LoadScene("MainTransition");
+        SceneManager.LoadScene(StringPool.mainTransitionScene);
     }
 }
