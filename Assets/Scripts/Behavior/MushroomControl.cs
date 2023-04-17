@@ -20,6 +20,7 @@ public class MushroomControl : MonoBehaviour
     private void Start()
     {
         isDialogBlocking = false;
+        Time.timeScale = 1.2f;
     }
 
     // private void Update()

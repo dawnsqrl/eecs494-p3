@@ -11,6 +11,8 @@ public class MinimapMoveManager : MonoBehaviour
     void Start()
     {
         _camera = GetComponent<Camera>();
+        float x = (float) Screen.currentResolution.height / 1960 * _camera.pixelRect.width;
+        _camera.pixelRect  = new Rect(_camera.pixelRect.x, _camera.pixelRect.y, x, x);
     }
 
     // Update is called once per frame
