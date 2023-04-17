@@ -45,12 +45,12 @@ public class AutoEnemyGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (_snailExpManager != null && _snailExpManager.currentLevel >= 6 && maxUnit < 2)
+        if (_snailExpManager != null && SnailExpManager.currentLevel >= 6 && maxUnit < 2)
         {
             maxUnit = 2;
             _mesh.text = (maxUnit - onGenerationSnailNUm).ToString();
         }
-        else if (_snailExpManager != null && _snailExpManager.currentLevel >= 12 && maxUnit < 3)
+        else if (_snailExpManager != null && SnailExpManager.currentLevel >= 12 && maxUnit < 3)
         {
             maxUnit = 3;
             _mesh.text = (maxUnit - onGenerationSnailNUm).ToString();

@@ -29,6 +29,11 @@ public class AutoAttack_citizen : MonoBehaviour
 
     private void Update()
     {
+        if (SnailExpManager.currentLevel >= 12 && _self_hitHealth.maxHealth == 3)
+        {
+            _self_hitHealth.maxHealth += 1;
+            _self_hitHealth.health += 1;
+        }
         if (currentOpponent != null && currentOpponent.IsDestroyed())
         {
             onAssult = false;
