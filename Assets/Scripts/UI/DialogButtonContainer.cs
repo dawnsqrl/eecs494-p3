@@ -13,10 +13,12 @@ public class DialogButtonContainer : MonoBehaviour
 
     private GameObject buttonTemplate;
     private GameObject buttonContainer;
+    private AudioClip buttonAudio;
 
     private void Awake()
     {
         buttonTemplate = Resources.Load<GameObject>("Prefabs/Canvas/DialogButton");
+        buttonAudio = Resources.Load<AudioClip>("Audio/MessagePopUp");
     }
 
     private void Start()
@@ -48,6 +50,7 @@ public class DialogButtonContainer : MonoBehaviour
                 );
                 thisButton.GetComponentInChildren<TextMeshProUGUI>().text = button.Key;
                 Button.ButtonClickedEvent buttonClickedEvent = thisButton.GetComponent<Button>().onClick;
+                buttonClickedEvent.AddListener(() => AudioSource.PlayClipAtPoint(buttonAudio, transform.position));
                 if (button.Value is not null)
                 {
                     if (button.Value.Item1 is not null)
@@ -57,7 +60,7 @@ public class DialogButtonContainer : MonoBehaviour
 
                     if (button.Value.Item2)
                     {
-                        buttonClickedEvent.AddListener(_DismissAction);
+                        buttonClickedEvent.AddListener(() => EventBus.Publish(new DismissDialogEvent()));
                     }
                 }
 
@@ -70,10 +73,5 @@ public class DialogButtonContainer : MonoBehaviour
         //     thisButton.GetComponentInChildren<TextMeshProUGUI>().text = StringPool.defaultDialogButtonText;
         //     thisButton.GetComponent<Button>().onClick.AddListener(_DismissAction);
         // }
-    }
-
-    private void _DismissAction()
-    {
-        EventBus.Publish(new DismissDialogEvent());
     }
 }
