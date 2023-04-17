@@ -54,7 +54,7 @@ public class ShieldBehavior : MonoBehaviour
         }
         if (expManager != null && SnailExpManager.currentLevel != lv) {
             lv = SnailExpManager.currentLevel;
-            max_HP = Mathf.Min(20, 5 + 2 * lv);
+            max_HP = Mathf.Min(20, 1 + 2 * lv);
         }
     }
 
