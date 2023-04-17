@@ -10,7 +10,7 @@ public class SnailExpManager : MonoBehaviour
 {
     [SerializeField] private int nextLevelExp;
     [SerializeField] public int currentExp;
-    [SerializeField] public int currentLevel;
+    [SerializeField] public static int currentLevel;
     [SerializeField] private GameObject expBar, upgradeIcon;
     [SerializeField] private GameObject levelUpBanner;
     [SerializeField] private GameObject optionsBanner;

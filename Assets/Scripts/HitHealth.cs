@@ -79,7 +79,15 @@ public class HitHealth : MonoBehaviour
         if (health > 0)
         {
             canGetHit = false;
-            StartCoroutine(HitEffect(1));
+            if (SnailExpManager.currentLevel >=14 && (CompareTag("BaseCar") || CompareTag("LittleSnail")))
+            {
+                StartCoroutine(HitEffect(2));
+            }
+            else
+            {
+                StartCoroutine(HitEffect(1));
+            }
+            
         }
 
         if (health <= 0)

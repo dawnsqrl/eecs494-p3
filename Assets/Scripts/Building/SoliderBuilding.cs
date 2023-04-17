@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SoliderBuilding : MonoBehaviour
 {
@@ -28,6 +30,14 @@ public class SoliderBuilding : MonoBehaviour
         vitalityController.decreaseVitalityGrowth(10);
         AudioClip clip = Resources.Load<AudioClip>("Audio/SoldierBuilding");
         AudioSource.PlayClipAtPoint(clip, AudioListenerManager.audioListenerPos, 0.7f);
+    }
+
+    private void Update()
+    {
+        if (SnailExpManager.currentLevel >= 10 && maxSolider == 2)
+        {
+            maxSolider += 1;
+        }
     }
 
     IEnumerator GenerateSolider()

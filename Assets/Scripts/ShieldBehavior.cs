@@ -38,7 +38,7 @@ public class ShieldBehavior : MonoBehaviour
             new Vector2((float)HP / (float)max_HP * original_bar_length, healthBar.size.y);
 
         if (expManager != null)
-            lv = expManager.currentLevel;
+            lv = SnailExpManager.currentLevel;
     }
 
     void Update()
@@ -52,8 +52,8 @@ public class ShieldBehavior : MonoBehaviour
                 activated = false;
             }
         }
-        if (expManager != null && expManager.currentLevel != lv) {
-            lv = expManager.currentLevel;
+        if (expManager != null && SnailExpManager.currentLevel != lv) {
+            lv = SnailExpManager.currentLevel;
             max_HP = Mathf.Min(20, 5 + 2 * lv);
         }
     }
