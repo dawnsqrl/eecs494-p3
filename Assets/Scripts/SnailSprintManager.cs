@@ -50,12 +50,12 @@ public class SnailSprintManager : MonoBehaviour
 
     public void Sprint()
     {
-        AudioClip clip = Resources.Load<AudioClip>("Audio/Sprint");
-        AudioSource.PlayClipAtPoint(clip, AudioListenerManager.audioListenerPos);
         if (!canSprint || attacklock || _basecarController.forwardDirection == Vector3.zero)
         {
             return;
         }
+        AudioClip clip = Resources.Load<AudioClip>("Audio/Sprint");
+        AudioSource.PlayClipAtPoint(clip, AudioListenerManager.audioListenerPos);
         attacklock = true;
         canSprint = false;
         StartCoroutine(SprintProcess());
