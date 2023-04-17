@@ -75,6 +75,19 @@ public class GrowthDemo : MonoBehaviour
         edge_list.Add(new Vector2(init_x - 1, init_y));
         edge_list.Add(new Vector2(init_x - 1, init_y - 1));
         edge_list.Add(new Vector2(init_x - 1, init_y - 2));
+
+        int temp_x, temp_y;
+        while (true)
+        {
+            Vector3 temp = new Vector3(Random.Range(5, 45), Random.Range(5, 45), 0);
+            temp_x = (int)temp.x;
+            temp_y = (int)temp.y + 1;
+
+            if (!grassManager.CheckRange(new Vector2(temp_x, temp_y), 10))
+                break;
+        }
+
+        edge_list.Add(new Vector2(temp_x, temp_y));
     }
 
     //public void setAim(int x, int y)

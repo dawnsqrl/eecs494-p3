@@ -311,17 +311,21 @@ public class SnailExpManager : MonoBehaviour
             }
 
             int mineAddition = 0;
-            if (currentLevel < 10)
+            if (currentLevel < 5)
             {
-                mineAddition = Mathf.Min(3, currentLevel);
+                mineAddition = 1;
+            }
+            else if (currentLevel < 10)
+            {
+                mineAddition = 2;
             }
             else if (currentLevel < 20)
             {
-                mineAddition = 4;
+                mineAddition = 3;
             }
             else
             {
-                mineAddition = 5;
+                mineAddition = 4;
             }
             _snailWeapon.AddMine(mineAddition);
         }
