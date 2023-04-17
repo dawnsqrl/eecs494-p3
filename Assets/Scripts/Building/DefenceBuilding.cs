@@ -28,7 +28,7 @@ public class DefenceBuilding : MonoBehaviour
         EventBus.Subscribe<StartBuildingDragEvent>(_ => OnDrag = true);
         EventBus.Subscribe<EndBuildingDragEvent>(_ => OnDrag = false);
         AudioClip clip = Resources.Load<AudioClip>("Audio/DefenseBuilding");
-        AudioSource.PlayClipAtPoint(clip, transform.position);
+        AudioSource.PlayClipAtPoint(clip, transform.position, 2);
     }
 
     private void Start()

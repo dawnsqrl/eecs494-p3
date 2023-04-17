@@ -10,7 +10,7 @@ public class ResourceBuilding : MonoBehaviour
         vitality.decreaseVitality(200);
         vitality.increaseVitalityGrowth(15);
         AudioClip clip = Resources.Load<AudioClip>("Audio/VitalityBuilding");
-        AudioSource.PlayClipAtPoint(clip, transform.position);
+        AudioSource.PlayClipAtPoint(clip, transform.position, 2);
     }
 
     private void OnDestroy()

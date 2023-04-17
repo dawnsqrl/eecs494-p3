@@ -26,7 +26,7 @@ public class SoliderBuilding : MonoBehaviour
 
         vitalityController.decreaseVitality(300);
         vitalityController.decreaseVitalityGrowth(10);
-        AudioClip clip = Resources.Load<AudioClip>("Audio/SoilderBuilding");
+        AudioClip clip = Resources.Load<AudioClip>("Audio/SoldierBuilding");
         AudioSource.PlayClipAtPoint(clip, transform.position);
     }
 
