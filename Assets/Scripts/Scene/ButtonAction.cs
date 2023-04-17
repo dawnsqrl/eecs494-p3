@@ -17,18 +17,19 @@ public class ButtonAction : MonoBehaviour
 
     public void OnClickStart()
     {
-        if (!SceneState.isTutorialAccessed)
-        {
-            SceneState.isTutorialAccessed = true;
-            OnClickTutorial();
-        }
-        else
-        {
-            SceneState.SetTransition(
-                1, 0, StringPool.mainGameScene, mouseGameImage, keyboardGameImage
-            );
-            EventBus.Publish(new TransitSceneEvent());
-        }
+        OnClickTutorial();
+        // if (!SceneState.isTutorialAccessed)
+        // {
+        //     SceneState.isTutorialAccessed = true;
+        //     OnClickTutorial();
+        // }
+        // else
+        // {
+        //     SceneState.SetTransition(
+        //         1, 0, StringPool.mainGameScene, mouseGameImage, keyboardGameImage
+        //     );
+        //     EventBus.Publish(new TransitSceneEvent());
+        // }
     }
 
     public void OnClickTutorial()
