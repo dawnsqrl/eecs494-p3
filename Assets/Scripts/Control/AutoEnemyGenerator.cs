@@ -92,7 +92,7 @@ public class AutoEnemyGenerator : MonoBehaviour
 
     private IEnumerator GenerateNewUnit()
     {
-        yield return new WaitForSeconds(3);
+        //yield return new WaitForSeconds(3);
         GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Objects/LittleSnail"), transform.position,
             Quaternion.identity);
         enemy.GetComponent<UnitRTS>().MoveTo(transform.position);
