@@ -26,7 +26,7 @@ public class SnailLongDistanceAttack : MonoBehaviour
     void Start()
     {
         coolDownFog.fillAmount = 0;
-        maxCoolDownTime = 1;
+        maxCoolDownTime = 2.0f;
         remainCoolDownTime = 0;
     }
 
