@@ -23,13 +23,12 @@ public class MineBehavior : MonoBehaviour
 
     private void Update()
     {
-        audioSource.Play();
         if (Time.time - start_time > delay_time) {
             if (!explode_lock) {
                 explode_lock = true;
                 animator.SetTrigger("explode");
                 AudioClip clip = Resources.Load<AudioClip>("Audio/Explosion");
-                AudioSource.PlayClipAtPoint(clip, transform.position);
+                AudioSource.PlayClipAtPoint(clip, transform.position, 2);
                 StartCoroutine(DestoryAll(gameObject));
             }
         }
