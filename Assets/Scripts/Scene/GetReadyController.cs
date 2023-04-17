@@ -60,7 +60,7 @@ public class GetReadyController : MonoBehaviour
         if (hasMushroomConfirmed && hasSnailConfirmed)
         {
             SceneState.SetTransition(
-                1, 0, "MainTutorial", mouseGameImage, keyboardGameImage
+                1, 0, StringPool.mainTutorialScene, mouseGameImage, keyboardGameImage
             );
             EventBus.Publish(new TransitSceneEvent());
         }

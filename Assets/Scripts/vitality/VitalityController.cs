@@ -12,13 +12,12 @@ public class VitalityController : MonoBehaviour
 
     private void Awake()
     {
-        int a = -1;
         EventBus.Subscribe<ModifyVitalityEvent>(e => vitality = e.vitality);
     }
 
     private void Update()
     {
-        _mesh.text = $"{vitality_increase * 1.5f}% / min";
+        _mesh.text = $"{vitality_increase * 1.5f}%/min";
         if (vitality_increase >= 0)
         {
             _mesh.text = "+" + _mesh.text;

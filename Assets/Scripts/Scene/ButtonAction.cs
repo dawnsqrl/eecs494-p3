@@ -25,7 +25,7 @@ public class ButtonAction : MonoBehaviour
         else
         {
             SceneState.SetTransition(
-                1, 0, "MainGame", mouseGameImage, keyboardGameImage
+                1, 0, StringPool.mainGameScene, mouseGameImage, keyboardGameImage
             );
             EventBus.Publish(new TransitSceneEvent());
         }
@@ -34,7 +34,7 @@ public class ButtonAction : MonoBehaviour
     public void OnClickTutorial()
     {
         SceneState.SetTransition(
-            1, 0, "MainGetReady", mouseTransitionImage, keyboardTransitionImage
+            1, 0, StringPool.mainGetReadyScene, mouseTransitionImage, keyboardTransitionImage
         );
         EventBus.Publish(new TransitSceneEvent());
     }
@@ -47,7 +47,7 @@ public class ButtonAction : MonoBehaviour
     public void OnClickReturn()
     {
         SceneState.SetTransition(
-            1, 2, "MainMenu", mouseGameImage, keyboardGameImage
+            1, 2, StringPool.mainMenuScene, mouseGameImage, keyboardGameImage
         );
         EventBus.Publish(new TransitSceneEvent());
     }
@@ -55,7 +55,7 @@ public class ButtonAction : MonoBehaviour
     public void OnClickRestart()
     {
         SceneState.SetTransition(
-            1, 0, "MainGame", mouseGameImage, keyboardGameImage
+            1, 0, StringPool.mainGameScene, mouseGameImage, keyboardGameImage
         );
         EventBus.Publish(new TransitSceneEvent());
     }
