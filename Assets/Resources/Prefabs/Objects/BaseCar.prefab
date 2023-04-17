@@ -5533,6 +5533,7 @@ MonoBehaviour:
   levelUpNoteAnimator: {fileID: 0}
   addExpNoteAnimator: {fileID: 0}
   title: {fileID: 0}
+  levelValue: {fileID: 0}
 --- !u!114 &993464509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5682,7 +5683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isChosen: 0
-  tutorialInitPos: {x: -52.5, y: 2, z: 0}
+  tutorialInitPos: {x: -56, y: 4, z: 0}
   speed: 2
   _animator: {fileID: 4047923559195802300}
   _snailHealth: {fileID: 7166689666919232521}

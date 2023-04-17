@@ -112,7 +112,7 @@ public class AutoEnemyGenerator : MonoBehaviour
         yield return new WaitForSeconds(1);
         Debug.Log("wait end");
         AudioClip clip = Resources.Load<AudioClip>("Audio/BushDies");
-        AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos, 0.7f);
+        AudioSource.PlayClipAtPoint(clip, AudioListenerManager.audioListenerPos, 0.7f);
         GameState.nestDestroyed++;
         Destroy(_gameObject);
     }

@@ -92,7 +92,7 @@ public class SnailExpManager : MonoBehaviour
         if (currentExp >= nextLevelExp)
         {
             AudioClip clip = Resources.Load<AudioClip>("Audio/SnailLevelUp");
-            AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos);
+            AudioSource.PlayClipAtPoint(clip, AudioListenerManager.audioListenerPos);
             pendingLevelUps++;
             currentExp = 0;
             if (coroutineAllowed)
@@ -141,7 +141,7 @@ public class SnailExpManager : MonoBehaviour
                     // skillsChooseCanvas.SetActive(true);
                     // generate_random_skill_choose();
                     AudioClip clip = Resources.Load<AudioClip>("Audio/SnailLevelUp");
-                    AudioSource.PlayClipAtPoint(clip, GameProgressControl.audioListenerPos);
+                    AudioSource.PlayClipAtPoint(clip, AudioListenerManager.audioListenerPos);
                 }
             }
 

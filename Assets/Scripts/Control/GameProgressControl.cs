@@ -10,7 +10,6 @@ public class GameProgressControl : MonoBehaviour
     private Sprite keyboardGameImage;
     private bool isGamePaused;
     private bool isGameStarted;
-    public static Vector3 audioListenerPos;
 
     private bool isGameEnded;
 
@@ -105,7 +104,6 @@ public class GameProgressControl : MonoBehaviour
         isGamePaused = false;
         isGameStarted = false;
         isGameEnded = false;
-        audioListenerPos = GameObject.Find("AudioListener").transform.position;
         // isEndDialogShown = false;
         // StartCoroutine(StartInitialCountDown());
     }

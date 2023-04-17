@@ -109,7 +109,7 @@ public class HintDisplay : MonoBehaviour
 
     private IEnumerator DisplayHint(float newMarginWidth)
     {
-        AudioSource.PlayClipAtPoint(pageAudio, GameProgressControl.audioListenerPos, 0.5f);
+        AudioSource.PlayClipAtPoint(pageAudio, AudioListenerManager.audioListenerPos, 0.5f);
         isHintLerping = true;
         float initialHeight = -rectTransform.rect.height;
         float progress = 0;
@@ -191,7 +191,7 @@ public class HintDisplay : MonoBehaviour
 
     private IEnumerator DismissHint()
     {
-        AudioSource.PlayClipAtPoint(pageAudio, GameProgressControl.audioListenerPos, 0.5f);
+        AudioSource.PlayClipAtPoint(pageAudio, AudioListenerManager.audioListenerPos, 0.5f);
         isHintLerping = true;
         doDismissHint = false;
         float initialHeight = -rectTransform.rect.height;
