@@ -119,23 +119,25 @@ public class StartupSequence : MonoBehaviour
     private IEnumerator DelayStart()
     {
         EventBus.Publish(startDialog);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
         EventBus.Publish(new GameStartEvent());
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.2f);
         EventBus.Publish(new UpdateDialogEvent(null, $"{startingInString} 2", null));
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.2f);
         EventBus.Publish(new UpdateDialogEvent(null, $"{startingInString} 1", null));
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.2f);
         EventBus.Publish(new UpdateDialogEvent(null, "Start!", null));
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
         EventBus.Publish(new DismissDialogEvent());
         EventBus.Publish(new DisplayHintEvent(0,
-            "<size=+8><b>Kill the big snail, or reach 50 buildings before you get eaten!"
+            "<size=+8><b>Kill the big snail, or reach 50 buildings before you get eaten!\n"
+            + $"You only have {GameProgressControl.maxMinutesElapsed} minutes!"
         ));
         EventBus.Publish(new DisplayHintEvent(1,
-            "<size=+8><b>Consume the central big mushroom and as many buildings as you can!"
+            "<size=+8><b>Consume the central big mushroom and as many buildings as you can!\n"
+            + $"You only have {GameProgressControl.maxMinutesElapsed} minutes!"
         ));
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(10);
         EventBus.Publish(new DismissHintEvent(0));
         EventBus.Publish(new DismissHintEvent(1));
     }

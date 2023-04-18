@@ -59,7 +59,7 @@ public class ResultDisplay : MonoBehaviour
             }
 
             Debug.Log(GameState.timePlayed);
-            float timePlayedValue = GameState.timePlayed / 1.2f;
+            float timePlayedValue = GameState.timePlayed;
             Debug.Log(timePlayedValue);
             int minutes = Mathf.FloorToInt(timePlayedValue / 60);
             int seconds = Mathf.FloorToInt(timePlayedValue % 60);

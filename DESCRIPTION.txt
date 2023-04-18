@@ -1,0 +1,3 @@
+This is not actually a homework report (or is it), but a (local) two-player asymmetric RTS game where you play as Mushroom and Snail that want to consume each other. You are being observed by students from the aforementioned course who are interested in the special abilities that the two species have.
+
+Register the course (i.e., play) now!

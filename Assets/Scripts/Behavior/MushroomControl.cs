@@ -20,7 +20,6 @@ public class MushroomControl : MonoBehaviour
     private void Start()
     {
         isDialogBlocking = false;
-        Time.timeScale = 1.2f;
     }
 
     // private void Update()
@@ -70,6 +69,5 @@ public class MushroomControl : MonoBehaviour
         CitizenControl.citizenList.Remove(gameObject);
         if (GameObject.Find("WhateverItsCalled") != null)
             Destroy(GameObject.Find("WhateverItsCalled"));
-        
     }
 }

@@ -164,7 +164,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 //vd.enabled = true;
                 EventBus.Publish(new UpdateHintEvent(0,
                     "You can <b>move mouse</b> to the edge of the screen to move the view. " +
-                    "Try to find the snail! (Top-Left)"
+                    "Try to find the snail! (It's to your upper left)"
                 ));
                 firstcall = true;
             }
@@ -225,7 +225,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 EventBus.Publish(new UpdateHintEvent(0,
                     "<b>Drag and drop</b> buildings onto your mycelium.\n" +
                     "Hover mouse over the building icons for more information.\n" +
-                    "Build buildings will cost vitality!", 575
+                    "All buildings cost vitality!", 575
                 ));
                 firstcall = true;
                 Position2GroundManager(5, 31).SetGrowthed();
@@ -329,6 +329,7 @@ public class NewBuilderTutorialController : MonoBehaviour
                 ));
                 firstcall = true;
             }
+
             if (buildingCount == 5 && STEP_NUM == 7)
             {
                 StartCoroutine(waitForStep8());
@@ -372,8 +373,8 @@ public class NewBuilderTutorialController : MonoBehaviour
                 BuilderCamera.transform.position = new Vector3(30.0f, 27.5f, -10.0f);
 
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "If mucus surrounds your mycelium, you can spend some vitality to destroy them. " +
-                    "Try to decay the mucus in the middle of your view."
+                    "If mucus surrounds your mycelium, you can spend some vitality to <b>destroy</b> them. " +
+                    "Try to remove the mucus in the middle of your view."
                 ));
                 firstcall = true;
 
@@ -448,8 +449,9 @@ public class NewBuilderTutorialController : MonoBehaviour
 
                 EventBus.Publish(new StartBuilderTutorialEvent());
                 EventBus.Publish(new UpdateHintEvent(0,
-                    "The snail may hide in the grass, and small snails will emerge from the cave to follow the big snail. " +
-                    "You can destroy both by growing mycelium over them. <b>[Lclick]</b>"
+                    "The snail can hide in <b>bushes</b>, "
+                    + "and small snails will emerge from <b>nests</b> to follow the big snail. "
+                    + "You can destroy both by growing mycelium over them. <b>[Lclick]</b>"
                 ));
                 firstcall = true;
             }
@@ -510,7 +512,7 @@ public class NewBuilderTutorialController : MonoBehaviour
 
     IEnumerator waitForStep8()
     {
-        if(!newLock)
+        if (!newLock)
         {
             newLock = true;
             yield return new WaitForSeconds(3.0f);
@@ -519,7 +521,6 @@ public class NewBuilderTutorialController : MonoBehaviour
             EventBus.Publish(new StartBuilderTutorialEvent());
             newLock = false;
         }
-        
     }
 
     IEnumerator vitality_change()

@@ -70,7 +70,7 @@ public class TutorialEndSequence : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         EventBus.Publish(new DismissHintEvent(0));
         EventBus.Publish(new DismissHintEvent(1));
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(6);
         SceneState.SetTransition(
             1, 0, StringPool.mainGameScene, mouseGameImage, keyboardGameImage
         );
