@@ -95,7 +95,7 @@ public class AutoAttack_enemy : MonoBehaviour
         //     throw;
         // }
         // print("5");
-        if (currentOpponent != null && currentOpponent.IsDestroyed())
+        if (currentOpponent == null || currentOpponent.IsDestroyed())
         {
             // print("5.1");
             onAssult = false;
