@@ -24,6 +24,18 @@ public class BuildingController : MonoBehaviour
         vitality = GameObject.Find("VitalityController").GetComponent<VitalityController>();
     }
 
+    public bool check_mushroom(Vector2 pos)
+    {
+        if(buildings.ContainsKey(pos))
+        {
+            if (buildings[pos].gameObject.name == "Mushroom")
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public bool check_avai(Vector2 pos)
     {
         return !buildings.ContainsKey(pos);

@@ -138,6 +138,8 @@ public class DestoryBuildingDrag : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     bool CheckAvai(Vector2 pos)
     {
+        if (GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().check_mushroom(pos))
+            return false;
         return !GameObject.Find("BuildingCanvas").GetComponent<BuildingController>().check_avai(pos);
     }
 
