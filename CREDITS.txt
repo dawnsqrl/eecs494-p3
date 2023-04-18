@@ -7,16 +7,8 @@
 [3] Bacteria sprite.
 	https://pngtree.com/freepng/blue-cartoon-bacterial-cell_4733697.html
 
-[4] Grass patch interaction sound effect.
+[4] Sound effects by Envato Elements.
 	https://elements.envato.com/tall-grass-hit-slow-moving-UZQHE4P
-
-[5] Spring Snowstorm. Font by Misti Hammers.
-	https://mistifonts.com/spring-snowstorm/
-
-[6] Music by DOVA-SYNDROME.
-	https://dova-s.jp/bgm/play17329.html
-
-[7] Sound effects by Envato Elements.
 	https://elements.envato.com/hammer-hit-shield-metal-6B3SLXA
 	https://elements.envato.com/plant-growing-NGLV599
 	https://elements.envato.com/sword-in-YS95QGJ
@@ -31,6 +23,14 @@
 	https://elements.envato.com/pop-up-descend-AJGKYUA
 	https://elements.envato.com/game-level-up-8DCSBDC
 	https://elements.envato.com/tree-fall-JCX5KMC
+
+[5] Spring Snowstorm. Font by Misti Hammers.
+	https://mistifonts.com/spring-snowstorm/
+
+[6] Music by DOVA-SYNDROME.
+	https://dova-s.jp/bgm/play17329.html
+
+[7] Sound effects by MixKit.
 	https://mixkit.co/free-sound-effects/coin/
 	https://mixkit.co/free-sound-effects/discover/throw/
 	https://mixkit.co/free-sound-effects/game/
