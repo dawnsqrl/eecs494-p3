@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameProgressControl : MonoBehaviour
@@ -12,10 +13,11 @@ public class GameProgressControl : MonoBehaviour
     private bool isGamePaused;
     private bool isGameStarted;
     private bool isGameEnded;
-
+    private readonly float timeScale = 1.2f;
     private float maxTimeElapsed;
 
-    // private bool isEndDialogShown;
+    private bool has2minHintShown;
+    private bool has30secHintShown;
     private Vector3[] originalPos;
 
     private void Awake()
@@ -56,14 +58,14 @@ public class GameProgressControl : MonoBehaviour
     {
         EventBus.Publish(new AssignGameControlEvent(this));
         isGameActive = false;
-        // Setup countdown clock
         timeElapsed = 0;
         isGamePaused = false;
         isGameStarted = false;
         isGameEnded = false;
         maxTimeElapsed = maxMinutesElapsed * 60;
-        // isEndDialogShown = false;
-        // StartCoroutine(StartInitialCountDown());
+        has2minHintShown = false;
+        has30secHintShown = false;
+        Time.timeScale = timeScale;
     }
 
     private void Update()
@@ -76,12 +78,37 @@ public class GameProgressControl : MonoBehaviour
 
         if (!isGamePaused)
         {
-            timeElapsed += Time.deltaTime * SimulationSpeedControl.GetSimulationSpeed();
+            timeElapsed += Time.deltaTime / timeScale;
+        }
+
+        if (!has2minHintShown && timeElapsed > maxTimeElapsed - 120)
+        {
+            has2minHintShown = true;
+            string hurryText = "<size=+8><b>Hurry up! 2 minutes left!";
+            EventBus.Publish(new DisplayHintEvent(0, hurryText));
+            EventBus.Publish(new DisplayHintEvent(1, hurryText));
+            StartCoroutine(DelayDismiss());
+        }
+
+        if (!has30secHintShown && timeElapsed > maxTimeElapsed - 30)
+        {
+            has30secHintShown = true;
+            string hurryText = "<size=+8><b>Hurry up! 30 seconds left!";
+            EventBus.Publish(new DisplayHintEvent(0, hurryText));
+            EventBus.Publish(new DisplayHintEvent(1, hurryText));
+            StartCoroutine(DelayDismiss());
         }
 
         if (timeElapsed > maxTimeElapsed)
         {
             EventBus.Publish(new GameEndEvent(false, true));
         }
+    }
+
+    private IEnumerator DelayDismiss()
+    {
+        yield return new WaitForSeconds(6);
+        EventBus.Publish(new DismissHintEvent(0));
+        EventBus.Publish(new DismissHintEvent(1));
     }
 }
